@@ -1,0 +1,107 @@
+.heroBg {
+  max-width: 100%;
+  background: url("../../assets/hero-bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center; */
+}
+.bgFilter {
+  background: #ffffff;
+  opacity: 0.9;
+  backdrop-filter: blur(50px);
+}
+.reliableInternetBg {
+  background: url("../../assets/IMG_1215-2-1.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.subHeadingBorder::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 28px;
+  background: #05649c;
+  left: -10px;
+}
+.businessBanner,
+.learningBanner,
+.nonTechSavvyBanner,
+.liveSportBroadcast,
+.streamUninterrupted,
+.gamingExperience {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.businessBanner {
+  background-image: url("../../assets/banner1.webp");
+}
+.learningBanner {
+  background-image: url("../../assets/banner2.webp");
+}
+.nonTechSavvyBanner {
+  background-image: url("../../assets/banner3.webp");
+}
+.liveSportBroadcast {
+  background-image: url("../../assets/banner4.webp");
+}
+.streamUninterrupted {
+  background-image: url("../../assets/banner5.webp");
+}
+.gamingExperience {
+  background-image: url("../../assets/banner6.webp");
+}
+.filteredBg {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+.boxBackground::before {
+  content: "";
+  position: absolute;
+  background: #05649c;
+  left: -200px;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+}
+.accordionBorder {
+  border-bottom: 1px solid white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.accordionBorder > button > span {
+  width: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .heroBg {
+    background-position: center;
+  }
+  .reliableInternetBg {
+    background-size: contain;
+    height: 270px;
+  }
+  .businessBanner,
+  .learningBanner {
+    background-position: 0%;
+    background-size: contain;
+  }
+  .businessBanner {
+    background-image: url("../../assets/banner1-mobile.webp");
+  }
+  .learningBanner {
+    background-image: url("../../assets/banner2-mobile.webp");
+  }
+  .nonTechSavvyBanner {
+    background-image: url("../../assets/banner3-mobile.webp");
+  }
+  .liveSportBroadcast {
+    background-image: url("../../assets/banner4-mobile.webp");
+  }
+  .streamUninterrupted {
+    background-image: url("../../assets/banner5-mobile.webp");
+  }
+  .gamingExperience {
+    background-image: url("../../assets/banner6-mobile.webp");
+  }
+}
