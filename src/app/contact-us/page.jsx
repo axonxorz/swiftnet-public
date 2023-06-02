@@ -77,7 +77,7 @@ const page = () => {
                 <input
                   type="email"
                   placeholder="e.g kevinreggea@gmail.com"
-                  className="text-[#9CA3AF] text-sm md:text-base bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
+                  className="text-[#9CA3AF] text-sm md:text-base bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 pl-4 rounded-lg"
                 />
               </div>
 
@@ -91,7 +91,7 @@ const page = () => {
                 <input
                   type="text"
                   placeholder="e.g 085293825822"
-                  className="text-[#9CA3AF] text-sm md:text-base  bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
+                  className="text-[#9CA3AF] text-sm md:text-base pl-4  bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
                 />
               </div>
 
@@ -108,7 +108,7 @@ const page = () => {
                   cols=""
                   rows="5"
                   placeholder="e.g Hi, i want to subscribe swift-net.ca plan"
-                  className="text-[#9CA3AF] text-sm md:text-base  bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
+                  className="text-[#9CA3AF] text-sm md:text-base pl-4 bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
                 ></textarea>
               </div>
             </div>

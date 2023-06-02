@@ -118,7 +118,7 @@ const Navbar = () => {
                   Home
                 </li>
               </Link>
-              <Link href="/">
+              <Link href="/about-us">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
@@ -126,7 +126,7 @@ const Navbar = () => {
                   About Us
                 </li>
               </Link>
-              <Link href="/#faq">
+              <Link href="/contact-us">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"

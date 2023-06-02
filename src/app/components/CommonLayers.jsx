@@ -22,7 +22,7 @@ const CommonLayers = (props) => {
           />
 
           <div
-            className={`md:w-[820px] mx-4 md:mx-0 md:absolute md:bottom-0 right-0 mt-[-250px] pb-10 md:pb-6 ${style.filteredBg} p-6 flex flex-col gap-4`}
+            className={`md:w-[820px] min-h-[700px] mx-4 md:mx-0 md:absolute md:bottom-0 right-0 mt-[-250px] pb-10 md:pb-6 ${style.filteredBg} p-6 flex flex-col gap-10 items-center justify-center`}
           >
             {props.data.map((data) => (
               <div key={data.id}>
