@@ -25,25 +25,70 @@ const ReliableInternet = () => {
             internet access even during power disruptions, extreme weather, or
             construction in the summer.
           </p>
-          <div>
-            <h6
-              className={`text-primary font-semibold text-base md:text-lg relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
-            >
-              Permanent Fixed Wireless Connection
-            </h6>
-            <p className={styles.paragraph}>
-              Swift-Net.ca engineers a permanent fixed wireless connection,
-              which involves installing a wireless receiver on your property to
-              connect to our network. This robust infrastructure ensures a
-              stable and high-speed internet connection without the need for
-              satellites or wired connections like DSL or cable.
-            </p>
+          <div className="w-full">
+            <div className="flex  flex-col gap-4 my-4">
+            <div className="w-full space-y-2">
+              <h6
+                className={`text-primary font-semibold text-base md:text-lg relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+              >
+                Permanent Fixed Wireless Connection
+              </h6>
+              <p className={styles.paragraph}>
+                Swift-Net.ca engineers a permanent fixed wireless connection,
+                which involves installing a wireless receiver on your property
+                to connect to our network. This robust infrastructure ensures a
+                stable and high-speed internet connection without the need for
+                satellites or wired connections like DSL or cable.
+              </p>
+            </div>
 
-            <ul className="flex flex-col gap-3 my-6 text-base md:ext-lg font-semibold text-[#6B7280] tracking-[-0.02em]">
-              <li>Less Susceptible to Power Disruptions</li>
-              <li>Resilient to Extreme Weather Conditions</li>
-              <li>Unaffected by Summer Construction</li>
-            </ul>
+            <div className="w-full space-y-2">
+              <h6
+                className={`text-primary font-semibold text-base md:text-lg relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+              >
+                Less Susceptible to Power Disruptions
+              </h6>
+              <p className={styles.paragraph}>
+                Our fixed wireless network is designed with built-in
+                redundancies to minimize the impact of remote power disruptions
+                on your internet connectivity. This ensures that you can
+                continue to enjoy a stable connection even when power outages
+                occur in your community.
+              </p>
+            </div>
+
+            <div className="w-full space-y-2">
+              <h6
+                className={`text-primary font-semibold text-base md:text-lg relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+              >
+                Resilient to Extreme Weather Conditions
+              </h6>
+              <p className={styles.paragraph}>
+                Swift-Net.ca understands the unique weather challenges faced by
+                communities in northern Alberta and Saskatchewan, such as heavy
+                snowfall, freezing rain, and icy conditions. Our fixed wireless
+                infrastructure is built to withstand these harsh weather
+                conditions, ensuring that your internet connection remains
+                stable and reliable during extreme weather events.
+              </p>
+            </div>
+
+            <div className="w-full space-y-2">
+              <h6
+                className={`text-primary font-semibold text-base md:text-lg relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+              >
+                Unaffected by Summer Construction
+              </h6>
+              <p className={styles.paragraph}>
+                Fixed wireless connections are like your mobile phone and less
+                susceptible to disruptions caused by summer construction
+                projects, as they do not rely on underground cables that can be
+                accidentally damaged during digging or excavation work. This
+                means that you can count on Swift-Net.ca's internet service to
+                remain uninterrupted throughout the summer months.
+              </p>
+            </div>
+            </div>
 
             <p className={`${styles.paragraph}`}>
               Swift-Net.ca's permanent fixed wireless connection offers reliable
