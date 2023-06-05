@@ -6,6 +6,7 @@ import icon3 from "../../../assets/icon3.png";
 import icon4 from "../../../assets/icon4.png";
 import icon5 from "../../../assets/icon5.png";
 import Image from "next/image";
+import Link from "next/link";
 
 const WhySwiftNet = () => {
   const data = [
@@ -56,9 +57,9 @@ const WhySwiftNet = () => {
           high-speed wireless internet service in rural Alberta and
           Saskatchewan!
         </p>
-        <button className="w-full md:w-auto text-primary font-medium text-base border-[1px] border-solid border-primary px-4 py-2 rounded-md">
-          Get Started
-        </button>
+        <Link href={"/contact-us"}  className="w-full cursor-pointer mt-3 md:w-auto text-primary font-medium text-base border-[1px] border-solid border-primary px-4 py-2 rounded-md">
+          Get Started 
+        </Link>
       </div>
 
       <div className="basis-[48%] md:flex flex-wrap gap-5">

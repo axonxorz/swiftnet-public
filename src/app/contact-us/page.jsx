@@ -14,7 +14,8 @@ const page = () => {
     <div
       className={`${styles.width} md:flex justify-between items-center gap-30 pb-3 md:pt-24 md:pb-14`}
     >
-      <div className="bg-primary px-5 py-8 basis-[32%] text-white h-auto md:h-[75vh] flex flex-col justify-between">
+      <div className="h-[70px] md:hidden"></div>
+      <div className="bg-primary  px-5 py-8 basis-[32%] text-white h-auto md:h-[75vh] flex flex-col justify-between">
         <div className="flex flex-col gap-8">
           <div className="flex gap-2">
             <HiOutlineMail className="text-xl mt-[3px]" />
