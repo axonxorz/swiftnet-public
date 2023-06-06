@@ -32,9 +32,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-center md:justify-between text-sm tracking-[-0.02em] text-white pt-4 border-t-[1px] border-solid border-white">
           <span>
             ISP website design and coding by{" "}
-            <Link href="/" className="underline">
+            <a href="https://turnkeyisp.co/" className="underline">
               TurnkeyISP
-            </Link>
+            </a>
           </span>
           <p>Copyright 2023 swift-net.ca. All Rights Reserved</p>
         </div>

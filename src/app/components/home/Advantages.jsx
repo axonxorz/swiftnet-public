@@ -68,7 +68,7 @@ const Advantages = () => {
           <h4 className="font-semibold text-xl md:text-2xl mt-3"> 
             {advantage.heading}
           </h4>
-          <p className="pt-2 md:pt-1 pb-4 md:pb-5 text-[#4B5563] text-base tracking-[-0.02em]">
+          <p className={`pt-2 md:pt-1 pb-4 md:pb-5 text-[#4B5563] ${styles.paragraph}`}>
             {advantage.description}
           </p>
 
