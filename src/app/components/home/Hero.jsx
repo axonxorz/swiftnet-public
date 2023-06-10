@@ -1,6 +1,7 @@
 import React from "react";
 import style from "../../styles/styles.module.css";
 import styles from "@/app/styles/styles";
+import AutoCompleteInput from "./AutoCompleteInput";
 
 const Hero = () => {
   return (
@@ -26,19 +27,9 @@ const Hero = () => {
           Sign up today!
         </p>
 
-        <form action="" className="md:w-2/5 relative">
-          <input
-            type="text"
-            placeholder="Enter your address"
-            className="w-full px-3 pt-3 pb-14 md:pb-3 rounded-lg text-[#9CA3AF]"
-          />
-          <button
-            type="submit"
-            className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[3px] md:bottom-[50%] md:translate-y-[50%] right-[3px] w-[98%] md:w-auto`}
-          >
-            Check availability
-          </button>
-        </form>
+        <AutoCompleteInput />
+
+
       </div>
     </div>
   );
