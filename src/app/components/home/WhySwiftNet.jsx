@@ -22,7 +22,7 @@ const WhySwiftNet = () => {
       icon: icon2,
       heading: "Rural Focus",
       descp:
-        "Our team is dedicated to serving rural communities in Alberta and Saskatchewan, ensuring that everyone can enjoy high-speed home wi-fi, no matter where they live",
+        "Our team is dedicated to serving rural communities in Alberta and Saskatchewan, ensuring that everyone can enjoy high-speed home Wi-Fi, no matter where they live",
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const WhySwiftNet = () => {
       icon: icon4,
       heading: "Affordable Pricing",
       descp:
-        "We offer competitive pricing and a variety of plans to suit every budget. Ready to Get Connected?",
+        "We offer competitive pricing and a variety of plans to suit every budget.",
     },
     {
       id: 5,
@@ -57,8 +57,11 @@ const WhySwiftNet = () => {
           high-speed wireless internet service in rural Alberta and
           Saskatchewan!
         </p>
-        <Link href={"/contact-us"}  className="w-full cursor-pointer mt-3 md:w-auto text-primary font-medium text-base border-[1px] border-solid border-primary px-4 py-2 rounded-md">
-          Get Started 
+        <Link
+          href={"/contact-us"}
+          className="w-full cursor-pointer mt-3 md:w-auto text-primary font-medium text-base border-[1px] border-solid border-primary px-4 py-2 rounded-md"
+        >
+          Get Started
         </Link>
       </div>
 

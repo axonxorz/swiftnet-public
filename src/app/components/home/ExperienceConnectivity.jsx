@@ -38,7 +38,7 @@ const ExperienceConnectivity = () => {
     {
       id: 6,
       descp:
-        "By choosing Swift-Net.ca, you're choosing an internet service provider that values transparency and customer satisfaction. Our truly unlimited home Wi-Fi internet service means you can enjoy high-speed home wi-fi without any limitations or restrictions. Connect with us today and experience truly unlimited internet in rural Alberta and Saskatchewan.",
+        "By choosing Swift-Net.ca, you're choosing an internet service provider that values transparency and customer satisfaction. Our truly unlimited home Wi-Fi internet service means you can enjoy high-speed home Wi-Fi without any limitations or restrictions. Connect with us today and experience truly unlimited internet in rural Alberta and Saskatchewan.",
     },
   ];
   return (
