@@ -26,11 +26,7 @@ const Navbar = () => {
     setNav(!nav);
   };
   return (
-    <div
-      className={`${
-        logo === logo1 && "bg-transparent"
-      }`}
-    >
+    <div className={`${logo === logo1 && "bg-transparent"}`}>
       <div className={`${styles.width} relative`}>
         <div className="w-full flex justify-between items-center absolute top-[15px]">
           <div>
@@ -44,18 +40,27 @@ const Navbar = () => {
 
           <div>
             <ul
-              className={`hidden md:flex gap-12 text-sm tracking-[-0.02em] ${
+              className={`hidden md:flex gap-12 justify-center items-center text-sm tracking-[-0.02em] ${
                 logo === logo1 ? "text-white" : "text-[#1F2937]"
               }`}
             >
               <li>
-                <Link href="/">Home</Link>
+                <Link href="/">Business Internet</Link>
               </li>
               <li>
-                <Link href="/about-us">About Us</Link>
+                <Link href="/about-us">Wi-Fi App by Calix</Link>
+              </li>
+              <li>
+                <Link href="/contact-us">FAQ</Link>
               </li>
               <li>
                 <Link href="/contact-us">Contact Us</Link>
+              </li>
+              <li>
+                <Link href="/contact-us">Sign Up</Link>
+              </li>
+              <li className="bg-primary py-2 px-4 rounded-lg">
+                <Link href="/contact-us">Pay Now</Link>
               </li>
             </ul>
 
@@ -115,7 +120,7 @@ const Navbar = () => {
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
                 >
-                  Home
+                  Business Internet
                 </li>
               </Link>
               <Link href="/about-us">
@@ -123,7 +128,15 @@ const Navbar = () => {
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
                 >
-                  About Us
+                  Wi-Fi App by Calix
+                </li>
+              </Link>
+              <Link href="/contact-us">
+                <li
+                  onClick={() => setNav(false)}
+                  className="py-4 text-sm text-white list-none"
+                >
+                  FAQ
                 </li>
               </Link>
               <Link href="/contact-us">
@@ -132,6 +145,22 @@ const Navbar = () => {
                   className="py-4 text-sm text-white list-none"
                 >
                   Contact Us
+                </li>
+              </Link>
+              <Link href="/contact-us">
+                <li
+                  onClick={() => setNav(false)}
+                  className="py-4 text-sm text-white list-none"
+                >
+                  Sign Up
+                </li>
+              </Link>
+              <Link href="/contact-us">
+                <li
+                  onClick={() => setNav(false)}
+                  className="py-4 text-sm text-white list-none"
+                >
+                  Pay Now
                 </li>
               </Link>
             </div>
