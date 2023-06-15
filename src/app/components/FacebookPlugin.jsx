@@ -9,7 +9,7 @@ const FacebookPlugin = () => {
 
   return (
     <div
-      class="fb-page"
+      className="fb-page"
       data-href="https://www.facebook.com/swiftnet.ca/"
       data-width="380"
       data-hide-cover="false"
