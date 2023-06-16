@@ -8,12 +8,6 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: 'swift co',
-  description: 'best isp in the world',
-  keywords: ['best isp', 'isp']
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
