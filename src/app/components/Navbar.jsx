@@ -48,7 +48,7 @@ const Navbar = () => {
                 <Link href="/business-class">Business Internet</Link>
               </li>
               <li>
-                <Link href="/non-tech-savvy">Wi-Fi App by Calix</Link>
+                <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
               </li>
               <li>
                 <Link href="/">FAQ</Link>
@@ -59,8 +59,8 @@ const Navbar = () => {
               <li>
                 <Link href="/">Sign Up</Link>
               </li>
-              <li className="bg-primary py-2 px-4 rounded-lg">
-                <Link href="/contact-us">Pay Now</Link>
+              <li className="bg-primary text-white py-2 px-4 rounded-lg">
+                <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
               </li>
             </ul>
 
@@ -123,7 +123,7 @@ const Navbar = () => {
                   Business Internet
                 </li>
               </Link>
-              <Link href="/non-tech-savvy">
+              <Link href="/wifi-app-by-callix">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
