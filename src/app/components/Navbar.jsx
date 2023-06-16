@@ -45,19 +45,19 @@ const Navbar = () => {
               }`}
             >
               <li>
-                <Link href="/">Business Internet</Link>
+                <Link href="/business-class">Business Internet</Link>
               </li>
               <li>
-                <Link href="/about-us">Wi-Fi App by Calix</Link>
+                <Link href="/non-tech-savvy">Wi-Fi App by Calix</Link>
               </li>
               <li>
-                <Link href="/contact-us">FAQ</Link>
+                <Link href="/">FAQ</Link>
               </li>
               <li>
                 <Link href="/contact-us">Contact Us</Link>
               </li>
               <li>
-                <Link href="/contact-us">Sign Up</Link>
+                <Link href="/">Sign Up</Link>
               </li>
               <li className="bg-primary py-2 px-4 rounded-lg">
                 <Link href="/contact-us">Pay Now</Link>
@@ -115,7 +115,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="py-14 flex flex-col justify-center gap-5">
-              <Link href="/#">
+              <Link href="/business-class">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
@@ -123,7 +123,7 @@ const Navbar = () => {
                   Business Internet
                 </li>
               </Link>
-              <Link href="/about-us">
+              <Link href="/non-tech-savvy">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
@@ -131,7 +131,7 @@ const Navbar = () => {
                   Wi-Fi App by Calix
                 </li>
               </Link>
-              <Link href="/contact-us">
+              <Link href="/">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
