@@ -15,7 +15,7 @@ const ServiceProvider = () => {
         <p className={`${styles.paragraph} md:w-[65%] mt-3 mb-5`}>
           Look no further! Swift-Net.ca is the leading wireless internet service
           provider (WISP) in Alberta and Saskatchewan. We're dedicated to
-          bringing high-speed home wi-fi to rural communities like Lloydminster,
+          bringing high-speed home Wi-Fi to rural communities like Lloydminster,
           Cold Lake, North Battleford, and more!
         </p>
         <div>
@@ -24,7 +24,7 @@ const ServiceProvider = () => {
         <p className={`${styles.paragraph} md:w-[65%] mt-5`}>
           Experience the difference with Swift-Net.ca's reliable internet
           service, designed specifically for rural communities in Alberta and
-          Saskatchewan. Sign up today and enjoy fast and dependable home wi-fi
+          Saskatchewan. Sign up today and enjoy fast and dependable home Wi-Fi
           for you and your family!
         </p>
       </div>
