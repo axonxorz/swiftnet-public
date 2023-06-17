@@ -29,14 +29,16 @@ const Navbar = () => {
     <div className={`${logo === logo1 && "bg-transparent"}`}>
       <div className={`${styles.width} relative`}>
         <div className="w-full flex justify-between items-center absolute top-[15px]">
-          <div>
-            <Image
-              src={logo}
-              alt=""
-              className="w-[150px] md:w-[200px]"
-              unoptimized={true}
-            />
-          </div>
+          <Link href={"/"}>
+            <div>
+              <Image
+                src={logo}
+                alt=""
+                className="w-[150px] md:w-[200px]"
+                unoptimized={true}
+              />
+            </div>
+          </Link>
 
           <div>
             <ul
@@ -48,7 +50,7 @@ const Navbar = () => {
                 <Link href="/business-class">Business Internet</Link>
               </li>
               <li>
-                <Link href="/non-tech-savvy">Wi-Fi App by Calix</Link>
+                <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
               </li>
               <li>
                 <Link href="/">FAQ</Link>
@@ -59,8 +61,8 @@ const Navbar = () => {
               <li>
                 <Link href="/">Sign Up</Link>
               </li>
-              <li className="bg-primary py-2 px-4 rounded-lg">
-                <Link href="/contact-us">Pay Now</Link>
+              <li className="bg-primary text-white py-2 px-4 rounded-lg">
+                <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
               </li>
             </ul>
 
@@ -123,7 +125,7 @@ const Navbar = () => {
                   Business Internet
                 </li>
               </Link>
-              <Link href="/non-tech-savvy">
+              <Link href="/wifi-app-by-callix">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
