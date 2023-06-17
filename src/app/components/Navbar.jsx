@@ -59,7 +59,7 @@ const Navbar = () => {
                 <Link href="/contact-us">Contact Us</Link>
               </li>
               <li>
-                <Link href="/">Sign Up</Link>
+                <Link href="/sign-up">Sign Up</Link>
               </li>
               <li className="bg-primary text-white py-2 px-4 rounded-lg">
                 <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
@@ -149,7 +149,7 @@ const Navbar = () => {
                   Contact Us
                 </li>
               </Link>
-              <Link href="/contact-us">
+              <Link href="/sign-up">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
@@ -157,14 +157,14 @@ const Navbar = () => {
                   Sign Up
                 </li>
               </Link>
-              <Link href="/contact-us">
+              <a href="https://square.link/u/jdmxg2IR">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
                 >
                   Pay Now
                 </li>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

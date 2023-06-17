@@ -1,8 +1,10 @@
+"use client";
+
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./styles/output.css";
 import { Inter } from "next/font/google";
-
+import { usePathname } from "next/navigation";
 const inter = Inter({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
@@ -15,13 +17,23 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
-  );
+  const pathname = usePathname();
+
+  if (pathname === "/sign-up") {
+    return (
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    );
+  } else {
+    return (
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    );
+  }
 }

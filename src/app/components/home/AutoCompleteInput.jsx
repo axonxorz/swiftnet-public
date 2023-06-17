@@ -3,8 +3,10 @@ import styles from "@/app/styles/styles";
 import React from "react";
 import { useRef, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const AutoCompleteInput = () => {
+  const router = useRouter();
   const autoCompleteRef = useRef();
   const inputRef = useRef();
   const [loading, setloading] = useState(false);
@@ -76,7 +78,9 @@ const AutoCompleteInput = () => {
       toast.error("your place is not suported");
     } else {
       toast.success("your place is supported");
-      setTimeout(() => {}, 2000);
+      setTimeout(() => {
+        router.push("/sign-up");
+      }, 2000);
     }
   };
 
