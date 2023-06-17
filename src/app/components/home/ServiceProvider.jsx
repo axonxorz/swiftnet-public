@@ -2,7 +2,7 @@ import styles from "@/app/styles/styles";
 import Image from "next/image";
 import React from "react";
 import map from "../../../assets/map.png";
-
+import mapsquare from "../../../assets/mapsquare.png";
 const ServiceProvider = () => {
   return (
     <div className="bg-[#F1FAFF] pt-12 pb-12  md:pt-20 md:pb-28">
@@ -18,8 +18,11 @@ const ServiceProvider = () => {
           bringing high-speed home Wi-Fi to rural communities like Lloydminster,
           Cold Lake, North Battleford, and more!
         </p>
-        <div>
-          <Image src={map} alt="" className="" unoptimized={true} />
+        <div className="hidden md:flex ">
+          <Image src={map} alt="map " unoptimized={true} />
+        </div>
+        <div className="flex md:hidden ">
+          <Image src={mapsquare} alt="smap" unoptimized={true} />
         </div>
         <p className={`${styles.paragraph} md:w-[65%] mt-5`}>
           Experience the difference with Swift-Net.ca's reliable internet

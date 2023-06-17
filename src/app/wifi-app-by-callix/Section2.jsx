@@ -3,8 +3,10 @@ import styles from "../styles/styles";
 
 const Sec2 = () => {
   return (
-    <div className={`${styles.width} flex items-center justify-center py-10`}>
-      <div className="text-center  py-6 w-[70%] space-y-5">
+    <div
+      className={`${styles.width} flex items-center justify-center py-5 md:py-10`}
+    >
+      <div className="text-center  md:py-6 w-[95%]  md:w-[70%] space-y-5">
         <p className={`${styles.heading}`}>
           A Better Internet Experience is Here{" "}
           <span className="text-primary">Reliable fast internet</span>

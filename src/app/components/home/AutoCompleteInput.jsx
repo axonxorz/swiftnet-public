@@ -35,6 +35,8 @@ const AutoCompleteInput = () => {
   }, []);
 
   const handleChackAvabilty = async () => {
+    console.log("------------------------------");
+    console.log("Heeeere");
     const city =
       placeObj.address_components?.filter((adr) =>
         adr.types?.includes("locality")
@@ -61,13 +63,14 @@ const AutoCompleteInput = () => {
 
     setloading(true);
     const response = await fetch(
-      `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=32379&Account=23232&Address=${route}&city=${city}&Country=${country}&State=${state}&zipcode=${postal_code}&Latitude=${placeObj.geometry?.location?.lat()}&Longitude=${placeObj.geometry?.location?.lng()}&RxMargin=&key=${
-        process.env.API_KEY
-      }`
+      `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=32379&Account=23232&Address=${route}&city=${city}&Country=${country}&State=${state}&zipcode=${postal_code}&Latitude=${placeObj.geometry?.location?.lat()}&Longitude=${placeObj.geometry?.location?.lng()}&RxMargin=&key=f0c7fa3a935b20d98878bc484b47ad3b`
     );
     const text = await response.text();
 
     setloading(false);
+    console.log(city + country + postal_code + state);
+    console.log("result :" + text);
+    console.log("------------------------------");
 
     if (text.includes("No")) {
       toast.error("your place is not suported");

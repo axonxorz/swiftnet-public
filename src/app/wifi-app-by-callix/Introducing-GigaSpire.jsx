@@ -6,7 +6,7 @@ const IntroducingGigaSpire = () => {
     <>
       <div className="w-full flex  items-center justify-center p-4 ">
         <div className="flex flex-col md:flex-row w-full md:w-[70%]  items-center justify-center gap-4">
-          <div className="w-full md:w-1/2 space-y-12">
+          <div className="w-[95%] md:w-1/2 space-y-6 md:space-y-12">
             <p className={styles.heading}>
               Introducing <br />
               <span className="text-primary">GigaSpire BLAST u4</span>

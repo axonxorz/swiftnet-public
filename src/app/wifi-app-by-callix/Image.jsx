@@ -8,14 +8,29 @@ const ImageCmp = () => {
     <div
       className={`${styles.width} pb-3 pt-20 md:pb-10 flex items-center justify-center w-full`}
     >
-      <Image
-        src={imgScr}
-        alt="image"
-        style={{
-          width: "1240px",
-          height: "606px",
-        }}
-      />
+      <div className="hidden md:flex">
+        {" "}
+        <Image
+          src={imgScr}
+          alt="image"
+          style={{
+            width: "1240px",
+            height: "606px",
+          }}
+        />
+      </div>
+
+      <div className="md:hidden flex">
+        {" "}
+        <Image
+          src={imgScr}
+          alt="image"
+          style={{
+            width: "343px",
+            height: "180px",
+          }}
+        />
+      </div>
     </div>
   );
 };
