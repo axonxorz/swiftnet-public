@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const AutoCompleteInput = () => {
+const AutoCompleteInput = ({ setUserLocation, setStep }) => {
   const router = useRouter();
   const autoCompleteRef = useRef();
   const inputRef = useRef();
@@ -33,12 +33,19 @@ const AutoCompleteInput = () => {
         }
       });
       setloading(false);
-    }, 2000);
+    }, 1500);
   }, []);
+
+  useEffect(() => {
+    setUserLocation &&
+      setUserLocation({
+        lat: placeObj.geometry?.location?.lat(),
+        lng: placeObj.geometry?.location?.lng(),
+      });
+  }, [placeObj]);
 
   const handleChackAvabilty = async () => {
     console.log("------------------------------");
-    console.log("Heeeere");
     const city =
       placeObj.address_components?.filter((adr) =>
         adr.types?.includes("locality")
@@ -79,28 +86,33 @@ const AutoCompleteInput = () => {
     } else {
       toast.success("your place is supported");
       setTimeout(() => {
-        router.push("/sign-up");
+        setStep && setStep(3);
+        router.push(
+          `/sign-up?step=2&lat=${placeObj.geometry?.location?.lat()}lng=${placeObj.geometry?.location?.lng()}&city=${city}&country=${country}&codepostal=${postal_code}&state=${state}`
+        );
       }, 2000);
     }
   };
 
   return (
-    <div className="md:w-2/5 relative">
-      <input
-        disabled={loading}
-        type="text"
-        placeholder={loading ? "please wait ...." : "Enter Your address"}
-        ref={inputRef}
-        className="w-full px-3 pt-3 pb-14 md:pb-3 rounded-lg text-[#9CA3AF]"
-      />
-      <button
-        type="submit"
-        onClick={() => handleChackAvabilty()}
-        className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[3px] md:bottom-[50%] md:translate-y-[50%] right-[3px] w-[98%] md:w-auto`}
-      >
-        Check availability
-      </button>
-    </div>
+    <>
+      <div className="w-full relative">
+        <input
+          disabled={loading}
+          type="text"
+          placeholder={loading ? "please wait ...." : "Enter Your address"}
+          ref={inputRef}
+          className="w-full px-3 pt-3 pb-14 md:pb-3 rounded-lg text-[#9CA3AF]"
+        />
+        <button
+          type="submit"
+          onClick={() => handleChackAvabilty()}
+          className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[3px] md:bottom-[50%] md:translate-y-[50%] right-[3px] w-[98%] md:w-auto`}
+        >
+          Check availability
+        </button>
+      </div>
+    </>
   );
 };
 

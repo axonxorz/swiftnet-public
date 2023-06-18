@@ -19,21 +19,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  if (pathname === "/sign-up") {
+  if (pathname === "/sign-up" || pathname === "/map") {
     return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
+      <>
+        <html lang="en">
+          <body className={inter.className}>{children}</body>
+        </html>
+      </>
     );
   } else {
     return (
-      <html lang="en">
-        <body className={inter.className}>
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
-      </html>
+      <>
+        <html lang="en">
+          <body className={inter.className}>
+            <Navbar />
+            {children}
+            <Footer />
+          </body>
+        </html>
+      </>
     );
   }
 }

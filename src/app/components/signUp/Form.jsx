@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import logo1 from "@/assets/logo2.png";
 import Image from "next/image";
 import styles from "@/app/styles/styles";
@@ -8,8 +8,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InputField from "./InputField";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const Form = () => {
+  const searchParams = useSearchParams();
+
+
+
+
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
@@ -25,7 +31,7 @@ const Form = () => {
         postalCode: yup.string().required("ZIP Code is required"),
     });
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } , setValue } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
@@ -35,8 +41,15 @@ const Form = () => {
 
     };
 
+    useEffect(() => {
+        if(searchParams.get("city")) setValue('city' , searchParams.get("city"))
+        if(searchParams.get("state")) setValue('region' , searchParams.get("state"))
+        if(searchParams.get("codepostal")) setValue('postalCode' , searchParams.get("codepostal"))
+        
+    } , [searchParams])
+
     return (
-        <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 ">
+        <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 p-4 ">
             <div className="w-full md:w-[70%] min-h-screen  py-2 flex flex-col ">
                 <div className="py-2">
                     <Link href={"/"}> 
