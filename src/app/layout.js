@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./styles/output.css";
@@ -19,25 +20,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  if (pathname === "/sign-up" || pathname === "/map") {
-    return (
-      <>
-        <html lang="en">
-          <body className={inter.className}>{children}</body>
-        </html>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <html lang="en">
-          <body className={inter.className}>
+  return (
+    <html lang="en">
+      <head></head>
+
+      <body className={inter.className}>
+        {pathname === "/sign-up" || pathname === "/map" ? (
+          <>{children}</>
+        ) : (
+          <>
             <Navbar />
             {children}
             <Footer />
-          </body>
-        </html>
-      </>
-    );
-  }
+          </>
+        )}
+      </body>
+    </html>
+  );
 }

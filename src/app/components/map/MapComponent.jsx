@@ -3,13 +3,11 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import AutoComplete from "@/app/components/home/AutoCompleteInput";
-import styles from "@/app/styles/styles";
 import Marker from "./Marker";
 
 const MapComponent = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [maps, setMaps] = useState(null);
-  const [userZip, setUserZip] = useState(0);
   const [clickedPlaceData, setClickedPlaceData] = useState(null);
 
   const defaultProps = {
@@ -31,7 +29,6 @@ const MapComponent = () => {
           setUserLocation(pos);
         },
         () => {
-          // alert("Geo Location not supported");
           toast.error("Geo Location not supported");
         }
       );
@@ -75,8 +72,6 @@ const MapComponent = () => {
       console.log("Error retrieving address information:", error);
     }
   };
-
-  console.log(clickedPlaceData);
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>

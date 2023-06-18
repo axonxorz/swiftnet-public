@@ -1,6 +1,5 @@
 import React from "react";
 import MapComponent from "../components/map/MapComponent";
-import Script from "next/script";
 import { Toaster } from "react-hot-toast";
 
 const page = () => {

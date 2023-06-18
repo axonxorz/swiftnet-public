@@ -5,7 +5,7 @@ import Image from "next/image";
 import Form from "../components/signUp/Form";
 import Step1 from "../components/signUp/Step1";
 import { Toaster } from "react-hot-toast";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 const page = () => {
   const [step, setStep] = useState(1);
   const searchParams = useSearchParams();
