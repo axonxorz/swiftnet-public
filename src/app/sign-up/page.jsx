@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Subtract from "@/assets/Subtract.png";
+import Subtract from "@/assets/Subtract.jpg";
 import Image from "next/image";
 import Form from "../components/signUp/Form";
 import Step1 from "../components/signUp/Step1";

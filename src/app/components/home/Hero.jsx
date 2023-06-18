@@ -28,7 +28,9 @@ const Hero = () => {
           Sign up today!
         </p>
 
-        <AutoCompleteInput />
+        <div className="md:w-1/2">
+          <AutoCompleteInput />
+        </div>
 
         <Link href={"/map"}>
           <p className={`${styles.paragraph} mt-3 text-white`}>
