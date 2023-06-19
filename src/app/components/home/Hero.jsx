@@ -2,6 +2,7 @@ import React from "react";
 import style from "../../styles/styles.module.css";
 import styles from "@/app/styles/styles";
 import AutoCompleteInput from "./AutoCompleteInput";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -27,9 +28,16 @@ const Hero = () => {
           Sign up today!
         </p>
 
-        <AutoCompleteInput />
+        <div className="md:w-1/2">
+          <AutoCompleteInput />
+        </div>
 
-
+        <Link href={"/map"}>
+          <p className={`${styles.paragraph} mt-3 text-white`}>
+            Check availability by map or browser location{" "}
+            <span className="underline font-bold">here</span>
+          </p>
+        </Link>
       </div>
     </div>
   );

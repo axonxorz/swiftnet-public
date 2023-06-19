@@ -1,29 +1,50 @@
-import React from "react";
-import Subtract from "@/assets/Subtract.png";
+"use client";
+import React, { useEffect, useState } from "react";
+import Subtract from "@/assets/Subtract.jpg";
 import Image from "next/image";
 import Form from "../components/signUp/Form";
+import Step1 from "../components/signUp/Step1";
+import { Toaster } from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 const page = () => {
-  return (
-    <>
-      <div className="min-h-screen">
-        <div className="h-[70px]"></div>
-        <div className="flex items-center justify-between ">
-          <Form />
+  const [step, setStep] = useState(1);
+  const searchParams = useSearchParams();
 
-          <div className="hidden md:flex items-center justify-end  md:w-1/2 h-full pl-5">
+  useEffect(() => {
+    if (searchParams.get("step")) {
+      setStep(parseInt(searchParams.get("state")));
+    }
+  }, []);
+
+  if (step !== 2) {
+    return (
+      <>
+        <Toaster />
+        <div className="flex items-start justify-between  ">
+          {step === 1 ? <Step1 setStep={setStep} /> : <Form />}
+
+          <div className="hidden md:flex justify-start items-start  md:w-1/2 h-screen ">
             <Image
               alt="subtract"
               src={Subtract}
               style={{
                 width: "100%",
-                height: "100vh",
+                height: "100%",
               }}
             />
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return (
+      <>
+        {/* <div style={{ height: "100vh", width: "100%" }}>
+          <MapComponent />
+        </div> */}
+      </>
+    );
+  }
 };
 
 export default page;
