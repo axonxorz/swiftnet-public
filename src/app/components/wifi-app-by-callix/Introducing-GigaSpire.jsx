@@ -33,8 +33,8 @@ const VideoPlayer = ({ selectOption }) => {
 const IntroducingGigaSpire = () => {
   const [selectOption, setSelectOption] = useState(1);
 
-  const handleOptionClick = (option) => {
-    setSelectOption(option);
+  const handleOptionClick = (option1) => {
+    setSelectOption(option1);
   };
 
   const renderOption = (optionNumber, title, description) => {
