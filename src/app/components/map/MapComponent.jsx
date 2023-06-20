@@ -40,10 +40,10 @@ const MapComponent = () => {
   }
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
+      lat: 53.31225509999999,
+      lng: -110.072853,
     },
-    zoom: 11,
+    zoom: 7,
   };
 
   useEffect(() => {
@@ -126,7 +126,7 @@ const MapComponent = () => {
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <div className="absolute w-full top-16 left-0 z-50 flex items-start justify-start">
+      <div className="absolute hidden w-full top-16 left-0 z-50 md:flex items-start justify-start">
         <div className="md:w-2/5 ml-5">
           <AutoCompleteInput2 setUserLocation={setUserLocation} />
         </div>
