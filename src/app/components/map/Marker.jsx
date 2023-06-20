@@ -9,7 +9,7 @@ const Marker = ({ clickedPlaceData }) => {
   const handleChackAvabilty = async () => {
     setLoading(true);
     const response = await fetch(
-      `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=32379&Account=23232&Address=${""}&city=${
+      `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=56103&Account=39013&Address=${""}&city=${
         clickedPlaceData.city
       }&Country=${clickedPlaceData.country}&State=${
         clickedPlaceData.state
