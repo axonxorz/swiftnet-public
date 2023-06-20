@@ -81,7 +81,7 @@ const Marker = ({ clickedPlaceData }) => {
                 )
               }
             >
-              Ask for internet service
+              Subscribe
             </button>
           </div>
         )}
