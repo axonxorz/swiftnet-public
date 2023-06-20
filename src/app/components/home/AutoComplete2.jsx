@@ -1,12 +1,8 @@
 "use client";
-import styles from "@/app/styles/styles";
 import React from "react";
 import { useRef, useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
-const AutoCompleteInput = ({ setUserLocation }) => {
-  const router = useRouter();
+const AutoCompleteInput2 = ({ setUserLocation }) => {
   const autoCompleteRef = useRef();
   const inputRef = useRef();
   const [loading, setloading] = useState(false);
@@ -39,16 +35,25 @@ const AutoCompleteInput = ({ setUserLocation }) => {
       setUserLocation({
         lat: placeObj.geometry?.location?.lat(),
         lng: placeObj.geometry?.location?.lng(),
+        fullAdress: inputRef.current.value,
+        city:
+          placeObj.address_components?.filter((adr) =>
+            adr.types?.includes("locality")
+          )[0]?.long_name || "",
+        country:
+          placeObj.address_components?.filter((adr) =>
+            adr.types?.includes("country")
+          )[0]?.long_name || "",
+        state:
+          placeObj.address_components?.filter((adr) =>
+            adr.types?.includes("administrative_area_level_1")
+          )[0]?.long_name || "",
+        postal_code:
+          placeObj.address_components?.filter((adr) =>
+            adr.types?.includes("postal_code")
+          )[0]?.long_name || "",
       });
   }, [placeObj]);
-
-  const handleChackAvabilty = async () => {
-    router.push(
-      `/map?lat=${placeObj.geometry?.location?.lat()}&lng=${placeObj.geometry?.location?.lng()}&fullAdress=${
-        inputRef.current.value
-      }`
-    );
-  };
 
   return (
     <>
@@ -60,16 +65,9 @@ const AutoCompleteInput = ({ setUserLocation }) => {
           ref={inputRef}
           className="w-full px-3 pt-3 pb-14 md:pb-3 rounded-lg text-[#9CA3AF]"
         />
-        <button
-          type="submit"
-          onClick={() => handleChackAvabilty()}
-          className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[3px] md:bottom-[50%] md:translate-y-[50%] right-[3px] w-[98%] md:w-auto`}
-        >
-          Check availability
-        </button>
       </div>
     </>
   );
 };
 
-export default AutoCompleteInput;
+export default AutoCompleteInput2;
