@@ -31,6 +31,7 @@ const MapComponent = () => {
     searchParams.get("lng"),
     searchParams.get("fullAdress"),
   ]);
+
   function clearMarkers() {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
