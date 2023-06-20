@@ -18,22 +18,7 @@ const MapComponent = () => {
     zoom: 11,
   };
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          setUserLocation(pos);
-        },
-        () => {
-          toast.error("Geo Location not supported");
-        }
-      );
-    }
-  }, []);
+  // useEffect(() => {}, []);
 
   const handleApiLoaded = async (map, maps) => {
     setMaps(maps);
@@ -46,7 +31,6 @@ const MapComponent = () => {
   };
 
   const handleMapClick = async ({ lat, lng }) => {
-    console.log("Clicked location:", lat, lng);
     setUserLocation({
       lat,
       lng,
@@ -73,9 +57,25 @@ const MapComponent = () => {
     }
   };
 
+  const handleCurrentLocationButtonClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          setUserLocation(pos);
+        },
+        () => {
+          toast.error("Geo Location not supported");
+        }
+      );
+    }
+  };
+
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      {/* <button onClick={handleLocationButtonClick}>Get My Location</button> */}
       <div className="absolute w-full top-10 left-0 z-50 flex items-center justify-center">
         <div className="md:w-1/2">
           <AutoComplete setUserLocation={setUserLocation} />
@@ -93,6 +93,14 @@ const MapComponent = () => {
           <Marker clickedPlaceData={clickedPlaceData} />
         )}
       </GoogleMapReact>
+      <div className="absolute w-full bottom-5  flex items-end justify-end right-12 z-50  px-5">
+        <button
+          onClick={handleCurrentLocationButtonClick}
+          className="bg-white px-5 py-1 rounded-md shadow-md border-primary border-1 hover:text-white  hover:bg-primary border-2"
+        >
+          use my current location
+        </button>
+      </div>
     </div>
   );
 };

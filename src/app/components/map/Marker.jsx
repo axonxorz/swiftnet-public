@@ -9,7 +9,7 @@ const Marker = ({ clickedPlaceData }) => {
   const handleChackAvabilty = async () => {
     setLoading(true);
     const response = await fetch(
-      `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=32379&Account=23232&Address=${""}&city=${
+      `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=56103&Account=39013&Address=${""}&city=${
         clickedPlaceData.city
       }&Country=${clickedPlaceData.country}&State=${
         clickedPlaceData.state
@@ -22,14 +22,6 @@ const Marker = ({ clickedPlaceData }) => {
     const text = await response.text();
 
     setLoading(false);
-    console.log(
-      clickedPlaceData.city +
-        clickedPlaceData.country +
-        clickedPlaceData.postalcode +
-        clickedPlaceData.state
-    );
-    console.log("result :" + text);
-    console.log("------------------------------");
 
     if (text.includes("No")) {
       setSupported(false);
@@ -68,10 +60,10 @@ const Marker = ({ clickedPlaceData }) => {
             <button
               onClick={() =>
                 route.push(
-                  `/sign-up?step=2&city=${clickedPlaceData.city}&state=${clickedPlaceData.state}&country=${clickedPlaceData.city}&codepostal=${clickedPlaceData.postcode}`
+                  `/sign-up?step=2&lng=${clickedPlaceData.lng}&lat=${clickedPlaceData.lat}&city=${clickedPlaceData.city}&state=${clickedPlaceData.state}&country=${clickedPlaceData.city}&codepostal=${clickedPlaceData.postcode}`
                 )
               }
-              className="py-1 bg-primary rounded-md text-white px-4 mt-4"
+              className="py-2 bg-primary rounded-md text-white px-4 mt-4"
             >
               Check out
             </button>
@@ -82,10 +74,10 @@ const Marker = ({ clickedPlaceData }) => {
               you still can get access to our service , contact us
             </p>
             <button
-              className="py-1 bg-primary rounded-md text-white px-4 mt-1"
+              className="py-2 bg-primary rounded-md text-white px-4 mt-1"
               onClick={() =>
                 route.push(
-                  `/sign-up?step=2&city=${clickedPlaceData.city}&state=${clickedPlaceData.state}&country=${clickedPlaceData.city}&codepostal=${clickedPlaceData.postcode}`
+                  `/sign-up?step=2&lng=${clickedPlaceData.lng}&lat=${clickedPlaceData.lat}&city=${clickedPlaceData.city}&state=${clickedPlaceData.state}&country=${clickedPlaceData.city}&codepostal=${clickedPlaceData.postcode}`
                 )
               }
             >
