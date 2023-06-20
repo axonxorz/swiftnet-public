@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const Form = () => {
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
 
 
 
@@ -24,44 +24,43 @@ const Form = () => {
             ,
             'Invalid phone number format (US)'
         ),
-        streetAddress: yup.string().required("Address Line 1 is required"),
-        streetAddress2: yup.string().required("Address Line 2 is required"),
+        streetAddress: yup.string(),
+        streetAddress2: yup.string(),
         city: yup.string().required("City is required"),
         region: yup.string().required("State is required"),
         postalCode: yup.string().required("ZIP Code is required"),
     });
 
-    const { register, handleSubmit, formState: { errors } , setValue } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
     const onSubmit = (data) => {
-        // Handle form submission here
-        console.log(data);
+        console.log({ ...data, lat: searchParams.get("lat"), lng: searchParams.get("lng") });
 
     };
 
     useEffect(() => {
-        if(searchParams.get("city")) setValue('city' , searchParams.get("city"))
-        if(searchParams.get("state")) setValue('region' , searchParams.get("state"))
-        if(searchParams.get("codepostal")) setValue('postalCode' , searchParams.get("codepostal"))
-        
-    } , [searchParams])
+        if (searchParams.get("city")) setValue('city', searchParams.get("city"))
+        if (searchParams.get("state")) setValue('region', searchParams.get("state"))
+        if (searchParams.get("codepostal")) setValue('postalCode', searchParams.get("codepostal"))
+
+    }, [searchParams])
 
     return (
         <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 p-4 ">
             <div className="w-full md:w-[70%] min-h-screen  py-2 flex flex-col ">
                 <div className="py-2">
-                    <Link href={"/"}> 
-                    <Image
-                        src={logo1}
-                        alt=""
-                        style={{
-                            width: "256.43px",
-                            height: "48px"
-                        }}
-                        unoptimized={true}
-                    /></Link>
+                    <Link href={"/"}>
+                        <Image
+                            src={logo1}
+                            alt=""
+                            style={{
+                                width: "256.43px",
+                                height: "48px"
+                            }}
+                            unoptimized={true}
+                        /></Link>
                 </div>
 
                 <div className="w-full  mt-4">

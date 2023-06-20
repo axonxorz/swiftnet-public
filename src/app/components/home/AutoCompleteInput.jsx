@@ -27,7 +27,6 @@ const AutoCompleteInput = ({ setUserLocation, setStep }) => {
 
       autoCompleteRef?.current?.addListener("place_changed", async function () {
         const place = await autoCompleteRef.current.getPlace();
-        console.log(place);
         if (place) {
           setplaceObj(place);
         }
@@ -77,9 +76,6 @@ const AutoCompleteInput = ({ setUserLocation, setStep }) => {
     const text = await response.text();
 
     setloading(false);
-    console.log(city + country + postal_code + state);
-    console.log("result :" + text);
-    console.log("------------------------------");
 
     if (text.includes("No")) {
       toast.error("your place is not suported");

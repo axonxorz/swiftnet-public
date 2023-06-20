@@ -1,7 +1,6 @@
 import React from "react";
 
 const InputField = ({ label, name, placeholder, type, register, error }) => {
-  console.log(error);
   return (
     <div className=" ">
       <label

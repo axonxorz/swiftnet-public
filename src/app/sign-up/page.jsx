@@ -37,13 +37,7 @@ const page = () => {
       </>
     );
   } else {
-    return (
-      <>
-        {/* <div style={{ height: "100vh", width: "100%" }}>
-          <MapComponent />
-        </div> */}
-      </>
-    );
+    return <></>;
   }
 };
 

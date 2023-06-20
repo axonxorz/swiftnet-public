@@ -31,7 +31,6 @@ const MapComponent = () => {
   };
 
   const handleMapClick = async ({ lat, lng }) => {
-    console.log("Clicked location:", lat, lng);
     setUserLocation({
       lat,
       lng,
