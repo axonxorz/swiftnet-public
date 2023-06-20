@@ -13,9 +13,6 @@ import { useSearchParams } from "next/navigation";
 const Form = () => {
     const searchParams = useSearchParams();
 
-
-
-
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
@@ -24,30 +21,18 @@ const Form = () => {
             ,
             'Invalid phone number format (US)'
         ),
-        streetAddress: yup.string(),
-        streetAddress2: yup.string(),
-        city: yup.string().required("City is required"),
-        region: yup.string().required("State is required"),
-        postalCode: yup.string().required("ZIP Code is required"),
         notes: yup.string(),
-
     });
 
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
     const onSubmit = (data) => {
-        console.log({ ...data, lat: searchParams.get("lat"), lng: searchParams.get("lng") });
-
+        console.log({ ...data, postal_code: searchParams.get("codepostal"), region: searchParams.get("state"), city: searchParams.get("city"), lat: searchParams.get("lat"), lng: searchParams.get("lng"), fullAdress: searchParams.get("fullAdress"), supportedplace: searchParams.get("supportedplace"), supportedplace: searchParams.get("supportedplace") });
     };
 
-    useEffect(() => {
-        if (searchParams.get("city")) setValue('city', searchParams.get("city"))
-        if (searchParams.get("state")) setValue('region', searchParams.get("state"))
-        if (searchParams.get("codepostal")) setValue('postalCode', searchParams.get("codepostal"))
-
-    }, [searchParams])
+  
 
     return (
         <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 p-4 ">
@@ -67,10 +52,7 @@ const Form = () => {
 
                 <div className="w-full  mt-4">
                     <p className={`${styles.heading}`}>Let’s get started</p>
-                    <p className={`${styles.paragraph} `}>
-                        Once your registration is submitted, a customer service specialist
-                        will contact you htmlFor installation and payment details
-                    </p>
+
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,64 +102,7 @@ const Form = () => {
                                     />
                                 </div>
 
-                                <div className={`text-xl mt-2  font-bold sm:col-span-4`}>
-                                    <p>Desired service location</p>
-                                </div>
 
-                                <div className="sm:col-span-4">
-                                    <InputField
-                                        error={errors?.streetAddress}
-                                        label={"Address Line 1"}
-                                        name={"street-address"}
-                                        placeholder={"e.g Washington Ave"}
-                                        register={...register("streetAddress")}
-                                        type={"string"}
-                                    />
-                                </div>
-
-                                <div className="sm:col-span-3">
-                                    <InputField
-                                        error={errors?.streetAddress}
-                                        label={"Address Line 2"}
-                                        name={"street-address2"}
-                                        placeholder={"e.g Washington Ave"}
-                                        register={...register("streetAddress2")}
-                                        type={"string"}
-                                    />
-                                </div>
-
-                                <div className="sm:col-span-3">
-                                    <InputField
-                                        error={errors?.city}
-                                        label={"City"}
-                                        name={"city"}
-                                        placeholder={"e.g New York"}
-                                        register={...register("city")}
-                                        type={"string"}
-                                    />
-                                </div>
-
-                                <div className="sm:col-span-3">
-                                    <InputField
-                                        error={errors?.region}
-                                        label={"State"}
-                                        name={"region"}
-                                        placeholder={"State"}
-                                        register={...register("region")}
-                                        type={"string"}
-                                    />
-                                </div>
-
-                                <div className="sm:col-span-3">
-                                    <InputField
-                                        error={errors?.postalCode}
-                                        label={"ZIP Code"}
-                                        name={"postalCode"}
-                                        placeholder={"e.g 3512"}
-                                        register={...register("postalCode")}
-                                        type={"string"}
-                                    />
-                                </div>
 
 
                             </div>

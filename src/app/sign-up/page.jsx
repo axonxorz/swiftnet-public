@@ -20,7 +20,7 @@ const page = () => {
     return (
       <>
         <Toaster />
-        <div className="flex items-start justify-between  ">
+        <div className="flex items-start justify-between h-screen  ">
           {step === 1 ? <Step1 setStep={setStep} /> : <Form />}
 
           <div className="hidden md:flex justify-start items-start  md:w-1/2 h-screen ">
