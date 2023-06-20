@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import AutoComplete from "@/app/components/home/AutoCompleteInput";
 import Marker from "./Marker";
+import styles from "@/app/styles/styles";
 
 const MapComponent = () => {
   const [userLocation, setUserLocation] = useState(null);
@@ -93,13 +94,27 @@ const MapComponent = () => {
           <Marker clickedPlaceData={clickedPlaceData} />
         )}
       </GoogleMapReact>
-      <div className="absolute w-full bottom-5  flex items-end justify-end right-12 z-50  px-5">
+      {/* <div className="absolute w-full bottom-5  flex items-end justify-end right-12 z-50  px-5">
         <button
           onClick={handleCurrentLocationButtonClick}
           className="bg-white px-5 py-1 rounded-md shadow-md border-primary border-1 hover:text-white  hover:bg-primary border-2"
         >
           use my current location
         </button>
+      </div> */}
+
+      <div className="absolute w-full bottom-5  flex items-center justify-center  z-50  px-5">
+        <p
+          className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
+        >
+          Put the pin on the building where you want internet service. Not sure?{" "}
+          <span
+            className="font-bold text-primary cursor-pointer"
+            onClick={() => handleCurrentLocationButtonClick()}
+          >
+            Use my current location
+          </span>
+        </p>
       </div>
     </div>
   );
