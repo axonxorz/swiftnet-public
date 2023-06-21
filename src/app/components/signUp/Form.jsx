@@ -8,13 +8,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InputField from "./InputField";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import PhoneInput from "@/components/phone-input";
-import { AiFillPhone } from "react-icons/ai";
 
 const Form = () => {
     const searchParams = useSearchParams();
-
+    const route = useRouter();
+    
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
@@ -27,8 +27,40 @@ const Form = () => {
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmit = (data) => {
+
+    // Example POST method implementation:
+    async function postData(url = "", data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data), // body data type must match "Content-Type" header
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+    }
+
+    const onSubmit = async (data) => {
         console.log({ ...data, postal_code: searchParams.get("codepostal"), region: searchParams.get("state"), city: searchParams.get("city"), lat: searchParams.get("lat"), lng: searchParams.get("lng"), fullAdress: searchParams.get("fullAdress"), supportedplace: searchParams.get("supportedplace"), supportedplace: searchParams.get("supportedplace") });
+
+        // const response = await axios.
+        postData("/api", data).then((res_data) => {
+            const {status} = res_data
+            console.log(res_data); // JSON data parsed by `data.json()` call
+
+            if(status === 1){
+                route.push(
+                    `/email-check?user=${data.email}`
+                  );
+            }
+        });
     };
 
 
@@ -90,12 +122,12 @@ const Form = () => {
                                     />
                                 </div>
 
-                                
+
 
                                 <div className="sm:col-span-4 ">
                                     {/* <label className="text-xs font-semibold px-1">Phone number</label> */}
                                     <div className="flex">
-                                        
+
                                         <PhoneInput
                                             register={register}
                                             enableSearch={true}

@@ -24,7 +24,9 @@ export default function RootLayout({ children }) {
       <head></head>
 
       <body className={inter.className}>
-        {pathname === "/sign-up" || pathname === "/map" ? (
+        {pathname === "/sign-up" ||
+        pathname === "/map" ||
+        pathname === "/email-check" ? (
           <>{children}</>
         ) : (
           <>
