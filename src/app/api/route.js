@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
-
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASS,
+    pass: process.env.GMAIL_PASSWORD,
   },
 });
 
@@ -42,24 +45,24 @@ export async function POST(request) {
   if (isValid) {
     // If form fields are valid, send an email
     const mailOptions = {
-      from: "younes.bouc@gmail.com", // sender
+      from: "younss.india@gmail.com", // sender
       to: email, // recipient
       subject: "Form Submission Successful",
       text: `Hello ${firstName}, your form submission was successful!`,
     };
 
-    // Send the email
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.error(err);
-        return NextResponse.json({ message: "Error sending email" });
-      } else {
-        return NextResponse.json({ message: "Email sent successfully" });
-      }
-    });
+    try {
+      // Send the email
+      await transporter.sendMail(mailOptions);
+      return NextResponse.json({
+        message: "Email sent successfully",
+        status: 1,
+      });
+    } catch (error) {
+      console.error(error);
+      return NextResponse.json({ message: "Error sending email", status: 0 });
+    }
   } else {
-    return NextResponse.json({ message: "Invalid form data" });
+    return NextResponse.json({ message: "Invalid form data", status: 0 });
   }
-
-  return NextResponse.json({ status: 1 });
 }

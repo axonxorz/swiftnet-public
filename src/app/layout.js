@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import "./styles/output.css";
 import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
+import dotenv from "dotenv";
+
 const inter = Inter({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
@@ -18,6 +20,8 @@ const inter = Inter({
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+
+  dotenv.config();
 
   return (
     <html lang="en">
