@@ -8,9 +8,7 @@ const AutoCompleteInput2 = ({ setUserLocation }) => {
   const [loading, setloading] = useState(false);
   const [placeObj, setplaceObj] = useState({});
   const options = {
-    // componentRestrictions: { country: "ng" },
     fields: ["address_components", "geometry", "icon", "name"],
-    // types: ["establishment"]
   };
   useEffect(() => {
     setloading(true);

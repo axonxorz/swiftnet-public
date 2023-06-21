@@ -7,7 +7,10 @@ import Marker from "./Marker";
 import { useSearchParams } from "next/navigation";
 
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState({
+    lat: 53.31225509999999,
+    lng: -110.072853,
+  });
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState();
@@ -46,7 +49,7 @@ const MapComponent = () => {
   };
 
   useEffect(() => {
-    const googleMarkers = [];
+    const googleMarkers = markers;
     if (map) {
       let marker = new maps.Marker({
         position: userLocation,
@@ -58,7 +61,7 @@ const MapComponent = () => {
 
       setMarkers(googleMarkers);
     }
-  }, [userLocation]);
+  }, [userLocation, map]);
 
   const handleApiLoaded = async (map, maps) => {
     setMaps(maps);
