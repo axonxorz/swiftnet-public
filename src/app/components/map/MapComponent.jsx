@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";

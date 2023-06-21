@@ -9,6 +9,8 @@ import * as yup from "yup";
 import InputField from "./InputField";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import PhoneInput from "@/components/phone-input";
+import { AiFillPhone } from "react-icons/ai";
 
 const Form = () => {
     const searchParams = useSearchParams();
@@ -17,14 +19,11 @@ const Form = () => {
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
         email: yup.string().email("Invalid email").required("Email is required"),
-        phoneNumber: yup.string().required("Phone number is required").matches(/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/
-            ,
-            'Invalid phone number format (US)'
-        ),
+        phoneNumber: yup.string().required("Phone number is required"),
         notes: yup.string(),
     });
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
@@ -32,7 +31,7 @@ const Form = () => {
         console.log({ ...data, postal_code: searchParams.get("codepostal"), region: searchParams.get("state"), city: searchParams.get("city"), lat: searchParams.get("lat"), lng: searchParams.get("lng"), fullAdress: searchParams.get("fullAdress"), supportedplace: searchParams.get("supportedplace"), supportedplace: searchParams.get("supportedplace") });
     };
 
-  
+
 
     return (
         <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 p-4 ">
@@ -91,18 +90,34 @@ const Form = () => {
                                     />
                                 </div>
 
-                                <div className="sm:col-span-4">
-                                    <InputField
-                                        error={errors?.phoneNumber}
-                                        label={"Phone Number"}
-                                        name={"phone"}
-                                        placeholder={"e.g (406) 555-0120"}
-                                        register={...register("phoneNumber")}
-                                        type={"phone"}
-                                    />
+                                
+
+                                <div className="sm:col-span-4 ">
+                                    {/* <label className="text-xs font-semibold px-1">Phone number</label> */}
+                                    <div className="flex">
+                                        
+                                        <PhoneInput
+                                            register={register}
+                                            enableSearch={true}
+                                            disableSearchIcon={true}
+                                            country={"us"}
+                                            value={getValues("phoneNumber")}
+                                            onChange={(phone) => setValue("phoneNumber", phone)}
+                                            dropdownStyle={{ zIndex: 100 }}
+                                        />
+                                        <input
+                                            type="phone"
+                                            placeholder="Phone number"
+                                            className={"hidden"}
+                                            {...register("phoneNumber")}
+                                        />
+                                    </div>
+                                    {errors.phoneNumber && (
+                                        <p className="text-sm text-red-600 ">
+                                            Please enter the phone number
+                                        </p>
+                                    )}
                                 </div>
-
-
 
 
                             </div>
