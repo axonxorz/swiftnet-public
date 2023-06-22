@@ -640,10 +640,6 @@ video {
   top: 0.25rem;
 }
 
-.top-16 {
-  top: 4rem;
-}
-
 .top-3 {
   top: 0.75rem;
 }
@@ -1118,6 +1114,10 @@ video {
 
 .border-0 {
   border-width: 0px;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .border-4 {

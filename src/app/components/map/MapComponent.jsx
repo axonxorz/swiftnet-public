@@ -2,21 +2,59 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
-import AutoCompleteInput2 from "../home/AutoComplete2";
-import Marker from "./Marker";
+import CheckOut from "./CheckOut";
 import { useSearchParams } from "next/navigation";
 
+const defaultCenter = {
+  lat: 53.31225509999999,
+  lng: -110.072853,
+};
+
+const defaultZoom = 7;
+
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState({
-    lat: 53.31225509999999,
-    lng: -110.072853,
-  });
+  const [userLocation, setUserLocation] = useState(defaultCenter);
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
-  const [markers, setMarkers] = useState();
+  const [markers, setMarkers] = useState([]);
+  const [isDragging, setIsDragging] = useState(false);
   const searchParams = useSearchParams();
 
-  useEffect(() => {
+  const clearMarkers = () => {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+  };
+
+  const createMarker = (maps, map, position, draggable = true) => {
+    clearMarkers();
+
+    const marker = new maps.Marker({
+      position,
+      map,
+      title: "User Location",
+      draggable,
+    });
+
+    marker.setMap(map);
+    marker.addListener("drag", (event) => {
+      setIsDragging(true);
+    });
+    marker.addListener("dragend", (event) => {
+      clearMarkers();
+
+      setTimeout(() => {
+        setIsDragging(false);
+        setUserLocation({
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+        });
+      }, 20);
+    });
+    return marker;
+  };
+
+  const setLocationFromSearchParams = () => {
     if (
       searchParams.get("lat") &&
       searchParams.get("lng") &&
@@ -28,93 +66,38 @@ const MapComponent = () => {
         fullAdress: searchParams.get("fullAdress"),
       });
     }
-  }, [
-    searchParams.get("lat"),
-    searchParams.get("lng"),
-    searchParams.get("fullAdress"),
-  ]);
-
-  function clearMarkers() {
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
-    }
-    // map.setMap(null);
-  }
-
-  const defaultProps = {
-    center: {
-      lat: 53.31225509999999,
-      lng: -110.072853,
-    },
-    zoom: 7,
   };
 
-  useEffect(() => {
-    const googleMarkers = markers;
-
+  const addMarkerToMap = (location) => {
     if (map) {
-      let marker = new maps.Marker({
-        position: { lat: userLocation.lat, lng: userLocation.lng },
-        map,
-        title: "User Location",
-        draggable: true,
-      });
-      marker.setMap(map);
-      googleMarkers.push(marker);
-
-      setMarkers(googleMarkers);
+      const marker = createMarker(maps, map, location);
+      setMarkers((prevMarkers) => [...prevMarkers, marker]);
     }
-  }, [userLocation, map, maps]);
+  };
 
-  useEffect(() => {
-    const googleMarkers = markers;
-    if (map) {
-      let marker = new maps.Marker({
-        position: {
-          lat: defaultProps.center.lat,
-          lng: defaultProps.center.lng,
-        },
-        map,
-        title: "User Location",
-        draggable: true,
-      });
-      marker.setMap(map);
-      googleMarkers.push(marker);
-
-      setMarkers(googleMarkers);
-    }
-  }, [map]);
-
-  const handleApiLoaded = async (map, maps) => {
+  const handleApiLoaded = (map, maps) => {
     setMaps(maps);
     setMap(map);
-    const googleMarkers = [];
+  };
 
-    let marker = new maps.Marker({
-      position: userLocation,
-      map,
-      title: "User Location",
-      draggable: true,
-    });
-    // This event listener updates the user's location in your state when the marker is dragged and released
-    marker.addListener("dragend", (event) => {
-      setUserLocation({
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
+  const handleCurrentLocationButtonClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setUserLocation(pos);
       });
-    });
-    marker.setMap(map);
-    googleMarkers.push(marker);
-    setMarkers(googleMarkers);
+    } else {
+      toast.error("Geo Location not supported");
+    }
   };
 
   const handleMapClick = async ({ lat, lng }) => {
+    console.log(isDragging);
     clearMarkers();
-    setUserLocation({
-      lat,
-      lng,
-    });
-
+    !isDragging && setUserLocation({ lat, lng });
     try {
       const response = await fetch(
         `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
@@ -122,58 +105,49 @@ const MapComponent = () => {
       const data = await response.json();
       if (data.address) {
         const { city, country, postcode, region } = data.address;
-        !userLocation.city &&
-          setUserLocation({
-            ...userLocation,
+        !isDragging &&
+          setUserLocation((prevLocation) => ({
+            ...prevLocation,
             city,
             country,
             state: region,
             postal_code: postcode,
             lat,
             lng,
-          });
-      } else {
+          }));
       }
     } catch (error) {
       console.log("Error retrieving address information:", error);
     }
   };
 
-  const handleCurrentLocationButtonClick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          setUserLocation(pos);
-        },
-        () => {
-          toast.error("Geo Location not supported");
-        }
-      );
-    }
-  };
+  useEffect(() => {
+    setLocationFromSearchParams();
+  }, [searchParams]);
+
+  useEffect(() => {
+    addMarkerToMap(userLocation);
+  }, [userLocation]);
+
+  useEffect(() => {
+    addMarkerToMap(userLocation);
+  }, [map]);
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <div className="absolute hidden w-full top-16 left-0 z-50 md:flex items-start justify-start"></div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API }}
-        center={{
-          lat: userLocation?.lat || defaultProps.center.lat,
-          lng: userLocation?.lng || defaultProps.center.lng,
-        }}
-        defaultZoom={defaultProps.zoom}
+        center={userLocation || defaultCenter}
+        defaultZoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
-        options={map => ({ mapTypeId: map.MapTypeId.HYBRID })}
+        options={(map) => ({ mapTypeId: map.MapTypeId.HYBRID })}
       >
-        {userLocation?.lat && <Marker userLocation={userLocation} />}
+        {!isDragging && userLocation?.lat && (
+          <CheckOut userLocation={userLocation} />
+        )}
       </GoogleMapReact>
-
       <div className="absolute w-full top-3 left-0  flex items-center justify-center  z-50  ">
         <p
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
@@ -181,9 +155,8 @@ const MapComponent = () => {
           Put the pin on the building where you want internet service.
         </p>
       </div>
-
       <div
-        onClick={() => handleCurrentLocationButtonClick()}
+        onClick={handleCurrentLocationButtonClick}
         className="absolute bottom-28 right-3 bg-white p-1 shadow-md cursor-pointer hover:bg-slate-100"
       >
         <div className="rounded-full border-4 border-primary w-[30px] h-[30px] flex items-center justify-center">
