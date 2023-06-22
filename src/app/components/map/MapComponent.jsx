@@ -150,7 +150,7 @@ const MapComponent = () => {
     <div style={{ height: "100vh", width: "100%" }}>
       <div className="absolute hidden w-full top-16 left-0 z-50 md:flex items-start justify-start"></div>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.GOOGLE_PLACES_API }}
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API }}
         center={{
           lat: userLocation?.lat || defaultProps.center.lat,
           lng: userLocation?.lng || defaultProps.center.lng,
