@@ -43,6 +43,8 @@ const MapComponent = () => {
     marker.addListener("dragend", (event) => {
       clearMarkers();
 
+      //this because when dragend finish onClick event on the map get executed to that why we see two markers
+      //so when the dragend i wait 50 ms then set Dragging to false and check it in the onclick
       setTimeout(() => {
         setIsDragging(false);
         setUserLocation({
