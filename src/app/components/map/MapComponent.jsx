@@ -103,6 +103,10 @@ const MapComponent = () => {
         lng: event.latLng.lng(),
       });
     });
+
+    marker.addListener("click", (event) => {
+      console.log("clicked");
+    });
     marker.setMap(map);
     googleMarkers.push(marker);
     setMarkers(googleMarkers);
@@ -169,7 +173,7 @@ const MapComponent = () => {
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
-        options={map => ({ mapTypeId: map.MapTypeId.HYBRID })}
+        options={(map) => ({ mapTypeId: map.MapTypeId.HYBRID })}
       >
         {userLocation?.lat && <Marker userLocation={userLocation} />}
       </GoogleMapReact>

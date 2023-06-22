@@ -12,14 +12,14 @@ const Marker = ({ userLocation }) => {
   };
 
   return (
-    <div className=" relative">
+    <div className=" relative ">
       <div
         onClick={() => handleClickSub()}
-        className="w-[200px]   rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center  bg-white "
+        className="w-[200px] border-2   rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center  bg-white "
       >
         <div>
-          <button className="py-2 bg-primary rounded-md text-white px-4 mt-4">
-            Check out
+          <button className="py-2 bg-primary rounded-md text-white px-4 ">
+            Confirm building
           </button>
         </div>
       </div>
