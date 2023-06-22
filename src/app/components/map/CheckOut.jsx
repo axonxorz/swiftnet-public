@@ -1,4 +1,3 @@
-import styles from "@/app/styles/styles";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 

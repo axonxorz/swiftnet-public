@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo1 from "@/assets/logo2.png";
 import Image from "next/image";
 import styles from "@/app/styles/styles";
@@ -10,11 +10,13 @@ import InputField from "./InputField";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import PhoneInput from "@/components/phone-input";
-
+import { toast } from "react-hot-toast";
 const Form = () => {
     const searchParams = useSearchParams();
     const route = useRouter();
-    
+    const [Loading, setLoading] = useState(false);
+    const [supported, setSupported] = useState(false);
+
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
@@ -47,21 +49,120 @@ const Form = () => {
         return response.json(); // parses JSON response into native JavaScript objects
     }
 
-    const onSubmit = async (data) => {
-        console.log({ ...data, postal_code: searchParams.get("codepostal"), region: searchParams.get("state"), city: searchParams.get("city"), lat: searchParams.get("lat"), lng: searchParams.get("lng"), fullAdress: searchParams.get("fullAdress"), supportedplace: searchParams.get("supportedplace"), supportedplace: searchParams.get("supportedplace") });
-
-        // const response = await axios.
-        postData("/api", data).then((res_data) => {
-            const {status} = res_data
-            console.log(res_data); // JSON data parsed by `data.json()` call
-
-            if(status === 1){
-                route.push(
-                    `/email-check?user=${data.email}`
-                  );
-            }
+    const AddressInfo = (address) => {
+        // Filter the address components
+        const filteredComponents = address.address_components.filter(component => {
+            return (
+                component.types.includes('country') ||
+                component.types.includes('locality') ||
+                component.types.includes('postal_code')
+            );
         });
-    };
+
+        // Extract the desired properties
+        const country = filteredComponents.find(component => component.types.includes('country'));
+        const city = filteredComponents.find(component => component.types.includes('locality'));
+        const postalCode = filteredComponents.find(component => component.types.includes('postal_code'));
+        const fullAddress = address.formatted_address;
+
+        // Render the results
+        return { city, country, postalCode, fullAddress };
+    }
+
+
+    // const onSubmit = async (data) => {
+    //     // console.log({ ...data, postal_code: searchParams.get("codepostal"), region: searchParams.get("state"), city: searchParams.get("city"), lat: searchParams.get("lat"), lng: searchParams.get("lng"), fullAdress: searchParams.get("fullAdress"), supportedplace: searchParams.get("supportedplace"), supportedplace: searchParams.get("supportedplace") });
+    //     let city = searchParams.get("city")
+    //     let fullAdress = searchParams.get("fullAdress")
+    //     let codepostal = searchParams.get("codepostal")
+    //     let country = searchParams.get("country")
+    //     setLoading(true);
+
+    //         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`).then(response => response.json())
+    //             .then(async (data2) => {
+                   
+    //                 let index = 0 
+    //                 let maxLen = 0 ; 
+    //                 data2.results.map((rslt , ind) => {
+    //                     if(rslt.address_components.length > maxLen){
+    //                         maxLen = rslt.address_components.length
+    //                         index = ind
+    //                     }
+    //                 } )
+
+                  
+    //                 city = AddressInfo(data2.results[index]).city?.long_name ||""
+    //                 fullAdress = AddressInfo(data2.results[index]).fullAddress  ||""
+    //                 codepostal = AddressInfo(data2.results[index]).postalCode?.long_name  ||""
+    //                 country = AddressInfo(data2.results[index]).country?.long_name  ||""
+
+
+    //                 fetch(
+    //                     `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=56103&Account=39013&Address=${""}&city=${
+    //                       city
+    //                     }&Country=${country}&State=""&zipcode=${codepostal}&Latitude=${
+    //                         searchParams.get("lat")
+    //                     }&Longitude=${
+    //                         searchParams.get("lng")
+    //                     }&RxMargin=&key=f0c7fa3a935b20d98878bc484b47ad3b`
+    //                   ).then(res => res.text()).then(async result => {
+    //                     console.log(result);
+    //                     await  postData("/api", {...data ,supported : !result.includes("No") , city , fullAdress , codepostal , country , lng: searchParams.get("lng")  , lat: searchParams.get("lat")}).then((res_data) => {
+    //                         const { status } = res_data
+
+    //                         if (status === 1) {
+    //                             route.push(
+    //                                 `/email-check?user=${data.email}`
+    //                             );
+    //                         }
+    //                     }).catch(e => e => toast.error('some thing went wrong please try again '));
+    //                   }).catch(e =>  toast.error('some thing went wrong please try again '))
+
+                  
+    //             }).catch(e => toast.error('some thing went wrong please try again '));
+    //     setLoading(false);
+        
+    // };
+
+    const onSubmit = async (data) => {
+        setLoading(true);
+      
+        try {
+          const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`);
+          const geocodeData = await response.json();
+      
+          let city = "";
+          let fullAddress = "";
+          let postalCode = "";
+          let country = "";
+      
+          if (geocodeData.results.length > 0) {
+            const result = geocodeData.results[0];
+            const addressInfo = AddressInfo(result);
+      
+            city = addressInfo.city?.long_name || "";
+            fullAddress = addressInfo.fullAddress || "";
+            postalCode = addressInfo.postalCode?.long_name || "";
+            country = addressInfo.country?.long_name || "";
+          }
+      
+          const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${""}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
+          const towerCoverageResult = await towerCoverageResponse.text();
+      
+      
+          const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, fullAdress: fullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat")});
+          const { status } = postDataResponse;
+      
+          if (status === 1) {
+            route.push(`/email-check?user=${data.email}`);
+          }
+        } catch (error) {
+          toast.error('Something went wrong. Please try again.');
+        }
+      
+        setLoading(false);
+      };
+      
 
 
 
@@ -85,6 +186,8 @@ const Form = () => {
                     <p className={`${styles.heading}`}>Let’s get started</p>
 
                 </div>
+
+                {Loading && <p className={`${styles.paragraph}} my-3 text-[12px]`}>please wait  ....</p>}
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="space-y-1">
@@ -162,7 +265,7 @@ const Form = () => {
                                     Notes
                                 </label>
 
-                                <textarea name="notes" className={`${errors?.notes?.message && "bg-red-400/20 text-white border-red-500 "
+                                <textarea  {...register('notes')} name="notes" className={`${errors?.notes?.message && "bg-red-400/20 text-white border-red-500 "
                                     }block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`} cols="30" rows="5" {...register} ></textarea>
                                 {errors?.notes?.message && <p className="text-red-500 text-xs  ">{errors?.notes?.message}</p>}
                             </div>

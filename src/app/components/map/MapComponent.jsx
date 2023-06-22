@@ -4,13 +4,13 @@ import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
 import CheckOut from "./CheckOut";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
+import PosIcon from "@/assets/position.png";
 
 const defaultCenter = {
   lat: 53.31225509999999,
   lng: -110.072853,
 };
-
-const defaultZoom = 7;
 
 const MapComponent = () => {
   const [userLocation, setUserLocation] = useState(defaultCenter);
@@ -19,7 +19,7 @@ const MapComponent = () => {
   const [markers, setMarkers] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const searchParams = useSearchParams();
-
+  const [defaultZoom, setDefaultZoom] = useState(7);
   const clearMarkers = () => {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
@@ -62,11 +62,13 @@ const MapComponent = () => {
       searchParams.get("lng") &&
       searchParams.get("fullAdress")
     ) {
+      console.log("sting zoom to 20");
       setUserLocation({
         lat: parseFloat(searchParams.get("lat")),
         lng: parseFloat(searchParams.get("lng")),
         fullAdress: searchParams.get("fullAdress"),
       });
+      setDefaultZoom(17);
     }
   };
 
@@ -100,27 +102,27 @@ const MapComponent = () => {
     console.log(isDragging);
     clearMarkers();
     !isDragging && setUserLocation({ lat, lng });
-    try {
-      const response = await fetch(
-        `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
-      );
-      const data = await response.json();
-      if (data.address) {
-        const { city, country, postcode, region } = data.address;
-        !isDragging &&
-          setUserLocation((prevLocation) => ({
-            ...prevLocation,
-            city,
-            country,
-            state: region,
-            postal_code: postcode,
-            lat,
-            lng,
-          }));
-      }
-    } catch (error) {
-      console.log("Error retrieving address information:", error);
-    }
+    // try {
+    //   const response = await fetch(
+    //     `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
+    //   );
+    //   const data = await response.json();
+    //   if (data.address) {
+    //     const { city, country, postcode, region } = data.address;
+    //     !isDragging &&
+    //       setUserLocation((prevLocation) => ({
+    //         ...prevLocation,
+    //         city,
+    //         country,
+    //         state: region,
+    //         postal_code: postcode,
+    //         lat,
+    //         lng,
+    //       }));
+    //   }
+    // } catch (error) {
+    //   console.log("Error retrieving address information:", error);
+    // }
   };
 
   useEffect(() => {
@@ -140,7 +142,7 @@ const MapComponent = () => {
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API }}
         center={userLocation || defaultCenter}
-        defaultZoom={defaultZoom}
+        zoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
@@ -161,9 +163,7 @@ const MapComponent = () => {
         onClick={handleCurrentLocationButtonClick}
         className="absolute bottom-28 right-3 bg-white p-1 shadow-md cursor-pointer hover:bg-slate-100"
       >
-        <div className="rounded-full border-4 border-primary w-[30px] h-[30px] flex items-center justify-center">
-          <div className="rounded-full  bg-primary w-[15px] h-[15px] "></div>
-        </div>
+        <Image src={PosIcon} width={30} height={30} />
       </div>
     </div>
   );
