@@ -12,17 +12,6 @@ const defaultCenter = {
 
 const defaultZoom = 7;
 
-const createMarker = (maps, map, position, draggable = true) => {
-  const marker = new maps.Marker({
-    position,
-    map,
-    title: "User Location",
-    draggable,
-  });
-
-  return marker;
-};
-
 const MapComponent = () => {
   const [userLocation, setUserLocation] = useState(defaultCenter);
   const [maps, setMaps] = useState(null);
@@ -35,6 +24,34 @@ const MapComponent = () => {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
     }
+  };
+
+  const createMarker = (maps, map, position, draggable = true) => {
+    clearMarkers();
+
+    const marker = new maps.Marker({
+      position,
+      map,
+      title: "User Location",
+      draggable,
+    });
+
+    marker.setMap(map);
+    marker.addListener("drag", (event) => {
+      setIsDragging(true);
+    });
+    marker.addListener("dragend", (event) => {
+      clearMarkers();
+
+      setTimeout(() => {
+        setIsDragging(false);
+        setUserLocation({
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+        });
+      }, 20);
+    });
+    return marker;
   };
 
   const setLocationFromSearchParams = () => {
@@ -54,19 +71,6 @@ const MapComponent = () => {
   const addMarkerToMap = (location) => {
     if (map) {
       const marker = createMarker(maps, map, location);
-      marker.setMap(map);
-
-      marker.addListener("drag", (event) => {
-        setIsDragging(true);
-      });
-      marker.addListener("dragend", (event) => {
-        setIsDragging(false);
-        setUserLocation({
-          lat: event.latLng.lat(),
-          lng: event.latLng.lng(),
-        });
-      });
-
       setMarkers((prevMarkers) => [...prevMarkers, marker]);
     }
   };
@@ -74,20 +78,6 @@ const MapComponent = () => {
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
     setMap(map);
-    const marker = createMarker(maps, map, userLocation);
-    marker.addListener("drag", (event) => {
-      setIsDragging(true);
-    });
-    marker.addListener("dragend", (event) => {
-      setIsDragging(false);
-      setUserLocation({
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-      });
-    });
-
-    marker.setMap(map);
-    setMarkers((prevMarkers) => [...prevMarkers, marker]);
   };
 
   const handleCurrentLocationButtonClick = () => {
@@ -105,8 +95,9 @@ const MapComponent = () => {
   };
 
   const handleMapClick = async ({ lat, lng }) => {
+    console.log(isDragging);
     clearMarkers();
-    setUserLocation({ lat, lng });
+    !isDragging && setUserLocation({ lat, lng });
     try {
       const response = await fetch(
         `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
@@ -114,15 +105,16 @@ const MapComponent = () => {
       const data = await response.json();
       if (data.address) {
         const { city, country, postcode, region } = data.address;
-        setUserLocation((prevLocation) => ({
-          ...prevLocation,
-          city,
-          country,
-          state: region,
-          postal_code: postcode,
-          lat,
-          lng,
-        }));
+        !isDragging &&
+          setUserLocation((prevLocation) => ({
+            ...prevLocation,
+            city,
+            country,
+            state: region,
+            postal_code: postcode,
+            lat,
+            lng,
+          }));
       }
     } catch (error) {
       console.log("Error retrieving address information:", error);
@@ -134,9 +126,12 @@ const MapComponent = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    clearMarkers();
     addMarkerToMap(userLocation);
   }, [userLocation]);
+
+  useEffect(() => {
+    addMarkerToMap(userLocation);
+  }, [map]);
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
