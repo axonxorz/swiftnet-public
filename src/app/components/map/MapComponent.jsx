@@ -40,6 +40,7 @@ const MapComponent = () => {
     }
     // map.setMap(null);
   }
+
   const defaultProps = {
     center: {
       lat: 53.31225509999999,
@@ -50,9 +51,10 @@ const MapComponent = () => {
 
   useEffect(() => {
     const googleMarkers = markers;
+
     if (map) {
       let marker = new maps.Marker({
-        position: userLocation,
+        position: { lat: userLocation.lat, lng: userLocation.lng },
         map,
         title: "User Location",
       });
@@ -61,7 +63,25 @@ const MapComponent = () => {
 
       setMarkers(googleMarkers);
     }
-  }, [userLocation, map]);
+  }, [userLocation, map, maps]);
+
+  useEffect(() => {
+    const googleMarkers = markers;
+    if (map) {
+      let marker = new maps.Marker({
+        position: {
+          lat: defaultProps.center.lat,
+          lng: defaultProps.center.lng,
+        },
+        map,
+        title: "User Location",
+      });
+      marker.setMap(map);
+      googleMarkers.push(marker);
+
+      setMarkers(googleMarkers);
+    }
+  }, [map]);
 
   const handleApiLoaded = async (map, maps) => {
     setMaps(maps);
@@ -128,13 +148,9 @@ const MapComponent = () => {
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <div className="absolute hidden w-full top-16 left-0 z-50 md:flex items-start justify-start">
-        <div className="md:w-2/5 ml-5">
-          <AutoCompleteInput2 setUserLocation={setUserLocation} />
-        </div>
-      </div>
+      <div className="absolute hidden w-full top-16 left-0 z-50 md:flex items-start justify-start"></div>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyDy4vJLsIMYYK8_CyTGciCUtsA2_87DXWg" }}
+        bootstrapURLKeys={{ key: process.env.GOOGLE_PLACES_API }}
         center={{
           lat: userLocation?.lat || defaultProps.center.lat,
           lng: userLocation?.lng || defaultProps.center.lng,
@@ -143,6 +159,7 @@ const MapComponent = () => {
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
+        options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
       >
         {userLocation?.lat && <Marker userLocation={userLocation} />}
       </GoogleMapReact>
