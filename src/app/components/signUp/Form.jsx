@@ -70,59 +70,6 @@ const Form = () => {
     }
 
 
-    // const onSubmit = async (data) => {
-    //     // console.log({ ...data, postal_code: searchParams.get("codepostal"), region: searchParams.get("state"), city: searchParams.get("city"), lat: searchParams.get("lat"), lng: searchParams.get("lng"), fullAdress: searchParams.get("fullAdress"), supportedplace: searchParams.get("supportedplace"), supportedplace: searchParams.get("supportedplace") });
-    //     let city = searchParams.get("city")
-    //     let fullAdress = searchParams.get("fullAdress")
-    //     let codepostal = searchParams.get("codepostal")
-    //     let country = searchParams.get("country")
-    //     setLoading(true);
-
-    //         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`).then(response => response.json())
-    //             .then(async (data2) => {
-                   
-    //                 let index = 0 
-    //                 let maxLen = 0 ; 
-    //                 data2.results.map((rslt , ind) => {
-    //                     if(rslt.address_components.length > maxLen){
-    //                         maxLen = rslt.address_components.length
-    //                         index = ind
-    //                     }
-    //                 } )
-
-                  
-    //                 city = AddressInfo(data2.results[index]).city?.long_name ||""
-    //                 fullAdress = AddressInfo(data2.results[index]).fullAddress  ||""
-    //                 codepostal = AddressInfo(data2.results[index]).postalCode?.long_name  ||""
-    //                 country = AddressInfo(data2.results[index]).country?.long_name  ||""
-
-
-    //                 fetch(
-    //                     `https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=56103&Account=39013&Address=${""}&city=${
-    //                       city
-    //                     }&Country=${country}&State=""&zipcode=${codepostal}&Latitude=${
-    //                         searchParams.get("lat")
-    //                     }&Longitude=${
-    //                         searchParams.get("lng")
-    //                     }&RxMargin=&key=f0c7fa3a935b20d98878bc484b47ad3b`
-    //                   ).then(res => res.text()).then(async result => {
-    //                     console.log(result);
-    //                     await  postData("/api", {...data ,supported : !result.includes("No") , city , fullAdress , codepostal , country , lng: searchParams.get("lng")  , lat: searchParams.get("lat")}).then((res_data) => {
-    //                         const { status } = res_data
-
-    //                         if (status === 1) {
-    //                             route.push(
-    //                                 `/email-check?user=${data.email}`
-    //                             );
-    //                         }
-    //                     }).catch(e => e => toast.error('some thing went wrong please try again '));
-    //                   }).catch(e =>  toast.error('some thing went wrong please try again '))
-
-                  
-    //             }).catch(e => toast.error('some thing went wrong please try again '));
-    //     setLoading(false);
-        
-    // };
 
     const onSubmit = async (data) => {
         setLoading(true);
