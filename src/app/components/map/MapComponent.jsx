@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
@@ -55,6 +55,18 @@ const MapComponent = () => {
     if (map) {
       const marker = createMarker(maps, map, location);
       marker.setMap(map);
+
+      marker.addListener("drag", (event) => {
+        setIsDragging(true);
+      });
+      marker.addListener("dragend", (event) => {
+        setIsDragging(false);
+        setUserLocation({
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+        });
+      });
+
       setMarkers((prevMarkers) => [...prevMarkers, marker]);
     }
   };
@@ -74,9 +86,6 @@ const MapComponent = () => {
       });
     });
 
-    marker.addListener("click", (event) => {
-      console.log("clicked");
-    });
     marker.setMap(map);
     setMarkers((prevMarkers) => [...prevMarkers, marker]);
   };
@@ -99,7 +108,9 @@ const MapComponent = () => {
     clearMarkers();
     setUserLocation({ lat, lng });
     try {
-      const response = await fetch(`https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`);
+      const response = await fetch(
+        `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
+      );
       const data = await response.json();
       if (data.address) {
         const { city, country, postcode, region } = data.address;
@@ -120,12 +131,12 @@ const MapComponent = () => {
 
   useEffect(() => {
     setLocationFromSearchParams();
-    addMarkerToMap(userLocation);
-  }, [searchParams, userLocation]);
+  }, [searchParams]);
 
   useEffect(() => {
-    addMarkerToMap(defaultCenter);
-  }, [map]);
+    clearMarkers();
+    addMarkerToMap(userLocation);
+  }, [userLocation]);
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
@@ -138,10 +149,14 @@ const MapComponent = () => {
         onClick={handleMapClick}
         options={(map) => ({ mapTypeId: map.MapTypeId.HYBRID })}
       >
-        {(!isDragging && userLocation?.lat) && <CheckOut userLocation={userLocation} />}
+        {!isDragging && userLocation?.lat && (
+          <CheckOut userLocation={userLocation} />
+        )}
       </GoogleMapReact>
       <div className="absolute w-full top-3 left-0  flex items-center justify-center  z-50  ">
-        <p className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}>
+        <p
+          className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
+        >
           Put the pin on the building where you want internet service.
         </p>
       </div>
