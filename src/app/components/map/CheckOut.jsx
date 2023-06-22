@@ -2,7 +2,7 @@ import styles from "@/app/styles/styles";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Marker = ({ userLocation }) => {
+const CheckOut = ({ userLocation }) => {
   const route = useRouter();
 
   const handleClickSub = () => {
@@ -27,4 +27,4 @@ const Marker = ({ userLocation }) => {
   );
 };
 
-export default Marker;
+export default CheckOut;
