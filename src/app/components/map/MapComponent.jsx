@@ -57,6 +57,7 @@ const MapComponent = () => {
         position: { lat: userLocation.lat, lng: userLocation.lng },
         map,
         title: "User Location",
+        draggable: true,
       });
       marker.setMap(map);
       googleMarkers.push(marker);
@@ -75,6 +76,7 @@ const MapComponent = () => {
         },
         map,
         title: "User Location",
+        draggable: true,
       });
       marker.setMap(map);
       googleMarkers.push(marker);
@@ -92,6 +94,14 @@ const MapComponent = () => {
       position: userLocation,
       map,
       title: "User Location",
+      draggable: true,
+    });
+    // This event listener updates the user's location in your state when the marker is dragged and released
+    marker.addListener("dragend", (event) => {
+      setUserLocation({
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      });
     });
     marker.setMap(map);
     googleMarkers.push(marker);
@@ -159,7 +169,7 @@ const MapComponent = () => {
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
-        options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+        options={map => ({ mapTypeId: map.MapTypeId.HYBRID })}
       >
         {userLocation?.lat && <Marker userLocation={userLocation} />}
       </GoogleMapReact>
