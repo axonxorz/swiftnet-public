@@ -159,9 +159,7 @@ const MapComponent = () => {
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
-        defaultOptions={{
-          mapTypeId: "satellite", //google.maps.MapTypeId.TERRAIN,
-        }}
+        options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
       >
         {userLocation?.lat && <Marker userLocation={userLocation} />}
       </GoogleMapReact>
