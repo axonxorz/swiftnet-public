@@ -8,8 +8,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASSWORD,
+    user: process.env.NEXT_PUBLIC_GMAIL_USER,
+    pass: process.env.NEXT_PUBLIC_GMAIL_PASSWORD,
   },
 });
 
@@ -37,7 +37,7 @@ export async function POST(request) {
     postal_code,
     region,
     email,
-    // notes,
+    supported,
   } = req;
 
   const isValid = validateFormFields(email, "sfsdf");
@@ -47,8 +47,10 @@ export async function POST(request) {
     const mailOptions = {
       from: "younss.india@gmail.com", // sender
       to: email, // recipient
-      subject: "Form Submission Successful",
-      text: `Hello ${firstName}, your form submission was successful!`,
+      subject: supported ? "congratulations" : "Sorry you re place",
+      text: supported
+        ? `you place ${fullAdress} is  supported see pricing`
+        : `Sorry you place ${fullAdress} is not supported`,
     };
 
     try {
@@ -59,7 +61,6 @@ export async function POST(request) {
         status: 1,
       });
     } catch (error) {
-      console.error(error);
       return NextResponse.json({ message: "Error sending email", status: 0 });
     }
   } else {
