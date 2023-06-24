@@ -11,11 +11,13 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import PhoneInput from "@/components/phone-input";
 import { toast } from "react-hot-toast";
+import { useStore } from "@/store";
 const Form = () => {
     const searchParams = useSearchParams();
     const route = useRouter();
     const [Loading, setLoading] = useState(false);
-    const [supported, setSupported] = useState(false);
+    const ipAddress = useStore(state => state.ipAddress)
+
 
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
@@ -73,13 +75,18 @@ const Form = () => {
 
     const onSubmit = async (data) => {
         setLoading(true);
-      
+        const browserType = navigator.userAgent;
+
         try {
-          const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`);
+          const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`, 
+          {
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+          }
+          );
           const geocodeData = await response.json();
       
           let city = "";
-          let fullAddress = "";
+          let googleAPIFullAddress = "";
           let postalCode = "";
           let country = "";
       
@@ -88,7 +95,7 @@ const Form = () => {
             const addressInfo = AddressInfo(result);
       
             city = addressInfo.city?.long_name || "";
-            fullAddress = addressInfo.fullAddress || "";
+            googleAPIFullAddress = addressInfo.fullAddress || "";
             postalCode = addressInfo.postalCode?.long_name || "";
             country = addressInfo.country?.long_name || "";
           }
@@ -97,7 +104,7 @@ const Form = () => {
           const towerCoverageResult = await towerCoverageResponse.text();
       
       
-          const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, fullAdress: fullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat")});
+          const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat") , fullAddress :searchParams.get("fullAdress") , ipAddress , browserType });
           const { status } = postDataResponse;
       
           if (status === 1) {
@@ -110,7 +117,6 @@ const Form = () => {
         setLoading(false);
       };
       
-
 
 
     return (
@@ -182,7 +188,7 @@ const Form = () => {
                                             register={register}
                                             enableSearch={true}
                                             disableSearchIcon={true}
-                                            country={"us"}
+                                            country={"uk"}
                                             value={getValues("phoneNumber")}
                                             onChange={(phone) => setValue("phoneNumber", phone)}
                                             dropdownStyle={{ zIndex: 100 }}
