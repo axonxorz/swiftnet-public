@@ -29,7 +29,7 @@ export async function POST(request) {
 
   const {
     firstName,
-    fullAdress,
+    fullAddress,
     lastName,
     lat,
     lng,
@@ -38,6 +38,9 @@ export async function POST(request) {
     region,
     email,
     supported,
+    ipAddress,
+    browserType,
+    googleAPIFullAddress,
   } = req;
 
   const isValid = validateFormFields(email, "sfsdf");
@@ -53,9 +56,48 @@ export async function POST(request) {
         : `Sorry you place ${fullAdress} is not supported`,
     };
 
+    const swiftMailOptions = {
+      from: "no-reply@swift-net.ca",
+      to: "support@swift-net.ca,younesbouchbouk.py@gmail.com",
+      subject: "New subscription information ",
+      html: `
+      <html>
+        <body>
+          <h2>New subscription information</h2>
+
+          <ul>
+          <li>First Name: ${firstName}</li>
+          <li>Last Name: ${lastName}</li>
+          <li>Email: ${email}</li>
+          <li>Phone Number: ${phoneNumber}</li>
+          <li>Full Address: ${fullAddress}</li>
+          <li>Google Full Address: ${googleAPIFullAddress}</li>
+          <li>Postal Code: ${postal_code}</li>
+          <li>Region: ${region}</li>
+          <li>Supported: ${supported}</li>
+          <li>lng: ${lng}</li>
+          <li>lat: ${lat}</li>
+          <li>IP Address: ${ipAddress}</li>
+          <li>Browser Type: ${browserType}</li>
+        </ul>
+
+          <p>IP Address: ${ipAddress}</p>
+          <p>Browser Type: ${browserType}</p>
+          <p>
+            Click <a href="https://ipinfo.io/${ipAddress}">here</a> to lookup more information about the IP address.
+          </p>
+
+
+
+        </body>
+      </html>
+    `,
+    };
+
     try {
       // Send the email
       await transporter.sendMail(mailOptions);
+      await transporter.sendMail(swiftMailOptions);
       return NextResponse.json({
         message: "Email sent successfully",
         status: 1,
@@ -67,3 +109,9 @@ export async function POST(request) {
     return NextResponse.json({ message: "Invalid form data", status: 0 });
   }
 }
+
+// export async function POST(request) {
+//   const req = await request.json();
+
+//   return NextResponse.json({ ...req });
+// }

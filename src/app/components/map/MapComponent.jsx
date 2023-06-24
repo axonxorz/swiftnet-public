@@ -48,6 +48,7 @@ const MapComponent = () => {
       setTimeout(() => {
         setIsDragging(false);
         setUserLocation({
+          ...userLocation,
           lat: event.latLng.lat(),
           lng: event.latLng.lng(),
         });
@@ -64,6 +65,7 @@ const MapComponent = () => {
     ) {
       console.log("sting zoom to 20");
       setUserLocation({
+        ...userLocation,
         lat: parseFloat(searchParams.get("lat")),
         lng: parseFloat(searchParams.get("lng")),
         fullAdress: searchParams.get("fullAdress"),
@@ -91,7 +93,8 @@ const MapComponent = () => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        setUserLocation(pos);
+        setUserLocation({ ...userLocation, ...pos });
+        setDefaultZoom(17);
       });
     } else {
       toast.error("Geo Location not supported");
@@ -99,9 +102,8 @@ const MapComponent = () => {
   };
 
   const handleMapClick = async ({ lat, lng }) => {
-    console.log(isDragging);
     clearMarkers();
-    !isDragging && setUserLocation({ lat, lng });
+    !isDragging && setUserLocation({ ...userLocation, lat, lng });
     // try {
     //   const response = await fetch(
     //     `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
