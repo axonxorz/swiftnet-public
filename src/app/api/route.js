@@ -52,8 +52,8 @@ export async function POST(request) {
       to: email, // recipient
       subject: supported ? "congratulations" : "Sorry you re place",
       text: supported
-        ? `you place ${fullAdress} is  supported see pricing`
-        : `Sorry you place ${fullAdress} is not supported`,
+        ? `you place ${fullAddress} is  supported see pricing`
+        : `Sorry you place ${fullAddress} is not supported`,
     };
 
     const swiftMailOptions = {
@@ -77,7 +77,7 @@ export async function POST(request) {
           <li>Supported: ${supported}</li>
           <li>lng: ${lng}</li>
           <li>lat: ${lat}</li>
-          <li>IP Address: ${ipAddress}</li>
+          <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
           <li>Browser Type: ${browserType}</li>
         </ul>
 
