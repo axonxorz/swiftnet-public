@@ -70,7 +70,7 @@ const MapComponent = () => {
         lng: parseFloat(searchParams.get("lng")),
         fullAdress: searchParams.get("fullAdress"),
       });
-      setDefaultZoom(17);
+      setDefaultZoom(22);
     }
   };
 
@@ -94,7 +94,7 @@ const MapComponent = () => {
           lng: position.coords.longitude,
         };
         setUserLocation({ ...userLocation, ...pos });
-        setDefaultZoom(17);
+        setDefaultZoom(22);
       });
     } else {
       toast.error("Geo Location not supported");
@@ -104,27 +104,6 @@ const MapComponent = () => {
   const handleMapClick = async ({ lat, lng }) => {
     clearMarkers();
     !isDragging && setUserLocation({ ...userLocation, lat, lng });
-    // try {
-    //   const response = await fetch(
-    //     `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`
-    //   );
-    //   const data = await response.json();
-    //   if (data.address) {
-    //     const { city, country, postcode, region } = data.address;
-    //     !isDragging &&
-    //       setUserLocation((prevLocation) => ({
-    //         ...prevLocation,
-    //         city,
-    //         country,
-    //         state: region,
-    //         postal_code: postcode,
-    //         lat,
-    //         lng,
-    //       }));
-    //   }
-    // } catch (error) {
-    //   console.log("Error retrieving address information:", error);
-    // }
   };
 
   useEffect(() => {
