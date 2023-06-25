@@ -90,7 +90,7 @@ const Form = () => {
           let postalCode = "";
           let country = "";
       
-          if (geocodeData.results.length > 0) {
+          if (geocodeData?.results?.length > 0) {
             const result = geocodeData.results[0];
             const addressInfo = AddressInfo(result);
       
@@ -99,16 +99,41 @@ const Form = () => {
             postalCode = addressInfo.postalCode?.long_name || "";
             country = addressInfo.country?.long_name || "";
           }
+          const fullAddress  = searchParams.get("fullAdress") !== "undifined" ? searchParams.get("fullAdress") : googleAPIFullAddress
       
-          const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${""}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
+
+          const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${fullAddress}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
           const towerCoverageResult = await towerCoverageResponse.text();
+          
+
+
+          await fetch("https://api.towercoverage.com/towercoverage.asmx/EUSsubmisssion", {
+            "headers": {
+              "accept": "*/*",
+              "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+              "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+              "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"",
+              "sec-ch-ua-mobile": "?0",
+              "sec-ch-ua-platform": "\"Windows\"",
+              "sec-fetch-dest": "empty",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-site": "cross-site"
+            },
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "body": `multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Firstname=${data.firstName}&city=${city}&lastname=${data.lastName}&Address=${fullAddress}&Country=${country}&State=NA&zipcode=${postalCode}&phonenumber=${data.phoneNumber}&emailaddress=${data.email}&howdidyouhear=NA&preferredmethod=NA&besttimetocontact=NA&comments=${data.notes}&clientip=${ipAddress}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`,
+            "method": "POST",
+            "mode": "cors",
+            "credentials": "omit"
+          });
+
       
-      
-          const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat") , fullAddress :searchParams.get("fullAdress") , ipAddress , browserType });
-          const { status } = postDataResponse;
+          const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat") , fullAddress , ipAddress , browserType });
+          const {message ,  status } = postDataResponse;
       
           if (status === 1) {
             route.push(`/email-check?user=${data.email}`);
+          }else {
+            toast.error(message)
           }
         } catch (error) {
           toast.error('Something went wrong. Please try again.');
