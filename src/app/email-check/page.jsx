@@ -11,7 +11,7 @@ const page = () => {
   useEffect(() => {
     setTimeout(() => {
       route.push("/");
-    }, 3000);
+    }, 4000);
   }, []);
 
   return (
@@ -26,8 +26,9 @@ const page = () => {
         unoptimized={true}
       />
       <p className={styles.paragraph}>
-        we have received your request , our costumar service will reache you by
-        email soon with the result and the nest step ... <br />{" "}
+        Thank you for submitting your request. Our dedicated customer service
+        team will promptly reach out to you via email with the outcome of your
+        inquiry and provide guidance on the next steps. <br />{" "}
         <span className="text-primary font-bold">
           Thank you for choising us
         </span>
