@@ -165,9 +165,8 @@ const Form = () => {
 
                 </div>
 
-                {Loading && <p className={`${styles.paragraph}} my-3 text-[12px]`}>please wait  ....</p>}
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
                     <div className="space-y-1">
                         <div className="border-b border-gray-900/10 ">
                             <div className="mt-2 grid grid-cols-1 gap-2 gap-y-2  sm:grid-cols-6">
@@ -253,9 +252,10 @@ const Form = () => {
                     <div className=" flex items-center justify-center mt-5 space-y-4 flex-col ">
                         <button
                             type="submit"
-                            className="text-sm font-semibold leading-6  w-[400px] bg-primary rounded-lg text-white py-2 "
+                            disabled={Loading}
+                            className={`text-sm font-semibold leading-6  w-[400px] ${Loading ? "bg-primary/70 " : "bg-primary "}rounded-lg text-white py-2 `}
                         >
-                            Check Availability
+                            {!Loading ? "Check Availability" : "please wait ..."}
                         </button>
 
                         <p className={`${styles.paragraph}`}>
