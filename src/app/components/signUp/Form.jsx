@@ -90,7 +90,7 @@ const Form = () => {
           let postalCode = "";
           let country = "";
       
-          if (geocodeData.results.length > 0) {
+          if (geocodeData?.results?.length > 0) {
             const result = geocodeData.results[0];
             const addressInfo = AddressInfo(result);
       
@@ -128,10 +128,12 @@ const Form = () => {
 
       
           const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat") , fullAddress , ipAddress , browserType });
-          const { status } = postDataResponse;
+          const {message ,  status } = postDataResponse;
       
           if (status === 1) {
             route.push(`/email-check?user=${data.email}`);
+          }else {
+            toast.error(message)
           }
         } catch (error) {
           toast.error('Something went wrong. Please try again.');

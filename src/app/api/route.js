@@ -8,8 +8,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.NEXT_PUBLIC_GMAIL_USER,
-    pass: process.env.NEXT_PUBLIC_GMAIL_PASSWORD,
+    user: "webmaster@swift-net.ca",
+    pass: "inkfbyetcqbeafxn",
   },
 });
 
@@ -53,7 +53,8 @@ export async function POST(request) {
       subject: supported
         ? " Good News! High-Speed Internet Service is Available at Your Address"
         : "Expanding our Network Together: Internet Service Availability",
-      text: supported
+      text: "",
+      html: supported
         ? `
         <html>
           <body>
@@ -134,6 +135,7 @@ export async function POST(request) {
       from: "no-reply@swift-net.ca",
       to: "support@swift-net.ca,younesbouchbouk.py@gmail.com",
       subject: "New subscription information ",
+      text: "",
       html: `
       <html>
         <body>
@@ -160,8 +162,6 @@ export async function POST(request) {
           <p>
             Click <a href="https://ipinfo.io/${ipAddress}">here</a> to lookup more information about the IP address.
           </p>
-
-
 
         </body>
       </html>
