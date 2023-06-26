@@ -72,7 +72,7 @@ const MapComponent = () => {
     marker.setMap(map);
     marker.addListener("drag", () => {
       setIsDragging(true);
-      defaultZoom === 7 && setDefaultZoom(14);
+      defaultZoom === 7 && setDefaultZoom(11);
     });
     marker.addListener("dragend", (event) => {
       clearMarkers();
