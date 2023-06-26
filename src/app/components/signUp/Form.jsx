@@ -94,12 +94,12 @@ const Form = () => {
             const result = geocodeData.results[0];
             const addressInfo = AddressInfo(result);
       
-            city = addressInfo.city?.long_name || "";
-            googleAPIFullAddress = addressInfo.fullAddress || "";
-            postalCode = addressInfo.postalCode?.long_name || "";
-            country = addressInfo.country?.long_name || "";
+            city = addressInfo.city?.long_name || "NA";
+            googleAPIFullAddress = addressInfo.fullAddress || "NA";
+            postalCode = addressInfo.postalCode?.long_name || "NA";
+            country = addressInfo.country?.long_name || "NA";
           }
-          const fullAddress  = searchParams.get("fullAdress") !== "undifined" ? searchParams.get("fullAdress") : googleAPIFullAddress
+          const fullAddress  = searchParams.get("fullAdress") !== "undefined" ? searchParams.get("fullAdress") : googleAPIFullAddress
       
 
           const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${fullAddress}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
