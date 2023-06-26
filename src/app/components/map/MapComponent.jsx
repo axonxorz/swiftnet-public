@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import PosIcon from "@/assets/position.png";
+import CheckOut from "./CheckOut";
 
 const defaultCenter = {
   lat: 53.31225509999999,
@@ -21,31 +22,68 @@ const MapComponent = () => {
   const [defaultZoom, setDefaultZoom] = useState(7);
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
-  const confirmBuildingBtn = document.getElementById("confirm-building");
   const [displayCheckout, setDisplayCheckout] = useState(false);
+  // const ref = useRef(null);
+  const confirmBuildingBtnRef = useRef(null);
+
+  // const confirmBuildingBtn = document?.getElementById("confirm-building");
+
+  // useEffect(() => {
+  //   confirmBuildingBtn?.addEventListener("click", () => {
+  //     route.push(
+  //       `/sign-up?step=2&fullAdress=${userLocation.fullAdress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
+  //     );
+  //   });
+
+  //   confirmBuildingBtn?.addEventListener("mouseover", () => {
+  //     setcheckOutHovered(true);
+  //   });
+
+  //   confirmBuildingBtn?.addEventListener("mouseout", () => {
+  //     setcheckOutHovered(false);
+  //   });
+  // }, [confirmBuildingBtn]);
+
   useEffect(() => {
-    confirmBuildingBtn?.addEventListener("click", () => {
-      route.push(
-        `/sign-up?step=2&fullAdress=${userLocation.fullAdress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
-      );
-    });
+    const confirmBuildingBtn = confirmBuildingBtnRef.current;
+    console.log(confirmBuildingBtn);
+    const handleClick = () => {
+      // your logic here
 
-    confirmBuildingBtn?.addEventListener("mouseover", () => {
-      setcheckOutHovered(true);
-    });
+      console.log("click mee ah");
+    };
 
-    confirmBuildingBtn?.addEventListener("mouseout", () => {
-      setcheckOutHovered(false);
-    });
-  }, [confirmBuildingBtn]);
+    const handleMouseEnter = () => {
+      // your logic here
+      console.log("ebrtzr");
+    };
 
-  const clearMarkers = () => {
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
+    const handleMouseLeave = () => {
+      // your logic here
+      console.log("leave");
+    };
+
+    if (confirmBuildingBtn) {
+      confirmBuildingBtn.addEventListener("click", handleClick);
+      confirmBuildingBtn.addEventListener("mouseenter", handleMouseEnter);
+      confirmBuildingBtn.addEventListener("mouseleave", handleMouseLeave);
+      console.log("heeeree");
+      return () => {
+        // remove the event listeners when the component unmounts
+        confirmBuildingBtn.removeEventListener("click", handleClick);
+        confirmBuildingBtn.removeEventListener("mouseenter", handleMouseEnter);
+        confirmBuildingBtn.removeEventListener("mouseleave", handleMouseLeave);
+      };
     }
-  };
+  }, [confirmBuildingBtnRef]);
 
-  const createMarker = (maps, map, position, draggable = true) => {
+  const createMarker = (
+    maps,
+    map,
+    position,
+    draggable = true,
+    confirmBuildingBtnRef
+  ) => {
     clearMarkers();
 
     const marker = new maps.Marker({
@@ -58,7 +96,7 @@ const MapComponent = () => {
     const infowindow = new google.maps.InfoWindow({
       content: `
       <div class="relative">
-        <div  id="confirm-building" className="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
+        <div   id="confirm-building" className="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
           <div>
             <button class="py-2 bg-primary rounded-md text-white px-4">
               Confirm building
@@ -91,13 +129,19 @@ const MapComponent = () => {
     marker.addListener("mouseover", () => {
       setDisplayCheckout(true);
 
-      infowindow.open({
-        anchor: marker,
-        map,
-      });
+      // infowindow.open({
+      //   anchor: marker,
+      //   map,
+      // });
     });
 
     return marker;
+  };
+
+  const clearMarkers = () => {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
   };
 
   const setLocationFromSearchParams = () => {
@@ -147,8 +191,12 @@ const MapComponent = () => {
   const handleMapClick = async ({ lat, lng }) => {
     clearMarkers();
     defaultZoom === 7 && setDefaultZoom(11);
-    if (!isDragging && !checkOutHovered)
+
+    if (!isDragging && !checkOutHovered) {
+      console.log("click");
+
       setUserLocation({ ...userLocation, lat, lng });
+    }
   };
 
   useEffect(() => {
@@ -174,12 +222,12 @@ const MapComponent = () => {
         onClick={handleMapClick}
         options={(map) => ({ mapTypeId: map.MapTypeId.HYBRID })}
       >
-        {/* {!isDragging && displayCheckout && userLocation?.lat && (
+        {!isDragging && displayCheckout && userLocation?.lat && (
           <CheckOut
             userLocation={userLocation}
             setcheckOutHovered={setcheckOutHovered}
           />
-        )} */}
+        )}
       </GoogleMapReact>
       <div className="absolute w-full top-3 left-0  flex items-center justify-center  z-50  ">
         <p
