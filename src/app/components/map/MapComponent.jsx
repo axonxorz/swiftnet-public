@@ -22,7 +22,7 @@ const MapComponent = () => {
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
   const confirmBuildingBtn = document.getElementById("confirm-building");
-
+  const [displayCheckout, setDisplayCheckout] = useState(false);
   useEffect(() => {
     confirmBuildingBtn?.addEventListener("click", () => {
       route.push(
@@ -72,7 +72,7 @@ const MapComponent = () => {
     marker.setMap(map);
     marker.addListener("drag", () => {
       setIsDragging(true);
-      defaultZoom === 7 && setDefaultZoom(10);
+      defaultZoom === 7 && setDefaultZoom(14);
     });
     marker.addListener("dragend", (event) => {
       clearMarkers();
@@ -89,6 +89,8 @@ const MapComponent = () => {
       }, 20);
     });
     marker.addListener("mouseover", () => {
+      setDisplayCheckout(true);
+
       infowindow.open({
         anchor: marker,
         map,
