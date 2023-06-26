@@ -46,13 +46,8 @@ const AutoCompleteInput = ({ setUserLocation }) => {
       typeof placeObj.geometry?.location?.lat() === "undefined" ||
       typeof placeObj.geometry?.location?.lng() === "undefined"
     ) {
-      console.log("hnaa");
       router.push(`/map?fullAdress=${inputRef.current.value}`);
     } else {
-      console.log("hnaa22");
-      console.log(typeof placeObj.geometry?.location?.lng());
-      console.log(typeof placeObj.geometry?.location?.lat());
-
       router.push(
         `/map?lat=${placeObj.geometry?.location?.lat()}&lng=${placeObj.geometry?.location?.lng()}&fullAdress=${
           inputRef.current.value

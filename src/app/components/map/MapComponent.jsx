@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import PosIcon from "@/assets/position.png";
 import CheckOut from "./CheckOut";
+import { toast } from "react-hot-toast";
 
 const defaultCenter = {
   lat: 53.31225509999999,
@@ -20,11 +21,13 @@ const MapComponent = () => {
   const [isDragging, setIsDragging] = useState(false);
   const searchParams = useSearchParams();
   const [defaultZoom, setDefaultZoom] = useState(7);
+  const [initialZoom, setiInitialDefaultZoom] = useState(7);
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
-  const [displayCheckout, setDisplayCheckout] = useState(false);
+  const [displayCheckout, setDisplayCheckout] = useState(true);
   // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
+  const [initialMapState, setInitialMapState] = useState(false);
 
   // const confirmBuildingBtn = document?.getElementById("confirm-building");
 
@@ -77,6 +80,11 @@ const MapComponent = () => {
     }
   }, [confirmBuildingBtnRef]);
 
+  const resetState = () => {
+    setUserLocation(initialMapState);
+    setDefaultZoom(initialZoom);
+  };
+
   const createMarker = (
     maps,
     map,
@@ -96,7 +104,7 @@ const MapComponent = () => {
     const infowindow = new google.maps.InfoWindow({
       content: `
       <div class="relative">
-        <div   id="confirm-building" className="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
+        <div  ref="${confirmBuildingBtnRef}"  id="confirm-building" className="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
           <div>
             <button class="py-2 bg-primary rounded-md text-white px-4">
               Confirm building
@@ -124,15 +132,10 @@ const MapComponent = () => {
           lat: event.latLng.lat(),
           lng: event.latLng.lng(),
         });
-      }, 20);
+      }, 10);
     });
     marker.addListener("mouseover", () => {
       setDisplayCheckout(true);
-
-      // infowindow.open({
-      //   anchor: marker,
-      //   map,
-      // });
     });
 
     return marker;
@@ -144,20 +147,67 @@ const MapComponent = () => {
     }
   };
 
+  const getLatLng = async (address) => {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`;
+
+    return fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "OK") {
+          const result = data.results[0];
+          const latLng = result.geometry.location;
+          return latLng;
+        } else {
+          toast.error("place not found");
+          throw new Error(data.status);
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
   const setLocationFromSearchParams = () => {
     if (
       searchParams.get("lat") &&
       searchParams.get("lng") &&
       searchParams.get("fullAdress")
     ) {
-      console.log("sting zoom to 20");
-      setUserLocation({
-        ...userLocation,
-        lat: parseFloat(searchParams.get("lat")),
-        lng: parseFloat(searchParams.get("lng")),
-        fullAdress: searchParams.get("fullAdress"),
-      });
-      setDefaultZoom(22);
+      if (
+        searchParams.get("lat") !== "undefined" &&
+        searchParams.get("lat") !== "undefined"
+      ) {
+        setUserLocation({
+          ...userLocation,
+          lat: parseFloat(searchParams.get("lat")),
+          lng: parseFloat(searchParams.get("lng")),
+          fullAdress: searchParams.get("fullAdress"),
+        });
+        setInitialMapState({
+          ...userLocation,
+          lat: parseFloat(searchParams.get("lat")),
+          lng: parseFloat(searchParams.get("lng")),
+          fullAdress: searchParams.get("fullAdress"),
+        });
+      }
+      setDefaultZoom(21);
+    } else {
+      if (searchParams.get("fullAdress")) {
+        getLatLng(searchParams.get("fullAdress")).then((latLng) => {
+          setUserLocation({
+            ...userLocation,
+            lat: parseFloat(latLng.lat),
+            lng: parseFloat(latLng.lng),
+            fullAdress: searchParams.get("fullAdress"),
+          });
+          setInitialMapState({
+            ...userLocation,
+            lat: parseFloat(latLng.lat),
+            lng: parseFloat(latLng.lng),
+            fullAdress: searchParams.get("fullAdress"),
+          });
+          setDefaultZoom(21);
+        });
+      }
     }
   };
 
@@ -181,7 +231,8 @@ const MapComponent = () => {
           lng: position.coords.longitude,
         };
         setUserLocation({ ...userLocation, ...pos });
-        setDefaultZoom(22);
+        setDefaultZoom(21);
+        setiInitialDefaultZoom(21);
       });
     } else {
       toast.error("Geo Location not supported");
@@ -190,7 +241,10 @@ const MapComponent = () => {
 
   const handleMapClick = async ({ lat, lng }) => {
     clearMarkers();
-    defaultZoom === 7 && setDefaultZoom(11);
+    if (defaultZoom === 7) {
+      setDefaultZoom(11);
+      setiInitialDefaultZoom(11);
+    }
 
     if (!isDragging && !checkOutHovered) {
       console.log("click");
@@ -233,7 +287,13 @@ const MapComponent = () => {
         <p
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
         >
-          Put the pin on the building where you want internet service.
+          Put the pin on the building where you want internet service.{" "}
+          <span
+            className="underline hover:no-underline font-bold text-primary cursor-pointer"
+            onClick={() => resetState()}
+          >
+            Reset map
+          </span>
         </p>
       </div>
       <div
