@@ -1,8 +1,16 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const CheckOut = ({ userLocation }) => {
+const CheckOut = ({ userLocation, setcheckOutHovered }) => {
   const route = useRouter();
+
+  const handleMouseEnter = () => {
+    setcheckOutHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setcheckOutHovered(false);
+  };
 
   const handleClickSub = () => {
     route.push(
@@ -11,9 +19,11 @@ const CheckOut = ({ userLocation }) => {
   };
 
   return (
-    <div className=" relative ">
+    <div className=" relative bg-black ">
       <div
         onClick={() => handleClickSub()}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className="w-[200px] border-2   rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center  bg-white "
       >
         <div>
