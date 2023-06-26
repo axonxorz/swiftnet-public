@@ -6,14 +6,6 @@ import logo1 from "@/assets/logo2.png";
 import { useRouter } from "next/navigation";
 
 const page = () => {
-  const route = useRouter();
-
-  useEffect(() => {
-    setTimeout(() => {
-      route.push("/");
-    }, 4000);
-  }, []);
-
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center space-y-6">
       <Image
@@ -25,14 +17,16 @@ const page = () => {
         }}
         unoptimized={true}
       />
-      <p className={styles.paragraph}>
-        Thank you for submitting your request. Our dedicated customer service
-        team will promptly reach out to you via email with the outcome of your
-        inquiry and provide guidance on the next steps. <br />{" "}
-        <span className="text-primary font-bold">
-          Thank you for choising us
-        </span>
-      </p>
+      <div className="px-10 text-center space-y-4">
+        <p className={styles.paragraph}>
+          Thank you for submitting your request. Our dedicated customer service
+          team will promptly reach out to you via email with the outcome of your
+          inquiry and provide guidance on the next steps. <br />{" "}
+          <span className="text-primary font-bold ">
+            Thank you for choising us
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
