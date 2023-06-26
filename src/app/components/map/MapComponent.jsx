@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
-import CheckOut from "./CheckOut";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import PosIcon from "@/assets/position.png";
@@ -22,9 +21,8 @@ const MapComponent = () => {
   const [defaultZoom, setDefaultZoom] = useState(7);
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
-  const [displayCheckout, setDisplayCheckout] = useState(false);
   const confirmBuildingBtn = document.getElementById("confirm-building");
-
+  const [displayCheckout, setDisplayCheckout] = useState(false);
   useEffect(() => {
     confirmBuildingBtn?.addEventListener("click", () => {
       route.push(
@@ -72,8 +70,9 @@ const MapComponent = () => {
     });
 
     marker.setMap(map);
-    marker.addListener("drag", (event) => {
+    marker.addListener("drag", () => {
       setIsDragging(true);
+      defaultZoom === 7 && setDefaultZoom(11);
     });
     marker.addListener("dragend", (event) => {
       clearMarkers();
@@ -147,6 +146,7 @@ const MapComponent = () => {
 
   const handleMapClick = async ({ lat, lng }) => {
     clearMarkers();
+    defaultZoom === 7 && setDefaultZoom(11);
     if (!isDragging && !checkOutHovered)
       setUserLocation({ ...userLocation, lat, lng });
   };
