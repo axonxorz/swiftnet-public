@@ -8,7 +8,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.GMAIL_PASS,
   },
 });
-
 // Function to validate form fields
 const validateFormFields = (name, email, message) => {
   if (!name || !email || !message) {
