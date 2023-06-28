@@ -134,12 +134,16 @@ export async function POST(request) {
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
       to: "support@swift-net.ca,younesbouchbouk.py@gmail.com",
-      subject: "New subscription information ",
+      subject: `${supported ? "Yes ," : "No ,"} ${
+        firstName + " " + lastName
+      } , ${fullAddress} `,
       text: "",
       html: `
       <html>
         <body>
-          <h2>New subscription information</h2>
+          <h2>New subscription information : ${
+            firstName + " " + lastName
+          }  </h2>
 
           <ul>
           <li>First Name: ${firstName}</li>
