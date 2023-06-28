@@ -148,7 +148,7 @@ const MapComponent = () => {
   };
 
   const getLatLng = async (address) => {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`;
+    const url = `/api/geocode?address=${address}`;
 
     return fetch(url)
       .then((response) => response.json())

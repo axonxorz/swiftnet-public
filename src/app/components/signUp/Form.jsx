@@ -78,7 +78,7 @@ const Form = () => {
         const browserType = navigator.userAgent;
 
         try {
-          const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}`, 
+          const response = await fetch(`/api/geocode?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true`, 
           {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
           }
