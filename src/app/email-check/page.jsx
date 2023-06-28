@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "../styles/styles";
 import Image from "next/image";
 import logo1 from "@/assets/logo2.png";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const page = () => {
+  const router = useSearchParams();
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center space-y-6">
       <Image
@@ -19,12 +20,10 @@ const page = () => {
       />
       <div className="px-10 text-center space-y-4">
         <p className={styles.paragraph}>
-          Thank you for submitting your request. Our dedicated customer service
-          team will promptly reach out to you via email with the outcome of your
-          inquiry and provide guidance on the next steps. <br />{" "}
-          <span className="text-primary font-bold ">
-            Thank you for choising us
-          </span>
+          <span className="text-primary font-bold ">Thank you</span>
+          for choosing swift-net.ca! We emailed you the result. Please check you
+          <span className="text-black font-bold ">${router.get("user")}</span>
+           mailbox <br />{" "}
         </p>
       </div>
     </div>

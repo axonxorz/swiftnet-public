@@ -652,6 +652,14 @@ video {
   top: 15px;
 }
 
+.right-2 {
+  right: 0.5rem;
+}
+
+.right-1 {
+  right: 0.25rem;
+}
+
 .-z-10 {
   z-index: -10;
 }
@@ -848,6 +856,10 @@ video {
   height: 100vh;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .min-h-\[700px\] {
   min-height: 700px;
 }
@@ -882,6 +894,10 @@ video {
 
 .w-\[40px\] {
   width: 40px;
+}
+
+.w-\[60px\] {
+  width: 60px;
 }
 
 .w-\[75\%\] {
