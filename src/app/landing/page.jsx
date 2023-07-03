@@ -17,8 +17,6 @@ const page = () => {
     .then((data) => {
       const ipAddress = data.ip;
       setIpAddress(ipAddress);
-      console.log(ipAddress);
-      // Include the IP address in your email content or perform further processing
     })
     .catch((error) => {
       toast.error("Error:", error);
