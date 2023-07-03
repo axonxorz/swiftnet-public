@@ -14,7 +14,10 @@ const defaultCenter = {
 };
 
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState(defaultCenter);
+  const [userLocation, setUserLocation] = useState({
+    lat: 53.31225509999999,
+    lng: -110.072853,
+  });
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
@@ -27,7 +30,8 @@ const MapComponent = () => {
   const [displayCheckout, setDisplayCheckout] = useState(true);
   // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
-  const [initialMapState, setInitialMapState] = useState(false);
+  const [initialMapState, setInitialMapState] = useState(defaultCenter);
+  const [center, setMapCenter] = useState(defaultCenter);
 
   useEffect(() => {
     const confirmBuildingBtn = confirmBuildingBtnRef.current;
@@ -64,7 +68,7 @@ const MapComponent = () => {
 
   const resetState = () => {
     setUserLocation(initialMapState);
-    setDefaultZoom(initialZoom);
+    markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
   };
 
   const createMarker = (
@@ -137,7 +141,6 @@ const MapComponent = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.status === "OK") {
           const result = data.results[0];
           const latLng = result.geometry.location;
@@ -199,6 +202,10 @@ const MapComponent = () => {
     if (map) {
       const marker = createMarker(maps, map, location);
       setMarkers((prevMarkers) => [...prevMarkers, marker]);
+      setMapCenter({
+        lat: userLocation.lat,
+        lng: userLocation.lng,
+      });
     }
   };
 
@@ -253,7 +260,7 @@ const MapComponent = () => {
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API }}
-        center={userLocation || defaultCenter}
+        center={center}
         zoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
