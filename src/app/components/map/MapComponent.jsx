@@ -29,24 +29,6 @@ const MapComponent = () => {
   const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(false);
 
-  // const confirmBuildingBtn = document?.getElementById("confirm-building");
-
-  // useEffect(() => {
-  //   confirmBuildingBtn?.addEventListener("click", () => {
-  //     route.push(
-  //       `/sign-up?step=2&fullAdress=${userLocation.fullAdress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
-  //     );
-  //   });
-
-  //   confirmBuildingBtn?.addEventListener("mouseover", () => {
-  //     setcheckOutHovered(true);
-  //   });
-
-  //   confirmBuildingBtn?.addEventListener("mouseout", () => {
-  //     setcheckOutHovered(false);
-  //   });
-  // }, [confirmBuildingBtn]);
-
   useEffect(() => {
     const confirmBuildingBtn = confirmBuildingBtnRef.current;
     console.log(confirmBuildingBtn);

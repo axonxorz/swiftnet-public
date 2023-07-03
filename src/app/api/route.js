@@ -187,9 +187,3 @@ export async function POST(request) {
     return NextResponse.json({ message: "Invalid form data", status: 0 });
   }
 }
-
-// export async function POST(request) {
-//   const req = await request.json();
-
-//   return NextResponse.json({ ...req });
-// }
