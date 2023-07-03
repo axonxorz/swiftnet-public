@@ -20,9 +20,10 @@ const page = () => {
       />
       <div className="px-10 text-center space-y-4">
         <p className={styles.paragraph}>
-          <span className="text-primary font-bold ">Thank you</span>
-          for choosing swift-net.ca! We emailed you the result. Please check you
-          <span className="text-black font-bold ">${router.get("user")}</span>
+          <span className="text-primary font-bold ">Thank you </span>
+          for choosing swift-net.ca! We emailed you the result. Please check
+          your
+          <span className="text-black font-bold ">{router.get("user")}</span>
            mailbox <br />{" "}
         </p>
       </div>
