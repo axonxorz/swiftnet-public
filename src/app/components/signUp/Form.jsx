@@ -25,7 +25,7 @@ const Form = () => {
         lastName: yup.string().required("Last name is required"),
         email: yup.string().email("Invalid email").required("Email is required"),
         phoneNumber: yup.string().required("Phone number is required"),
-        notes: yup.string(),
+        notes: yup.string().max(500),
     });
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
@@ -209,10 +209,16 @@ const Form = () => {
                                 </div>
 
                                 <div className="mb-2">
-          <label className="text-xs font-semibold px-1">Phone number</label>
+          
            </div>
 
                                 <div className="sm:col-span-4 ">
+                                <label
+        htmlFor={"phone"}
+        className="block text-sm font-medium leading-6 text-[#6B7280]"
+      >
+       Phone number
+      </label>
                                     <div className="flex">
                                         <PhoneInput
                                             register={register}
@@ -222,6 +228,7 @@ const Form = () => {
                                             value={getValues("phoneNumber")}
                                             onChange={(phone) => setValue("phoneNumber", phone)}
                                             dropdownStyle={{ zIndex: 100 }}
+                                            error={errors.phoneNumber}
                                         />
                                         <input
                                             type="phone"

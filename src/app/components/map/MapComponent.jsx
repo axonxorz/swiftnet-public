@@ -244,10 +244,10 @@ const MapComponent = () => {
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
 
-    map.addListener("drag", () => {
-      console.log("you're draging the map");
-      setDisplayCheckout(false);
-    });
+    // map.addListener("drag", () => {
+    //   console.log("you're draging the map");
+    //   setDisplayCheckout(false);
+    // });
 
     map.addListener("zoom_changed", () => {
       console.log("you're draging the map");
@@ -256,9 +256,9 @@ const MapComponent = () => {
       setDefaultZoom(zoom);
     });
 
-    map.addListener("dragend", () => {
-      setDisplayCheckout(true);
-    });
+    // map.addListener("dragend", () => {
+    //   setDisplayCheckout(true);
+    // });
     setMap(map);
   };
 
