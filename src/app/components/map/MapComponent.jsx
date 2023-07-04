@@ -27,7 +27,7 @@ const MapComponent = () => {
   const [initialZoom, setiInitialDefaultZoom] = useState(7);
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
-  const [displayCheckout, setDisplayCheckout] = useState(false);
+  const [displayCheckout, setDisplayCheckout] = useState(true);
   // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
@@ -125,11 +125,6 @@ const MapComponent = () => {
     });
     marker.addListener("mouseover", () => {
       setDisplayCheckout(true);
-    });
-    marker.addListener("mouseout", () => {
-      setTimeout(() => {
-        displayCheckout && setDisplayCheckout(false);
-      }, 3000);
     });
 
     marker.addListener("mouseover", () => {
