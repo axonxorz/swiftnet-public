@@ -25,13 +25,32 @@ const MapComponent = () => {
   const searchParams = useSearchParams();
   const [defaultZoom, setDefaultZoom] = useState(7);
   const [initialZoom, setiInitialDefaultZoom] = useState(7);
-  const route = useRouter();
+  const router = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
   const [displayCheckout, setDisplayCheckout] = useState(true);
   // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
+
+  // Add event listener to handle the back button press
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      event.preventDefault();
+      // Perform your custom action here
+      console.log("Custom action on back button press");
+      // You can navigate to a different route using router.push()
+      // router.push('/your-custom-route');
+      router.refresh();
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [router, window]);
 
   useEffect(() => {
     const confirmBuildingBtn = confirmBuildingBtnRef.current;
@@ -98,11 +117,6 @@ const MapComponent = () => {
       </div>
     </div>
   </div>`;
-
-    // const infowindow = new google.maps.InfoWindow({
-    //   content: infowindowContent,
-    //   ariaLabel: "Uluru",
-    // });
 
     marker.setMap(map);
     marker.addListener("drag", () => {
@@ -230,9 +244,16 @@ const MapComponent = () => {
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
 
-    map.addListener("drag", () => {
+    // map.addListener("drag", () => {
+    //   console.log("you're draging the map");
+    //   setDisplayCheckout(false);
+    // });
+
+    map.addListener("zoom_changed", () => {
       console.log("you're draging the map");
-      setDisplayCheckout(false);
+      var zoom = map.getZoom();
+      console.log(zoom);
+      setDefaultZoom(zoom);
     });
 
     // map.addListener("dragend", () => {
@@ -259,14 +280,10 @@ const MapComponent = () => {
 
   const handleMapClick = async ({ lat, lng }) => {
     clearMarkers();
-    if (defaultZoom === 7) {
-      setDefaultZoom(11);
-      setiInitialDefaultZoom(11);
-    }
+
+    setDefaultZoom((state) => state + 1);
 
     if (!isDragging && !checkOutHovered) {
-      console.log("click");
-
       setUserLocation({ ...userLocation, lat, lng });
     }
   };
@@ -316,7 +333,7 @@ const MapComponent = () => {
       </div>
       <div
         onClick={handleCurrentLocationButtonClick}
-        className="absolute bottom-28 right-1 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white p-1 shadow-md cursor-pointer hover:bg-slate-100"
+        className="absolute hover:bg-slate-400/20  shadow-2xl transition-all duration-150 bottom-28 right-1 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white p-1  cursor-pointer hover:bg-slate-100"
       >
         <svg
           width="34"
@@ -331,7 +348,7 @@ const MapComponent = () => {
             d="M11.9996 0C12.4905 0 12.8884 0.39797 12.8884 0.88889V2.22222C12.8884 2.23552 12.8882 2.24876 12.8876 2.26191C17.5793 2.68409 21.3156 6.42033 21.738 11.112C21.7511 11.1114 21.7643 11.1111 21.7776 11.1111H23.1109C23.6018 11.1111 23.9998 11.5091 23.9998 12C23.9998 12.4909 23.6018 12.8889 23.1109 12.8889H21.7776C21.7643 12.8889 21.7511 12.8886 21.738 12.888C21.3156 17.5795 17.5794 21.3157 12.8878 21.738C12.8884 21.7511 12.8887 21.7644 12.8887 21.7777V23.1111C12.8887 23.602 12.4907 24 11.9998 24C11.5089 24 11.1109 23.602 11.1109 23.1111V21.7777C11.1109 21.7644 11.1112 21.7511 11.1118 21.7379C6.42037 21.3155 2.68433 17.5794 2.26196 12.888C2.24878 12.8886 2.23554 12.8889 2.22223 12.8889H0.88889C0.39797 12.8889 0 12.4909 0 12C0 11.5091 0.397969 11.1111 0.888889 11.1111H2.22223C2.23554 11.1111 2.24878 11.1114 2.26194 11.112C2.68426 6.4206 6.42021 2.68452 11.1115 2.26199C11.111 2.2488 11.1107 2.23555 11.1107 2.22222V0.888889C11.1107 0.397968 11.5086 0 11.9996 0ZM12 20.5277C16.7097 20.5277 20.5278 16.7097 20.5278 11.9999C20.5278 7.29019 16.7097 3.47217 12 3.47217C7.29019 3.47217 3.47217 7.29019 3.47217 11.9999C3.47217 16.7097 7.29019 20.5277 12 20.5277Z"
             fill="#0075F0"
           />
-          <circle cx="12" cy="12" r="7" fill="#0075F0" />
+          <circle cx="12" className="shadow-md" cy="12" r="7" fill="#0075F0" />
         </svg>
       </div>
     </div>
