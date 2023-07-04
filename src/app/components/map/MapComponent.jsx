@@ -14,7 +14,10 @@ const defaultCenter = {
 };
 
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState(defaultCenter);
+  const [userLocation, setUserLocation] = useState({
+    lat: 53.31225509999999,
+    lng: -110.072853,
+  });
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
@@ -24,10 +27,11 @@ const MapComponent = () => {
   const [initialZoom, setiInitialDefaultZoom] = useState(7);
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
-  const [displayCheckout, setDisplayCheckout] = useState(true);
+  const [displayCheckout, setDisplayCheckout] = useState(false);
   // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
-  const [initialMapState, setInitialMapState] = useState(false);
+  const [initialMapState, setInitialMapState] = useState(defaultCenter);
+  const [center, setMapCenter] = useState(defaultCenter);
 
   useEffect(() => {
     const confirmBuildingBtn = confirmBuildingBtnRef.current;
@@ -64,7 +68,7 @@ const MapComponent = () => {
 
   const resetState = () => {
     setUserLocation(initialMapState);
-    setDefaultZoom(initialZoom);
+    markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
   };
 
   const createMarker = (
@@ -83,19 +87,22 @@ const MapComponent = () => {
       draggable,
     });
 
-    const infowindow = new google.maps.InfoWindow({
-      content: `
-      <div class="relative">
-        <div  ref="${confirmBuildingBtnRef}"  id="confirm-building" className="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
-          <div>
-            <button class="py-2 bg-primary rounded-md text-white px-4">
-              Confirm building
-            </button>
-          </div>
-        </div>
-      </div>`,
-      ariaLabel: "Uluru",
-    });
+    const infowindowContent = document.createElement("div");
+    infowindowContent.innerHTML = `
+  <div class="relative">
+    <div id="confirm-building" class="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
+      <div>
+        <button class="py-2 bg-primary rounded-md text-white px-4">
+          Confirm building hhh
+        </button>
+      </div>
+    </div>
+  </div>`;
+
+    // const infowindow = new google.maps.InfoWindow({
+    //   content: infowindowContent,
+    //   ariaLabel: "Uluru",
+    // });
 
     marker.setMap(map);
     marker.addListener("drag", () => {
@@ -119,6 +126,26 @@ const MapComponent = () => {
     marker.addListener("mouseover", () => {
       setDisplayCheckout(true);
     });
+    marker.addListener("mouseout", () => {
+      setTimeout(() => {
+        displayCheckout && setDisplayCheckout(false);
+      }, 3000);
+    });
+
+    marker.addListener("mouseover", () => {
+      infowindow.open({
+        anchor: marker,
+        map,
+      });
+    });
+
+    const confirmButton = infowindowContent.querySelector(
+      "#confirm-building button"
+    );
+    confirmButton.addEventListener("click", () => {
+      console.log("3lia"); // Code inside handleClick event
+      // Add your code here to execute when the button is clicked inside the InfoWindow
+    });
 
     return marker;
   };
@@ -137,7 +164,6 @@ const MapComponent = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.status === "OK") {
           const result = data.results[0];
           const latLng = result.geometry.location;
@@ -199,11 +225,24 @@ const MapComponent = () => {
     if (map) {
       const marker = createMarker(maps, map, location);
       setMarkers((prevMarkers) => [...prevMarkers, marker]);
+      setMapCenter({
+        lat: userLocation.lat,
+        lng: userLocation.lng,
+      });
     }
   };
 
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
+
+    map.addListener("drag", () => {
+      console.log("you're draging the map");
+      setDisplayCheckout(false);
+    });
+
+    // map.addListener("dragend", () => {
+    //   setDisplayCheckout(true);
+    // });
     setMap(map);
   };
 
@@ -253,7 +292,7 @@ const MapComponent = () => {
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API }}
-        center={userLocation || defaultCenter}
+        center={center}
         zoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}

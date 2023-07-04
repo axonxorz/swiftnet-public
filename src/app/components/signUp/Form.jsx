@@ -9,7 +9,7 @@ import * as yup from "yup";
 import InputField from "./InputField";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import PhoneInput from "@/components/phone-input";
+import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
 import { useStore } from "@/store";
 const Form = () => {
@@ -190,7 +190,13 @@ const Form = () => {
                                     />
                                 </div>
 
-                                <div className="sm:col-span-4  ">
+                               
+
+
+                            </div>
+                            <div className="sm:col-span-3 w-full mt-3">
+
+                            <div className="sm:col-span-4  ">
                                     <InputField
                                         error={errors?.email}
                                         label={"Email"}
@@ -204,14 +210,12 @@ const Form = () => {
 
 
                                 <div className="sm:col-span-4 ">
-                                    {/* <label className="text-xs font-semibold px-1">Phone number</label> */}
                                     <div className="flex">
-
                                         <PhoneInput
                                             register={register}
                                             enableSearch={true}
                                             disableSearchIcon={true}
-                                            country={"uk"}
+                                            country={"us"}
                                             value={getValues("phoneNumber")}
                                             onChange={(phone) => setValue("phoneNumber", phone)}
                                             dropdownStyle={{ zIndex: 100 }}
@@ -229,10 +233,7 @@ const Form = () => {
                                         </p>
                                     )}
                                 </div>
-
-
-                            </div>
-                            <div className="sm:col-span-3 w-full mt-3">
+                                
 
                                 <label
                                     htmlFor={"Notes"}
