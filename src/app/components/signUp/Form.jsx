@@ -190,7 +190,13 @@ const Form = () => {
                                     />
                                 </div>
 
-                                <div className="sm:col-span-4  ">
+                               
+
+
+                            </div>
+                            <div className="sm:col-span-3 w-full mt-3">
+
+                            <div className="sm:col-span-4  ">
                                     <InputField
                                         error={errors?.email}
                                         label={"Email"}
@@ -205,7 +211,6 @@ const Form = () => {
 
                                 <div className="sm:col-span-4 ">
                                     <div className="flex">
-
                                         <PhoneInput
                                             register={register}
                                             enableSearch={true}
@@ -228,10 +233,7 @@ const Form = () => {
                                         </p>
                                     )}
                                 </div>
-
-
-                            </div>
-                            <div className="sm:col-span-3 w-full mt-3">
+                                
 
                                 <label
                                     htmlFor={"Notes"}

@@ -27,7 +27,7 @@ const MapComponent = () => {
   const [initialZoom, setiInitialDefaultZoom] = useState(7);
   const route = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
-  const [displayCheckout, setDisplayCheckout] = useState(true);
+  const [displayCheckout, setDisplayCheckout] = useState(false);
   // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
@@ -87,19 +87,22 @@ const MapComponent = () => {
       draggable,
     });
 
-    const infowindow = new google.maps.InfoWindow({
-      content: `
-      <div class="relative">
-        <div  ref="${confirmBuildingBtnRef}"  id="confirm-building" className="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
-          <div>
-            <button class="py-2 bg-primary rounded-md text-white px-4">
-              Confirm building
-            </button>
-          </div>
-        </div>
-      </div>`,
-      ariaLabel: "Uluru",
-    });
+    const infowindowContent = document.createElement("div");
+    infowindowContent.innerHTML = `
+  <div class="relative">
+    <div id="confirm-building" class="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
+      <div>
+        <button class="py-2 bg-primary rounded-md text-white px-4">
+          Confirm building hhh
+        </button>
+      </div>
+    </div>
+  </div>`;
+
+    // const infowindow = new google.maps.InfoWindow({
+    //   content: infowindowContent,
+    //   ariaLabel: "Uluru",
+    // });
 
     marker.setMap(map);
     marker.addListener("drag", () => {
@@ -122,6 +125,26 @@ const MapComponent = () => {
     });
     marker.addListener("mouseover", () => {
       setDisplayCheckout(true);
+    });
+    marker.addListener("mouseout", () => {
+      setTimeout(() => {
+        displayCheckout && setDisplayCheckout(false);
+      }, 3000);
+    });
+
+    marker.addListener("mouseover", () => {
+      infowindow.open({
+        anchor: marker,
+        map,
+      });
+    });
+
+    const confirmButton = infowindowContent.querySelector(
+      "#confirm-building button"
+    );
+    confirmButton.addEventListener("click", () => {
+      console.log("3lia"); // Code inside handleClick event
+      // Add your code here to execute when the button is clicked inside the InfoWindow
     });
 
     return marker;
@@ -211,6 +234,15 @@ const MapComponent = () => {
 
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
+
+    map.addListener("drag", () => {
+      console.log("you're draging the map");
+      setDisplayCheckout(false);
+    });
+
+    // map.addListener("dragend", () => {
+    //   setDisplayCheckout(true);
+    // });
     setMap(map);
   };
 
