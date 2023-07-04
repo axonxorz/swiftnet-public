@@ -48,10 +48,10 @@ export async function POST(request) {
   if (isValid) {
     // If form fields are valid, send an email
     const mailOptions = {
-      from: "younss.india@gmail.com", // sender
+      from: "support@swift-net.ca", // sender
       to: email, // recipient
       subject: supported
-        ? " Good News! High-Speed Internet Service is Available at Your Address"
+        ? " Fantastic news! Service is available at your location. Click here to choose your pricing and plans and schedule the installation . Feel free to call us at 866-667-2375 or reply to this email with any questions."
         : "Expanding our Network Together: Internet Service Availability",
       text: "",
       html: supported
@@ -133,7 +133,7 @@ export async function POST(request) {
 
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
-      to: "support@swift-net.ca,younesbouchbouk.py@gmail.com",
+      to: "support@swift-net.ca",
       subject: `${supported ? "Yes ," : "No ,"} ${
         firstName + " " + lastName
       } , ${fullAddress} `,
