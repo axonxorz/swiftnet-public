@@ -9,6 +9,7 @@ import * as yup from "yup";
 import InputField from "./InputField";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
 import { useStore } from "@/store";
@@ -207,7 +208,9 @@ const Form = () => {
                                     />
                                 </div>
 
-
+                                <div className="mb-2">
+          <label className="text-xs font-semibold px-1">Phone number</label>
+           </div>
 
                                 <div className="sm:col-span-4 ">
                                     <div className="flex">
