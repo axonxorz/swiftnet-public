@@ -218,7 +218,7 @@ const Form = () => {
                                             register={register}
                                             enableSearch={true}
                                             disableSearchIcon={true}
-                                            country={"us"}
+                                            country={"ca"}
                                             value={getValues("phoneNumber")}
                                             onChange={(phone) => setValue("phoneNumber", phone)}
                                             dropdownStyle={{ zIndex: 100 }}
