@@ -4,6 +4,7 @@ import Subtract from "@/assets/Subtract.jpg";
 import Image from "next/image";
 import Form from "../components/signUp/Form";
 import Step1 from "../components/signUp/Step1";
+import PhoneInput from "@components/phone-input/index.js";
 import { Toaster } from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
 const page = () => {
