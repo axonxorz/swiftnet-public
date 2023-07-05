@@ -51,7 +51,7 @@ export async function POST(request) {
       from: "support@swift-net.ca", // sender
       to: email, // recipient
       subject: supported
-        ? " Fantastic news! Service is available at your location. Click here to choose your pricing and plans and schedule the installation . Feel free to call us at 866-667-2375 or reply to this email with any questions."
+        ? " Fantastic news! Service is available at your location. "
         : "Expanding our Network Together: Internet Service Availability",
       text: "",
       html: supported
@@ -61,29 +61,11 @@ export async function POST(request) {
             
             <h3>Dear ${firstName},</h3>
             <p>
-              We are thrilled to inform you that our high-speed Internet service is available at your address! Now, you can enjoy faster downloads, seamless streaming, and uninterrupted video calls.
-            </p>
-            <p>
-              Getting started is simple. Follow the steps below:
-            </p>
-            <ol>
-              <li><strong>Choose Your Plan</strong>: Visit our website and browse through our range of service plans. From basic packages to premium plans with lightning-fast speed, we have something for everyone.</li>
-              <li><strong>Schedule Your Installation</strong>: Once you've selected your preferred plan, schedule an installation appointment that fits your timetable. Our professional team will ensure a hassle-free installation process.</li>
-            </ol>
-            <p>
-              Please note that you will not be billed until your service is installed and verified. We believe in 100% customer satisfaction and won't charge you a penny until you're connected and happy with your service.
-            </p>
-            <p>
-              For any queries related to our plans, installation process, or other services, please do not hesitate to contact us at <a href="tel:1-866-667-2375">1-866-667-2375</a>. Our dedicated customer support team is always ready to assist you.
-            </p>
-            <p>
-              We look forward to welcoming you to our high-speed Internet community.
-            </p>
+            <a href="https://swift-net.vercel.app/installation-date?email=${email}">Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
             <p>
               Thank you!<br>
               Swift-Net.ca Customer Care<br>
               <a href="mailto:support@swift-net.ca">support@swift-net.ca</a><br>
-              <a href="tel:1-866-667-2375">tel:1-866-667-2375</a>
             </p>
           </body>
         </html>

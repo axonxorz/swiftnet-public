@@ -75,7 +75,7 @@ const page = () => {
     <div className="w-full min-h-screen flex flex-col items-center ">
       <div className="h-[100px] "></div>
 
-      <div className="w-full px-4 md:w-[60%]     py-4 space-y-4 relative">
+      <div className="w-full px-4 md:w-[60%] py-4 space-y-4 relative">
         {/* title */}
         <div className="w-full text-start space-y-4">
           <p className={`${styles.heading} font-bold text-[36px]`}>
