@@ -6,7 +6,7 @@ import styles from "@/app/styles/styles";
 const ImageCmp = () => {
   return (
     <div
-      className={`${styles.width} pb-3 pt-20 md:pb-10 flex items-center justify-center w-full`}
+      className={`${styles.width} pb-3 mt-20 md:pb-10 flex items-center justify-center w-full`}
     >
       <div className="hidden md:flex">
         {" "}

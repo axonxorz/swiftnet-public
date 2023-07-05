@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import styles from "../styles/styles";
-import Image from "next/image";
-import logo1 from "@/assets/logo2.png";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
