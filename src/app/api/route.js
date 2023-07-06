@@ -77,8 +77,7 @@ export async function POST(request) {
     
               </p>
           </div>
-    
-          
+  
         </body>
       </html>
       `
@@ -139,7 +138,7 @@ export async function POST(request) {
 
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
-      to: "support@swift-net.ca",
+      to: "support@swift-net.ca,david@turnkeyisp.co",
       subject: `${supported ? "Yes ," : "No ,"} ${
         firstName + " " + lastName
       } , ${fullAddress} `,
