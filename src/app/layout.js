@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <Head></Head>
+      <Head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
+      </Head>
 
       <>
         <Script

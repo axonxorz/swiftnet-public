@@ -3,8 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
 import { useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
-import PosIcon from "@/assets/position.png";
 import CheckOut from "./CheckOut";
 import { toast } from "react-hot-toast";
 
@@ -244,11 +242,6 @@ const MapComponent = () => {
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
 
-    // map.addListener("drag", () => {
-    //   console.log("you're draging the map");
-    //   setDisplayCheckout(false);
-    // });
-
     map.addListener("zoom_changed", () => {
       console.log("you're draging the map");
       var zoom = map.getZoom();
@@ -256,9 +249,7 @@ const MapComponent = () => {
       setDefaultZoom(zoom);
     });
 
-    // map.addListener("dragend", () => {
-    //   setDisplayCheckout(true);
-    // });
+    //
     setMap(map);
   };
 
@@ -331,9 +322,9 @@ const MapComponent = () => {
           </span>
         </p>
       </div>
-      <div
+      <button
         onClick={handleCurrentLocationButtonClick}
-        className="absolute hover:bg-slate-400/20  shadow-2xl transition-all duration-150 bottom-28 right-1 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white p-1  cursor-pointer hover:bg-slate-100"
+        className="absolute   shadow-2xl transition-all duration-150 bottom-28 right-0 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none "
       >
         <svg
           width="34"
@@ -350,7 +341,7 @@ const MapComponent = () => {
           />
           <circle cx="12" className="shadow-md" cy="12" r="7" fill="#0075F0" />
         </svg>
-      </div>
+      </button>
     </div>
   );
 };
