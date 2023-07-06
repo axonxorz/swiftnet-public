@@ -3,8 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
 import { useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
-import PosIcon from "@/assets/position.png";
 import CheckOut from "./CheckOut";
 import { toast } from "react-hot-toast";
 
