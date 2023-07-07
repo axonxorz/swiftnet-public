@@ -765,6 +765,10 @@ video {
   margin-bottom: -100px;
 }
 
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -819,10 +823,6 @@ video {
 
 .mt-\[3px\] {
   margin-top: 3px;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
 }
 
 .block {
@@ -881,10 +881,6 @@ video {
   height: 78px;
 }
 
-.h-\[80px\] {
-  height: 80px;
-}
-
 .h-\[80vh\] {
   height: 80vh;
 }
@@ -901,16 +897,12 @@ video {
   height: 100vh;
 }
 
-.h-\[50px\] {
-  height: 50px;
-}
-
 .min-h-\[260px\] {
   min-height: 260px;
 }
 
-.min-h-\[330px\] {
-  min-height: 330px;
+.min-h-\[60px\] {
+  min-height: 60px;
 }
 
 .min-h-\[700px\] {
@@ -923,10 +915,6 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-\[60px\] {
-  min-height: 60px;
 }
 
 .w-3\/4 {
@@ -967,10 +955,6 @@ video {
 
 .w-\[40px\] {
   width: 40px;
-}
-
-.w-\[50px\] {
-  width: 50px;
 }
 
 .w-\[60px\] {
@@ -1277,9 +1261,24 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.bg-\[\#ECFDF5\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#F1FAFF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(241 250 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FAF3FF\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 243 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FEF2F2\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
 
 .bg-black {
@@ -1316,25 +1315,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#FAF3FF\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 243 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#\#FEF2F2\] {
-  background-color: ##FEF2F2;
-}
-
-.bg-\[\#ECFDF5\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#FEF2F2\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
 
 .p-0 {
@@ -1796,11 +1776,6 @@ ul{
   border-color: rgb(5 100 156 / var(--tw-border-opacity));
 }
 
-.hover\:bg-\[\#F1FAFF\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 250 255 / var(--tw-bg-opacity));
-}
-
 .hover\:no-underline:hover {
   text-decoration-line: none;
 }
@@ -1847,54 +1822,9 @@ ul{
 }
 
 @media (prefers-color-scheme: dark) {
-  .dark\:border-gray-600 {
-    --tw-border-opacity: 1;
-    border-color: rgb(75 85 99 / var(--tw-border-opacity));
-  }
-
-  .dark\:bg-blue-600 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(37 99 235 / var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-gray-700 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-  }
-
   .dark\:text-gray-400 {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
-  }
-
-  .dark\:text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
-
-  .dark\:placeholder-gray-400::-moz-placeholder {
-    --tw-placeholder-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-placeholder-opacity));
-  }
-
-  .dark\:placeholder-gray-400::placeholder {
-    --tw-placeholder-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-placeholder-opacity));
-  }
-
-  .dark\:hover\:bg-blue-700:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-  }
-
-  .dark\:focus\:border-blue-500:focus {
-    --tw-border-opacity: 1;
-    border-color: rgb(59 130 246 / var(--tw-border-opacity));
-  }
-
-  .dark\:focus\:ring-blue-500:focus {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
   }
 }
 
@@ -1913,11 +1843,6 @@ ul{
 
   .sm\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .sm\:px-3 {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
   }
 
   .sm\:text-sm {
@@ -2075,10 +2000,6 @@ ul{
   .md\:translate-y-\[50\%\] {
     --tw-translate-y: 50%;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  }
-
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .md\:grid-cols-3 {
