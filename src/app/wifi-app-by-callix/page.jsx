@@ -5,6 +5,8 @@ import IntroducingGigaSpire from "../components/wifi-app-by-callix/Introducing-G
 const page = () => {
   return (
     <>
+      <div className="h-[20px] w-full"></div>
+
       <ImageCmp />
       <Sec2 />
       <IntroducingGigaSpire />
