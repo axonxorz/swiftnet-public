@@ -1776,6 +1776,14 @@ ul{
   border-color: rgb(5 100 156 / var(--tw-border-opacity));
 }
 
+.hover\:bg-primary\/80:hover {
+  background-color: rgb(5 100 156 / 0.8);
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: rgb(5 100 156 / 0.9);
+}
+
 .hover\:no-underline:hover {
   text-decoration-line: none;
 }
@@ -2180,3 +2188,5 @@ ul{
     text-align: center;
   }
 }
+
+

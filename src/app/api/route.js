@@ -139,16 +139,14 @@ export async function POST(request) {
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
       to: "support@swift-net.ca,david@turnkeyisp.co",
-      subject: `${supported ? "Yes ," : "No ,"} ${
+      subject: `${supported ? "Yes," : "No,"} ${
         firstName + " " + lastName
       } , ${fullAddress} `,
       text: "",
       html: `
       <html>
         <body>
-          <h2>New subscription information : ${
-            firstName + " " + lastName
-          }  </h2>
+          <h2>New web sign up information: ${firstName + " " + lastName}  </h2>
 
           <ul>
           <li>First Name: ${firstName}</li>
@@ -165,12 +163,6 @@ export async function POST(request) {
           <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
           <li>Browser Type: ${browserType}</li>
         </ul>
-
-          <p>IP Address: ${ipAddress}</p>
-          <p>Browser Type: ${browserType}</p>
-          <p>
-            Click <a href="https://ipinfo.io/${ipAddress}">here</a> to lookup more information about the IP address.
-          </p>
 
         </body>
       </html>

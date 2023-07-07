@@ -54,7 +54,6 @@ export async function POST(request) {
     html: `
     <html>
       <body>
-
         <ul>
             <li>City: ${city}</li>
             <li>Email: ${email}</li>

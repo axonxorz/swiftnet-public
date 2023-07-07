@@ -93,7 +93,7 @@ const page = () => {
               onClick={HandleSubmit}
               className={`py-3 ${
                 Loading ? "bg-primary/70 " : "bg-primary "
-              } rounded-lg text-white w-full`}
+              } rounded-lg text-white w-full hover:bg-primary/90`}
             >
               {!Loading ? "Check Availability" : "please wait ..."}
             </button>
