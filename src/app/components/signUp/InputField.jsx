@@ -1,13 +1,21 @@
 import React from "react";
 
-const InputField = ({ label, name, placeholder, type, register, error }) => {
+const InputField = ({
+  label,
+  name,
+  placeholder,
+  type,
+  register,
+  error,
+  required,
+}) => {
   return (
     <div className=" ">
       <label
         htmlFor={name}
         className="block text-sm font-medium leading-6 text-[#6B7280]"
       >
-        {label}
+        {label} {required && <span className="font-bold">*</span>}
       </label>
       <div className="mt-1">
         <input

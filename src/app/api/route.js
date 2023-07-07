@@ -57,18 +57,29 @@ export async function POST(request) {
       html: supported
         ? `
         <html>
-          <body>
+        <body>
             
-            <h3>Dear ${firstName},</h3>
-            <p>
-            <a href="https://swift-net.vercel.app/installation-date?email=${email}">Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
-            <p>
-              Thank you!<br>
-              Swift-Net.ca Customer Care<br>
-              <a href="mailto:support@swift-net.ca">support@swift-net.ca</a><br>
-            </p>
-          </body>
-        </html>
+            <div style="margin-top: 20px; margin-bottom: 40px;">
+                <img src="https://swift-net.vercel.app/_next/static/media/logo2.2933c849.png" alt="logo">
+            </div>
+          <h3>Dear ${firstName},</h3>
+          <p>
+            <br>
+          <a href="https://swift-net.vercel.app/installation-date?email=${email}&address=${fullAddress}&phone=${phoneNumber} style="font-weight: bold; color:#05649C>Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
+            <br>
+            <p>Thank you!<br></p>
+          <div style="background-color: #05649C; padding: 20px; ">
+            <p style="color: white ">
+                
+                Swift-Net.ca Customer Care<br>
+                <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a> <br>
+                <a  style="color: white" href="tel:1-866-667-2375">tel:1-866-667-2375</a>
+    
+              </p>
+          </div>
+  
+        </body>
+      </html>
       `
         : `
         <html>
@@ -108,6 +119,18 @@ export async function POST(request) {
               <a href="mailto:support@swift-net.ca">support@swift-net.ca</a><br>
               <a href="tel:1-866-667-2375">tel:1-866-667-2375</a>
             </p>
+
+            <div style="background-color: #05649C; padding: 20px; ">
+            <p style="color: white ">
+                
+                Swift-Net.ca Customer Care<br>
+                <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a> <br>
+                <a  style="color: white" href="tel:1-866-667-2375">tel:1-866-667-2375</a>
+    
+              </p>
+          </div>
+    
+
           </body>
         </html>
       `,
@@ -115,7 +138,7 @@ export async function POST(request) {
 
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
-      to: "support@swift-net.ca",
+      to: "support@swift-net.ca,david@turnkeyisp.co",
       subject: `${supported ? "Yes ," : "No ,"} ${
         firstName + " " + lastName
       } , ${fullAddress} `,

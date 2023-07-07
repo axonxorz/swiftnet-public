@@ -178,6 +178,7 @@ const Form = () => {
                                         placeholder={"e.g john"}
                                         register={...register("firstName")}
                                         type={"text"}
+                                        required
                                     />
                                 </div>
                                 <div className="sm:col-span-3 ">
@@ -188,6 +189,7 @@ const Form = () => {
                                         placeholder={"e.g doe"}
                                         register={...register("lastName")}
                                         type={"text"}
+                                        required
                                     />
                                 </div>
 
@@ -205,6 +207,7 @@ const Form = () => {
                                         placeholder={"e.g email@example.com"}
                                         register={...register("email")}
                                         type={"email"}
+                                        required
                                     />
                                 </div>
 
@@ -217,7 +220,7 @@ const Form = () => {
         htmlFor={"phone"}
         className="block text-sm font-medium leading-6 text-[#6B7280]"
       >
-       Phone number
+       Phone number <span className="font-bold">*</span>
       </label>
                                     <div className="flex">
                                         <PhoneInput

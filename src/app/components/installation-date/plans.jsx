@@ -19,7 +19,7 @@ export const planesList = [
   },
   {
     id: 2,
-    title: "family",
+    title: "Family",
     unlimited: true,
     price: 84.95,
     include: ["Multiple users", "Online learning", "TikTok"],
@@ -50,7 +50,7 @@ export const planesList = [
     title: "Dedicated",
     unlimited: true,
     price: 499,
-    include: ["Dedicated link"],
+    include: ["Dedicated link", "Managed internet"],
   },
 ];
 const Plans = ({ selectedPlan, setSelectedPlan }) => {
