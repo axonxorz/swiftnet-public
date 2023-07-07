@@ -324,7 +324,7 @@ const MapComponent = () => {
       </div>
       <button
         onClick={handleCurrentLocationButtonClick}
-        className="absolute   shadow-2xl transition-all duration-150 bottom-28 right-0 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none "
+        className="absolute   shadow-2xl transition-all duration-150 bottom-28 right-0 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm px-5 py-2.5 mr-2 mb-2  focus:outline-none "
       >
         <svg
           width="34"

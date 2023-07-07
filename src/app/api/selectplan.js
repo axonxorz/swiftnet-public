@@ -4,30 +4,28 @@ import { NextResponse } from "next/server";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASS,
+    user: "webmaster@swift-net.ca",
+    pass: "inkfbyetcqbeafxn",
   },
 });
 // Function to validate form fields
-const validateFormFields = (name, email, message) => {
-  if (!name || !email || !message) {
-    return false;
-  }
-  if (!email.includes("@")) {
-    return false;
-  }
-  return true;
-};
 
 export async function GET() {
-  return NextResponse.json({ name: "Anuj Singh" });
+  return NextResponse.json({ name: "get Method" });
 }
 
 export default async function handler(req, res) {
   // Check the request method
   if (req.method === "POST") {
     // Get form data from the request body
-    const { name, email, message } = req.body;
+    const {
+      selectedDate,
+      selectedPlan,
+      selectedAddOne,
+      email,
+      address,
+      phone,
+    } = req.body;
 
     // Validate form fields
     const isValid = validateFormFields(name, email, message);
@@ -37,7 +35,7 @@ export default async function handler(req, res) {
       const mailOptions = {
         from: process.env.GMAIL_USER, // sender
         to: email, // recipient
-        subject: "Form Submission Successful",
+        subject: "Plan has been selected",
         text: `Hello ${name}, your form submission was successful!`,
       };
 

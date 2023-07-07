@@ -262,7 +262,7 @@ const Form = () => {
                         </div>
                     </div>
 
-                    <div className=" flex items-center justify-center mt-5 space-y-4 flex-col ">
+                    <div className=" flex items-center justify-center mt-5 space-y-4 flex-col  px-4 ">
                         <button
                             type="submit"
                             disabled={Loading}

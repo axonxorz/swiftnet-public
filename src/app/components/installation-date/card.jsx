@@ -7,7 +7,7 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
       className={`${
         selectedPlan.id === plan.id
           ? "border-primary border-[1px] bg-[#F1FAFF] "
-          : "border-gray-400/70 border-[1px] "
+          : `border-gray-400/70 border-[1px] ${plan.bg}   `
       }col-span-1 cursor-pointer hover:border-primary relative min-h-[260px] rounded-lg  flex flex-col  space-y-3 py-4`}
       key={plan.id}
     >
@@ -37,15 +37,15 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
         </div>
       )}
 
-      <div className="text-center w-full h-[80px] flex gap-1 flex-col items-center justify-center">
+      <div className="text-center w-full min-h-[60px] flex gap-1 flex-col items-center justify-center ">
         <p className="font-bold text-[18px]">{plan.title}</p>
 
-        <p className="border-[1px] rounded-md bg-white border-primary text-[12px] px-3 py-[1px]">
+        <p className="border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
           Unlimited
         </p>
       </div>
 
-      <div className="text-center ">
+      <div className="text-center">
         <p className="text-primary text-[24px] font-bold text-center  ">
           ${plan.price}
         </p>
