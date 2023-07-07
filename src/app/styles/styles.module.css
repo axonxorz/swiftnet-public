@@ -15,6 +15,13 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.signupBg {
+  background: url("../../assets/IMG_1215-2-1.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .subHeadingBorder::before {
   content: "";
   position: absolute;

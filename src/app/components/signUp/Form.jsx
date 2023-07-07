@@ -13,6 +13,7 @@ import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
 import { useStore } from "@/store";
+import { postData } from "@/tools";
 const Form = () => {
     const searchParams = useSearchParams();
     const route = useRouter();
@@ -34,24 +35,7 @@ const Form = () => {
 
 
     // Example POST method implementation:
-    async function postData(url = "", data = {}) {
-        // Default options are marked with *
-        const response = await fetch(url, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, *cors, same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: "same-origin", // include, *same-origin, omit
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: "follow", // manual, *follow, error
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
-        });
-        return response.json(); // parses JSON response into native JavaScript objects
-    }
-
+    
     const AddressInfo = (address) => {
         // Filter the address components
         const filteredComponents = address.address_components.filter(component => {
@@ -266,7 +250,7 @@ const Form = () => {
                         <button
                             type="submit"
                             disabled={Loading}
-                            className={`text-sm font-semibold leading-6  w-[400px] ${Loading ? "bg-primary/70 " : "bg-primary "}rounded-lg text-white py-2 `}
+                            className={`text-sm font-semibold leading-6  w-[400px] ${Loading ? "bg-primary/70 " : "bg-primary "} rounded-lg text-white py-2 `}
                         >
                             {!Loading ? "Check Availability" : "please wait ..."}
                         </button>

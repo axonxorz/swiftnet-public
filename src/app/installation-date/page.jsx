@@ -5,11 +5,15 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Plans, { planesList } from "../components/installation-date/plans";
 import DatePicker from "../components/installation-date/date-pick";
 import AddOnes, { addOne } from "../components/installation-date/add-ones";
+import { postData } from "@/tools";
+import { useStore } from "@/store";
 
 const page = () => {
   const [selectedPlan, setSelectedPlan] = useState(planesList[2]);
   const [selectedAddOne, setSelectedAddOne] = useState(addOne[0]);
   const [selectedDate, setSelectedDate] = useState("");
+  const [Loading, setLoading] = useState(false);
+  const ipAddress = useStore((state) => state.ipAddress);
 
   const searchParams = useSearchParams();
   const route = useRouter();
@@ -22,15 +26,31 @@ const page = () => {
     }
   }, [searchParams]);
 
-  const HandleSubmit = () => {
-    console.log({
-      selectedDate,
-      selectedPlan,
+  const HandleSubmit = async () => {
+    setLoading(true);
+    const browserType = navigator.userAgent;
+
+    const postDataResponse = await postData("/api/plan", {
+      date: selectedDate,
+      plan: selectedPlan,
       selectedAddOne,
       email: searchParams.get("email"),
       address: searchParams.get("address"),
       phone: searchParams.get("phone"),
+      browserType,
+      ipAddress,
+      firstName: searchParams.get("firstName"),
+      lastName: searchParams.get("lastName"),
+      city: searchParams.get("city"),
     });
+    const { message, status } = postDataResponse;
+
+    if (status === 1) {
+      route.push(`/thank-you`);
+    } else {
+      toast.error(message);
+    }
+    setLoading(false);
   };
 
   !display && <div></div>;
@@ -71,9 +91,11 @@ const page = () => {
           <div className="text-center py-4">
             <button
               onClick={HandleSubmit}
-              className="py-3 bg-primary rounded-lg text-white w-full"
+              className={`py-3 ${
+                Loading ? "bg-primary/70 " : "bg-primary "
+              } rounded-lg text-white w-full`}
             >
-              Submit
+              {!Loading ? "Check Availability" : "please wait ..."}
             </button>
 
             <p className={styles.paragraph + "text-center mt-1"}>

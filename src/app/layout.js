@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import dotenv from "dotenv";
 import Head from "next/head";
 import Script from "next/script";
+import { useStore } from "@/store";
 
 const inter = Inter({
   weight: ["400", "500", "600"],
@@ -18,6 +19,18 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   dotenv.config();
+
+  const setIpAddress = useStore((state) => state.setIpAddress);
+
+  fetch("https://api.ipify.org/?format=json")
+    .then((response) => response.json())
+    .then((data) => {
+      const ipAddress = data.ip;
+      setIpAddress(ipAddress);
+    })
+    .catch((error) => {
+      toast.error("Error:", error);
+    });
 
   return (
     <html lang="en">

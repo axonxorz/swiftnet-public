@@ -10,7 +10,7 @@ export const addOne = [
   {
     id: 2,
     title: "Managed Wi-Fi 6 app with Calix Gigspire Blast u6 router",
-    price: 17.95,
+    price: 17.99,
   },
 ];
 const AddOnes = ({ setSelectedAddOne, selectedAddOne }) => {
