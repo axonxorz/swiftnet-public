@@ -1,15 +1,56 @@
 import styles from "@/app/styles/styles";
 import React, { useState } from "react";
 
-const DatePicker = ({ setSelectedDate, selectedDate }) => {
-  // Function to set the default value to the next week from the current date
+const DatePicker = ({ selectedDate, setSelectedDate }) => {
+  const [error, setError] = useState(null);
+
+  const isWeekend = (date) => {
+    const dayOfWeek = date.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
+  };
+
+  const isHoliday = (date) => {
+    // Replace with your own logic to determine Canadian holidays
+    // Example: Checking for Canada Day on July 1st and Boxing Day on December 26th
+    const isCanadaDay = date.getMonth() === 6 && date.getDate() === 1;
+    const isBoxingDay = date.getMonth() === 11 && date.getDate() === 26;
+
+    return isCanadaDay || isBoxingDay;
+  };
+
+  // Function to set the default value to the next business day
   const setDefaultDate = () => {
     const currentDate = new Date();
-    const nextWeek = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000); // Adding 7 days
 
-    const year = nextWeek.getFullYear();
-    const month = String(nextWeek.getMonth() + 1).padStart(2, "0");
-    const day = String(nextWeek.getDate()).padStart(2, "0");
+    const getNextBusinessDay = (date) => {
+      date.setDate(date.getDate() + 1); // Add 1 day initially
+
+      const isWeekend = (date) => {
+        const dayOfWeek = date.getDay();
+        return dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
+      };
+
+      const isHoliday = (date) => {
+        // Replace with your own logic to determine Canadian holidays
+        // Example: Checking for Canada Day on July 1st and Boxing Day on December 26th
+        const isCanadaDay = date.getMonth() === 6 && date.getDate() === 1;
+        const isBoxingDay = date.getMonth() === 11 && date.getDate() === 26;
+
+        return isCanadaDay || isBoxingDay;
+      };
+
+      while (isWeekend(date) || isHoliday(date)) {
+        date.setDate(date.getDate() + 1); // Add 1 day until a non-weekend and non-holiday day is found
+      }
+
+      return date;
+    };
+
+    const nextBusinessDay = getNextBusinessDay(currentDate);
+
+    const year = nextBusinessDay.getFullYear();
+    const month = String(nextBusinessDay.getMonth() + 1).padStart(2, "0");
+    const day = String(nextBusinessDay.getDate()).padStart(2, "0");
 
     const defaultDate = `${year}-${month}-${day}`;
     setSelectedDate(defaultDate);
@@ -21,7 +62,31 @@ const DatePicker = ({ setSelectedDate, selectedDate }) => {
   // Function to handle changes in the date input
   const handleDateChange = (event) => {
     const { value } = event.target;
-    setSelectedDate(value);
+
+    // Validate the selected date
+    const selected = new Date(value);
+    const today = new Date();
+
+    if (selected >= today) {
+      if (isWeekend(selected)) {
+        setError("We don't work on weekends.");
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      } else if (isHoliday(selected)) {
+        setError("You have selected a Canadian holiday.");
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      } else {
+        setSelectedDate(value);
+      }
+    } else {
+      setError("Please select a future date.");
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
   };
 
   return (
@@ -44,13 +109,13 @@ const DatePicker = ({ setSelectedDate, selectedDate }) => {
         <input
           datepicker
           type="date"
-          className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  pl-10 p-2.5 "
           placeholder="Select date"
           value={selectedDate}
           onChange={handleDateChange}
-          required
         />
       </div>
+      {error && <p className="text-sm text-red-600 mt-1">{error}</p>}
     </div>
   );
 };
