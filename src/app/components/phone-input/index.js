@@ -1197,8 +1197,8 @@ class PhoneInput extends React.Component {
           <div className="invalid-number-message">{errorMessage}</div>
         )}
         <input
-          className={inputClasses + ""}
-          style={this.props.inputStyle}
+          className={inputClasses}
+          style={{ ...this.props.inputStyle, width: "100%" }}
           onChange={this.handleInput}
           onClick={this.handleInputClick}
           onDoubleClick={this.handleDoubleClick}

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styles from "../styles/styles";
 import { BsTelephone, BsFacebook } from "react-icons/bs";
@@ -8,8 +9,33 @@ import {
   AiOutlineInstagram,
 } from "react-icons/ai";
 import Link from "next/link";
+import PhoneInput from "@/app/components/phone-input";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import "@components/phone-input/style/style.css";
 
 const page = () => {
+  const validationSchema = yup.object({
+    phoneNumber: yup.string().required("Phone number is required"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    description: yup.string().required("Email is required"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    setValue,
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
+
   return (
     <div
       className={`${styles.width} md:flex justify-between items-center gap-30 pb-3 md:pt-24 md:pb-14`}
@@ -20,11 +46,10 @@ const page = () => {
           <div className="flex gap-2">
             <HiOutlineMail className="text-xl mt-[3px]" />
             <div className="text-sm md:text-base">
-              <h6 className="font-bold">Mail us</h6>
+              <h6 className="font-bold">Email</h6>
               <span className="font-medium">
                 Our friendly team is here to help
               </span>
-              <h6 className="font-bold mt-2">hi@swift-net.ca</h6>
             </div>
           </div>
 
@@ -32,8 +57,14 @@ const page = () => {
             <BsTelephone className="text-xl mt-[3px]" />
             <div className="text-sm md:text-base">
               <h6 className="font-bold">Customer Service</h6>
-              <span className="font-medium">Mon - Fri from 8am to 5pm</span>
-              <h6 className="font-bold mt-2">(219) 555-0114</h6>
+
+              <div className="p-3">
+                <h3 className="font-medium">Weekdays from 8am to 5pm</h3>
+                <h3 className="font-medium">Weekends from 9am to 7pm</h3>
+
+                <h6 className="font-bold mt-2">+1 (306) 825-7111</h6>
+                <h6 className="font-bold mt-2">+1 (866) 667-2375</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -63,10 +94,10 @@ const page = () => {
           <div>
             <h2 className={`${styles.heading}`}>Contact Us</h2>
             <p className={`${styles.paragraph} text-[#6B7280]`}>
-              Any questions? We’re happy to help with it
+              Any questions? We’re happy to help!
             </p>
           </div>
-          <form action="">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-3 mt-4 md:mt-6 mb-6 md:mb-10">
               <div className="flex flex-col gap-1">
                 <label
@@ -77,6 +108,8 @@ const page = () => {
                 </label>
                 <input
                   type="email"
+                  {...register("email")}
+                  required
                   placeholder="e.g kevinreggea@gmail.com"
                   className="text-[#9CA3AF] text-sm md:text-base bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 pl-4 rounded-lg"
                 />
@@ -87,12 +120,23 @@ const page = () => {
                   htmlFor=""
                   className="font-medium text-[#6B7280] text-sm"
                 >
-                  Phone Number
+                  Phone
                 </label>
+                <PhoneInput
+                  register={register}
+                  enableSearch={true}
+                  disableSearchIcon={true}
+                  country={"ca"}
+                  value={getValues("phoneNumber")}
+                  onChange={(phone) => setValue("phoneNumber", phone)}
+                  dropdownStyle={{ zIndex: 100 }}
+                  error={errors.phoneNumber}
+                />
                 <input
-                  type="text"
-                  placeholder="e.g 085293825822"
-                  className="text-[#9CA3AF] text-sm md:text-base pl-4  bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
+                  type="phone"
+                  placeholder="Phone number"
+                  className={"hidden"}
+                  {...register("phoneNumber")}
                 />
               </div>
 
@@ -106,14 +150,15 @@ const page = () => {
                 <textarea
                   name=""
                   id=""
+                  {...register("description")}
                   cols=""
                   rows="5"
-                  placeholder="e.g Hi, i want to subscribe swift-net.ca plan"
+                  placeholder="e.g I want the best internet service in Alberta or Saskatchwan!"
                   className="text-[#9CA3AF] text-sm md:text-base pl-4 bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
                 ></textarea>
               </div>
             </div>
-            <button className="bg-primary font-medium text-base md:text-lg py-2 w-full text-white rounded-lg">
+            <button className="bg-primary hover:bg-primary/80 font-medium text-base md:text-lg py-2 w-full text-white rounded-lg">
               Submit
             </button>
           </form>

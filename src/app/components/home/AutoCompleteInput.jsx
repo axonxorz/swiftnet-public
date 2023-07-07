@@ -11,9 +11,7 @@ const AutoCompleteInput = ({ setUserLocation }) => {
   const [loading, setloading] = useState(false);
   const [placeObj, setplaceObj] = useState({});
   const options = {
-    // componentRestrictions: { country: "ng" },
     fields: ["address_components", "geometry", "icon", "name"],
-    // types: ["establishment"]
   };
   useEffect(() => {
     setloading(true);
@@ -65,6 +63,11 @@ const AutoCompleteInput = ({ setUserLocation }) => {
           placeholder={loading ? "please wait ...." : "Enter Your address"}
           ref={inputRef}
           className="w-full px-3 pt-3 pb-14 md:pb-3 rounded-lg text-[#9CA3AF]"
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              handleChackAvabilty();
+            }
+          }}
         />
         <button
           type="submit"
