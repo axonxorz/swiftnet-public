@@ -53,10 +53,7 @@ const Navbar = () => {
                 <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
               </li>
               <li>
-                <Link href="/">FAQ</Link>
-              </li>
-              <li>
-                <Link href="/contact-us">Contact Us</Link>
+                <Link href="/wifi-app-by-callix">Pricing</Link>
               </li>
               <li>
                 <Link href="/sign-up">Sign Up</Link>
