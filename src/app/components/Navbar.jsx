@@ -46,8 +46,8 @@ const Navbar = () => {
                 logo === logo1 ? "text-white" : "text-[#1F2937]"
               }`}
             >
-              <li href="/pricing">
-                <Link href="/business-class">Pricing & Plans</Link>
+              <li>
+                <Link href="/pricing">Pricing & Plans</Link>
               </li>
               <li>
                 <Link href="/business-class">Business Internet</Link>
