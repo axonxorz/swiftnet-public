@@ -46,15 +46,16 @@ const Navbar = () => {
                 logo === logo1 ? "text-white" : "text-[#1F2937]"
               }`}
             >
+              <li href="/pricing">
+                <Link href="/business-class">Pricing & Plans</Link>
+              </li>
               <li>
                 <Link href="/business-class">Business Internet</Link>
               </li>
               <li>
                 <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
               </li>
-              <li>
-                <Link href="/pricing">Pricing</Link>
-              </li>
+
               <li>
                 <Link href="/sign-up">Sign Up</Link>
               </li>

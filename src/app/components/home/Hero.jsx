@@ -21,11 +21,12 @@ const Hero = () => {
         <p className={`${styles.paragraph} text-white md:w-[65%] mt-6 mb-12`}>
           We believe that everyone should have access to truly unlimited
           internet service, without the concerns of data caps, overages, or
-          throttling. <br /> <br /> Get connected now with Swift-Net.ca, the
-          leading home Wi-Fi internet service provider in Alberta &
-          Saskatchewan, providing high-speed wireless internet services in
-          Lloydminster, Cold Lake, North Battleford, and more rural communities.
-          Sign up today!
+          throttling.
+          <br /> <br />
+          Get connected now with Swift-Net.ca, the leading home Wi-Fi internet
+          service provider in Alberta & Saskatchewan, providing high-speed
+          wireless internet services in Lloydminster, Cold Lake, North
+          Battleford, and more rural communities. Sign up today!
         </p>
 
         <div className="md:w-1/2">

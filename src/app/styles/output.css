@@ -673,6 +673,10 @@ video {
   z-index: -20;
 }
 
+.z-30 {
+  z-index: 30;
+}
+
 .z-40 {
   z-index: 40;
 }
@@ -683,10 +687,6 @@ video {
 
 .z-\[200\] {
   z-index: 200;
-}
-
-.z-30 {
-  z-index: 30;
 }
 
 .col-span-1 {
@@ -1316,6 +1316,10 @@ video {
   background-color: rgb(5 100 156 / 0.7);
 }
 
+.bg-primary\/80 {
+  background-color: rgb(5 100 156 / 0.8);
+}
+
 .bg-red-400\/20 {
   background-color: rgb(248 113 113 / 0.2);
 }
@@ -1327,14 +1331,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-primary\/60 {
-  background-color: rgb(5 100 156 / 0.6);
-}
-
-.bg-primary\/80 {
-  background-color: rgb(5 100 156 / 0.8);
 }
 
 .p-0 {
