@@ -13,17 +13,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Function to validate form fields
-const validateFormFields = (email, message) => {
-  if (!email || !message) {
-    return false;
-  }
-  if (!email.includes("@")) {
-    return false;
-  }
-  return true;
-};
-
 export async function POST(request) {
   const req = await request.json();
 
@@ -38,7 +27,6 @@ export async function POST(request) {
     ipAddress,
     browserType,
     firstName,
-    lastName,
   } = req;
 
   let totalPrice = parseFloat(plan.price);
@@ -49,7 +37,7 @@ export async function POST(request) {
   const swiftMailOptions = {
     from: "no-reply@swift-net.ca",
     to: "support@swift-net.ca,david@turnkeyisp.co",
-    subject: `$${totalPrice} , ${email}, ${date}, ${city ? city : ""}`,
+    subject: `$${totalPrice}, ${email}, ${date}, ${city ? city : ""}`,
     text: "",
     html: `
     <html>
@@ -63,7 +51,7 @@ export async function POST(request) {
     }$</li>
             <li>Preferred installation date: ${date}</li>
             <li>Phone Number: ${phone}</li>
-            <li>Full Address: ${address}</li>
+            <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${address}">${address}</a></li>
             <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
           <li>Browser Type: ${browserType}</li>
        </ul>
@@ -120,5 +108,4 @@ export async function POST(request) {
   } catch (error) {
     return NextResponse.json({ message: "Error sending email", status: 0 });
   }
-  return NextResponse.json({ req });
 }

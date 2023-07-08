@@ -22,7 +22,7 @@ const page = () => {
         <Toaster />
         <div className="flex items-start justify-between h-screen  ">
           {step === 1 ? (
-            <Step1 setStep={setStep} plan={550} price={69.95} />
+            <Step1 setStep={setStep} plan={550} price={79.95} />
           ) : (
             <Form />
           )}

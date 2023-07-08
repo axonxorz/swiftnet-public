@@ -53,7 +53,7 @@ const Navbar = () => {
                 <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
               </li>
               <li>
-                <Link href="/wifi-app-by-callix">Pricing</Link>
+                <Link href="/pricing">Pricing</Link>
               </li>
               <li>
                 <Link href="/sign-up">Sign Up</Link>
@@ -130,20 +130,12 @@ const Navbar = () => {
                   Wi-Fi App by Calix
                 </li>
               </Link>
-              <Link href="/">
+              <Link href="/pricing">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
                 >
-                  FAQ
-                </li>
-              </Link>
-              <Link href="/contact-us">
-                <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
-                >
-                  Contact Us
+                  Pricing
                 </li>
               </Link>
               <Link href="/sign-up">
