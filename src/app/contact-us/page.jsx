@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/styles";
 import { BsTelephone, BsFacebook } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -14,8 +14,14 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "@components/phone-input/style/style.css";
+import { useStore } from "@/store";
+import { postData } from "@/tools";
+import Cookies from "js-cookie";
 
 const page = () => {
+  const [loading, setLoading] = useState(false);
+  const ipAddress = useStore((state) => state.ipAddress);
+
   const validationSchema = yup.object({
     phoneNumber: yup.string().required("Phone number is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -33,7 +39,31 @@ const page = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    setLoading(true);
+    const browserType = navigator.userAgent;
+
+    Cookies.set("email", data.email, { expires: 7 });
+
+    Cookies.set("phone", data.phoneNumber, { expires: 7 });
+
+    try {
+      const postDataResponse = await postData("/api/contact", {
+        ...data,
+        ipAddress,
+        browserType,
+      });
+      const { message, status } = postDataResponse;
+
+      if (status === 1) {
+        route.push(`/contact/thanks`);
+      } else {
+        toast.error(message);
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -158,8 +188,12 @@ const page = () => {
                 ></textarea>
               </div>
             </div>
-            <button className="bg-primary hover:bg-primary/80 font-medium text-base md:text-lg py-2 w-full text-white rounded-lg">
-              Submit
+            <button
+              className={`${
+                loading ? "bg-primary/70 " : "bg-primary "
+              } hover:bg-primary/80 font-medium text-base md:text-lg py-2 w-full text-white rounded-lg`}
+            >
+              {!loading ? "Check Availability" : "please wait ..."}
             </button>
           </form>
         </div>
