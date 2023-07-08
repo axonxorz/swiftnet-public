@@ -80,6 +80,11 @@
   width: 20px;
 }
 
+
+.signupexp {
+  background-image: url("../../assets/2023060719535.png");
+}
+
 @media screen and (max-width: 768px) {
   .heroBg {
     background-position: center;
@@ -109,6 +114,10 @@
     background-image: url("../../assets/banner5-mobile.webp");
   }
   .gamingExperience {
+    background-image: url("../../assets/banner6-mobile.webp");
+  }
+
+  .signupexp {
     background-image: url("../../assets/banner6-mobile.webp");
   }
 }

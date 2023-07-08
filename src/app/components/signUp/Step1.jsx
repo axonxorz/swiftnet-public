@@ -5,13 +5,14 @@ import styles from "@/app/styles/styles";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AutoCompleteInput from "../home/AutoCompleteInput";
+import style from "../../styles/styles.module.css";
 
-const Step1 = ({ setStep }) => {
+const Step1 = ({ setStep, plan, price }) => {
   const route = useRouter();
   return (
-    <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 p-4 ">
-      <div className="w-full md:w-[70%] min-h-screen  py-2 flex flex-col ">
-        <div className="py-2  h-[100px]">
+    <div className="w-full md:w-[900px] min-h-screen md:overflow-hidden flex items-center justify-center  ">
+      <div className="w-full md:w-[70%] min-h-screen  py-2 flex flex-col  ">
+        <div className="py-2  h-[60px]">
           <Link href={"/"}>
             <Image
               src={logo1}
@@ -25,7 +26,17 @@ const Step1 = ({ setStep }) => {
           </Link>
         </div>
 
-        <div className="w-full  flex flex-auto flex-col  justify-center items-start px-4 ">
+        <div className="w-full  flex  h-[650px] flex-col  justify-center items-start px-4  ">
+          <div
+            className={`${style.signupexp} relative w-[400px] overflow-hidden h-[150px] rounded-lg mb-3   flex flex-col items-start justify-center gap-2 p-4`}
+          >
+            <div className="absolute top-0 left-0 bg-primary/80 w-full h-full"></div>
+            <p className={`text-xs text-white z-30`}>Swift-net.ca</p>
+            <p className={`text-[20px] text-white z-30`}>
+              Plans starting at ${price} and speeds up to{" "}
+              <span className="bg-white text-primary">{plan}Mbps!</span>
+            </p>
+          </div>
           <div className="w-full py-2">
             <p className={`${styles.paragraph} uppercase text-primary`}>
               STEP 1
