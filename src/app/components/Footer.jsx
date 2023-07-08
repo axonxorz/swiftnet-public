@@ -29,12 +29,15 @@ const Footer = () => {
             <FacebookPlugin />
 
             <div>
-              <ul className="flex flex-col md:flex-row text-center md:text-right gap-6 md:gap-12 text-sm tracking-[-0.02em] text-white mt-8 md:mt-0">
+              <ul className="flex flex-col md:flex-row text-center md:text-right gap-3 md:gap-6 text-sm tracking-[-0.02em] text-white mt-8 md:mt-0">
                 <li>
-                  <Link href="/">Home</Link>
+                  <Link href="/business-class">Business Internet</Link>
                 </li>
                 <li>
-                  <Link href="/about-us">About Us</Link>
+                  <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
+                </li>
+                <li>
+                  <Link href="/faq">Faq</Link>
                 </li>
 
                 <li>
@@ -42,7 +45,10 @@ const Footer = () => {
                 </li>
 
                 <li>
-                  <Link href="/faq">Faq</Link>
+                  <Link href="/sign-up">Sign Up</Link>
+                </li>
+                <li className="bg-primary text-white  px-4 rounded-lg">
+                  <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
                 </li>
               </ul>
             </div>
