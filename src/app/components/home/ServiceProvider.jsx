@@ -18,11 +18,19 @@ const ServiceProvider = () => {
           bringing high-speed home Wi-Fi to rural communities like Lloydminster,
           Cold Lake, North Battleford, and more!
         </p>
-        <div className="hidden md:flex ">
-          <Image src={map} alt="map " unoptimized={true} />
+        <div className="hidden md:flex rounded-xl overflow-hidden">
+          <Image
+            src={map}
+            alt="Map showing pins on cities including Lloydminster, AB/SK, Cold Lake, AB. North Battleford, SK. Bonnyville, AB. Meadow Lake, SK. Kindersley, SK. Battleford, SK. Athabasca, AB. Lac La Biche, AB. Unity, SK, Provost, AB. Big Island Lake Cree Nation, SK. Macklin, SK. Blackfoot, AB. Wilkie, SK. Lashburn, SK. Maidstone, SK. Flying Dust First Nations, SK. Kerrobert, SK. Kitscoty, AB. and Boyle, A"
+            unoptimized={true}
+          />
         </div>
-        <div className="flex md:hidden ">
-          <Image src={mapsquare} alt="smap" unoptimized={true} />
+        <div className="flex md:hidden rounded-xl overflow-hidden">
+          <Image
+            src={mapsquare}
+            alt="Map showing pins on cities including Lloydminster, AB/SK, Cold Lake, AB. North Battleford, SK. Bonnyville, AB. Meadow Lake, SK. Kindersley, SK. Battleford, SK. Athabasca, AB. Lac La Biche, AB. Unity, SK, Provost, AB. Big Island Lake Cree Nation, SK. Macklin, SK. Blackfoot, AB. Wilkie, SK. Lashburn, SK. Maidstone, SK. Flying Dust First Nations, SK. Kerrobert, SK. Kitscoty, AB. and Boyle, A"
+            unoptimized={true}
+          />
         </div>
         <p className={`${styles.paragraph} md:w-[65%] mt-5`}>
           Experience the difference with Swift-Net.ca's reliable internet
