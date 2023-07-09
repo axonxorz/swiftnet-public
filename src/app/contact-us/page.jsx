@@ -17,11 +17,12 @@ import "@components/phone-input/style/style.css";
 import { useStore } from "@/store";
 import { postData } from "@/tools";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [loading, setLoading] = useState(false);
   const ipAddress = useStore((state) => state.ipAddress);
-
+  const route = useRouter();
   const validationSchema = yup.object({
     phoneNumber: yup.string().required("Phone number is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -52,15 +53,17 @@ const page = () => {
         ipAddress,
         browserType,
       });
-      const { message, status } = postDataResponse;
+      const { status } = postDataResponse;
 
+      console.log(status);
       if (status === 1) {
         route.push(`/contact/thanks`);
       } else {
-        toast.error(message);
+        // toast.error(message);
+        console.log("Something went wrong. Please try again.");
       }
     } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+      console.log("Something went wrong. Please try again.");
     }
 
     setLoading(false);
@@ -77,9 +80,13 @@ const page = () => {
             <HiOutlineMail className="text-xl mt-[3px]" />
             <div className="text-sm md:text-base">
               <h6 className="font-bold">Email</h6>
-              <span className="font-medium">
-                Our friendly team is here to help
-              </span>
+              <div className="p-3">
+                <span className="font-medium ">
+                  Our friendly team is here to help
+                </span>
+
+                <p className="font-medium">support@swift-net.ca</p>
+              </div>
             </div>
           </div>
 
@@ -89,8 +96,8 @@ const page = () => {
               <h6 className="font-bold">Customer Service</h6>
 
               <div className="p-3">
-                <h3 className="font-medium">Weekdays from 8am to 5pm</h3>
-                <h3 className="font-medium">Weekends from 9am to 7pm</h3>
+                <h3 className="font-medium">Weekdays from 8 AM to 8 PM</h3>
+                <h3 className="font-medium">Weekends from 9 AM to 7 PM</h3>
 
                 <h6 className="font-bold mt-2">+1 (306) 825-7111</h6>
                 <h6 className="font-bold mt-2">+1 (866) 667-2375</h6>
