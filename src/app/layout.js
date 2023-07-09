@@ -34,15 +34,21 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <Head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
-      </Head>
-
       <>
         <Script
           async
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}&libraries=places`}
         />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-YHLNF4M6RW" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-YHLNF4M6RW');
+        `}
+        </Script>
         <body className={inter.className}>
           {pathname === "/sign-up" ||
           pathname === "/pricing" ||
