@@ -153,13 +153,13 @@ export async function POST(request) {
           <li>Last Name: ${lastName}</li>
           <li>Email: ${email}</li>
           <li>Phone Number: ${phoneNumber}</li>
-          <li>Full Address:<a href="http://maps.google.com/maps?z=22&t=k&q=${fullAddress}"> ${fullAddress}</a></li>
-          <li>Google Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${ipAddress}">${googleAPIFullAddress}</a></li>
+          <li>Full Address:<a href="https://www.google.com/maps/place/${fullAddress}"> ${fullAddress}</a></li>
+          <li>Google Full Address: <a href="https://www.google.com/maps/place/${ipAddress}">${googleAPIFullAddress}</a></li>
           <li>Postal Code: ${postal_code}</li>
           <li>Region: ${region}</li>
           <li>Supported: ${supported}</li>
-          <li>lng: <a href="http://maps.google.com/maps?z=22&t=k&q=loc:${lat}+${lng}">${lng}</a></li>
-          <li>lat:<a href="http://maps.google.com/maps?z=22&t=k&q=loc:${lat}+${lng}"> ${lat}</a></li>
+          <li>lng: <a href="https://www.google.com/maps/place/${lat},${lng}">${lng}</a></li>
+          <li>lat:<a href="https://www.google.com/maps/place/${lat},${lng}"> ${lat}</a></li>
           <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
           <li>Browser Type: ${browserType}</li>
         </ul>

@@ -30,25 +30,32 @@ export async function POST(request) {
   } = req;
 
   let totalPrice = parseFloat(plan.price);
-
+  let citypl;
   if (selectedAddOne && selectedAddOne.price) {
     totalPrice += parseFloat(selectedAddOne.price);
+  }
+  if (address && address !== "undefined") {
+    if (!city || city === "undefined") {
+      citypl = address.split(",")[1];
+    }
+  } else {
+    citypl = city;
   }
   const swiftMailOptions = {
     from: "no-reply@swift-net.ca",
     to: "support@swift-net.ca,david@turnkeyisp.co",
-    subject: `$${totalPrice}, ${email}, ${date}, ${city ? city : ""}`,
+    subject: `$${totalPrice}, ${email}, ${date}, ${citypl ? citypl : ""}`,
     text: "",
     html: `
     <html>
       <body>
         <ul>
-            <li>City: ${city}</li>
+            <li>City: ${citypl}</li>
             <li>Email: ${email}</li>
-            <li>Plan: ${plan.price}$</li>
+            <li>Plan: $${plan.price}</li>
             <li>Add ones: ${selectedAddOne.title && selectedAddOne.title}  ${
       selectedAddOne.price && `$${selectedAddOne?.price}`
-    }$</li>
+    }</li>
             <li>Preferred installation date: ${date}</li>
             <li>Phone Number: ${phone}</li>
             <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${address}">${address}</a></li>
