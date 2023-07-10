@@ -43,7 +43,7 @@ export async function POST(request) {
   }
   const swiftMailOptions = {
     from: "no-reply@swift-net.ca",
-    to: "support@swift-net.ca,david@turnkeyisp.co",
+    to: "support@swift-net.ca,david@turnkeyisp.co,darren@swift-net.ca",
     subject: `$${totalPrice}, ${email}, ${date}, ${citypl ? citypl : ""}`,
     text: "",
     html: `
