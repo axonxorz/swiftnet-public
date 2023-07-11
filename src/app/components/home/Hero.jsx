@@ -30,7 +30,7 @@ const Hero = () => {
         </p>
 
         <div className="md:w-1/2">
-          <AutoCompleteInput />
+          <AutoCompleteInput place={"home"} />
         </div>
 
         <Link href={"/map"}>

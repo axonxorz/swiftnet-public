@@ -4,7 +4,7 @@ import React from "react";
 import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const AutoCompleteInput = ({ setUserLocation }) => {
+const AutoCompleteInput = ({ setUserLocation, place }) => {
   const router = useRouter();
   const autoCompleteRef = useRef();
   const inputRef = useRef();
@@ -54,31 +54,65 @@ const AutoCompleteInput = ({ setUserLocation }) => {
     }
   };
 
-  return (
-    <>
-      <div className="w-full relative">
-        <input
-          disabled={loading}
-          type="text"
-          placeholder={loading ? "please wait ...." : "Enter Your address"}
-          ref={inputRef}
-          className="w-full px-3 pt-3 pb-14 md:pb-3 rounded-lg text-[#9CA3AF]"
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              handleChackAvabilty();
-            }
-          }}
-        />
-        <button
-          type="submit"
-          onClick={() => handleChackAvabilty()}
-          className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[3px] md:bottom-[50%] md:translate-y-[50%] right-[3px] w-[98%] md:w-auto`}
-        >
-          Check availability
-        </button>
-      </div>
-    </>
-  );
+  if (place === "home") {
+    return (
+      <>
+        <div className="w-full relative">
+          <input
+            disabled={loading}
+            type="text"
+            placeholder={loading ? "please wait ...." : "Enter Your address"}
+            ref={inputRef}
+            className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                handleChackAvabilty();
+              }
+            }}
+          />
+          <button
+            type="submit"
+            onClick={() => handleChackAvabilty()}
+            className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[0px] md:bottom-[50%] md:translate-y-[50%] right-0  w-[98%] md:w-auto`}
+          >
+            Check availability
+          </button>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="w-full relative">
+          <label htmlFor="" className={`text-xs text-gray-500`}>
+            Address
+          </label>
+          <input
+            disabled={loading}
+            type="text"
+            placeholder={loading ? "please wait ...." : "Enter Your address"}
+            ref={inputRef}
+            className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                handleChackAvabilty();
+              }
+            }}
+          />
+        </div>
+
+        <div className="w-full  mt-4">
+          <button
+            type="submit"
+            onClick={() => handleChackAvabilty()}
+            className={`bg-primary border-none hover:bg-primary/80 rounded-md ${styles.paragraph} text-white px-4 py-2     w-full `}
+          >
+            Check availability
+          </button>
+        </div>
+      </>
+    );
+  }
 };
 
 export default AutoCompleteInput;
