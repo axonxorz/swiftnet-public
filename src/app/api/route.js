@@ -65,7 +65,7 @@ export async function POST(request) {
           <h3>Dear ${firstName},</h3>
           <p>
             <br>
-          <a href="https://swift-net.vercel.app/installation-date?email=${email}&address=${fullAddress}&phone=${phoneNumber}&city=${region}&firstName=${firstName}&lastName=${lastName} style="font-weight: bold; color:#05649C>Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
+          <a href="https://swift-net.ca/installation-date?email=${email}&address=${fullAddress}&phone=${phoneNumber}&city=${region}&firstName=${firstName}&lastName=${lastName} style="font-weight: bold; color:#05649C>Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
             <br>
             <p>Thank you!<br></p>
           <div style="background-color: #05649C; padding: 20px; ">
