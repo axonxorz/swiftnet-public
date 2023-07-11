@@ -47,7 +47,7 @@ const Step1 = ({ setStep, plan, price }) => {
           </div>
 
           <div className="w-full mt-4">
-            <AutoCompleteInput setStep={setStep} />
+            <AutoCompleteInput place={"signup"} setStep={setStep} />
           </div>
 
           <div className=" flex items-center justify-center mt-5 space-y-4 flex-col ">
