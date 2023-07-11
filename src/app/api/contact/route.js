@@ -20,7 +20,7 @@ export async function POST(request) {
 
   const mailOptions = {
     from: "support@swift-net.ca", // sender
-    to: `support@swift-net.ca,david@turnkeyisp.co,darren@swift-net.ca`, // recipient
+    to: `support@swift-net.ca,david@turnkeyisp.co`, // recipient
     subject: `Contact : ${email}`,
     text: "",
     html: `

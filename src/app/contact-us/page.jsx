@@ -134,7 +134,7 @@ const page = () => {
               Any questions? We’re happy to help!
             </p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form id="demo-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-3 mt-4 md:mt-6 mb-6 md:mb-10">
               <div className="flex flex-col gap-1">
                 <label
@@ -196,9 +196,11 @@ const page = () => {
               </div>
             </div>
             <button
+              data-sitekey="your_site_key"
+              data-callback="onSubmit"
               className={`${
                 loading ? "bg-primary/70 " : "bg-primary "
-              } hover:bg-primary/80 font-medium text-base md:text-lg py-2 w-full text-white rounded-lg`}
+              } hover:bg-primary/80 font-medium text-base md:text-lg py-2 w-full text-white rounded-lg g-recaptcha`}
             >
               {!loading ? "Check Availability" : "please wait ..."}
             </button>

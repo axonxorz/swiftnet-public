@@ -138,7 +138,7 @@ export async function POST(request) {
 
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
-      to: "support@swift-net.ca,david@turnkeyisp.co,darren@swift-net.ca",
+      to: "support@swift-net.ca,david@turnkeyisp.co",
       subject: `${supported ? "Yes," : "No,"} ${
         firstName + " " + lastName
       } , ${fullAddress} `,
@@ -154,7 +154,7 @@ export async function POST(request) {
           <li>Email: ${email}</li>
           <li>Phone Number: ${phoneNumber}</li>
           <li>Full Address:<a href="https://www.google.com/maps/place/${fullAddress}"> ${fullAddress}</a></li>
-          <li>Google Full Address: <a href="https://www.google.com/maps/place/${ipAddress}">${googleAPIFullAddress}</a></li>
+          <li>Google lookup: <a href="https://www.google.com/maps/place/${ipAddress}">${googleAPIFullAddress}</a></li>
           <li>Postal Code: ${postal_code}</li>
           <li>Region: ${region}</li>
           <li>Supported: ${supported}</li>

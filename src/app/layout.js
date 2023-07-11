@@ -49,6 +49,26 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-YHLNF4M6RW');
         `}
         </Script>
+        <Script
+          src="https://www.google.com/recaptcha/enterprise.js?render=6Ld8lREnAAAAAFzCEO8eAIYB9aLS2NKtRPejZGLk"
+          async
+          defer
+        />
+
+        <Script>
+          {`function onClick(e) {
+                e.preventDefault();
+                grecaptcha.enterprise.ready(async () => {
+                  const token = await
+              grecaptcha.enterprise.execute(
+              '6Ld8lREnAAAAAFzCEO8eAIYB9aLS2NKtRPejZGLk'
+              , {action: 
+              'LOGIN'});
+           });
+          }
+          `}
+        </Script>
+
         <body className={inter.className}>
           {pathname === "/sign-up" ||
           pathname === "/pricing" ||
