@@ -32,6 +32,40 @@ const ServiceProvider = () => {
             unoptimized={true}
           />
         </div>
+
+        <div className="flex items-center justify-between mt-4 px-4">
+          <ul className="list-disc">
+            <li>Lloydminster, AB/SK </li>
+            <li>Cold Lake, AB</li>
+            <li>North Battleford, SK</li>
+            <li>Bonnyville, AB</li>
+            <li>Meadow Lake, SK</li>
+          </ul>
+
+          <ul className="list-disc">
+            <li>Kindersley, SK</li>
+            <li>Battleford, SK</li>
+            <li>Athabasca, AB</li>
+            <li>Lac La Biche, AB</li>
+            <li>Unity, SKProvost, AB</li>
+          </ul>
+          <ul className="list-disc">
+            <li>Big Island Lake Cree Nation, SK </li>
+            <li>Macklin, SK</li>
+            <li>Blackfoot, AB</li>
+            <li>Wilkie, SK</li>
+            <li>Lashburn, SK</li>
+          </ul>
+
+          <ul className="list-disc">
+            <li>Maidstone, SK </li>
+            <li>Flying Dust First Nations, SK</li>
+            <li>Kerrobert, SK</li>
+            <li>Kitscoty, AB</li>
+            <li>Boyle, AB</li>
+          </ul>
+        </div>
+
         <p className={`${styles.paragraph} md:w-[65%] mt-5`}>
           Experience the difference with Swift-Net.ca's reliable internet
           service, designed specifically for rural communities in Alberta and

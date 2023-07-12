@@ -617,6 +617,10 @@ video {
   bottom: -3px;
 }
 
+.bottom-\[0px\] {
+  bottom: 0px;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -957,6 +961,10 @@ video {
   width: 40px;
 }
 
+.w-\[500px\] {
+  width: 500px;
+}
+
 .w-\[60px\] {
   width: 60px;
 }
@@ -1027,6 +1035,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .list-none {
@@ -1157,6 +1169,10 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 
 .rounded-full {
@@ -1731,6 +1747,23 @@ video {
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* // add the code bellow */
 
 :root {
   --foreground-rgb: 0, 0, 0;
