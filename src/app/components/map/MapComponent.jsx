@@ -325,7 +325,7 @@ const MapComponent = () => {
       </div>
       <button
         onClick={handleCurrentLocationButtonClick}
-        className="absolute   shadow-2xl transition-all w-[60px] h-[60px] duration-150 bottom-28 right-0 flex items-center justify-center  rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
+        className="absolute   shadow-2xl shadow-white transition-all w-[60px] h-[60px] duration-150 bottom-28 right-0 flex items-center justify-center  rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
       >
         <Image
           src={LocationImgUrl}
