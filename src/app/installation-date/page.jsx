@@ -19,7 +19,7 @@ const page = () => {
   const route = useRouter();
   const [display, setDisplay] = useState(false);
   useEffect(() => {
-    if (searchParams.get("email")) {
+    if (searchParams.get("token")) {
       setDisplay(true);
     } else {
       route.push("/");
@@ -34,21 +34,22 @@ const page = () => {
       date: selectedDate,
       plan: selectedPlan,
       selectedAddOne,
-      email: searchParams.get("email"),
-      address: searchParams.get("address"),
-      phone: searchParams.get("phone"),
+      // email: searchParams.get("email"),
+      // address: searchParams.get("address"),
+      // phone: searchParams.get("phone"),
       browserType,
       ipAddress,
-      firstName: searchParams.get("firstName"),
-      lastName: searchParams.get("lastName"),
-      city: searchParams.get("city"),
+      // firstName: searchParams.get("firstName"),
+      // lastName: searchParams.get("lastName"),
+      // city: searchParams.get("city"),
+      token: searchParams.get("token"),
     });
     const { message, status } = postDataResponse;
 
     if (status === 1) {
       route.push(`/thank-you`);
     } else {
-      toast.error(message);
+      // toast.error(message);
     }
     setLoading(false);
   };

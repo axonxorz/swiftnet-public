@@ -5,6 +5,17 @@ import dotenv from "dotenv";
 // Load environment variables from .env file
 dotenv.config();
 
+export async function verifyToken(token, res) {
+  try {
+    const decoded = jwt.verify(token, "secreeetonttouche");
+
+    return decoded;
+  } catch (err) {
+    // res.status(405).send("Token is invalid");
+    return NextResponse.json({ message: "Token is invalid", status: 0 });
+  }
+}
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -20,27 +31,37 @@ export async function POST(request) {
     date,
     plan,
     selectedAddOne,
-    address,
-    phone,
-    email,
-    city,
-    ipAddress,
-    browserType,
-    firstName,
+
+    token,
   } = req;
 
-  let totalPrice = parseFloat(plan.price);
-  let citypl;
-  if (selectedAddOne && selectedAddOne.price) {
-    totalPrice += parseFloat(selectedAddOne.price);
+  // const decoded = await verifyToken(token, request);
+
+  try {
+    const decoded = jwt.verify(token, "secreeetonttouche");
+    console.log({
+      data: decoded.data,
+      status: "ha decoode",
+    });
+
+    // return decoded;
+  } catch (err) {
+    // res.status(405).send("Token is invalid");
+    return NextResponse.json({ message: "Token is invalid", status: 0 });
   }
-  if (address && address !== "undefined") {
-    if (!city || city === "undefined") {
-      citypl = address.split(",")[1];
-    }
-  } else {
-    citypl = city;
-  }
+
+  // let totalPrice = parseFloat(plan.price);
+  // let citypl;
+  // if (selectedAddOne && selectedAddOne.price) {
+  //   totalPrice += parseFloat(selectedAddOne.price);
+  // }
+  // if (address && address !== "undefined") {
+  //   if (!city || city === "undefined") {
+  //     citypl = address.split(",")[1];
+  //   }
+  // } else {
+  //   citypl = city;
+  // }
   const swiftMailOptions = {
     from: "no-reply@swift-net.ca",
     to: "support@swift-net.ca,david@turnkeyisp.co",
@@ -105,14 +126,32 @@ export async function POST(request) {
 
   try {
     // Send the email
-    await transporter.sendMail(swiftMailOptions);
-    await transporter.sendMail(mailOptions);
+    // await transporter.sendMail(swiftMailOptions);
+    // await transporter.sendMail(mailOptions);
+
+    // return NextResponse.json({
+    //   message: "Email sent successfully",
+    //   status: 1,
+    // });
 
     return NextResponse.json({
-      message: "Email sent successfully",
-      status: 1,
+      // address,
+      // phone,
+      // email,
+      // city,
+      // ipAddress,
+      // browserType,
+      // firstName,
     });
   } catch (error) {
-    return NextResponse.json({ message: "Error sending email", status: 0 });
+    return NextResponse.json({
+      // address,
+      // phone,
+      // email,
+      // city,
+      // ipAddress,
+      // browserType,
+      // firstName,
+    });
   }
 }
