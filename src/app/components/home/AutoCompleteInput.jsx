@@ -73,7 +73,7 @@ const AutoCompleteInput = ({ setUserLocation, place }) => {
           <button
             type="submit"
             onClick={() => handleChackAvabilty()}
-            className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute bottom-[0px] md:bottom-[50%] md:translate-y-[50%] right-0  w-[98%] md:w-auto`}
+            className={`bg-primary border-none rounded-md ${styles.paragraph} text-white px-4 py-2 absolute top-0  md:bottom-[50%] right-0   h-full md:w-auto`}
           >
             Check availability
           </button>
