@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 
 export function generateAccessToken(data) {
-  return jwt.sign({ data }, "secreeetonttouche", {
+  return jwt.sign({ data }, process.env.SECRET_TOKEN, {
     expiresIn: "24h",
   });
 }
