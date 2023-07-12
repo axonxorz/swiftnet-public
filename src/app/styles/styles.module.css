@@ -85,6 +85,40 @@
   background-image: url("../../assets/2023060719535.png");
 }
 
+.gimg1{
+  background-image: url("../../assets/gallery/Rectangle 12.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.gimg2{
+  background-image: url("../../assets/gallery/Rectangle 14.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.gimg3 {
+  background-image: url("../../assets/gallery/Rectangle 19.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.gimg4 {
+  background-image: url("../../assets/gallery/Rectangle 20.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.scrollcontainer {
+  background-color: #333;
+  /* overflow: auto; */
+  white-space: nowrap;
+  padding: 10px;
+}
+
 @media screen and (max-width: 768px) {
   .heroBg {
     background-position: center;
