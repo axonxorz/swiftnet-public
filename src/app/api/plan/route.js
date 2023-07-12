@@ -8,8 +8,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "webmaster@swift-net.ca",
-    pass: "inkfbyetcqbeafxn",
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASSWORD,
   },
 });
 
@@ -21,17 +21,14 @@ export async function POST(request) {
   let decoded = {};
   let data = {};
   try {
-    decoded = jwt.verify(token, "secreeetonttouche");
+    decoded = jwt.verify(token, process.env.SECRET_TOKEN);
     data = decoded.data;
     // return decoded;
   } catch (err) {
     console.error(err); // Log the error to get more details
-    // res.status(405).send("Token is invalid");
     return NextResponse.json({
       message: "Token is invalid",
       status: 0,
-      token,
-      err,
     });
   }
 
@@ -42,9 +39,9 @@ export async function POST(request) {
     phoneNumber,
     googleAPIFullAddress,
     city,
-    country,
-    lng,
-    lat,
+    // country,
+    // lng,
+    // lat,
     fullAddress,
   } = data;
 

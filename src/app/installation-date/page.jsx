@@ -34,14 +34,8 @@ const page = () => {
       date: selectedDate,
       plan: selectedPlan,
       selectedAddOne,
-      // email: searchParams.get("email"),
-      // address: searchParams.get("address"),
-      // phone: searchParams.get("phone"),
       browserType,
       ipAddress,
-      // firstName: searchParams.get("firstName"),
-      // lastName: searchParams.get("lastName"),
-      // city: searchParams.get("city"),
       token: searchParams.get("token"),
     });
     const { message, status } = postDataResponse;
