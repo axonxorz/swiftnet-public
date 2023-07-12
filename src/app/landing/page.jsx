@@ -6,12 +6,15 @@ import ExperienceConnectivity from "../components/home/ExperienceConnectivity";
 import WhySwiftNet from "../components/home/WhySwiftNet";
 import ReliableInternet from "../components/home/ReliableInternet";
 import Advantages from "../components/home/Advantages";
+import Gallery from "../components/home/Gallery";
 
 const page = () => {
   return (
     <>
       <Hero />
       <ServiceProvider />
+
+      <Gallery />
       <ExperienceConnectivity />
       <WhySwiftNet />
       <ReliableInternet />
