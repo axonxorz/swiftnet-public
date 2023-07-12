@@ -1,42 +1,58 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-
+import jwt from "jsonwebtoken";
 // Load environment variables from .env file
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "webmaster@swift-net.ca",
-    pass: "inkfbyetcqbeafxn",
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASSWORD,
   },
 });
 
 export async function POST(request) {
   const req = await request.json();
 
+  const { date, plan, selectedAddOne, ipAddress, browserType, token } = req;
+
+  let decoded = {};
+  let data = {};
+  try {
+    decoded = jwt.verify(token, process.env.SECRET_TOKEN);
+    data = decoded.data;
+    // return decoded;
+  } catch (err) {
+    console.error(err); // Log the error to get more details
+    return NextResponse.json({
+      message: "Token is invalid",
+      status: 0,
+    });
+  }
+
   const {
-    date,
-    plan,
-    selectedAddOne,
-    address,
-    phone,
-    email,
-    city,
-    ipAddress,
-    browserType,
     firstName,
-  } = req;
+    lastName,
+    email,
+    phoneNumber,
+    googleAPIFullAddress,
+    city,
+    // country,
+    // lng,
+    // lat,
+    fullAddress,
+  } = data;
 
   let totalPrice = parseFloat(plan.price);
   let citypl;
   if (selectedAddOne && selectedAddOne.price) {
     totalPrice += parseFloat(selectedAddOne.price);
   }
-  if (address && address !== "undefined") {
+  if (fullAddress && fullAddress !== "undefined") {
     if (!city || city === "undefined") {
-      citypl = address.split(",")[1];
+      citypl = fullAddress.split(",")[2];
     }
   } else {
     citypl = city;
@@ -50,6 +66,8 @@ export async function POST(request) {
     <html>
       <body>
         <ul>
+            <li>First Name : ${firstName}</li>
+            <li>Last Name : ${lastName}</li>
             <li>City: ${citypl}</li>
             <li>Email: ${email}</li>
             <li>Plan: $${plan.price}</li>
@@ -57,8 +75,9 @@ export async function POST(request) {
       selectedAddOne.price && `$${selectedAddOne?.price}`
     }</li>
             <li>Preferred installation date: ${date}</li>
-            <li>Phone Number: ${phone}</li>
-            <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${address}">${address}</a></li>
+            <li>Phone Number: ${phoneNumber}</li>
+            <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${fullAddress}">${fullAddress}</a></li>
+            <li>Address lookup : ${googleAPIFullAddress} <li/>
             <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
           <li>Browser Type: ${browserType}</li>
        </ul>
@@ -113,6 +132,9 @@ export async function POST(request) {
       status: 1,
     });
   } catch (error) {
-    return NextResponse.json({ message: "Error sending email", status: 0 });
+    return NextResponse.json({
+      message: error,
+      status: 0,
+    });
   }
 }

@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 
 // Load environment variables from .env file
 dotenv.config();
+
+export function generateAccessToken(data) {
+  return jwt.sign({ data }, "secreeetonttouche", {
+    expiresIn: "24h",
+  });
+}
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -47,6 +54,8 @@ export async function POST(request) {
 
   if (isValid) {
     // If form fields are valid, send an email
+    const token = generateAccessToken(req);
+
     const mailOptions = {
       from: "support@swift-net.ca", // sender
       to: email, // recipient
@@ -65,7 +74,7 @@ export async function POST(request) {
           <h3>Dear ${firstName},</h3>
           <p>
             <br>
-          <a href="https://swift-net.ca/installation-date?email=${email}&address=${fullAddress}&phone=${phoneNumber}&city=${region}&firstName=${firstName}&lastName=${lastName} style="font-weight: bold; color:#05649C>Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
+          <a href='https://swift-net.ca/installation-date?token=${token}' style="font-weight: bold; color:#05649C">Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
             <br>
             <p>Thank you!<br></p>
           <div style="background-color: #05649C; padding: 20px; ">
@@ -139,9 +148,7 @@ export async function POST(request) {
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
       to: "support@swift-net.ca,david@turnkeyisp.co",
-      subject: `${supported ? "Yes," : "No,"} ${
-        firstName + " " + lastName
-      } , ${fullAddress} `,
+      subject: `${supported ? "Yes," : "No,"} ${email} , ${fullAddress} `,
       text: "",
       html: `
       <html>

@@ -33,6 +33,7 @@ const ServiceProvider = () => {
           />
         </div>
 
+
         <div className="flex items-center  md:flex-row gap-4 justify-between mt-4 px-4 flex-shrink flex-wrap">
           <ul className="list-disc">
             <li>Lloydminster, AB/SK </li>
