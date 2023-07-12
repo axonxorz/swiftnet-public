@@ -1,20 +1,9 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-
+import jwt from "jsonwebtoken";
 // Load environment variables from .env file
 dotenv.config();
-
-export async function verifyToken(token, res) {
-  try {
-    const decoded = jwt.verify(token, "secreeetonttouche");
-
-    return decoded;
-  } catch (err) {
-    // res.status(405).send("Token is invalid");
-    return NextResponse.json({ message: "Token is invalid", status: 0 });
-  }
-}
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -27,41 +16,50 @@ const transporter = nodemailer.createTransport({
 export async function POST(request) {
   const req = await request.json();
 
-  const {
-    date,
-    plan,
-    selectedAddOne,
+  const { date, plan, selectedAddOne, ipAddress, browserType, token } = req;
 
-    token,
-  } = req;
-
-  // const decoded = await verifyToken(token, request);
-
+  let decoded = {};
+  let data = {};
   try {
-    const decoded = jwt.verify(token, "secreeetonttouche");
-    console.log({
-      data: decoded.data,
-      status: "ha decoode",
-    });
-
+    decoded = jwt.verify(token, "secreeetonttouche");
+    data = decoded.data;
     // return decoded;
   } catch (err) {
+    console.error(err); // Log the error to get more details
     // res.status(405).send("Token is invalid");
-    return NextResponse.json({ message: "Token is invalid", status: 0 });
+    return NextResponse.json({
+      message: "Token is invalid",
+      status: 0,
+      token,
+      err,
+    });
   }
 
-  // let totalPrice = parseFloat(plan.price);
-  // let citypl;
-  // if (selectedAddOne && selectedAddOne.price) {
-  //   totalPrice += parseFloat(selectedAddOne.price);
-  // }
-  // if (address && address !== "undefined") {
-  //   if (!city || city === "undefined") {
-  //     citypl = address.split(",")[1];
-  //   }
-  // } else {
-  //   citypl = city;
-  // }
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    googleAPIFullAddress,
+    city,
+    country,
+    lng,
+    lat,
+    fullAddress,
+  } = data;
+
+  let totalPrice = parseFloat(plan.price);
+  let citypl;
+  if (selectedAddOne && selectedAddOne.price) {
+    totalPrice += parseFloat(selectedAddOne.price);
+  }
+  if (fullAddress && fullAddress !== "undefined") {
+    if (!city || city === "undefined") {
+      citypl = fullAddress.split(",")[2];
+    }
+  } else {
+    citypl = city;
+  }
   const swiftMailOptions = {
     from: "no-reply@swift-net.ca",
     to: "support@swift-net.ca,david@turnkeyisp.co",
@@ -71,6 +69,8 @@ export async function POST(request) {
     <html>
       <body>
         <ul>
+            <li>First Name : ${firstName}</li>
+            <li>Last Name : ${lastName}</li>
             <li>City: ${citypl}</li>
             <li>Email: ${email}</li>
             <li>Plan: $${plan.price}</li>
@@ -78,8 +78,9 @@ export async function POST(request) {
       selectedAddOne.price && `$${selectedAddOne?.price}`
     }</li>
             <li>Preferred installation date: ${date}</li>
-            <li>Phone Number: ${phone}</li>
-            <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${address}">${address}</a></li>
+            <li>Phone Number: ${phoneNumber}</li>
+            <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${fullAddress}">${fullAddress}</a></li>
+            <li>Address lookup : ${googleAPIFullAddress} <li/>
             <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
           <li>Browser Type: ${browserType}</li>
        </ul>
@@ -126,32 +127,17 @@ export async function POST(request) {
 
   try {
     // Send the email
-    // await transporter.sendMail(swiftMailOptions);
-    // await transporter.sendMail(mailOptions);
-
-    // return NextResponse.json({
-    //   message: "Email sent successfully",
-    //   status: 1,
-    // });
+    await transporter.sendMail(swiftMailOptions);
+    await transporter.sendMail(mailOptions);
 
     return NextResponse.json({
-      // address,
-      // phone,
-      // email,
-      // city,
-      // ipAddress,
-      // browserType,
-      // firstName,
+      message: "Email sent successfully",
+      status: 1,
     });
   } catch (error) {
     return NextResponse.json({
-      // address,
-      // phone,
-      // email,
-      // city,
-      // ipAddress,
-      // browserType,
-      // firstName,
+      message: error,
+      status: 0,
     });
   }
 }

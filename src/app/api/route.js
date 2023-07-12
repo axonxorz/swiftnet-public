@@ -74,7 +74,7 @@ export async function POST(request) {
           <h3>Dear ${firstName},</h3>
           <p>
             <br>
-          <a href='https://swift-net.ca/installation-date?token=${token}' style="font-weight: bold; color:#05649C>Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
+          <a href='https://swift-net.ca/installation-date?token=${token}' style="font-weight: bold; color:#05649C">Click here</a> to choose your pricing and plans and schedule the installation . Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
             <br>
             <p>Thank you!<br></p>
           <div style="background-color: #05649C; padding: 20px; ">
@@ -148,9 +148,7 @@ export async function POST(request) {
     const swiftMailOptions = {
       from: "no-reply@swift-net.ca",
       to: "support@swift-net.ca,david@turnkeyisp.co",
-      subject: `${supported ? "Yes," : "No,"} ${
-        firstName + " " + lastName
-      } , ${fullAddress} `,
+      subject: `${supported ? "Yes," : "No,"} ${email} , ${fullAddress} `,
       text: "",
       html: `
       <html>
