@@ -13,7 +13,6 @@ const page = () => {
     <>
       <Hero />
       <ServiceProvider />
-
       <Gallery />
       <ExperienceConnectivity />
       <WhySwiftNet />
