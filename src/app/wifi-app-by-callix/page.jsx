@@ -6,7 +6,6 @@ const page = () => {
   return (
     <>
       <div className="h-[20px] w-full"></div>
-
       <ImageCmp />
       <Sec2 />
       <IntroducingGigaSpire />

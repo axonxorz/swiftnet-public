@@ -3,6 +3,12 @@ import React from "react";
 import styles from "../styles/styles";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Thank you for signing up for internet service by Swift-Net.ca!",
+  description:
+    "Get connected with Swift-Net.ca, the leading home Wi-Fi internet service provider in Alberta & Saskatchewan, providing high-speed wireless internet service in Lloydminster, Cold Lake, North Battleford, and more rural communities. Sign up today!",
+};
+
 const page = () => {
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center space-y-6">

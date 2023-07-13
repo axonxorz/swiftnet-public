@@ -1,40 +1,88 @@
-import styles from "@/app/styles/styles";
-import Image from "next/image";
-import React from "react";
-import Img1 from "@/assets/gallery/Rectangle 12.png";
-import Img2 from "@/assets/gallery/Rectangle 14.png";
-import Img3 from "@/assets/gallery/Rectangle 19.png";
-import Img4 from "@/assets/gallery/Rectangle 20.png";
+import React, { useEffect, useRef } from "react";
 import style from "@/app/styles/styles.module.css";
+import Link from "next/link";
 
 const Gallery = () => {
+  const galleryRef = useRef(null);
+  let scrollInterval;
+
+  useEffect(() => {
+    const galleryContainer = galleryRef.current;
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5, // Adjust this threshold value to control when the scroll starts (0.0 to 1.0)
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startAutoScroll();
+        } else {
+          stopAutoScroll();
+        }
+      });
+    }, options);
+
+    observer.observe(galleryContainer);
+
+    function startAutoScroll() {
+      scrollInterval = setInterval(() => {
+        galleryContainer.scrollLeft += 1; // Adjust scroll speed by changing this value
+      }, 10); // Adjust scroll speed by changing this value
+    }
+
+    function stopAutoScroll() {
+      clearInterval(scrollInterval);
+    }
+
+    galleryContainer.addEventListener("mouseenter", stopAutoScroll);
+    galleryContainer.addEventListener("mouseleave", startAutoScroll);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(scrollInterval);
+      galleryContainer.removeEventListener("mouseenter", stopAutoScroll);
+      galleryContainer.removeEventListener("mouseleave", startAutoScroll);
+    };
+  }, []);
+
   return (
     <div className="bg-[#F1FAFF] pb-20">
-      <div className="w-full overflow-x-scroll no-scrollbar ">
+      <div className="w-full overflow-x-scroll no-scrollbar" ref={galleryRef}>
         <div className="flex gap-4" style={{ minWidth: "2000px" }}>
-          <div
-            className={`${style.gimg1} rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
-          >
-            <p className={`text-[36px] text-white`}>Seniors</p>
-          </div>
+          <Link href={"/non-tech-savvy"}>
+            <div
+              className={`${style.gimg1} relative group cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[36px] text-white`}>Senior's</p>
+            </div>
+          </Link>
 
-          <div
-            className={`${style.gimg2}  rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
-          >
-            <p className={`text-[36px] text-white`}>Work from home</p>
-          </div>
+          <Link href={"/live-sport-broadcast"}>
+            <div
+              className={`${style.gimg2} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[36px] text-white`}>Live Sports</p>
+            </div>
+          </Link>
 
-          <div
-            className={`${style.gimg3}  rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
-          >
-            <p className={`text-[36px] text-white`}>Online Learning</p>
-          </div>
+          <Link href={"/business-class"}>
+            <div
+              className={`${style.gimg3} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[36px] text-white`}>Work from home</p>
+            </div>
+          </Link>
 
-          <div
-            className={`${style.gimg4}  rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
-          >
-            <p className={`text-[36px] text-white`}>Live Sports</p>
-          </div>
+          <Link href={"/online-learning"}>
+            <div
+              className={`${style.gimg4} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[36px] text-white`}>Online Learning</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

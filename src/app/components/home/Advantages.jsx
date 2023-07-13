@@ -37,7 +37,7 @@ const Advantages = () => {
       link: "/non-tech-savvy",
     },
     {
-      id: 2,
+      id: 4,
       img: img4,
       heading: "Enjoy Live Sports Broadcasts",
       description:
@@ -45,7 +45,7 @@ const Advantages = () => {
       link: "/live-sport-broadcast",
     },
     {
-      id: 2,
+      id: 5,
       img: img5,
       heading: "Stream Videos and TV Uninterrupted",
       description:
@@ -53,7 +53,7 @@ const Advantages = () => {
       link: "/stream-uninterrupted",
     },
     {
-      id: 2,
+      id: 6,
       img: img6,
       heading: "The Ultimate Online Gaming Experience",
       description:
