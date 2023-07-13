@@ -29,6 +29,7 @@ export async function POST(request) {
     return NextResponse.json({
       message: "Token is invalid",
       status: 0,
+      err: err,
     });
   }
 
