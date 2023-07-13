@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const Gallery = () => {
   const galleryRef = useRef(null);
+  let scrollInterval;
 
   useEffect(() => {
     const galleryContainer = galleryRef.current;
@@ -26,21 +27,24 @@ const Gallery = () => {
 
     observer.observe(galleryContainer);
 
-    let scrollInterval;
-
-    const startAutoScroll = () => {
+    function startAutoScroll() {
       scrollInterval = setInterval(() => {
         galleryContainer.scrollLeft += 1; // Adjust scroll speed by changing this value
       }, 10); // Adjust scroll speed by changing this value
-    };
+    }
 
-    const stopAutoScroll = () => {
+    function stopAutoScroll() {
       clearInterval(scrollInterval);
-    };
+    }
+
+    galleryContainer.addEventListener("mouseenter", stopAutoScroll);
+    galleryContainer.addEventListener("mouseleave", startAutoScroll);
 
     return () => {
       observer.disconnect();
       clearInterval(scrollInterval);
+      galleryContainer.removeEventListener("mouseenter", stopAutoScroll);
+      galleryContainer.removeEventListener("mouseleave", startAutoScroll);
     };
   }, []);
 
