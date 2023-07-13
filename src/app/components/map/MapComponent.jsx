@@ -27,7 +27,6 @@ const MapComponent = () => {
   const router = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
   const [displayCheckout, setDisplayCheckout] = useState(true);
-  // const ref = useRef(null);
   const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
@@ -89,13 +88,7 @@ const MapComponent = () => {
     markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
   };
 
-  const createMarker = (
-    maps,
-    map,
-    position,
-    draggable = true,
-    confirmBuildingBtnRef
-  ) => {
+  const createMarker = (maps, map, position, draggable = true) => {
     clearMarkers();
 
     const marker = new maps.Marker({
@@ -145,14 +138,6 @@ const MapComponent = () => {
         anchor: marker,
         map,
       });
-    });
-
-    const confirmButton = infowindowContent.querySelector(
-      "#confirm-building button"
-    );
-    confirmButton.addEventListener("click", () => {
-      console.log("3lia"); // Code inside handleClick event
-      // Add your code here to execute when the button is clicked inside the InfoWindow
     });
 
     return marker;
@@ -244,7 +229,6 @@ const MapComponent = () => {
     setMaps(maps);
 
     map.addListener("zoom_changed", () => {
-      console.log("you're draging the map");
       var zoom = map.getZoom();
       console.log(zoom);
       setDefaultZoom(zoom);

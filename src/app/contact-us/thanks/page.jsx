@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import styles from "../../styles/styles";
 import Link from "next/link";
 
 const page = () => {
@@ -30,12 +29,6 @@ const page = () => {
       </div>
       <div className="px-10 text-center space-y-4">
         <p className="text-[30px] font-bold">We have received your message </p>
-        {/* <p className={styles.paragraph}>
-          <span className="text-primary font-bold  ">Thank you </span>
-          for choosing Swift-Net.ca and selecting your preferred installation
-          date and plan! One of our scheduling representatives will contact you
-          during the next business day to finalize the details.
-        </p> */}
       </div>
 
       <div className="px-10 text-center space-y-4">

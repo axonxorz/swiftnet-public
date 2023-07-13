@@ -55,7 +55,6 @@ const page = () => {
       });
       const { status } = postDataResponse;
 
-      console.log(status);
       if (status === 1) {
         route.push(`/contact/thanks`);
       } else {

@@ -36,7 +36,7 @@ const Form = () => {
 
 
     // Example POST method implementation:
-    
+
     const AddressInfo = (address) => {
         // Filter the address components
         const filteredComponents = address.address_components.filter(component => {
@@ -64,69 +64,69 @@ const Form = () => {
         const browserType = navigator.userAgent;
 
         try {
-          const response = await fetch(`/api/geocode?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true`, 
-          {
-            method: "GET", // *GET, POST, PUT, DELETE, etc.
-          }
-          );
-          const geocodeData = await response.json();
-      
-          let city = "";
-          let googleAPIFullAddress = "";
-          let postalCode = "";
-          let country = "";
-      
-          if (geocodeData?.results?.length > 0) {
-            const result = geocodeData.results[0];
-            const addressInfo = AddressInfo(result);
-      
-            city = addressInfo.city?.long_name || "NA";
-            googleAPIFullAddress = addressInfo.fullAddress || "NA";
-            postalCode = addressInfo.postalCode?.long_name || "NA";
-            country = addressInfo.country?.long_name || "NA";
-          }
-          const fullAddress  = searchParams.get("fullAdress") !== "undefined" ? searchParams.get("fullAdress") : googleAPIFullAddress
-      
+            const response = await fetch(`/api/geocode?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true`,
+                {
+                    method: "GET",
+                }
+            );
+            const geocodeData = await response.json();
 
-          const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${fullAddress}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
-          const towerCoverageResult = await towerCoverageResponse.text();
-          
+            let city = "";
+            let googleAPIFullAddress = "";
+            let postalCode = "";
+            let country = "";
+
+            if (geocodeData?.results?.length > 0) {
+                const result = geocodeData.results[0];
+                const addressInfo = AddressInfo(result);
+
+                city = addressInfo.city?.long_name || "NA";
+                googleAPIFullAddress = addressInfo.fullAddress || "NA";
+                postalCode = addressInfo.postalCode?.long_name || "NA";
+                country = addressInfo.country?.long_name || "NA";
+            }
+            const fullAddress = searchParams.get("fullAdress") !== "undefined" ? searchParams.get("fullAdress") : googleAPIFullAddress
 
 
-          await fetch("https://api.towercoverage.com/towercoverage.asmx/EUSsubmisssion", {
-            "headers": {
-              "accept": "*/*",
-              "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-              "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-              "sec-ch-ua-mobile": "?0",
-              "sec-ch-ua-platform": "\"Windows\"",
-              "sec-fetch-dest": "empty",
-              "sec-fetch-mode": "cors",
-              "sec-fetch-site": "cross-site"
-            },
-            "referrerPolicy": "strict-origin-when-cross-origin",
-            "body": `multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Firstname=${data.firstName}&city=${city}&lastname=${data.lastName}&Address=${fullAddress}&Country=${country}&State=NA&zipcode=${postalCode}&phonenumber=${data.phoneNumber}&emailaddress=${data.email}&howdidyouhear=NA&preferredmethod=NA&besttimetocontact=NA&comments=${data.notes}&clientip=${ipAddress}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`,
-            "method": "POST",
-            "mode": "cors",
-            "credentials": "omit"
-          });
+            const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${fullAddress}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
+            const towerCoverageResult = await towerCoverageResponse.text();
 
-      
-          const postDataResponse = await postData("/api", {...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat") , fullAddress , ipAddress , browserType });
-          const {message ,  status } = postDataResponse;
-      
-          if (status === 1) {
-            route.push(`/email-check?user=${data.email}`);
-          }else {
-            toast.error(message)
-          }
+
+
+            await fetch("https://api.towercoverage.com/towercoverage.asmx/EUSsubmisssion", {
+                "headers": {
+                    "accept": "*/*",
+                    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+                    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    "sec-ch-ua-mobile": "?0",
+                    "sec-ch-ua-platform": "\"Windows\"",
+                    "sec-fetch-dest": "empty",
+                    "sec-fetch-mode": "cors",
+                    "sec-fetch-site": "cross-site"
+                },
+                "referrerPolicy": "strict-origin-when-cross-origin",
+                "body": `multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Firstname=${data.firstName}&city=${city}&lastname=${data.lastName}&Address=${fullAddress}&Country=${country}&State=NA&zipcode=${postalCode}&phonenumber=${data.phoneNumber}&emailaddress=${data.email}&howdidyouhear=NA&preferredmethod=NA&besttimetocontact=NA&comments=${data.notes}&clientip=${ipAddress}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`,
+                "method": "POST",
+                "mode": "cors",
+                "credentials": "omit"
+            });
+
+
+            const postDataResponse = await postData("/api", { ...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat"), fullAddress, ipAddress, browserType });
+            const { message, status } = postDataResponse;
+
+            if (status === 1) {
+                route.push(`/email-check?user=${data.email}`);
+            } else {
+                toast.error(message)
+            }
         } catch (error) {
-          toast.error('Something went wrong. Please try again.');
+            toast.error('Something went wrong. Please try again.');
         }
-      
+
         setLoading(false);
-      };
-      
+    };
+
 
 
     return (
@@ -178,13 +178,13 @@ const Form = () => {
                                     />
                                 </div>
 
-                               
+
 
 
                             </div>
                             <div className="sm:col-span-3 w-full mt-3">
 
-                            <div className="sm:col-span-4  ">
+                                <div className="sm:col-span-4  ">
                                     <InputField
                                         error={errors?.email}
                                         label={"Email"}
@@ -197,16 +197,16 @@ const Form = () => {
                                 </div>
 
                                 <div className="mb-2">
-          
-           </div>
+
+                                </div>
 
                                 <div className="sm:col-span-4 ">
-                                <label
-        htmlFor={"phone"}
-        className="block text-sm font-medium leading-6 text-[#6B7280]"
-      >
-       Phone number <span className="font-bold">*</span>
-      </label>
+                                    <label
+                                        htmlFor={"phone"}
+                                        className="block text-sm font-medium leading-6 text-[#6B7280]"
+                                    >
+                                        Phone number <span className="font-bold">*</span>
+                                    </label>
                                     <div className="flex">
                                         <PhoneInput
                                             register={register}
@@ -231,7 +231,7 @@ const Form = () => {
                                         </p>
                                     )}
                                 </div>
-                                
+
 
                                 <label
                                     htmlFor={"Notes"}

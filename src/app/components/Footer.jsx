@@ -5,7 +5,6 @@ import styles from "../styles/styles";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 import Link from "next/link";
-// import FacebookPlugin from "./FacebookPlugin";
 import dynamic from "next/dynamic";
 const FacebookPlugin = dynamic(() => import("./FacebookPlugin"), {
   ssr: false,

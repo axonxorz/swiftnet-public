@@ -67,7 +67,10 @@ const WhySwiftNet = () => {
 
       <div className="basis-[48%] md:flex flex-wrap gap-5">
         {data.map((data) => (
-          <div className="basis-[48%] flex flex-col gap-1 mt-6 md:mt-0">
+          <div
+            key={data.id}
+            className="basis-[48%] flex flex-col gap-1 mt-6 md:mt-0"
+          >
             <Image src={data.icon} alt="" className="w-[40px] md:w-[50px]" />
             <span className={`${styles.paragraph} font-semibold`}>
               {data.heading}
