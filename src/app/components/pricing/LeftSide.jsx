@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Step1 from "../signUp/Step1";
 import Image from "next/image";
-import Subtract from "@/assets/Subtract.jpg";
+import Subtract from "@/assets/Subtract.webp";
 import { Toaster } from "react-hot-toast";
 
 const LeftSide = () => {

@@ -10,7 +10,7 @@ const Hero = () => {
       <div
         className={`${styles.width} pt-[24%] md:pt-[12%] pb-[15%] md:pb-[10%]`}
       >
-        <h1 className="font-semibold text-4xl md:text-6xl tracking-[-0.02em] text-white md:w-3/5 leading-[44px] md:leading-[72px]">
+        <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white md:w-3/5 leading-[44px] md:leading-[72px]">
           Alberta & Saskatchewan Wi-Fi Broadband Internet Service by
           <span
             className={`${style.bgFilter} rounded-md text-primary p-1 ml-2 block md:inline-block w-[220px] md:w-auto`}

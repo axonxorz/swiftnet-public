@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Subtract from "@/assets/Subtract.jpg";
+import Subtract from "@/assets/Subtract.webp";
 import Image from "next/image";
 import Step1 from "./Step1";
 import { Toaster } from "react-hot-toast";

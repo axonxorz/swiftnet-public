@@ -88,8 +88,8 @@ const page = () => {
               </p>
 
               <p className={`${styles.paragraph} text-[#4B5563]`}>
-                Service is available at your location. Please fill the data
-                below to select your plans and installment date
+                Service is available at your location! Please select your
+                preferred installation date and plan below.
               </p>
             </div>
 
