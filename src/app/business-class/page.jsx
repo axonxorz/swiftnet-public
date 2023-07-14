@@ -37,6 +37,7 @@ const page = () => {
         "Swift-Net.ca's business class service is perfectly suited for corporate Voice over IP (VOIP) and Wi-Fi calling, providing the low latency and high-quality connection needed for clear, uninterrupted calls. Whether you're on a one-on-one call with a colleague or a conference call with your team, Swift-Net.ca ensures that your voice communication remains crisp and reliable.",
     },
   ];
+
   return (
     <>
       <CommonLayers

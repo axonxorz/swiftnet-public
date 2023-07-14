@@ -6,7 +6,6 @@ import "./styles/output.css";
 import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 import dotenv from "dotenv";
-import Head from "next/head";
 import Script from "next/script";
 import { useStore } from "@/store";
 
