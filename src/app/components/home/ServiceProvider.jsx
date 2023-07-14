@@ -1,8 +1,8 @@
 import styles from "@/app/styles/styles";
 import Image from "next/image";
 import React from "react";
-import map from "../../../assets/map.png";
-import mapsquare from "../../../assets/mapsquare.png";
+import map from "../../../assets/map.webp";
+import mapsquare from "../../../assets/mapsquare.webp";
 const ServiceProvider = () => {
   return (
     <div className="bg-[#F1FAFF] pt-12 pb-12  md:pt-20 md:pb-28">
@@ -32,7 +32,6 @@ const ServiceProvider = () => {
             unoptimized={true}
           />
         </div>
-
 
         <div className="flex items-center  md:flex-row gap-4 justify-between mt-4 px-4 flex-shrink flex-wrap">
           <ul className="list-disc">
