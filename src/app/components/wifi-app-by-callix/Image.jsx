@@ -16,6 +16,7 @@ const ImageCmp = () => {
             width: "1240px",
             height: "606px",
           }}
+          P
         />
       </div>
 
