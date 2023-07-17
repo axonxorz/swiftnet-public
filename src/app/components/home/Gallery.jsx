@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import style from "@/app/styles/styles.module.css";
 import Link from "next/link";
+import styles from "@/app/styles/styles";
 
 const Gallery = () => {
   const galleryRef = useRef(null);
@@ -30,7 +31,7 @@ const Gallery = () => {
     function startAutoScroll() {
       scrollInterval = setInterval(() => {
         galleryContainer.scrollLeft += 1; // Adjust scroll speed by changing this value
-      }, 10); // Adjust scroll speed by changing this value
+      }, 50); // Adjust scroll speed by changing this value
     }
 
     function stopAutoScroll() {
@@ -50,37 +51,109 @@ const Gallery = () => {
 
   return (
     <div className="bg-[#F1FAFF] pb-20">
-      <div className="w-full overflow-x-scroll no-scrollbar" ref={galleryRef}>
+      <div
+        className="w-full overflow-x-scroll no-scrollbar md:hidden"
+        ref={galleryRef}
+      >
         <div className="flex gap-4" style={{ minWidth: "2000px" }}>
-          <Link href={"/non-tech-savvy"}>
+          <Link href={"/stream-uninterrupted"}>
             <div
-              className={`${style.gimg1} relative group cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[36px] text-white`}>Senior's</p>
+              <p className={`text-[42px] text-white`}>Streaming movies & TV</p>
             </div>
           </Link>
 
-          <Link href={"/live-sport-broadcast"}>
+          <Link href={"/gaming-experience"}>
             <div
-              className={`${style.gimg2} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden w-[500px]    h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[36px] text-white`}>Live Sports</p>
+              <p className={`text-[42px] text-white`}>Online Gaming</p>
             </div>
           </Link>
 
           <Link href={"/business-class"}>
             <div
-              className={`${style.gimg3} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[36px] text-white`}>Work from home</p>
+              <p className={`text-[42px] text-white`}>Work from home</p>
             </div>
           </Link>
 
           <Link href={"/online-learning"}>
             <div
-              className={`${style.gimg4} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden w-[500px]  h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[36px] text-white`}>Online Learning</p>
+              <p className={`text-[42px] text-white`}>Online Learning</p>
+            </div>
+          </Link>
+
+          <Link href={"/live-sport-broadcast"}>
+            <div
+              className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Live Sports</p>
+            </div>
+          </Link>
+
+          <Link href={"/non-tech-savvy"}>
+            <div
+              className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden w-[500px]  h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Seniors</p>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      {/* desktop v */}
+      <div className="w-full  hidden md:grid" ref={galleryRef}>
+        <div className={`${styles.width} gap-4 w-full grid grid-cols-2 `}>
+          <Link href={"/stream-uninterrupted"}>
+            <div
+              className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Streaming movies & TV</p>
+            </div>
+          </Link>
+
+          <Link href={"/gaming-experience"}>
+            <div
+              className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Online Gaming</p>
+            </div>
+          </Link>
+
+          <Link href={"/business-class"}>
+            <div
+              className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Work from home</p>
+            </div>
+          </Link>
+
+          <Link href={"/online-learning"}>
+            <div
+              className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Online Learning</p>
+            </div>
+          </Link>
+
+          <Link href={"/live-sport-broadcast"}>
+            <div
+              className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Live Sports</p>
+            </div>
+          </Link>
+
+          <Link href={"/non-tech-savvy"}>
+            <div
+              className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+            >
+              <p className={`text-[42px] text-white`}>Seniors</p>
             </div>
           </Link>
         </div>

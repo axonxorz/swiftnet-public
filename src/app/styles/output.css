@@ -1567,6 +1567,10 @@ video {
   font-size: 36px;
 }
 
+.text-\[42px\] {
+  font-size: 42px;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1960,6 +1964,10 @@ ul{
 
   .md\:flex {
     display: flex;
+  }
+
+  .md\:grid {
+    display: grid;
   }
 
   .md\:hidden {
