@@ -11,7 +11,9 @@ const Hero = () => {
         className={`${styles.width} pt-[24%] md:pt-[12%] pb-[15%] md:pb-[10%]`}
       >
         <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white md:w-3/5 leading-[44px] md:leading-[72px]">
-          Alberta & Saskatchewan Wi-Fi Broadband Internet Service by
+          Alberta & Saskatchewan{" "}
+          <span className="whitespace-nowrap">Wi-Fi</span> Broadband Internet
+          Service by
           <span
             className={`${style.bgFilter} rounded-md text-primary p-1 ml-2 block md:inline-block w-[220px] md:w-auto`}
           >
@@ -23,10 +25,11 @@ const Hero = () => {
           internet service, without the concerns of data caps, overages, or
           throttling.
           <br /> <br />
-          Get connected now with Swift-Net.ca, the leading home Wi-Fi internet
-          service provider in Alberta & Saskatchewan, providing high-speed
-          wireless internet services in Lloydminster, Cold Lake, North
-          Battleford, and more rural communities. Sign up today!
+          Get connected now with Swift-Net.ca, the leading home{" "}
+          <span className="whitespace-nowrap">Wi-Fi</span> internet service
+          provider in Alberta & Saskatchewan, providing high-speed wireless
+          internet services in Lloydminster, Cold Lake, North Battleford, and
+          more rural communities. Sign up today!
         </p>
 
         <div className="md:w-1/2">
