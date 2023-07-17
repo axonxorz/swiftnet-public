@@ -47,7 +47,7 @@ const ServiceProvider = () => {
             <li>Battleford, SK</li>
             <li>Athabasca, AB</li>
             <li>Lac La Biche, AB</li>
-            <li>Unity, SKProvost, AB</li>
+            <li>Unity SK Provost , AB</li>
           </ul>
           <ul className="list-disc">
             <li>Big Island Lake Cree Nation, SK </li>

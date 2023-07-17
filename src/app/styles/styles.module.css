@@ -85,32 +85,47 @@
   background-image: url("../../assets/2023060719535.webp");
 }
 
-.gimg1{
-  background-image: url("../../assets/gallery/Rectangle-12.webp");
+.streambg{
+  background-image: url("../../assets/gallery/RectanglStream.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.gimg2{
-  background-image: url("../../assets/gallery/Rectangle-14.webp");
+.gamingbg{
+  background-image: url("../../assets/gallery/Rectangaming.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.gimg3 {
-  background-image: url("../../assets/gallery/Rectangle-19.webp");
+.onlineleaningbg {
+  background-image: url("../../assets/gallery/OnlineLearning.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.gimg4 {
-  background-image: url("../../assets/gallery/Rectangle-20.webp");
+.liveSportbg {
+  background-image: url("../../assets/gallery/RectanLive.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.seniorsbg {
+  background-image: url("../../assets/gallery/RectanSeniors.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.workfromhomebg {
+  background-image: url("../../assets/gallery/RectWorkFromHome.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 
 .scrollcontainer {
   background-color: #333;
