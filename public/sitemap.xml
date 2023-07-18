@@ -1,0 +1,57 @@
+   <!-- public/sitemap.xml -->
+   <xml version="1.0" encoding="UTF-8">
+   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+     <url>
+       <loc>https://swift-net.ca/</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/pricing</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/sign-up</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/business-class</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/wifi-app-by-callix</loc>
+     </url>
+     
+    <url>
+        <loc>https://swift-net.ca/stream-uninterrupted</loc>
+    </url>
+
+      <url>
+       <loc>https://swift-net.ca/gaming-experience</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/business-class</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/online-learning</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/live-sport-broadcast</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/non-tech-savvy</loc>
+     </url>
+
+      <url>
+       <loc>https://swift-net.ca/contact-us</loc>
+     </url>
+
+     <url>
+       <loc>https://swift-net.ca/faq</loc>
+     </url>
+     
+   </urlset>
+   </xml>
