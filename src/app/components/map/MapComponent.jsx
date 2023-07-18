@@ -83,9 +83,14 @@ const MapComponent = () => {
     }
   }, [confirmBuildingBtnRef]);
 
-  const resetState = () => {
-    setUserLocation(initialMapState);
-    markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
+  const resetState = (event) => {
+    if (event.detail == 2) {
+      console.log("Double Clicked");
+      router.push("/");
+    } else if (event.detail == 1) {
+      setUserLocation(initialMapState);
+      markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
+    }
   };
 
   const createMarker = (maps, map, position, draggable = true) => {
@@ -299,20 +304,39 @@ const MapComponent = () => {
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
         >
           Put the pin on the building where you want internet service.{" "}
-          <span
-            className="underline hover:no-underline font-bold text-primary cursor-pointer"
-            onClick={() => resetState()}
-          >
-            Reset map
-          </span>
         </p>
       </div>
+
+      <button
+        className="absolute  top-2 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
+        onClick={resetState}
+      >
+        <div className="w-[38px] h-[38px] text-center flex items-center justify-center">
+          <p className="text-xl text-black  ">
+            <svg
+              width="12"
+              height="20"
+              viewBox="0 0 12 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M10.9431 1.05718C11.4638 1.57788 11.4638 2.4221 10.9431 2.9428L3.88594 9.99999L10.9431 17.0572C11.4638 17.5779 11.4638 18.4221 10.9431 18.9428C10.4224 19.4635 9.57822 19.4635 9.05752 18.9428L1.05752 10.9428C0.536817 10.4221 0.536817 9.57788 1.05752 9.05718L9.05752 1.05718C9.57822 0.536482 10.4224 0.536482 10.9431 1.05718Z"
+                fill="#1F2937"
+              />
+            </svg>
+          </p>
+        </div>
+      </button>
       <button
         onClick={handleCurrentLocationButtonClick}
         className="absolute   shadow-2xl shadow-white transition-all w-[60px] h-[60px] duration-150 bottom-28 right-0 flex items-center justify-center  rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
       >
         <Image
           src={LocationImgUrl}
+          alt="location"
           style={{
             height: "45px",
             width: "45px",
