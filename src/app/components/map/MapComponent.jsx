@@ -309,7 +309,7 @@ const MapComponent = () => {
 
       <button
         className="absolute  top-2 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
-        onClick={resetState}
+        onClick={(e) => resetState(e)}
       >
         <div className="w-[38px] h-[38px] text-center flex items-center justify-center">
           <p className="text-xl text-black  ">
