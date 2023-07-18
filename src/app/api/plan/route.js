@@ -102,7 +102,7 @@ export async function POST(request) {
           Welcome to Swift-Net.ca! We're excited to help you stay connected with our robust and reliable internet services.
           </p>
           <p>
-          We're pleased to inform you that we have received your recent request for our [Preferred Plan's Name] as well as your preferred installation date. We're currently processing your request and we appreciate your patience as we confirm the availability of your chosen plan and installation schedule.          </p>
+          We're pleased to inform you that we have received your recent request for our ${plan.title} as well as your preferred installation date. We're currently processing your request and we appreciate your patience as we confirm the availability of your chosen plan and installation schedule.          </p>
           <p>
           One of our scheduling representatives will contact you during the next business day to finalize the details. They will help ensure that your selected plan is the perfect fit for your needs, and they will also confirm your preferred installation date and time. If there are any changes or adjustments needed, they'll be happy to assist you through the process.          </p>
           <p>
