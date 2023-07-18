@@ -66,43 +66,40 @@ export async function POST(request) {
       html: supported
         ? `
         <html>
-        <body style="display: flex;   flex-direction: column; justify-content: center; align-items:center; ">
-            
-            <div style="margin-top: 20px; margin-bottom: 40px;">
-                <img src="https://swift-net.vercel.app/_next/static/media/logo2.2933c849.png" alt="logo">
-            </div>
-          <h3>Dear ${firstName},</h3>
-          
-          
-           <p style="text-align : center ;  padding: 10px;  ">
-          You're almost done! Pick your price and install date below:</p>
-           
-          <div>
-          
-          
-          <a href='https://swift-net.ca/installation-date?token=${token}' style="font-weight: bold; background-color:#05649C; color: white; padding: 0.9rem 20px; margin: 30px;  border-radius: 0.5rem;  text-decoration-line: none; ">Click here</a></div>
-          <p style="text-align : center ; padding: 10px;  ">
-           Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.</p>
-            <br>
-            <p>Thank you!<br></p>
-          <div style="background-color: #05649C; padding: 20px;  width : 100% ">
-            <p style="color: white ; text-align : center ;  ">
-                
-                Swift-Net.ca | Customer Care<br>
-                <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a> <br>
-                <a  style="color: white" href="tel:1-866-667-2375">tel:1-866-667-2375</a>
-    
-              </p>
-          </div>
-  
-        </body>
-      </html>
+    <body>
+      <div style="text-align: center;">
+        <div style="margin-top: 20px; margin-bottom: 40px">
+          <img src="https://swift-net.vercel.app/_next/static/media/logo2.2933c849.png" alt="logo" />
+        </div>
+        <h3>Dear ${firstName},</h3>
+
+        <p style="text-align: center; padding: 10px">
+          You're almost done! Pick your price and install date below:
+        </p>
+
+        <div>
+          <a href="https://swift-net.ca/installation-date?token=${token}" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
+        </div>
+        <p style="text-align: center; padding: 10px">
+          Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.
+        </p>
+        <br />
+        <p>Thank you!<br /></p>
+        <div style="background-color: #05649c; padding: 20px; width: 100%">
+          <p style="color: white; text-align: center">
+            Swift-Net.ca | Customer Care<br />
+            <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a><br />
+            <a style="color: white" href="tel:1-866-667-2375">tel:1-866-667-2375</a>
+          </p>
+        </div>
+      </div>
+    </body>
+  </html>
       `
         : `
         <html>
           <body>
-            
-            
+          
             <h3>Dear ${firstName},</h3>
             <p>
               Thank you for your interest in our high-speed Internet services. We have checked the serviceability of the address you provided and regret to inform you that our services are not currently available in your area.
