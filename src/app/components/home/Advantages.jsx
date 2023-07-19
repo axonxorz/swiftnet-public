@@ -1,10 +1,10 @@
 import React from "react";
-import img1 from "../../../assets/Rectangle-19.webp";
-import img2 from "../../../assets/Rectangle-20.webp";
-import img3 from "../../../assets/Rectangle-12.webp";
-import img4 from "../../../assets/Rectangle-14.webp";
-import img5 from "../../../assets/Rectangle-13.webp";
-import img6 from "../../../assets/Rectangle-15.webp";
+import img1 from "../../../assets/Advantage/bussinessclass-min.webp";
+import img2 from "../../../assets/Advantage/onlinelearning-min.webp";
+import img3 from "../../../assets/Advantage/techsavvy-min.webp";
+import img4 from "../../../assets/Advantage/livesport-min.webp";
+import img5 from "../../../assets/Advantage/tv-min.webp";
+import img6 from "../../../assets/Advantage/gamming-min.webp";
 import styles from "@/app/styles/styles";
 import Image from "next/image";
 import Link from "next/link";
@@ -75,6 +75,9 @@ const Advantages = () => {
               alt=""
               className="rounded-md w-full"
               loading="lazy"
+              style={{
+                height: "500px",
+              }}
             />
             <h4 className="font-semibold text-xl md:text-2xl mt-3">
               {advantage.heading}
