@@ -75,9 +75,9 @@ const Advantages = () => {
               alt=""
               className="rounded-md w-full"
               loading="lazy"
-              style={{
-                height: "500px",
-              }}
+              // style={{
+              //   height: "500px",
+              // }}
             />
             <h4 className="font-semibold text-xl md:text-2xl mt-3">
               {advantage.heading}
