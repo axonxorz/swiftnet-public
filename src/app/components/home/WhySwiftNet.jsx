@@ -58,7 +58,7 @@ const WhySwiftNet = () => {
           Saskatchewan!
         </p>
         <Link
-          href={"/contact-us"}
+          href={"/sign-up"}
           className="w-full cursor-pointer mt-3 md:w-auto text-primary font-medium text-base border-[1px] border-solid border-primary px-4 py-2 rounded-md"
         >
           Get Started

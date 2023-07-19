@@ -689,6 +689,14 @@ video {
   z-index: 200;
 }
 
+.z-\[9999\] {
+  z-index: 9999;
+}
+
+.z-\[999\] {
+  z-index: 999;
+}
+
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -993,6 +1001,14 @@ video {
   width: 100%;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
+.w-\[130px\] {
+  width: 130px;
+}
+
 .max-w-sm {
   max-width: 24rem;
 }
@@ -1087,6 +1103,10 @@ video {
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
