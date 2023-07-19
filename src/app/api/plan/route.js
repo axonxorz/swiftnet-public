@@ -76,7 +76,7 @@ export async function POST(request) {
       selectedAddOne.price && `$${selectedAddOne?.price}`
     }</li>
             <li>Preferred installation date: ${date}</li>
-            <li>Phone Number: ${phoneNumber}</li>
+            <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/${phoneNumber}">${phoneNumber}</a></li>
             <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${fullAddress}">${fullAddress}</a></li>
             <li>Address lookup : ${googleAPIFullAddress} <li/>
             <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
