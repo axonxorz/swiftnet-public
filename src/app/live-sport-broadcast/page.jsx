@@ -5,7 +5,8 @@ import Image from "next/image";
 import stream from "../../assets/stream.webp";
 
 export const metadata = {
-  title: "Live Sports TV Internet Service by Swift-Net.ca",
+  title:
+    "Live sports with AB/SK Local Wi-Fi Internet Provider [SIGN UP] for Swift-Net.ca",
   description:
     "Get connected with Swift-Net.ca, the leading home Wi-Fi internet service provider in Alberta & Saskatchewan, providing high-speed wireless internet service in Lloydminster, Cold Lake, North Battleford, and more rural communities. Sign up today!",
 };

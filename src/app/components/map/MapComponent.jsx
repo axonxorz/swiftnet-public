@@ -53,43 +53,49 @@ const MapComponent = () => {
   useEffect(() => {
     const confirmBuildingBtn = confirmBuildingBtnRef.current;
     console.log(confirmBuildingBtn);
-    const handleClick = () => {
-      // your logic here
+    // const handleClick = () => {
+    //   // your logic here
 
-      console.log("click mee ah");
-    };
+    //   console.log("click mee ah");
+    // };
 
-    const handleMouseEnter = () => {
-      // your logic here
-      console.log("ebrtzr");
-    };
+    // const handleMouseEnter = () => {
+    //   // your logic here
+    //   console.log("ebrtzr");
+    // };
 
-    const handleMouseLeave = () => {
-      // your logic here
-      console.log("leave");
-    };
+    // const handleMouseLeave = () => {
+    //   // your logic here
+    //   console.log("leave");
+    // };
 
-    if (confirmBuildingBtn) {
-      confirmBuildingBtn.addEventListener("click", handleClick);
-      confirmBuildingBtn.addEventListener("mouseenter", handleMouseEnter);
-      confirmBuildingBtn.addEventListener("mouseleave", handleMouseLeave);
-      console.log("heeeree");
-      return () => {
-        // remove the event listeners when the component unmounts
-        confirmBuildingBtn.removeEventListener("click", handleClick);
-        confirmBuildingBtn.removeEventListener("mouseenter", handleMouseEnter);
-        confirmBuildingBtn.removeEventListener("mouseleave", handleMouseLeave);
-      };
-    }
+    // if (confirmBuildingBtn) {
+    //   confirmBuildingBtn.addEventListener("click", handleClick);
+    //   confirmBuildingBtn.addEventListener("mouseenter", handleMouseEnter);
+    //   confirmBuildingBtn.addEventListener("mouseleave", handleMouseLeave);
+    //   console.log("heeeree");
+    //   return () => {
+    //     // remove the event listeners when the component unmounts
+    //     confirmBuildingBtn.removeEventListener("click", handleClick);
+    //     confirmBuildingBtn.removeEventListener("mouseenter", handleMouseEnter);
+    //     confirmBuildingBtn.removeEventListener("mouseleave", handleMouseLeave);
+    //   };
+    // }
   }, [confirmBuildingBtnRef]);
 
   const resetState = (event) => {
     if (event.detail == 2) {
-      console.log("Double Clicked");
       router.push("/");
     } else if (event.detail == 1) {
-      setUserLocation(initialMapState);
-      markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
+      if (
+        userLocation.lat === initialMapState.lat &&
+        userLocation.lng === initialMapState.lng
+      ) {
+        router.push("/");
+      } else {
+        setUserLocation(initialMapState);
+        markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
+      }
     }
   };
 
@@ -304,6 +310,16 @@ const MapComponent = () => {
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
         >
           Put the pin on the building where you want internet service.{" "}
+          <span
+            onClick={() => {
+              router.push(
+                "/sign-up?step=2&fullAdress=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
+              );
+            }}
+            className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"
+          >
+            skip this step
+          </span>{" "}
         </p>
       </div>
 

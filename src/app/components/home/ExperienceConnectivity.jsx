@@ -37,6 +37,7 @@ const ExperienceConnectivity = () => {
     },
     {
       id: 6,
+      heading: "Local Provider",
       descp:
         "By choosing Swift-Net.ca, you're choosing an internet service provider that values transparency and customer satisfaction. Our truly unlimited home Wi-Fi internet service means you can enjoy high-speed home Wi-Fi without any limitations or restrictions. Connect with us today and experience truly unlimited internet in rural Alberta and Saskatchewan.",
     },
@@ -69,7 +70,7 @@ const ExperienceConnectivity = () => {
         <div className="basis-[58%] flex flex-col gap-3">
           {data.map((data) => (
             <div key={data.id}>
-              <span className={`${styles.paragraph} font-semibold`}>
+              <span className={` font-semibold text-xl`}>
                 {data.heading && data.heading}
               </span>
               <p className={`${styles.paragraph}`}>{data.descp}</p>
