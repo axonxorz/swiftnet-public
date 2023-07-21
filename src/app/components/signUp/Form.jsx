@@ -34,6 +34,12 @@ const Form = () => {
         resolver: yupResolver(validationSchema),
     });
 
+    useEffect(() => {
+        if(getValues("email").length > 5  ){
+          
+            useStore.setState({email : getValues("email") , phoneNb :getValues("phoneNumber")  })
+        }
+      }, [getValues("email") , getValues("phoneNumber")])
 
     // Example POST method implementation:
 
@@ -116,6 +122,7 @@ const Form = () => {
             const { message, status } = postDataResponse;
 
             if (status === 1) {
+                useStore.setState({completeProcess : true})
                 route.push(`/email-check?user=${data.email}`);
             } else {
                 toast.error(message)

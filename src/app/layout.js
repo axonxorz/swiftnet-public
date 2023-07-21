@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import dotenv from "dotenv";
 import Script from "next/script";
 import { useStore } from "@/store";
+import { useEffect } from "react";
+import { generateSessionID, postData } from "@/tools";
 
 const inter = Inter({
   weight: ["400", "500", "600"],
@@ -17,20 +19,65 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
+  const {
+    id,
+    ipAddress,
+    address,
+    email,
+    lat,
+    lng,
+    country,
+    city,
+    zip,
+    confirm,
+    completeProcess,
+    phoneNb,
+    // isChanged, // Additional state to track changes
+  } = useStore();
+  const setIpAddress = useStore((state) => state.setIpAddress);
+  const browserType = navigator.userAgent;
+
   dotenv.config();
 
-  const setIpAddress = useStore((state) => state.setIpAddress);
+  useEffect(() => {
+    if (address !== "" || (lat !== 0 && lng !== 0)) {
+      saveStoreDataToSpreadSheet({
+        id,
+        ipAddress,
+        address,
+        email,
+        lat,
+        lng,
+        country,
+        city,
+        zip,
+        browserType,
+        confirm,
+        completeProcess,
+        phone: phoneNb,
+      });
+    }
+  }, [address, lat, lng, confirm, email, phoneNb, completeProcess]);
 
-  fetch("https://api.ipify.org/?format=json")
-    .then((response) => response.json())
-    .then((data) => {
-      const ipAddress = data.ip;
-      setIpAddress(ipAddress);
-    })
-    .catch((error) => {
-      toast.error("Error:", error);
+  useEffect(() => {
+    useStore.setState({ id: generateSessionID() });
+    // Fetch IP address only once when the component mounts
+    fetch("https://api.ipify.org/?format=json")
+      .then((response) => response.json())
+      .then((data) => {
+        const ipAddress = data.ip;
+        setIpAddress(ipAddress); // Assuming you have the setIpAddress function defined in your store
+      })
+      .catch((error) => {
+        toast.error("Error:", error);
+      });
+  }, []);
+
+  const saveStoreDataToSpreadSheet = (data) => {
+    postData("/api/googlesheet", data).catch((error) => {
+      console.log(error);
     });
-
+  };
   return (
     <html lang="en">
       <>

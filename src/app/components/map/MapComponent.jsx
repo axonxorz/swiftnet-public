@@ -7,6 +7,7 @@ import CheckOut from "./CheckOut";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
+import { useStore } from "@/store";
 const defaultCenter = {
   lat: 53.31225509999999,
   lng: -110.072853,
@@ -127,6 +128,7 @@ const MapComponent = () => {
       //so when the dragend i wait 50 ms then set Dragging to false and check it in the onclick
       setTimeout(() => {
         setIsDragging(false);
+
         setUserLocation({
           ...userLocation,
           lat: event.latLng.lat(),
@@ -275,6 +277,10 @@ const MapComponent = () => {
 
   useEffect(() => {
     addMarkerToMap(userLocation);
+    useStore.setState({
+      lat: userLocation.lat,
+      lng: userLocation.lng,
+    });
   }, [userLocation]);
 
   useEffect(() => {
