@@ -5,7 +5,8 @@ import user from "../../assets/IMG_1159-1.webp";
 import CommonLayers from "../components/CommonLayers";
 
 export const metadata = {
-  title: "Business Class Internet Service by Swift-Net.ca",
+  title:
+    "Work from home with AB/SK Local Wi-Fi Internet Provider [SIGN UP] for Swift-Net.ca",
   description:
     "Get connected with Swift-Net.ca, the leading home Wi-Fi internet service provider in Alberta & Saskatchewan, providing high-speed wireless internet service in Lloydminster, Cold Lake, North Battleford, and more rural communities. Sign up today!",
 };
