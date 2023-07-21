@@ -111,7 +111,7 @@ const Gallery = () => {
         <div className={`${styles.width} gap-4 w-full grid grid-cols-2 `}>
           <Link href={"/stream-uninterrupted"}>
             <div
-              className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden  col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] text-white`}>Streaming movies & TV</p>
             </div>
@@ -119,7 +119,7 @@ const Gallery = () => {
 
           <Link href={"/gaming-experience"}>
             <div
-              className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] text-white`}>Online Gaming</p>
             </div>
@@ -127,7 +127,7 @@ const Gallery = () => {
 
           <Link href={"/business-class"}>
             <div
-              className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] text-white`}>Work from home</p>
             </div>
@@ -135,7 +135,7 @@ const Gallery = () => {
 
           <Link href={"/online-learning"}>
             <div
-              className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] text-white`}>Online Learning</p>
             </div>
@@ -143,7 +143,7 @@ const Gallery = () => {
 
           <Link href={"/live-sport-broadcast"}>
             <div
-              className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] text-white`}>Live Sports</p>
             </div>
@@ -151,7 +151,7 @@ const Gallery = () => {
 
           <Link href={"/non-tech-savvy"}>
             <div
-              className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[400px] p-4 flex items-end justify-start`}
+              className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] text-white`}>Seniors</p>
             </div>

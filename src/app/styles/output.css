@@ -913,6 +913,10 @@ video {
   height: 100vh;
 }
 
+.h-\[450px\] {
+  height: 450px;
+}
+
 .min-h-\[260px\] {
   min-height: 260px;
 }
