@@ -30,11 +30,11 @@ const Step1 = ({ setStep, plan, price }) => {
           <div
             className={`${style.signupexp} relative w-[400px] overflow-hidden h-[150px] rounded-lg mb-3   flex flex-col items-start justify-center gap-2 p-4`}
           >
-            <div className="absolute top-0 left-0 bg-primary/80 w-full h-full"></div>
-            <p className={`text-xs text-white z-30`}>Swift-net.ca</p>
+            <div className="absolute top-0 left-0 bg-gradient-to-r from-primary/90 from-10% via-primary/80 via-30% to-primary/70 to-90% w-full h-full"></div>
+            <p className={`text-xs text-white z-30`}>Swift-Net.ca</p>
             <p className={`text-[20px] text-white z-30`}>
               Plans starting at ${price} and speeds up to{" "}
-              <span className="bg-white text-primary">{plan}Mbps!</span>
+              <span className="bg-white text-primary">{plan} Mbps!</span>
             </p>
           </div>
           <div className="w-full py-2">

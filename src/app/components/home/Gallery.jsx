@@ -60,7 +60,9 @@ const Gallery = () => {
             <div
               className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Streaming movies & TV</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Streaming movies & TV
+              </p>
             </div>
           </Link>
 
@@ -68,7 +70,9 @@ const Gallery = () => {
             <div
               className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden w-[500px]    h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Online Gaming</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Online Gaming
+              </p>
             </div>
           </Link>
 
@@ -76,7 +80,9 @@ const Gallery = () => {
             <div
               className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Work from home</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Work from home
+              </p>
             </div>
           </Link>
 
@@ -84,7 +90,9 @@ const Gallery = () => {
             <div
               className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden w-[500px]  h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Online Learning</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Online Learning
+              </p>
             </div>
           </Link>
 
@@ -92,7 +100,7 @@ const Gallery = () => {
             <div
               className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Live Sports</p>
+              <p className={`text-[42px] font-bold text-white`}>Live Sports</p>
             </div>
           </Link>
 
@@ -100,7 +108,7 @@ const Gallery = () => {
             <div
               className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden w-[500px]  h-[400px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Seniors</p>
+              <p className={`text-[42px] font-bold text-white`}>Seniors</p>
             </div>
           </Link>
         </div>
@@ -108,12 +116,14 @@ const Gallery = () => {
 
       {/* desktop v */}
       <div className="w-full  hidden md:grid" ref={galleryRef}>
-        <div className={`${styles.width} gap-4 w-full grid grid-cols-2 `}>
+        <div className={`${styles.width} gap-4 w-full grid grid-cols-3 `}>
           <Link href={"/stream-uninterrupted"}>
             <div
               className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden  col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Streaming movies & TV</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Stream Movies & TV
+              </p>
             </div>
           </Link>
 
@@ -121,7 +131,9 @@ const Gallery = () => {
             <div
               className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Online Gaming</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Online Gaming
+              </p>
             </div>
           </Link>
 
@@ -129,7 +141,9 @@ const Gallery = () => {
             <div
               className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Work from home</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Work from home
+              </p>
             </div>
           </Link>
 
@@ -137,7 +151,9 @@ const Gallery = () => {
             <div
               className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Online Learning</p>
+              <p className={`text-[42px] font-bold text-white`}>
+                Online Learning
+              </p>
             </div>
           </Link>
 
@@ -145,7 +161,7 @@ const Gallery = () => {
             <div
               className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Live Sports</p>
+              <p className={`text-[42px] font-bold text-white`}>Live Sports</p>
             </div>
           </Link>
 
@@ -153,7 +169,7 @@ const Gallery = () => {
             <div
               className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden col-span-1 h-[450px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[42px] text-white`}>Seniors</p>
+              <p className={`text-[42px] font-bold text-white`}>Seniors</p>
             </div>
           </Link>
         </div>

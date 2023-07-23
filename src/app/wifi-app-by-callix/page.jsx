@@ -1,15 +1,23 @@
 import React from "react";
-import ImageCmp from "../components/wifi-app-by-callix/Image";
-import Sec2 from "../components/wifi-app-by-callix/Section2";
-import IntroducingGigaSpire from "../components/wifi-app-by-callix/Introducing-GigaSpire";
+import Hero from "../components/wifi-app-by-callix/Hero";
+import GigaSpire from "../components/wifi-app-by-callix/GigaSpire";
+import Grids from "../components/wifi-app-by-callix/Grids";
+import JoinUs from "../components/wifi-app-by-callix/JoinUs";
+import Sec2 from "../components/wifi-app-by-callix/Sec2";
+
 const page = () => {
   return (
     <>
-      <div className="h-[20px] w-full"></div>
-      <ImageCmp />
+      <Hero />
       <Sec2 />
-      <IntroducingGigaSpire />
-      <div className="h-[100px] w-full"></div>
+      <div className="h-[70px]"></div>
+
+      <GigaSpire />
+      <div className="h-[100px]"></div>
+      <Grids />
+      <div className="h-[100px]"></div>
+      <JoinUs />
+      <div className="h-[100px]"></div>
     </>
   );
 };

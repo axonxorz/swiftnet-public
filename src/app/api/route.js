@@ -89,7 +89,7 @@ export async function POST(request) {
           <p style="color: white; text-align: center">
             Swift-Net.ca | Customer Care<br />
             <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a><br />
-            <a style="color: white" href="tel:1-866-667-2375">tel:1-866-667-2375</a>
+            <a style="color: white" href="tel:1-866-667-2375">1-866-667-2375</a>
           </p>
         </div>
       </div>

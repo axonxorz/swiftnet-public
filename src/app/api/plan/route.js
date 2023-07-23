@@ -72,7 +72,7 @@ export async function POST(request) {
             <li>City: ${citypl}</li>
             <li>Email: ${email}</li>
             <li>Plan: $${plan.price}</li>
-            <li>Add ones: ${selectedAddOne.title && selectedAddOne.title}  ${
+            <li>Add ons: ${selectedAddOne.title && selectedAddOne.title}  ${
       selectedAddOne.price && `$${selectedAddOne?.price}`
     }</li>
             <li>Preferred installation date: ${date}</li>

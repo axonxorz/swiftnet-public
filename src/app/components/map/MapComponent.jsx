@@ -91,7 +91,7 @@ const MapComponent = () => {
         userLocation.lat === initialMapState.lat &&
         userLocation.lng === initialMapState.lng
       ) {
-        router.push("/");
+        router.back();
       } else {
         setUserLocation(initialMapState);
         markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
@@ -305,7 +305,7 @@ const MapComponent = () => {
           />
         )}
       </GoogleMapReact>
-      <div className="absolute w-full top-3 left-0  flex items-center justify-center  z-50  ">
+      <div className="absolute w-full top-2 left-0  flex items-center justify-center  z-50 px-2 ">
         <p
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
         >
@@ -324,7 +324,7 @@ const MapComponent = () => {
       </div>
 
       <button
-        className="absolute  top-2 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
+        className="absolute top-20  md:top-4 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
         onClick={(e) => resetState(e)}
       >
         <div className="w-[38px] h-[38px] text-center flex items-center justify-center">
