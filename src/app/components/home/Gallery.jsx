@@ -61,7 +61,7 @@ const Gallery = () => {
               className={`${style.streambg} relative group cursor-pointer rounded-lg overflow-hidden w-[500px] h-[400px] p-4 flex items-end justify-start`}
             >
               <p className={`text-[42px] font-bold text-white`}>
-                Streaming movies & TV
+                Stream Movies & TV
               </p>
             </div>
           </Link>

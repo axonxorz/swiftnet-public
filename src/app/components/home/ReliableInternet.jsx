@@ -29,7 +29,7 @@ const ReliableInternet = () => {
             <div className="flex  flex-col gap-4 my-4">
               <div className="w-full space-y-2">
                 <h6
-                  className={`text-primary font-semibold text-base md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+                  className={`text-primary font-semibold text-xl md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
                 >
                   Permanent Fixed Wireless Connection
                 </h6>
@@ -44,7 +44,7 @@ const ReliableInternet = () => {
 
               <div className="w-full space-y-2">
                 <h6
-                  className={`text-primary font-semibold text-base md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+                  className={`text-primary font-semibold text-xl md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
                 >
                   Less Susceptible to Power Disruptions
                 </h6>
@@ -59,7 +59,7 @@ const ReliableInternet = () => {
 
               <div className="w-full space-y-2">
                 <h6
-                  className={`text-primary font-semibold text-base md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+                  className={`text-primary font-semibold text-xl md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
                 >
                   Resilient to Extreme Weather Conditions
                 </h6>
@@ -75,7 +75,7 @@ const ReliableInternet = () => {
 
               <div className="w-full space-y-2">
                 <h6
-                  className={`text-primary font-semibold text-base md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
+                  className={`text-primary font-semibold text-xl md:text-2xl relative mb-3 md:mb-0 mt-6 md:mt-0 ${style.subHeadingBorder}`}
                 >
                   Unaffected by Summer Construction
                 </h6>
