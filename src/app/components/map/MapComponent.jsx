@@ -28,61 +28,8 @@ const MapComponent = () => {
   const router = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
   const [displayCheckout, setDisplayCheckout] = useState(true);
-  const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
-
-  // Add event listener to handle the back button press
-  useEffect(() => {
-    const handleBackButton = (event) => {
-      event.preventDefault();
-      // Perform your custom action here
-      console.log("Custom action on back button press");
-      // You can navigate to a different route using router.push()
-      // router.push('/your-custom-route');
-      router.refresh();
-    };
-
-    window.addEventListener("popstate", handleBackButton);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("popstate", handleBackButton);
-    };
-  }, [router, window]);
-
-  useEffect(() => {
-    const confirmBuildingBtn = confirmBuildingBtnRef.current;
-    console.log(confirmBuildingBtn);
-    const handleClick = () => {
-      // your logic here
-
-      console.log("click mee ah");
-    };
-
-    const handleMouseEnter = () => {
-      // your logic here
-      console.log("ebrtzr");
-    };
-
-    const handleMouseLeave = () => {
-      // your logic here
-      console.log("leave");
-    };
-
-    if (confirmBuildingBtn) {
-      confirmBuildingBtn.addEventListener("click", handleClick);
-      confirmBuildingBtn.addEventListener("mouseenter", handleMouseEnter);
-      confirmBuildingBtn.addEventListener("mouseleave", handleMouseLeave);
-      console.log("heeeree");
-      return () => {
-        // remove the event listeners when the component unmounts
-        confirmBuildingBtn.removeEventListener("click", handleClick);
-        confirmBuildingBtn.removeEventListener("mouseenter", handleMouseEnter);
-        confirmBuildingBtn.removeEventListener("mouseleave", handleMouseLeave);
-      };
-    }
-  }, [confirmBuildingBtnRef]);
 
   const resetState = (event) => {
     if (event.detail == 2) {
@@ -280,6 +227,7 @@ const MapComponent = () => {
     useStore.setState({
       lat: userLocation.lat,
       lng: userLocation.lng,
+      step: "STEP 2",
     });
   }, [userLocation]);
 

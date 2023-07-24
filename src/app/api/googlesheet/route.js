@@ -22,6 +22,7 @@ export async function POST(request) {
     browserType,
     confirm,
     completeProcess,
+    step,
   } = req;
 
   try {
@@ -40,6 +41,7 @@ export async function POST(request) {
       browserType,
       confirm,
       completeProcess,
+      step,
     });
     return NextResponse.json({
       message: "Data written to Google Sheet successfully",

@@ -41,6 +41,7 @@ export async function writeToGoogleSheet(spreadsheetId, data) {
   var values = [
     [
       data.id,
+      data.step,
       datefrm,
       data.email,
       data.lat,
@@ -59,7 +60,7 @@ export async function writeToGoogleSheet(spreadsheetId, data) {
 
   const result = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: "A1:N1", // Replace with your Google Sheets document Sheet name
+    range: "A1:O1", // Replace with your Google Sheets document Sheet name
   });
 
   const rows = result.data.values;
@@ -67,11 +68,6 @@ export async function writeToGoogleSheet(spreadsheetId, data) {
   const rowIndexToUpdate = rows.findIndex((row) => {
     // console.log(row);
     return row[2] === data.email;
-  });
-
-  console.log({
-    index: "dd",
-    rowIndexToUpdate,
   });
 
   if (rowIndexToUpdate !== -1) {
