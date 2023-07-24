@@ -42,15 +42,13 @@ export async function writeToGoogleSheet(spreadsheetId, data) {
     [
       data.id,
       data.step,
+      data.status,
       datefrm,
       data.email,
       data.lat,
       data.lng,
       data.address,
       data.phone,
-      data.city,
-      data.country,
-      data.zip,
       data.ipAddress,
       data.browserType,
       data.confirm,
@@ -60,7 +58,7 @@ export async function writeToGoogleSheet(spreadsheetId, data) {
 
   const result = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: "A1:O1", // Replace with your Google Sheets document Sheet name
+    range: "A1:M1", // Replace with your Google Sheets document Sheet name
   });
 
   const rows = result.data.values;

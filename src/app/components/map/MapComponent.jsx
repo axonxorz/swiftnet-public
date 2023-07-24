@@ -33,7 +33,6 @@ const MapComponent = () => {
 
   const resetState = (event) => {
     if (event.detail == 2) {
-      console.log("Double Clicked");
       router.push("/");
     } else if (event.detail == 1) {
       setUserLocation(initialMapState);
@@ -138,12 +137,16 @@ const MapComponent = () => {
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
           fullAdress: searchParams.get("fullAdress"),
+          step: "STEP 2",
+          status: "PASSED",
         });
         setInitialMapState({
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
           fullAdress: searchParams.get("fullAdress"),
+          step: "STEP 2",
+          status: "PASSED",
         });
       }
       setDefaultZoom(21);
@@ -156,13 +159,22 @@ const MapComponent = () => {
             lng: parseFloat(latLng.lng),
             fullAdress: searchParams.get("fullAdress"),
           });
+
           setInitialMapState({
             ...userLocation,
             lat: parseFloat(latLng.lat),
             lng: parseFloat(latLng.lng),
             fullAdress: searchParams.get("fullAdress"),
           });
+
           setDefaultZoom(21);
+        });
+      } else {
+        useStore.setState({
+          step: "STEP 1",
+          status: "SKIPPED",
+          lat: userLocation.lat,
+          lng: userLocation.lng,
         });
       }
     }
@@ -224,11 +236,17 @@ const MapComponent = () => {
 
   useEffect(() => {
     addMarkerToMap(userLocation);
-    useStore.setState({
-      lat: userLocation.lat,
-      lng: userLocation.lng,
-      step: "STEP 2",
-    });
+    if (
+      userLocation.lat !== defaultCenter.lat ||
+      userLocation.lng !== userLocation.lng
+    ) {
+      useStore.setState({
+        lat: userLocation.lat,
+        lng: userLocation.lng,
+        step: "STEP 2",
+        status: "Select new place",
+      });
+    }
   }, [userLocation]);
 
   useEffect(() => {

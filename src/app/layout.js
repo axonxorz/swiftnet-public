@@ -26,16 +26,14 @@ export default function RootLayout({ children }) {
     email,
     lat,
     lng,
-    country,
-    city,
-    zip,
     confirm,
     completeProcess,
     phoneNb,
+    step,
+    status,
     // isChanged, // Additional state to track changes
   } = useStore();
   const setIpAddress = useStore((state) => state.setIpAddress);
-  const browserType = navigator.userAgent;
 
   dotenv.config();
 
@@ -43,21 +41,20 @@ export default function RootLayout({ children }) {
     if (address !== "" || (lat !== 0 && lng !== 0)) {
       saveStoreDataToSpreadSheet({
         id,
+        step,
+        status,
         ipAddress,
         address,
         email,
         lat,
         lng,
-        country,
-        city,
-        zip,
-        browserType,
+        browserType: "",
         confirm,
         completeProcess,
         phone: phoneNb,
       });
     }
-  }, [address, lat, lng, confirm, email, phoneNb, completeProcess]);
+  }, [address, lat, lng, confirm, email, phoneNb, completeProcess, step]);
 
   useEffect(() => {
     useStore.setState({ id: generateSessionID() });

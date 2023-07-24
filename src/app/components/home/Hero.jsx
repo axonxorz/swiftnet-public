@@ -1,10 +1,17 @@
+"use client";
 import React from "react";
 import style from "../../styles/styles.module.css";
 import styles from "@/app/styles/styles";
 import AutoCompleteInput from "./AutoCompleteInput";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 const Hero = () => {
+  const route = useRouter();
+
+  const skipStep = () => {
+    route.push("/map");
+  };
   return (
     <div className={`${style.heroBg} h-auto`}>
       <div
@@ -36,12 +43,15 @@ const Hero = () => {
           <AutoCompleteInput place={"home"} />
         </div>
 
-        <Link href={"/map"}>
-          <p className={`${styles.paragraph} mt-3 text-white`}>
-            Check availability by map or browser location{" "}
-            <span className="underline font-bold">here</span>
-          </p>
-        </Link>
+        <p className={`${styles.paragraph} mt-3 text-white`}>
+          Check availability by map or browser location{" "}
+          <span
+            className="underline font-bold cursor-pointer"
+            onClick={() => skipStep()}
+          >
+            here
+          </span>
+        </p>
       </div>
     </div>
   );

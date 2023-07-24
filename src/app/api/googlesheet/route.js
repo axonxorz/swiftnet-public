@@ -23,6 +23,7 @@ export async function POST(request) {
     confirm,
     completeProcess,
     step,
+    status,
   } = req;
 
   try {
@@ -34,14 +35,12 @@ export async function POST(request) {
       lng,
       address,
       phone,
-      country,
-      city,
-      zip,
       ipAddress,
       browserType,
       confirm,
       completeProcess,
       step,
+      status,
     });
     return NextResponse.json({
       message: "Data written to Google Sheet successfully",
