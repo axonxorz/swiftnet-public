@@ -31,12 +31,20 @@ const MapComponent = () => {
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
 
+
   const resetState = (event) => {
     if (event.detail == 2) {
       router.push("/");
     } else if (event.detail == 1) {
-      setUserLocation(initialMapState);
-      markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
+      if (
+        userLocation.lat === initialMapState.lat &&
+        userLocation.lng === initialMapState.lng
+      ) {
+        router.back();
+      } else {
+        setUserLocation(initialMapState);
+        markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
+      }
     }
   };
 
@@ -271,16 +279,26 @@ const MapComponent = () => {
           />
         )}
       </GoogleMapReact>
-      <div className="absolute w-full top-3 left-0  flex items-center justify-center  z-50  ">
+      <div className="absolute w-full top-2 left-0  flex items-center justify-center  z-50 px-2 ">
         <p
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
         >
           Put the pin on the building where you want internet service.{" "}
+          <span
+            onClick={() => {
+              router.push(
+                "/sign-up?step=2&fullAdress=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
+              );
+            }}
+            className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"
+          >
+            skip this step
+          </span>{" "}
         </p>
       </div>
 
       <button
-        className="absolute  top-2 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
+        className="absolute top-20  md:top-4 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
         onClick={(e) => resetState(e)}
       >
         <div className="w-[38px] h-[38px] text-center flex items-center justify-center">

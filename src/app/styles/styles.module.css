@@ -5,6 +5,14 @@
   background-size: cover;
   /* background-position: center; */
 }
+
+.wifiHeroBg {
+  max-width: 100%;
+  background: url("../../assets/wifi/herowifipage_1.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center; */
+}
 .bgFilter {
   background: #ffffff;
   opacity: 0.9;
@@ -113,7 +121,7 @@
 }
 
 .seniorsbg {
-  background-image: url("../../assets/Advantage/techsavvy-min.webp");
+  background-image: url("../../assets/gallery/RectanSeniors.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
