@@ -33,7 +33,7 @@ const Footer = () => {
                   <Link href="/business-class">Business Internet</Link>
                 </li>
                 <li>
-                  <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
+                  <Link href="/wifi-app-by-callix">Wi-Fi App</Link>
                 </li>
                 <li className="uppercase">
                   <Link href="/faq">Faq</Link>

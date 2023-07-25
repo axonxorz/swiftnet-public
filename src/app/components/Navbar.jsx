@@ -128,7 +128,7 @@ const Navbar = () => {
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
                 >
-                  Wi-Fi App by Calix
+                  Wi-Fi App
                 </li>
               </Link>
               <Link href="/pricing">

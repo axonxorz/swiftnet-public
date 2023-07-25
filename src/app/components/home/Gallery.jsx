@@ -15,7 +15,9 @@ const Gallery = () => {
             <div
               className={`${style.streambg}  relative group cursor-pointer rounded-lg overflow-hidden  col-span-1 md:h-[450px] h-[250px]  p-4 flex items-end justify-start`}
             >
-              <p className={`text-[25px] md:text-[42px] font-bold text-white`}>
+              <p
+                className={`text-[25px]  bg-black/30  md:text-[42px] font-bold text-white `}
+              >
                 Stream Movies & TV
               </p>
             </div>
@@ -25,7 +27,9 @@ const Gallery = () => {
             <div
               className={`${style.gamingbg} cursor-pointer rounded-lg overflow-hidden col-span-1 md:h-[450px] h-[250px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[25px] md:text-[42px] font-bold text-white`}>
+              <p
+                className={`text-[25px] shadow-lg bg-black/30   md:text-[42px] font-bold text-white`}
+              >
                 Online Gaming
               </p>
             </div>
@@ -35,7 +39,9 @@ const Gallery = () => {
             <div
               className={`${style.workfromhomebg} cursor-pointer rounded-lg overflow-hidden col-span-1 md:h-[450px] h-[250px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[25px] md:text-[42px] font-bold text-white`}>
+              <p
+                className={`text-[25px] md:text-[42px] font-bold bg-black/30  text-white`}
+              >
                 Work from home
               </p>
             </div>
@@ -45,7 +51,9 @@ const Gallery = () => {
             <div
               className={`${style.onlineleaningbg} cursor-pointer rounded-lg overflow-hidden col-span-1 md:h-[450px] h-[250px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[25px] md:text-[42px] font-bold text-white`}>
+              <p
+                className={`text-[25px] md:text-[42px] font-bold bg-black/30  text-white`}
+              >
                 Online Learning
               </p>
             </div>
@@ -55,7 +63,9 @@ const Gallery = () => {
             <div
               className={`${style.liveSportbg} cursor-pointer rounded-lg overflow-hidden col-span-1 md:h-[450px] h-[250px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[25px] md:text-[42px] font-bold text-white`}>
+              <p
+                className={`text-[25px] md:text-[42px] font-bold bg-black/30  text-white`}
+              >
                 Live Sports
               </p>
             </div>
@@ -65,7 +75,9 @@ const Gallery = () => {
             <div
               className={`${style.seniorsbg} cursor-pointer rounded-lg overflow-hidden col-span-1 md:h-[450px] h-[250px] p-4 flex items-end justify-start`}
             >
-              <p className={`text-[25px] md:text-[42px] font-bold text-white`}>
+              <p
+                className={`text-[25px] md:text-[42px] font-bold bg-black/30  text-white`}
+              >
                 Seniors
               </p>
             </div>
