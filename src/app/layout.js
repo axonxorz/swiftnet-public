@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import dotenv from "dotenv";
 import Script from "next/script";
 import { useStore } from "@/store";
+import { useEffect } from "react";
+import { generateSessionID, postData } from "@/tools";
 
 const inter = Inter({
   weight: ["400", "500", "600"],
@@ -17,20 +19,62 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  dotenv.config();
-
+  const {
+    id,
+    ipAddress,
+    address,
+    email,
+    lat,
+    lng,
+    confirm,
+    completeProcess,
+    phoneNb,
+    step,
+    status,
+    // isChanged, // Additional state to track changes
+  } = useStore();
   const setIpAddress = useStore((state) => state.setIpAddress);
 
-  fetch("https://api.ipify.org/?format=json")
-    .then((response) => response.json())
-    .then((data) => {
-      const ipAddress = data.ip;
-      setIpAddress(ipAddress);
-    })
-    .catch((error) => {
-      toast.error("Error:", error);
-    });
+  dotenv.config();
 
+  useEffect(() => {
+    if (address !== "" || (lat !== 0 && lng !== 0)) {
+      saveStoreDataToSpreadSheet({
+        id,
+        step,
+        status,
+        ipAddress,
+        address,
+        email,
+        lat,
+        lng,
+        browserType: "",
+        confirm,
+        completeProcess,
+        phone: phoneNb,
+      });
+    }
+  }, [address, lat, lng, confirm, email, phoneNb, completeProcess, step]);
+
+  useEffect(() => {
+    useStore.setState({ id: generateSessionID() });
+    // Fetch IP address only once when the component mounts
+    fetch("https://api.ipify.org/?format=json")
+      .then((response) => response.json())
+      .then((data) => {
+        const ipAddress = data.ip;
+        setIpAddress(ipAddress); // Assuming you have the setIpAddress function defined in your store
+      })
+      .catch((error) => {
+        toast.error("Error:", error);
+      });
+  }, []);
+
+  const saveStoreDataToSpreadSheet = (data) => {
+    postData("/api/googlesheet", data).catch((error) => {
+      console.log(error);
+    });
+  };
   return (
     <html lang="en">
       <>
