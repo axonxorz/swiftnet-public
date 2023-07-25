@@ -170,6 +170,7 @@ export async function POST(request) {
           <li>Postal Code: ${postal_code}</li>
           <li>Region: ${region}</li>
           <li>Supported: ${supported}</li>
+          <a href="https://swift-net.ca/installation-date?token=${token}" style="font-weight: bold; text-decoration-line: none;">Install date </a>
           <li>lng: <a href="https://www.google.com/maps/place/${lat},${lng}">${lng}</a></li>
           <li>lat:<a href="https://www.google.com/maps/place/${lat},${lng}"> ${lat}</a></li>
           <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>

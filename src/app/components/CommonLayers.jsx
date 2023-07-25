@@ -27,7 +27,7 @@ const CommonLayers = (props) => {
           >
             {props.data.map((data) => (
               <div key={data.id}>
-                <span className={`${styles.paragraph} font-semibold`}>
+                <span className={` text-[20px] md:text-[24px] font-semibold`}>
                   {data.heading && data.heading}
                 </span>
                 <p className={`${styles.paragraph}`}>{data.description}</p>
@@ -48,13 +48,13 @@ const CommonLayers = (props) => {
           <p className={`${styles.paragraph} text-white mb-7 pr-10`}>
             {props.paragraph2 && props.paragraph2}
           </p>
-          <div className="mr-6 w-full flex">
+          {/* <div className="mr-6 w-full flex absolute -mt-[120%] md:-mt-[25%]">
             <Link href={"/sign-up"}>
               <button className=" text-white  w-[130px] cursor-pointer  font-medium text-base border-[1px] border-solid border-white px-4 py-2 rounded-md">
                 Get Started
               </button>
             </Link>
-          </div>
+          </div> */}
           <div className="absolute bottom-0 left-0">
             <Image src={network} alt="/" unoptimized={true} className="" />
           </div>
@@ -68,6 +68,13 @@ const CommonLayers = (props) => {
             className="w-full"
           />
         </div>
+      </div>
+      <div className="mr-6 w-full flex absolute -mt-[120%] md:-mt-[25%] ml-[7%]">
+        <Link href={"/sign-up"}>
+          <button className=" text-white  w-[130px] cursor-pointer  font-medium text-base border-[1px] border-solid border-white px-4 py-2 rounded-md">
+            Get Started
+          </button>
+        </Link>
       </div>
     </div>
   );
