@@ -53,7 +53,7 @@ const Navbar = () => {
                 <Link href="/business-class">Business Internet</Link>
               </li>
               <li>
-                <Link href="/wifi-app-by-callix">Wi-Fi App by Calix</Link>
+                <Link href="/wifi-app-by-callix">Wi-Fi App </Link>
               </li>
 
               <li>
@@ -128,7 +128,7 @@ const Navbar = () => {
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"
                 >
-                  Wi-Fi App by Calix
+                  Wi-Fi App
                 </li>
               </Link>
               <Link href="/pricing">
