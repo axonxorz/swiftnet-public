@@ -59,7 +59,10 @@ const Footer = () => {
                 Telco call center and ISP website by TurnkeyISP
               </a>
             </span>
-            <p>Copyright 2023 swift-net.ca. All Rights Reserved</p>
+            <p>
+              Copyright {new Date().getFullYear()} Swift-Net.ca. All Rights
+              Reserved
+            </p>
           </div>
         </div>
       </div>
