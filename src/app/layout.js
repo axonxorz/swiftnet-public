@@ -10,7 +10,6 @@ import Script from "next/script";
 import { useStore } from "@/store";
 import { useEffect } from "react";
 import { generateSessionID, postData } from "@/tools";
-
 const inter = Inter({
   weight: ["400", "500", "600"],
   subsets: ["latin"],

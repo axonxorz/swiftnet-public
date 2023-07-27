@@ -983,10 +983,6 @@ video {
   height: 100vh;
 }
 
-.h-\[30\%\] {
-  height: 30%;
-}
-
 .min-h-\[260px\] {
   min-height: 260px;
 }
@@ -1888,12 +1884,6 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-lg {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -2014,10 +2004,6 @@ ul{
 
 .hover\:bg-primary\/95:hover {
   background-color: rgb(5 100 156 / 0.95);
-}
-
-.hover\:bg-slate-300\/60:hover {
-  background-color: rgb(203 213 225 / 0.6);
 }
 
 .hover\:bg-slate-300\/20:hover {
@@ -2359,6 +2345,11 @@ ul{
     padding-right: 10rem;
   }
 
+  .md\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .md\:py-0 {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -2377,11 +2368,6 @@ ul{
   .md\:py-6 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-  }
-
-  .md\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
   }
 
   .md\:pb-10 {
