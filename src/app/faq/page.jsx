@@ -8,8 +8,9 @@ export const metadata = {
     "Frustrated by MCSnet outages in Lloydminster, Cold Lake, Bonnyville, Lac La Biche, Macklin, and Athabasca? Is Access Communications offline in North Battleford, Kindersley and Meadow Lake? Tired of frequent Sasktel outages in Lloydminster North Battleford, and Meadow Lake?",
 };
 
+
 const page = () => {
-  const faqs = [
+    const faqs = [
     {
       title:
         "Experiencing an MCSnet internet outage in Lloydminster, Cold Lake, Bonnyville, Lac La Biche, Macklin, or Athabasca?",
@@ -72,6 +73,7 @@ const page = () => {
         "BigWifi outages can disrupt your internet activities. Swift-Net.ca is here to help. We can prioritize your installation, ensuring minimal downtime and a swift return to your online activities. Our service is resilient to local conditions in Alberta and Saskatchewan, ensuring you stay connected.",
     },
   ];
+  
   return (
     <>
       <div className="h-[90px] "></div>
