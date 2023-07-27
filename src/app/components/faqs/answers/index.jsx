@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Card = ({ question }) => {
@@ -22,7 +23,12 @@ const Card = ({ question }) => {
           <div className="py-2 space-y-4">
             {paragraphs.map((paragraph, index) => (
               <p className="text-[#4B5563]" key={index}>
-                {paragraph}
+                {paragraph}{" "}
+                {index === paragraphs.length - 1 && (
+                  <span className="text-primary font-semibold hover:underline ">
+                    <Link href={"/sign-up?priority=true"}>Sign-up Now</Link>
+                  </span>
+                )}
               </p>
             ))}
           </div>
