@@ -25,7 +25,7 @@ const Hero = () => {
             your family, and your devices.
           </p>
 
-          <Link href={"/map"}>
+          <Link href={"/sign-up"}>
             <div
               className={` bg-white text-center py-2 rounded-lg cursor-pointer text-white mt-6 w-[160px]`}
             >

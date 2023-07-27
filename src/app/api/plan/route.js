@@ -40,16 +40,13 @@ export async function POST(request) {
     phoneNumber,
     googleAPIFullAddress,
     city,
-    // country,
-    // lng,
-    // lat,
     fullAddress,
   } = data;
 
-  let totalPrice = parseFloat(plan.price);
+  let totalPrice = parseFloat(plan.price).toFixed(2);
   let citypl;
   if (selectedAddOne && selectedAddOne.price) {
-    totalPrice += parseFloat(selectedAddOne.price);
+    totalPrice += parseFloat(selectedAddOne.price).toFixed(2);
   }
   if (fullAddress && fullAddress !== "undefined") {
     if (!city || city === "undefined") {
@@ -76,7 +73,7 @@ export async function POST(request) {
       selectedAddOne.price && `$${selectedAddOne?.price}`
     }</li>
             <li>Preferred installation date: ${date}</li>
-            <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/${phoneNumber}">${phoneNumber}</a></li>
+            <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/CA/${phoneNumber}">${phoneNumber}</a></li>
             <li>Full Address: <a href="http://maps.google.com/maps?z=22&t=k&q=${fullAddress}">${fullAddress}</a></li>
             <li>Address lookup : ${googleAPIFullAddress} <li/>
             <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>

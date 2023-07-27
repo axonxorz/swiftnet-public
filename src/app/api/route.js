@@ -164,7 +164,7 @@ export async function POST(request) {
           <li>First Name: ${firstName}</li>
           <li>Last Name: ${lastName}</li>
           <li>Email: ${email}</li>
-          <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/CA/lookup/${phoneNumber}">${phoneNumber}</a></li>
+          <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/CA/${phoneNumber}">${phoneNumber}</a></li>
           <li>Full Address:<a href="https://www.google.com/maps/place/${fullAddress}"> ${fullAddress}</a></li>
           <li>Google lookup: <a href="https://www.google.com/maps/place/${ipAddress}">${googleAPIFullAddress}</a></li>
           <li>Postal Code: ${postal_code}</li>
