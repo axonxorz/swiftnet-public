@@ -3,6 +3,7 @@ import styles from "@/app/styles/styles";
 import React from "react";
 import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 const AutoCompleteInput = ({ setUserLocation, place }) => {
   const router = useRouter();
@@ -10,6 +11,8 @@ const AutoCompleteInput = ({ setUserLocation, place }) => {
   const inputRef = useRef();
   const [loading, setloading] = useState(false);
   const [placeObj, setplaceObj] = useState({});
+  // const setAddress = useStore((state) => state.setAddress);
+
   const options = {
     fields: ["address_components", "geometry", "icon", "name"],
   };
@@ -44,8 +47,21 @@ const AutoCompleteInput = ({ setUserLocation, place }) => {
       typeof placeObj.geometry?.location?.lat() === "undefined" ||
       typeof placeObj.geometry?.location?.lng() === "undefined"
     ) {
+      console.log(inputRef.current.value);
+      useStore.setState({
+        address: inputRef.current.value,
+        status: "PASSED , manual address",
+        step: "STEP 1",
+      });
       router.push(`/map?fullAdress=${inputRef.current.value}`);
     } else {
+      useStore.setState({
+        address: inputRef.current.value,
+        lat: placeObj.geometry?.location?.lat(),
+        lng: placeObj.geometry?.location?.lng(),
+        status: "PASSED  , autocomplete address",
+        step: "STEP 1",
+      });
       router.push(
         `/map?lat=${placeObj.geometry?.location?.lat()}&lng=${placeObj.geometry?.location?.lng()}&fullAdress=${
           inputRef.current.value

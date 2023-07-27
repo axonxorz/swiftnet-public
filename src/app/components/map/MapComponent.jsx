@@ -7,6 +7,7 @@ import CheckOut from "./CheckOut";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
+import { useStore } from "@/store";
 const defaultCenter = {
   lat: 53.31225509999999,
   lng: -110.072853,
@@ -27,61 +28,8 @@ const MapComponent = () => {
   const router = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
   const [displayCheckout, setDisplayCheckout] = useState(true);
-  const confirmBuildingBtnRef = useRef(null);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
-
-  // Add event listener to handle the back button press
-  useEffect(() => {
-    const handleBackButton = (event) => {
-      event.preventDefault();
-      // Perform your custom action here
-      console.log("Custom action on back button press");
-      // You can navigate to a different route using router.push()
-      // router.push('/your-custom-route');
-      router.refresh();
-    };
-
-    window.addEventListener("popstate", handleBackButton);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("popstate", handleBackButton);
-    };
-  }, [router, window]);
-
-  useEffect(() => {
-    const confirmBuildingBtn = confirmBuildingBtnRef.current;
-    console.log(confirmBuildingBtn);
-    // const handleClick = () => {
-    //   // your logic here
-
-    //   console.log("click mee ah");
-    // };
-
-    // const handleMouseEnter = () => {
-    //   // your logic here
-    //   console.log("ebrtzr");
-    // };
-
-    // const handleMouseLeave = () => {
-    //   // your logic here
-    //   console.log("leave");
-    // };
-
-    // if (confirmBuildingBtn) {
-    //   confirmBuildingBtn.addEventListener("click", handleClick);
-    //   confirmBuildingBtn.addEventListener("mouseenter", handleMouseEnter);
-    //   confirmBuildingBtn.addEventListener("mouseleave", handleMouseLeave);
-    //   console.log("heeeree");
-    //   return () => {
-    //     // remove the event listeners when the component unmounts
-    //     confirmBuildingBtn.removeEventListener("click", handleClick);
-    //     confirmBuildingBtn.removeEventListener("mouseenter", handleMouseEnter);
-    //     confirmBuildingBtn.removeEventListener("mouseleave", handleMouseLeave);
-    //   };
-    // }
-  }, [confirmBuildingBtnRef]);
 
   const resetState = (event) => {
     if (event.detail == 2) {
@@ -133,6 +81,7 @@ const MapComponent = () => {
       //so when the dragend i wait 50 ms then set Dragging to false and check it in the onclick
       setTimeout(() => {
         setIsDragging(false);
+
         setUserLocation({
           ...userLocation,
           lat: event.latLng.lat(),
@@ -195,12 +144,16 @@ const MapComponent = () => {
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
           fullAdress: searchParams.get("fullAdress"),
+          step: "STEP 2",
+          status: "PASSED",
         });
         setInitialMapState({
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
           fullAdress: searchParams.get("fullAdress"),
+          step: "STEP 2",
+          status: "PASSED",
         });
       }
       setDefaultZoom(21);
@@ -213,13 +166,22 @@ const MapComponent = () => {
             lng: parseFloat(latLng.lng),
             fullAdress: searchParams.get("fullAdress"),
           });
+
           setInitialMapState({
             ...userLocation,
             lat: parseFloat(latLng.lat),
             lng: parseFloat(latLng.lng),
             fullAdress: searchParams.get("fullAdress"),
           });
+
           setDefaultZoom(21);
+        });
+      } else {
+        useStore.setState({
+          step: "STEP 1",
+          status: "SKIPPED",
+          lat: userLocation.lat,
+          lng: userLocation.lng,
         });
       }
     }
@@ -281,6 +243,17 @@ const MapComponent = () => {
 
   useEffect(() => {
     addMarkerToMap(userLocation);
+    if (
+      userLocation.lat !== defaultCenter.lat ||
+      userLocation.lng !== userLocation.lng
+    ) {
+      useStore.setState({
+        lat: userLocation.lat,
+        lng: userLocation.lng,
+        step: "STEP 2",
+        status: "Select new place",
+      });
+    }
   }, [userLocation]);
 
   useEffect(() => {
