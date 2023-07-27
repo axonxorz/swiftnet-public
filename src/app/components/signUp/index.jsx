@@ -6,14 +6,21 @@ import Step1 from "./Step1";
 import { Toaster } from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
 import Form from "./Form";
+import { useStore } from "@/store";
 
 const Index = () => {
   const [step, setStep] = useState(1);
+  const setPriority = useStore((state) => state.setPriority);
+
   const searchParams = useSearchParams();
 
   useEffect(() => {
     if (searchParams.get("step")) {
       setStep(parseInt(searchParams.get("state")));
+    }
+
+    if (searchParams.get("priority")) {
+      setPriority(true);
     }
   }, []);
 

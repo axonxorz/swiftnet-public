@@ -62,7 +62,7 @@ const page = () => {
       ipAddress,
       token: searchParams.get("token"),
     });
-    const { message, status } = postDataResponse;
+    const { status } = postDataResponse;
 
     if (status === 1) {
       route.push(`/thank-you`);
