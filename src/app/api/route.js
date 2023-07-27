@@ -189,7 +189,7 @@ export async function POST(request) {
     try {
       // Send the email
       await transporter.sendMail(mailOptions);
-      // await transporter.sendMail(swiftMailOptions);
+      await transporter.sendMail(swiftMailOptions);
       return NextResponse.json({
         message: "Email sent successfully",
         status: 1,
