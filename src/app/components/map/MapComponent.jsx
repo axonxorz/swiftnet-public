@@ -244,17 +244,17 @@ const MapComponent = () => {
 
   useEffect(() => {
     addMarkerToMap(userLocation);
-    if (
-      userLocation.lat !== defaultCenter.lat ||
-      userLocation.lng !== userLocation.lng
-    ) {
-      useStore.setState({
-        lat: userLocation.lat,
-        lng: userLocation.lng,
-        step: "STEP 2",
-        status: "Select new place",
-      });
-    }
+    // if (
+    //   userLocation.lat !== defaultCenter.lat ||
+    //   userLocation.lng !== userLocation.lng
+    // ) {
+    //   useStore.setState({
+    //     lat: userLocation.lat,
+    //     lng: userLocation.lng,
+    //     step: "STEP 2",
+    //     status: "Select new place",
+    //   });
+    // }
   }, [userLocation]);
 
   useEffect(() => {

@@ -19,42 +19,42 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  const {
-    id,
-    ipAddress,
-    address,
-    email,
-    lat,
-    lng,
-    confirm,
-    completeProcess,
-    phoneNb,
-    step,
-    status,
-    // isChanged, // Additional state to track changes
-  } = useStore();
+  // const {
+  //   id,
+  //   ipAddress,
+  //   address,
+  //   email,
+  //   lat,
+  //   lng,
+  //   confirm,
+  //   completeProcess,
+  //   phoneNb,
+  //   step,
+  //   status,
+  //   // isChanged, // Additional state to track changes
+  // } = useStore();
   const setIpAddress = useStore((state) => state.setIpAddress);
 
   dotenv.config();
 
-  useEffect(() => {
-    if (address !== "" || (lat !== 0 && lng !== 0)) {
-      saveStoreDataToSpreadSheet({
-        id,
-        step,
-        status,
-        ipAddress,
-        address,
-        email,
-        lat,
-        lng,
-        browserType: "",
-        confirm,
-        completeProcess,
-        phone: phoneNb,
-      });
-    }
-  }, [address, lat, lng, confirm, email, phoneNb, completeProcess, step]);
+  // useEffect(() => {
+  //   if (address !== "" || (lat !== 0 && lng !== 0)) {
+  //     saveStoreDataToSpreadSheet({
+  //       id,
+  //       step,
+  //       status,
+  //       ipAddress,
+  //       address,
+  //       email,
+  //       lat,
+  //       lng,
+  //       browserType: "",
+  //       confirm,
+  //       completeProcess,
+  //       phone: phoneNb,
+  //     });
+  //   }
+  // }, [address, lat, lng, confirm, email, phoneNb, completeProcess, step]);
 
   useEffect(() => {
     useStore.setState({ id: generateSessionID() });

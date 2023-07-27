@@ -1,7 +1,9 @@
 import styles from "@/app/styles/styles";
+import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 const DatePicker = ({ selectedDate, setSelectedDate }) => {
+  const searchParams = useSearchParams();
   const [error, setError] = useState(null);
 
   const isWeekend = (date) => {
@@ -23,7 +25,12 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
     const currentDate = new Date();
 
     const getNextBusinessDay = (date) => {
-      date.setDate(date.getDate() + 1); // Add 1 day initially
+      // check priority
+      if (searchParams.get("priority") === "1") {
+        date.setDate(date.getDate() + 1); // Add 1 day initially
+      } else {
+        date.setDate(date.getDate() + 2); // Add 2 day initially
+      }
 
       const isWeekend = (date) => {
         const dayOfWeek = date.getDay();
@@ -61,11 +68,30 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
 
   // Function to handle changes in the date input
   const handleDateChange = (event) => {
+    setError(null);
     const { value } = event.target;
 
     // Validate the selected date
     const selected = new Date(value);
     const today = new Date();
+
+    if (!searchParams.get("priority")) {
+      const after2 = today.getDate() + 2;
+      if (
+        selected.getDate() < after2 &&
+        selected.getMonth() <= today.getMonth() &&
+        selected.getFullYear() <= today.getFullYear() &&
+        selected > today
+      ) {
+        setError(
+          "Sorry, your request may take up to 2 business days to process."
+        );
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+        return;
+      }
+    }
 
     if (selected >= today) {
       if (isWeekend(selected)) {

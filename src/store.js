@@ -3,6 +3,8 @@ import { create } from "zustand";
 export const useStore = create((set) => ({
   id: "",
   ipAddress: "",
+  priority: false,
+  setPriority: (priority) => set(() => ({ priority })),
   address: "",
   email: "",
   lat: 0,

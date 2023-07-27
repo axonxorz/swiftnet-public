@@ -48,6 +48,7 @@ export async function POST(request) {
     ipAddress,
     browserType,
     googleAPIFullAddress,
+    priority,
   } = req;
 
   const isValid = validateFormFields(email, "sfsdf");
@@ -78,7 +79,9 @@ export async function POST(request) {
         </p>
 
         <div>
-          <a href="https://swift-net.ca/installation-date?token=${token}" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
+          <a href="https://swift-net.ca/installation-date?token=${token}${
+            priority && `&priority=${1}`
+          }" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
         </div>
         <p style="text-align: center; padding: 10px">
           Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.
@@ -164,12 +167,14 @@ export async function POST(request) {
           <li>First Name: ${firstName}</li>
           <li>Last Name: ${lastName}</li>
           <li>Email: ${email}</li>
-          <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/CA/lookup/${phoneNumber}">${phoneNumber}</a></li>
+          <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/CA/${phoneNumber}">${phoneNumber}</a></li>
+
           <li>Full Address:<a href="https://www.google.com/maps/place/${fullAddress}"> ${fullAddress}</a></li>
           <li>Google lookup: <a href="https://www.google.com/maps/place/${ipAddress}">${googleAPIFullAddress}</a></li>
           <li>Postal Code: ${postal_code}</li>
           <li>Region: ${region}</li>
           <li>Supported: ${supported}</li>
+          <li>Priority : ${priority} </li>
           <a href="https://swift-net.ca/installation-date?token=${token}" style="font-weight: bold; text-decoration-line: none;">Install date </a>
           <li>lng: <a href="https://www.google.com/maps/place/${lat},${lng}">${lng}</a></li>
           <li>lat:<a href="https://www.google.com/maps/place/${lat},${lng}"> ${lat}</a></li>

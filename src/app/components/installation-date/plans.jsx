@@ -17,7 +17,7 @@ export const planesList = [
     title: "Streaming",
     unlimited: true,
     price: 94.95,
-    include: ["Youtube", "Netflix", "Live Sport"],
+    include: ["Youtube", "Netflix", "Live Sports"],
     bg: "",
   },
   {

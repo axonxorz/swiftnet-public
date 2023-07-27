@@ -20,6 +20,7 @@ const Form = () => {
     const route = useRouter();
     const [Loading, setLoading] = useState(false);
     const ipAddress = useStore(state => state.ipAddress)
+    const priority = useStore((state) => state.priority);
 
 
     const validationSchema = yup.object({
@@ -118,7 +119,7 @@ const Form = () => {
             });
 
 
-            const postDataResponse = await postData("/api", { ...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat"), fullAddress, ipAddress, browserType });
+            const postDataResponse = await postData("/api", { ...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat"), fullAddress, ipAddress, browserType , priority });
             const { message, status } = postDataResponse;
 
             if (status === 1) {
