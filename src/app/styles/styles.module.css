@@ -182,3 +182,8 @@
 .grecaptcha-badge { 
   visibility: hidden;
 }
+
+.faqbg {
+  background-image: url("../../assets/faqtea.png");
+  backface-visibility: 0.4;
+}

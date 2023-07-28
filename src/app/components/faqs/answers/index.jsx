@@ -1,16 +1,20 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Card = ({ question }) => {
-  const [showAnswer, setshowAnswer] = useState(false);
+const Card = ({ question, collapse }) => {
+  const [showAnswer, setshowAnswer] = useState(true);
   const paragraphs = question.answer.split("\n\n");
 
+  useEffect(() => {
+    setshowAnswer(true);
+  }, [collapse]);
+
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="w-full flex items-start justify-center">
       <div
         onClick={() => setshowAnswer((state) => !state)}
-        className="w-full md:w-[70%]  border-b-[1px] py-4 hover:bg-slate-300/20  cursor-pointer md:px-5 rounded-lg"
+        className="w-full   border-b-[1px] py-4  cursor-pointer md:px-5 rounded-lg"
       >
         <div className="flex items-center justify-between">
           {" "}
@@ -19,6 +23,12 @@ const Card = ({ question }) => {
             {showAnswer ? "-" : "+"}
           </p>
         </div>
+
+        {question.image && (
+          <div className="m-3 rounded-lg overflow-hidden my-2">
+            {question.image}
+          </div>
+        )}
         {showAnswer && (
           <div className="py-2 space-y-4">
             {paragraphs.map((paragraph, index) => (
@@ -36,7 +46,6 @@ const Card = ({ question }) => {
       </div>
     </div>
   );
-
 };
 
 export default Card;
