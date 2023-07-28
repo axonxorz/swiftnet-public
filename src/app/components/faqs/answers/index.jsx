@@ -36,6 +36,7 @@ const Card = ({ question }) => {
       </div>
     </div>
   );
+
 };
 
 export default Card;

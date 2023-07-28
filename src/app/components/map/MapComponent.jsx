@@ -31,6 +31,7 @@ const MapComponent = () => {
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
 
+
   const resetState = (event) => {
     if (event.detail == 2) {
       router.push("/");
