@@ -43,10 +43,10 @@ export async function POST(request) {
     fullAddress,
   } = data;
 
-  let totalPrice = parseFloat(plan.price).toFixed(2);
+  let totalPrice = parseFloat(plan.price);
   let citypl;
   if (selectedAddOne && selectedAddOne.price) {
-    totalPrice += parseFloat(selectedAddOne.price).toFixed(2);
+    totalPrice += parseFloat(selectedAddOne.price);
   }
   if (fullAddress && fullAddress !== "undefined") {
     if (!city || city === "undefined") {
@@ -58,7 +58,10 @@ export async function POST(request) {
   const swiftMailOptions = {
     from: "no-reply@swift-net.ca",
     to: "support@swift-net.ca,david@turnkeyisp.co",
-    subject: `$${totalPrice}, ${email}, ${date}, ${citypl ? citypl : ""}`,
+
+    subject: `$${totalPrice.toFixed(2)}, ${email}, ${date}, ${
+      citypl ? citypl : ""
+    }`,
     text: "",
     html: `
     <html>
