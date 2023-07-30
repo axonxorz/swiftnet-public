@@ -80,7 +80,7 @@ export async function POST(request) {
 
         <div>
           <a href="https://swift-net.ca/installation-date?token=${token}${
-            priority && `&priority=${1}`
+            priority ? `&priority=${1}` : ""
           }" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
         </div>
         <p style="text-align: center; padding: 10px">
