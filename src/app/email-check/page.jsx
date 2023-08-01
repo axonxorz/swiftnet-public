@@ -3,6 +3,7 @@ import React from "react";
 import styles from "../styles/styles";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import "@/app/styles/custom.css";
 
 const page = () => {
   const router = useSearchParams();

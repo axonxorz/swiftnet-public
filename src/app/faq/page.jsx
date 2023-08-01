@@ -1,5 +1,7 @@
 import React from "react";
 import FAQ from "@/app/components/faqs/index";
+import "@/app/styles/custom.css";
+
 export const metadata = {
   title: "AB/SK internet provider outage FAQ by Swift-Net.ca",
   description:

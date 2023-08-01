@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import "@/app/styles/custom.css";
 
 const page = () => {
   return (

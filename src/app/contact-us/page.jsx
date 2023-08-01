@@ -18,6 +18,7 @@ import { useStore } from "@/store";
 import { postData } from "@/tools";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import "@/app/styles/custom.css";
 
 const page = () => {
   const [loading, setLoading] = useState(false);

@@ -9,6 +9,7 @@ import { postData } from "@/tools";
 import { useStore } from "@/store";
 import jwt from "jsonwebtoken";
 import Link from "next/link";
+import "@/app/styles/custom.css";
 
 const page = () => {
   const [selectedPlan, setSelectedPlan] = useState(planesList[2]);

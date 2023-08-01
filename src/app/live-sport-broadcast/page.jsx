@@ -3,6 +3,7 @@ import style from "../styles/styles.module.css";
 import styles from "../styles/styles";
 import Image from "next/image";
 import stream from "../../assets/stream.webp";
+import "@/app/styles/custom.css";
 
 export const metadata = {
   title:

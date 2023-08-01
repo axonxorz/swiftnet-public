@@ -3,6 +3,7 @@ import style from "../styles/styles.module.css";
 import img from "../../assets/Rectangle 23(3).webp";
 import img2 from "../../assets/IMG_1159-1_3_.webp";
 import CommonLayers from "../components/CommonLayers";
+import "@/app/styles/custom.css";
 
 export const metadata = {
   title:

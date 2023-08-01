@@ -4,6 +4,7 @@ import GigaSpire from "../components/wifi-app-by-callix/GigaSpire";
 import Grids from "../components/wifi-app-by-callix/Grids";
 import JoinUs from "../components/wifi-app-by-callix/JoinUs";
 import Sec2 from "../components/wifi-app-by-callix/Sec2";
+import "@/app/styles/custom.css";
 
 const page = () => {
   return (
