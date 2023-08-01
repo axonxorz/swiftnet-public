@@ -267,9 +267,8 @@ const Form = () => {
                             {!Loading ? "Check Availability" : "please wait ..."}
                         </button>
 
-                        <p className={`${styles.paragraph}`}>
-                            You will not be charged until your service is installed and
-                            verified.
+                        <p className={`${styles.paragraph} text-center`}>
+                        Charges apply only after installation and verification of your services. Your contact info will solely be used for providing internet services, with the ability to opt-out anytime .
                         </p>
                     </div>
                 </form>
