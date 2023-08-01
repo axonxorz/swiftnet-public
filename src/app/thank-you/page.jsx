@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/styles";
 import Link from "next/link";
+import "@/app/styles/custom.css";
 
 export const metadata = {
   title: "Thank you for signing up for internet service by Swift-Net.ca!",

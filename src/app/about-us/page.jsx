@@ -4,6 +4,7 @@ import Accordions from "../components/aboutUs/Accordions";
 import CommonCards from "../components/CommonCards";
 import SuperiorSwiftNet from "../components/aboutUs/SuperiorSwiftNet";
 import ChooseSwiftNet from "../components/aboutUs/ChooseSwiftNet";
+import "@/app/styles/custom.css";
 
 const page = () => {
   return (

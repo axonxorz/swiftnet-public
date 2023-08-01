@@ -1,6 +1,7 @@
 import React from "react";
 import MapComponent from "../components/map/MapComponent";
 import { Toaster } from "react-hot-toast";
+import "@/app/styles/custom.css";
 
 export const metadata = {
   title: "Map Swift-Net.ca",

@@ -110,7 +110,7 @@
   background-image: url("../../assets/gallery/OnlineLearning.webp");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right;
 }
 
 .liveSportbg {
@@ -131,7 +131,7 @@
   background-image: url("../../assets/gallery/RectWorkFromHome.webp");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left;
 }
 
 
