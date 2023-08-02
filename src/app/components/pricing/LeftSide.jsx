@@ -21,11 +21,7 @@ const LeftSide = () => {
       <>
         <Toaster />
         <div className="flex items-start justify-between h-screen  ">
-          {step === 1 ? (
-            <Step1 setStep={setStep} plan={550} price={79.95} />
-          ) : (
-            <Form />
-          )}
+          {step === 1 ? <Step1 setStep={setStep} plan={550} /> : <Form />}
 
           <div className="hidden md:flex justify-start items-start  md:w-1/2 h-screen ">
             <Image

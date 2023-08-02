@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import AutoCompleteInput from "../home/AutoCompleteInput";
 import style from "../../styles/styles.module.css";
 
-const Step1 = ({ setStep, plan, price }) => {
+const Step1 = ({ setStep, plan }) => {
   const route = useRouter();
   return (
     <div className="w-full md:w-[900px] min-h-screen md:overflow-hidden flex items-center justify-center  ">
@@ -33,7 +33,7 @@ const Step1 = ({ setStep, plan, price }) => {
             <div className="absolute top-0 left-0 bg-gradient-to-r from-primary/90 from-10% via-primary/80 via-30% to-primary/70 to-90% w-full h-full"></div>
             <p className={`text-xs text-white z-30`}>Swift-Net.ca</p>
             <p className={`text-[20px] text-white z-30`}>
-              Plans starting at ${price} and speeds up to{" "}
+              Plans starting at $79.95 and speeds up to{" "}
               <span className="bg-white text-primary">{plan} Mbps!</span>
             </p>
           </div>

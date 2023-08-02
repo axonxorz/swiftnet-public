@@ -49,10 +49,10 @@
   background-position: center;
 }
 .businessBanner {
-  background-image: url("../../assets/banner1.webp");
+  background-image: url("../../assets/landings/Rectangle\ 19.webp");
 }
 .learningBanner {
-  background-image: url("../../assets/banner2.webp");
+  background-image: url("../../assets/landings/Rectangle\ 192.webp");
 }
 .nonTechSavvyBanner {
   background-image: url("../../assets/banner3.webp");
@@ -64,7 +64,7 @@
   background-image: url("../../assets/banner5.webp");
 }
 .gamingExperience {
-  background-image: url("../../assets/banner6.webp");
+  background-image: url("../../assets/landings/gaming.webp");
 }
 .filteredBg {
   background: rgba(255, 255, 255, 0.8);

@@ -1,13 +1,13 @@
 import React from "react";
 import style from "../styles/styles.module.css";
-import img from "../../assets/Rectangle 23.webp";
+import img from "../../assets/landings/Rectangle 23.webp";
 import user from "../../assets/IMG_1159-1.webp";
 import CommonLayers from "../components/CommonLayers";
 import "@/app/styles/custom.css";
 
 export const metadata = {
   title:
-    "Work from home with AB/SK Local Wi-Fi Internet Provider [SIGN UP] for Swift-Net.ca",
+    "Work from home with AB/SK Local Wi-Fi Internet Provider [SIGN UP] by Swift-Net.ca",
   description:
     "Get connected with Swift-Net.ca, the leading home Wi-Fi internet service provider in Alberta & Saskatchewan, providing high-speed wireless internet service in Lloydminster, Cold Lake, North Battleford, and more rural communities. Sign up today!",
 };

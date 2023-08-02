@@ -1,13 +1,12 @@
 import React from "react";
 import style from "../styles/styles.module.css";
-import img from "../../assets/Rectangle 23(1).webp";
-import img2 from "../../assets/IMG_1159-1_1_.webp";
+import img from "../../assets/landings/Rectangle 24.webp";
 import CommonLayers from "../components/CommonLayers";
 import "@/app/styles/custom.css";
 
 export const metadata = {
   title:
-    "Online learning with AB/SK Local Wi-Fi Internet Provider [SIGN UP] for Swift-Net.ca",
+    "Online learning with AB/SK Local Wi-Fi Internet Provider [SIGN UP] by Swift-Net.ca",
   description:
     "Get connected with Swift-Net.ca, the leading home Wi-Fi internet service provider in Alberta & Saskatchewan, providing high-speed wireless internet service in Lloydminster, Cold Lake, North Battleford, and more rural communities. Sign up today!",
 };
@@ -48,7 +47,7 @@ const page = () => {
         data={data}
         paragraph1="Swift-Net.ca is dedicated to providing a reliable, high-speed internet connection that supports the most popular online learning platforms and software in Canada, including Google Classroom, Zoom, Microsoft Teams, Moodle, Blackboard, Canvas, D2L Brightspace, Edmodo, Schoology, and Kahoot!. With Swift-Net.ca, parents can rest assured that their children will have access to a seamless and productive online educational experience. "
         paragraph2="Swift-Net.ca is dedicated to providing a reliable, high-speed internet connection that supports the most popular online learning platforms and software in Canada, including Google Classroom, Zoom, Microsoft Teams, Moodle, Blackboard, Canvas, D2L Brightspace, Edmodo, Schoology, and Kahoot!. With Swift-Net.ca, parents can rest assured that their children will have access to a seamless and productive online educational experience. "
-        img2={img2}
+        img2={img}
         imgUrl={style.learningBanner}
       />
     </>
