@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../styles/styles.module.css";
-import img from "../../assets/Rectangle 23.webp";
+import img from "../../assets/landings/Rectangle 23.webp";
 import user from "../../assets/IMG_1159-1.webp";
 import CommonLayers from "../components/CommonLayers";
 import "@/app/styles/custom.css";

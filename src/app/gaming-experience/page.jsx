@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../styles/styles.module.css";
-import img from "../../assets/Rectangle 23(4).webp";
-import img2 from "../../assets/IMG_1159-1_3_.webp";
+import img from "../../assets/landings/gam2.webp";
+
 import CommonLayers from "../components/CommonLayers";
 import "@/app/styles/custom.css";
 
@@ -56,7 +56,7 @@ const page = () => {
         paragraph2="Swift-Net.ca: Bringing High-Speed Home Wi-Fi to Rural Alberta & Saskatchewan.
         
         With Swift-Net.ca, you can enjoy reliable internet service in Lloydminster, Cold Lake, North Battleford, and other rural communities in Alberta and Saskatchewan. Don't settle for slow or unreliable internet – sign up for Swift-Net.ca today and experience the difference!"
-        img2={img2}
+        img2={img}
         imgUrl={style.gamingExperience}
       />
     </>
