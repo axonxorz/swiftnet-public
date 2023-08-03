@@ -70,7 +70,7 @@ const ExperienceConnectivity = () => {
         <div className="basis-[58%] flex flex-col gap-3">
           {data.map((data) => (
             <div key={data.id}>
-              <span className={` font-semibold text-xl`}>
+              <span className={` font-semibold text-3xl`}>
                 {data.heading && data.heading}
               </span>
               <p className={`${styles.paragraph}`}>{data.descp}</p>

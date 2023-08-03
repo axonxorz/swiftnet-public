@@ -8,6 +8,7 @@ import ReliableInternet from "../components/home/ReliableInternet";
 import Advantages from "../components/home/Advantages";
 import Gallery from "../components/home/Gallery";
 import "@/app/styles/custom.css";
+import InstagramPost from "../components/InstagramPost";
 
 const page = () => {
   return (
@@ -19,6 +20,7 @@ const page = () => {
       <WhySwiftNet />
       <ReliableInternet />
       <Advantages />
+      <InstagramPost />
     </>
   );
 };
