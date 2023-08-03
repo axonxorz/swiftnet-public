@@ -47,7 +47,7 @@ const Footer = () => {
                   <Link href="/sign-up">Sign Up</Link>
                 </li>
                 <li className="bg-primary text-white  px-4 rounded-lg">
-                  <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
+                  <Link href="https://square.link/u/jdmxg2IR">Pay Now</Link>
                 </li>
               </ul>
             </div>
@@ -55,7 +55,7 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-center md:justify-between text-sm tracking-[-0.02em] text-white pt-4 border-t-[1px] border-solid border-white">
             <span>
-              <a href="https://turnkeyisp.co/" className="">
+              <a href="https://turnkeyisp.co/" className="hover:underline">
                 Telco call center and ISP website by TurnkeyISP
               </a>
             </span>

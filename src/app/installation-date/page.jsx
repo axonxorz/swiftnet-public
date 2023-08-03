@@ -116,7 +116,7 @@ const page = () => {
                   Loading ? "bg-primary/70 " : "bg-primary "
                 } rounded-lg text-white w-full hover:bg-primary/90`}
               >
-                {!Loading ? "Check Availability" : "please wait ..."}
+                {!Loading ? "Confirm Choices" : "please wait ..."}
               </button>
 
               <p className={styles.paragraph + "text-center mt-1"}>
