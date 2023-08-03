@@ -9,7 +9,7 @@ const CommonLayers = (props) => {
     <div className={`pt-20 ${styles.width}`}>
       <div className="h-[60px]"></div>
       <div className="flex flex-col lg:flex-row items-start justify-start px-4 ">
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start  gap-4">
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-start  gap-4 px-3">
           <p className={styles.paragraph}>
             {" "}
             <Link href={"/"}>
@@ -25,8 +25,8 @@ const CommonLayers = (props) => {
           </p>
         </div>
 
-        <div className="w-full lg:w-1/2 mt-10">
-          <p>{props.description}</p>
+        <div className="w-full lg:w-1/2 mt-10 px-3">
+          <p>{" " + props.description}</p>
 
           <div className="w-full flex mt-4 ">
             <Link href={"/sign-up"}>
@@ -46,7 +46,7 @@ const CommonLayers = (props) => {
           >
             {props.data.map((data) => (
               <div key={data.id}>
-                <span className={` text-[20px] md:text-[24px] font-semibold`}>
+                <span className={` text-[30px] md:text-[34px] font-semibold`}>
                   {data.heading && data.heading}
                 </span>
                 <p className={`${styles.paragraph}`}>{data.description}</p>

@@ -72,7 +72,7 @@ const WhySwiftNet = () => {
             className="basis-[48%] flex flex-col gap-1 mt-6 md:mt-0"
           >
             <Image src={data.icon} alt="" className="w-[40px] md:w-[50px]" />
-            <span className={` font-semibold text-xl`}>{data.heading}</span>
+            <span className={` font-semibold text-3xl`}>{data.heading}</span>
             <p className={`${styles.paragraph}`}>{data.descp}</p>
           </div>
         ))}

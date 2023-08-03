@@ -20,7 +20,7 @@ const page = () => {
       <WhySwiftNet />
       <ReliableInternet />
       <Advantages />
-      {/* <InstagramPost /> */}
+      <InstagramPost />
     </>
   );
 };
