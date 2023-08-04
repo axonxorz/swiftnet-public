@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../styles/styles.module.css";
-import img from "../../assets/Rectangle 23(3).webp";
-import img2 from "../../assets/IMG_1159-1_3_.webp";
+import img from "../../assets/landings/Rectangle 2356.webp";
+import img2 from "../../assets/landings/Rectangle 2356.webp";
 import CommonLayers from "../components/CommonLayers";
 import "@/app/styles/custom.css";
 

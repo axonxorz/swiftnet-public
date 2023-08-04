@@ -1,80 +1,81 @@
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <url>
-       <loc>https://swift-net.ca/</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+<xml version="1.0" encoding="UTF-8">
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://swift-net.ca/</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
 
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/pricing</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/sign-up</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/business-class</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/wifi-app-by-callix</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-     
-    <url>
-        <loc>https://swift-net.ca/stream-uninterrupted</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-    </url>
+      </url>
 
       <url>
-       <loc>https://swift-net.ca/gaming-experience</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+        <loc>https://swift-net.ca/pricing</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
 
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/business-class</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/online-learning</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/live-sport-broadcast</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
-
-     <url>
-       <loc>https://swift-net.ca/non-tech-savvy</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-
-     </url>
+      </url>
 
       <url>
-       <loc>https://swift-net.ca/contact-us</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+        <loc>https://swift-net.ca/sign-up</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
 
-     </url>
+      </url>
 
-     <url>
-       <loc>https://swift-net.ca/faq</loc>
-       <lastmod>2023-07-30T15:02:24.021Z</lastmod>
-     </url>
-     
-   </urlset>
-   </xml>
+      <url>
+        <loc>https://swift-net.ca/business-class</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+      <url>
+        <loc>https://swift-net.ca/wifi-app-by-callix</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+      
+      <url>
+          <loc>https://swift-net.ca/stream-uninterrupted</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+        <url>
+        <loc>https://swift-net.ca/gaming-experience</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+      <url>
+        <loc>https://swift-net.ca/business-class</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+      <url>
+        <loc>https://swift-net.ca/online-learning</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+      <url>
+        <loc>https://swift-net.ca/live-sport-broadcast</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+      <url>
+        <loc>https://swift-net.ca/non-tech-savvy</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+        <url>
+        <loc>https://swift-net.ca/contact-us</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+
+      </url>
+
+      <url>
+        <loc>https://swift-net.ca/faq</loc>
+        <lastmod>2023-07-30T15:02:24.021Z</lastmod>
+      </url>
+      
+  </urlset>
+</xml>
