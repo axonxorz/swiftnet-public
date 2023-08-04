@@ -55,7 +55,7 @@
   background-image: url("../../assets/landings/Rectangle\ 192.webp");
 }
 .nonTechSavvyBanner {
-  background-image: url("../../assets/banner3.webp");
+  background-image: url("../../assets/landings/techsurvey.webp");
 }
 .liveSportBroadcast {
   background-image: url("../../assets/landings/Rectanglelivesport.webp");
@@ -121,7 +121,7 @@
 }
 
 .seniorsbg {
-  background-image: url("../../assets/gallery/RectanSeniors.webp");
+  background-image: url("../../assets/landings/techsurvey.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
