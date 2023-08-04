@@ -6,6 +6,14 @@
   /* background-position: center; */
 }
 
+.heroBgLLoyoydminster {
+  max-width: 100%;
+  background: url("../../assets/landings/lloydminster.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center; */
+}
+
 .wifiHeroBg {
   max-width: 100%;
   background: url("../../assets/wifi/herowifipage_1.webp");
