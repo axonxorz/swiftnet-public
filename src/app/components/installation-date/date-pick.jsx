@@ -1,23 +1,31 @@
 import styles from "@/app/styles/styles";
 import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
-const DatePicker = ({ selectedDate, setSelectedDate }) => {
+const DatePickerCmp = ({ selectedDate, setSelectedDate }) => {
   const searchParams = useSearchParams();
   const [error, setError] = useState(null);
+  const [minDate] = useState(selectedDate);
 
-  const isWeekend = (date) => {
-    const dayOfWeek = date.getDay();
-    return dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
+  const checkIsWeekend = (date) => {
+    const day = date.day();
+
+    return day === 0 || day === 6;
   };
 
-  const isHoliday = (date) => {
+  const checkIsHoliday = (date) => {
     // Replace with your own logic to determine Canadian holidays
     // Example: Checking for Canada Day on July 1st and Boxing Day on December 26th
-    const isCanadaDay = date.getMonth() === 6 && date.getDate() === 1;
-    const isBoxingDay = date.getMonth() === 11 && date.getDate() === 26;
+    const isCanadaDay = date.get("month") === 6 && date.day() === 1;
+    const isBoxingDay = date.get("month") === 11 && date.day() === 26;
 
     return isCanadaDay || isBoxingDay;
+  };
+
+  const disabledDateForDatePicker = (date) => {
+    return checkIsHoliday(date) || checkIsWeekend(date);
   };
 
   // Function to set the default value to the next business day
@@ -67,9 +75,8 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
   useState(setDefaultDate);
 
   // Function to handle changes in the date input
-  const handleDateChange = (event) => {
+  const handleDateChange = (value) => {
     setError(null);
-    const { value } = event.target;
 
     // Validate the selected date
     const selected = new Date(value);
@@ -92,27 +99,7 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
         return;
       }
     }
-
-    if (selected >= today) {
-      if (isWeekend(selected)) {
-        setError("We don't work on weekends.");
-        setTimeout(() => {
-          setError(null);
-        }, 5000);
-      } else if (isHoliday(selected)) {
-        setError("You have selected a Canadian holiday.");
-        setTimeout(() => {
-          setError(null);
-        }, 5000);
-      } else {
-        setSelectedDate(value);
-      }
-    } else {
-      setError("Please select a future date.");
-      setTimeout(() => {
-        setError(null);
-      }, 5000);
-    }
+    setSelectedDate(selected);
   };
 
   return (
@@ -121,30 +108,20 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
         Preferred Install Date <span className="font-bold">*</span>
       </label>
       <div className="relative max-w-sm w-full">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-          <svg
-            className="w-4 h-4 text-gray-500 dark:text-gray-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-          </svg>
+        <div className=" w-full ">
+          <DatePicker
+            hintText="Weekends or holiday"
+            className="w-full"
+            value={dayjs(selectedDate)}
+            onChange={handleDateChange}
+            minDate={dayjs(minDate)}
+            shouldDisableDate={disabledDateForDatePicker}
+          />
         </div>
-
-        <input
-          datepicker
-          type="date"
-          className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  pl-10 p-2.5 "
-          placeholder="Select date"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
       </div>
       {error && <p className="text-sm text-red-600 mt-1">{error}</p>}
     </div>
   );
 };
 
-export default DatePicker;
+export default DatePickerCmp;

@@ -3,13 +3,15 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/styles";
 import { useRouter, useSearchParams } from "next/navigation";
 import Plans, { planesList } from "../components/installation-date/plans";
-import DatePicker from "../components/installation-date/date-pick";
+import DatePickerCmp from "../components/installation-date/date-pick";
 import AddOnes, { addOne } from "../components/installation-date/add-ones";
 import { postData } from "@/tools";
 import { useStore } from "@/store";
 import jwt from "jsonwebtoken";
 import Link from "next/link";
 import "@/app/styles/custom.css";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const page = () => {
   const [selectedPlan, setSelectedPlan] = useState(planesList[2]);
@@ -22,6 +24,7 @@ const page = () => {
   const route = useRouter();
   const [display, setDisplay] = useState(false);
   const [isExpiredToken, setIsExpiredToken] = useState(false);
+
   useEffect(() => {
     if (searchParams.get("token")) {
       const token = searchParams.get("token");
@@ -35,11 +38,13 @@ const page = () => {
           decodedToken.exp > Date.now() / 1000
         ) {
           // Token is valid and not expired
+
           setDisplay(true);
         } else {
           // Token is expired
+          console.log("token invalid");
           setIsExpiredToken(true);
-          setDisplay(false);
+          // setDisplay(false);
         }
       } catch (error) {
         console.error("Failed to decode token:", error);
@@ -54,6 +59,16 @@ const page = () => {
   const HandleSubmit = async () => {
     setLoading(true);
     const browserType = navigator.userAgent;
+
+    console.log({
+      date: selectedDate.toString(),
+
+      plan: selectedPlan,
+      selectedAddOne,
+      browserType,
+      ipAddress,
+      token: searchParams.get("token"),
+    });
 
     const postDataResponse = await postData("/api/plan", {
       date: selectedDate,
@@ -78,56 +93,58 @@ const page = () => {
   if (display) {
     if (!isExpiredToken) {
       return (
-        <div className="w-full min-h-screen flex flex-col items-center ">
-          <div className="h-[100px] "></div>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <div className="w-full min-h-screen flex flex-col items-center ">
+            <div className="h-[100px] "></div>
 
-          <div className="w-full px-4 md:w-[60%] py-4 space-y-4 relative">
-            {/* title */}
-            <div className="w-full text-start space-y-4">
-              <p className={`${styles.heading} font-bold text-[36px]`}>
-                Fantastic News!
-              </p>
+            <div className="w-full px-4 md:w-[60%] py-4 space-y-4 relative">
+              {/* title */}
+              <div className="w-full text-start space-y-4">
+                <p className={`${styles.heading} font-bold text-[36px]`}>
+                  Fantastic News!
+                </p>
 
-              <p className={`${styles.paragraph} text-[#4B5563]`}>
-                Service is available at your location! Please select your
-                preferred installation date and plan below.
-              </p>
+                <p className={`${styles.paragraph} text-[#4B5563]`}>
+                  Service is available at your location! Please select your
+                  preferred installation date and plan below.
+                </p>
+              </div>
+
+              <DatePickerCmp
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+              />
+
+              <Plans
+                selectedPlan={selectedPlan}
+                setSelectedPlan={setSelectedPlan}
+              />
+
+              <AddOnes
+                selectedAddOne={selectedAddOne}
+                setSelectedAddOne={setSelectedAddOne}
+              />
+
+              <div className="text-center py-4">
+                <button
+                  onClick={HandleSubmit}
+                  className={`py-3 ${
+                    Loading ? "bg-primary/70 " : "bg-primary "
+                  } rounded-lg text-white w-full hover:bg-primary/90`}
+                >
+                  {!Loading ? "Confirm Choices" : "please wait ..."}
+                </button>
+
+                <p className={styles.paragraph + "text-center mt-1"}>
+                  You will not be charged until your service is installed and
+                  verified.
+                </p>
+              </div>
             </div>
 
-            <DatePicker
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-            />
-
-            <Plans
-              selectedPlan={selectedPlan}
-              setSelectedPlan={setSelectedPlan}
-            />
-
-            <AddOnes
-              selectedAddOne={selectedAddOne}
-              setSelectedAddOne={setSelectedAddOne}
-            />
-
-            <div className="text-center py-4">
-              <button
-                onClick={HandleSubmit}
-                className={`py-3 ${
-                  Loading ? "bg-primary/70 " : "bg-primary "
-                } rounded-lg text-white w-full hover:bg-primary/90`}
-              >
-                {!Loading ? "Confirm Choices" : "please wait ..."}
-              </button>
-
-              <p className={styles.paragraph + "text-center mt-1"}>
-                You will not be charged until your service is installed and
-                verified.
-              </p>
-            </div>
+            <div className="h-[100px] "></div>
           </div>
-
-          <div className="h-[100px] "></div>
-        </div>
+        </LocalizationProvider>
       );
     } else {
       return (
@@ -136,9 +153,6 @@ const page = () => {
             <p className="text-[30px] font-bold text-red-500">
               token has been expired !
             </p>
-            {/* <p className={styles.paragraph}>
-              Your token has been expired, please sign up again
-            </p> */}
           </div>
 
           <div className="px-10 text-center space-y-4">
