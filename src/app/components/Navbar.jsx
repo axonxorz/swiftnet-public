@@ -11,28 +11,26 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
-  let [logo, setlogo] = useState("");
   const [nav, setNav] = useState(false);
-
-  useEffect(() => {
-    if (pathname === "/") {
-      setlogo(logo1);
-    } else {
-      setlogo(logo2);
-    }
-  }, [pathname, logo]);
 
   const handleNav = () => {
     setNav(!nav);
   };
+
+  const whitetextAndLogo = [
+    "/",
+    "/lloyoydminster",
+    "/wifi-app-by-callix",
+  ].includes(pathname);
+
   return (
-    <div className={`${logo === logo1 && "bg-transparent"}`}>
+    <div className={`${whitetextAndLogo && "bg-transparent"}`}>
       <div className={`${styles.width} relative`}>
         <div className="w-full flex justify-between items-center absolute top-[15px]">
           <Link href={"/"}>
             <div>
               <Image
-                src={logo}
+                src={whitetextAndLogo ? logo1 : logo2}
                 alt=""
                 className="w-[150px] md:w-[200px]"
                 unoptimized={true}
@@ -43,7 +41,7 @@ const Navbar = () => {
           <div>
             <ul
               className={`hidden md:flex gap-12 justify-center items-center text-sm tracking-[-0.02em] ${
-                logo === logo1 ? "text-white" : "text-[#1F2937]"
+                whitetextAndLogo ? "text-white" : "text-[#1F2937]"
               }`}
             >
               <li>
@@ -68,7 +66,7 @@ const Navbar = () => {
             <div onClick={handleNav} className="md:hidden">
               <HiOutlineMenuAlt3
                 className={`cursor-pointer mr-6 ${
-                  logo === logo1 ? "text-white" : "text-[#1F2937]"
+                  whitetextAndLogo ? "text-white" : "text-[#1F2937]"
                 }`}
                 size={32}
               />

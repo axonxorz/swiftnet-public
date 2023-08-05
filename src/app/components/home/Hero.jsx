@@ -4,7 +4,6 @@ import style from "../../styles/styles.module.css";
 import styles from "@/app/styles/styles";
 import AutoCompleteInput from "./AutoCompleteInput";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store";
 
 const Hero = ({ description, hero }) => {
   const route = useRouter();
@@ -22,9 +21,9 @@ const Hero = ({ description, hero }) => {
         <div
           className={`${
             hero ? "" : "bg-primary/70 rounded-lg shadow-md"
-          }  md:w-3/4 p-5 md:p-10`}
+          } w-full  p-5 md:p-10`}
         >
-          <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white md:w-3/5 leading-[44px] md:leading-[72px]">
+          <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white xl:w-3/5 leading-[44px] md:leading-[72px]">
             Alberta & Saskatchewan{" "}
             <span className="whitespace-nowrap">Wi-Fi</span> Broadband Internet
             Service by

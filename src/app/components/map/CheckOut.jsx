@@ -1,6 +1,5 @@
-import { useStore } from "@/store";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const CheckOut = ({ userLocation, setcheckOutHovered }) => {
   const route = useRouter();
@@ -14,12 +13,6 @@ const CheckOut = ({ userLocation, setcheckOutHovered }) => {
   };
 
   const handleClickSub = () => {
-    useStore.setState({
-      confirm: true,
-      step: "STEP 2",
-      status: "PASSED",
-    });
-
     route.push(
       `/sign-up?step=2&fullAdress=${userLocation.fullAdress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
     );
