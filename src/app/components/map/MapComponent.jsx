@@ -7,7 +7,7 @@ import CheckOut from "./CheckOut";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
-import { useStore } from "@/store";
+
 const defaultCenter = {
   lat: 53.31225509999999,
   lng: -110.072853,
@@ -30,7 +30,6 @@ const MapComponent = () => {
   const [displayCheckout, setDisplayCheckout] = useState(true);
   const [initialMapState, setInitialMapState] = useState(defaultCenter);
   const [center, setMapCenter] = useState(defaultCenter);
-
 
   const resetState = (event) => {
     if (event.detail == 2) {
@@ -58,18 +57,6 @@ const MapComponent = () => {
       draggable,
     });
 
-    const infowindowContent = document.createElement("div");
-    infowindowContent.innerHTML = `
-  <div class="relative">
-    <div id="confirm-building" class="w-[200px] border-2 rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center bg-white">
-      <div>
-        <button class="py-2 bg-primary rounded-md text-white px-4">
-          Confirm building hhh
-        </button>
-      </div>
-    </div>
-  </div>`;
-
     marker.setMap(map);
     marker.addListener("drag", () => {
       setIsDragging(true);
@@ -94,12 +81,12 @@ const MapComponent = () => {
       setDisplayCheckout(true);
     });
 
-    marker.addListener("mouseover", () => {
-      infowindow.open({
-        anchor: marker,
-        map,
-      });
-    });
+    // marker.addListener("mouseover", () => {
+    //   infowindow.open({
+    //     anchor: marker,
+    //     map,
+    //   });
+    // });
 
     return marker;
   };
@@ -145,16 +132,12 @@ const MapComponent = () => {
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
           fullAdress: searchParams.get("fullAdress"),
-          step: "STEP 2",
-          status: "PASSED",
         });
         setInitialMapState({
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
           fullAdress: searchParams.get("fullAdress"),
-          step: "STEP 2",
-          status: "PASSED",
         });
       }
       setDefaultZoom(21);
@@ -177,13 +160,6 @@ const MapComponent = () => {
 
           setDefaultZoom(21);
         });
-      } else {
-        useStore.setState({
-          step: "STEP 1",
-          status: "SKIPPED",
-          lat: userLocation.lat,
-          lng: userLocation.lng,
-        });
       }
     }
   };
@@ -204,7 +180,6 @@ const MapComponent = () => {
 
     map.addListener("zoom_changed", () => {
       var zoom = map.getZoom();
-      console.log(zoom);
       setDefaultZoom(zoom);
     });
 
@@ -244,17 +219,6 @@ const MapComponent = () => {
 
   useEffect(() => {
     addMarkerToMap(userLocation);
-    // if (
-    //   userLocation.lat !== defaultCenter.lat ||
-    //   userLocation.lng !== userLocation.lng
-    // ) {
-    //   useStore.setState({
-    //     lat: userLocation.lat,
-    //     lng: userLocation.lng,
-    //     step: "STEP 2",
-    //     status: "Select new place",
-    //   });
-    // }
   }, [userLocation]);
 
   useEffect(() => {

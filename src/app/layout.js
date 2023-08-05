@@ -1,5 +1,4 @@
 "use client";
-
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./styles/output.css";
@@ -9,7 +8,7 @@ import dotenv from "dotenv";
 import Script from "next/script";
 import { useStore } from "@/store";
 import { useEffect } from "react";
-import { generateSessionID, postData } from "@/tools";
+import { generateSessionID } from "@/tools";
 const inter = Inter({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
@@ -18,42 +17,9 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  // const {
-  //   id,
-  //   ipAddress,
-  //   address,
-  //   email,
-  //   lat,
-  //   lng,
-  //   confirm,
-  //   completeProcess,
-  //   phoneNb,
-  //   step,
-  //   status,
-  //   // isChanged, // Additional state to track changes
-  // } = useStore();
   const setIpAddress = useStore((state) => state.setIpAddress);
 
   dotenv.config();
-
-  // useEffect(() => {
-  //   if (address !== "" || (lat !== 0 && lng !== 0)) {
-  //     saveStoreDataToSpreadSheet({
-  //       id,
-  //       step,
-  //       status,
-  //       ipAddress,
-  //       address,
-  //       email,
-  //       lat,
-  //       lng,
-  //       browserType: "",
-  //       confirm,
-  //       completeProcess,
-  //       phone: phoneNb,
-  //     });
-  //   }
-  // }, [address, lat, lng, confirm, email, phoneNb, completeProcess, step]);
 
   useEffect(() => {
     useStore.setState({ id: generateSessionID() });
@@ -69,11 +35,6 @@ export default function RootLayout({ children }) {
       });
   }, []);
 
-  const saveStoreDataToSpreadSheet = (data) => {
-    postData("/api/googlesheet", data).catch((error) => {
-      console.log(error);
-    });
-  };
   return (
     <html lang="en">
       <>

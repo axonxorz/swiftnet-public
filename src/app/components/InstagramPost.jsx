@@ -4,7 +4,7 @@ const InstagramPost = () => {
   return (
     <div className="w-full flex items-center justify-center my-5">
       <blockquote
-        class="instagram-media"
+        className="instagram-media"
         data-instgrm-captioned
         data-instgrm-permalink="https://www.instagram.com/p/CvdBJR2PXqc/?utm_source=ig_embed&amp;utm_campaign=loading"
         data-instgrm-version="14"
@@ -98,12 +98,7 @@ const InstagramPost = () => {
               }}
             >
               <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1">
-                <g
-                  stroke="none"
-                  stroke-width="1"
-                  fill="none"
-                  fill-rule="evenodd"
-                >
+                <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                   <g
                     transform="translate(-511.000000, -20.000000)"
                     fill="#000000"

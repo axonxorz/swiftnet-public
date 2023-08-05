@@ -115,6 +115,7 @@ const DatePickerCmp = ({ selectedDate, setSelectedDate }) => {
             value={dayjs(selectedDate)}
             onChange={handleDateChange}
             minDate={dayjs(minDate)}
+            disablePast
             shouldDisableDate={disabledDateForDatePicker}
           />
         </div>
