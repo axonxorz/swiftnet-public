@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
           async
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}&libraries=places`}
         />
-        <Script src="//code.jivosite.com/widget/YMS0X8nAPp" async />
+        <Script src="//code.jivosite.com/widget/fDpP8Ut8iy" async />
 
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-YHLNF4M6RW" />
         <Script id="google-analytics">
