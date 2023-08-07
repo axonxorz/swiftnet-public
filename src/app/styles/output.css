@@ -2233,10 +2233,6 @@ ul{
     width: 50%;
   }
 
-  .md\:w-3\/4 {
-    width: 75%;
-  }
-
   .md\:w-3\/5 {
     width: 60%;
   }
@@ -2311,10 +2307,6 @@ ul{
 
   .md\:w-auto {
     width: auto;
-  }
-
-  .md\:w-full {
-    width: 100%;
   }
 
   .md\:flex-auto {
@@ -2551,10 +2543,6 @@ ul{
     width: 50%;
   }
 
-  .lg\:w-3\/4 {
-    width: 75%;
-  }
-
   .lg\:flex-row {
     flex-direction: row;
   }
@@ -2565,17 +2553,8 @@ ul{
 }
 
 @media (min-width: 1280px) {
-  .xl\:w-3\/4 {
-    width: 75%;
-  }
-
   .xl\:w-3\/5 {
     width: 60%;
-  }
-
-  .xl\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
   }
 }
 
