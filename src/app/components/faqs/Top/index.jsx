@@ -16,8 +16,7 @@ const index = () => {
         North Battleford, Kindersley and Meadow Lake? Tired of frequent Sasktel
         outages in Lloydminster North Battleford, and Meadow Lake?
         <br />
-        <br />I understand your focus. Here's a revised version of the question
-        and answer:
+        <br />
       </p>
     </div>
   );
