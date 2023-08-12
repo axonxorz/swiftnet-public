@@ -154,7 +154,7 @@ const MapComponent = () => {
           setDefaultZoom(21);
         });
       } else {
-        handleCurrentLocationButtonClick();
+        handleCurrentLocationButtonClick(true);
       }
     }
   };
@@ -182,7 +182,7 @@ const MapComponent = () => {
     setMap(map);
   };
 
-  const handleCurrentLocationButtonClick = () => {
+  const handleCurrentLocationButtonClick = (setAsDefault) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const pos = {
@@ -190,6 +190,7 @@ const MapComponent = () => {
           lng: position.coords.longitude,
         };
         setUserLocation({ ...userLocation, ...pos });
+        setAsDefault && setInitialMapState({ ...pos });
         setDefaultZoom(21);
         setiInitialDefaultZoom(21);
       });
@@ -280,7 +281,7 @@ const MapComponent = () => {
         </div>
       </button>
       <button
-        onClick={handleCurrentLocationButtonClick}
+        onClick={() => handleCurrentLocationButtonClick(false)}
         className="absolute   shadow-2xl shadow-white transition-all w-[60px] h-[60px] duration-150 bottom-28 right-0 flex items-center justify-center  rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
       >
         <Image
