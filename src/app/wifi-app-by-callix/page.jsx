@@ -6,6 +6,12 @@ import JoinUs from "../components/wifi-app-by-callix/JoinUs";
 import Sec2 from "../components/wifi-app-by-callix/Sec2";
 import "@/app/styles/custom.css";
 
+export const metadata = {
+  title: "Wi-Fi App for Families & Gamers [SIGN UP] Swift-Net.ca",
+  description:
+    "Experience high-speed Wi-Fi and seamless streaming with Swift-Net.ca's smart home Wi-Fi app. Perfect for gaming, work, and outdoor connectivity. Dive into the future of internet access with our easy to use app!",
+};
+
 const page = () => {
   return (
     <>
