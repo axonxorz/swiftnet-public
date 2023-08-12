@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const whitetextAndLogo = [
     "/",
-    "/lloyoydminster",
+    "/lloydminster",
     "/wifi-app-by-callix",
   ].includes(pathname);
 

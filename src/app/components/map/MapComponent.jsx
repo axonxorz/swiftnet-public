@@ -81,13 +81,6 @@ const MapComponent = () => {
       setDisplayCheckout(true);
     });
 
-    // marker.addListener("mouseover", () => {
-    //   infowindow.open({
-    //     anchor: marker,
-    //     map,
-    //   });
-    // });
-
     return marker;
   };
 
@@ -160,6 +153,8 @@ const MapComponent = () => {
 
           setDefaultZoom(21);
         });
+      } else {
+        handleCurrentLocationButtonClick();
       }
     }
   };

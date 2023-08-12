@@ -1,9 +1,9 @@
 import React from "react";
 import Hero from "../components/home/Hero";
-import ExpLimitless from "../components/lloyoydminster/ExpLimitless";
-import Sec3 from "../components/lloyoydminster/Sec3";
-import Sec4 from "../components/lloyoydminster/Sec4";
-import Sec5 from "../components/lloyoydminster/Sec5";
+import ExpLimitless from "../components/lloydminster/ExpLimitless";
+import Sec3 from "../components/lloydminster/Sec3";
+import Sec4 from "../components/lloydminster/Sec4";
+import Sec5 from "../components/lloydminster/Sec5";
 
 export const metadata = {
   title: "Lloydminster Local Wi-Fi Internet Provider [SIGN UP]",
