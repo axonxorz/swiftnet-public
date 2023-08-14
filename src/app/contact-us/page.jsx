@@ -107,19 +107,19 @@ const page = () => {
         </div>
 
         <div className="flex gap-3 items-center text-lg md:text-xl mt-8 md:mt-0">
-          <Link href="/">
+          <Link href="https://www.facebook.com/swiftnet.ca">
             {" "}
             <BsFacebook />
           </Link>
-          <Link href="/">
+          {/* <Link href="https://www.linkedin.com/company/swift-net-ca/">
             {" "}
             <AiOutlineTwitter />
-          </Link>
-          <Link href="/">
+          </Link> */}
+          <Link href="https://www.linkedin.com/company/swift-net-ca/">
             {" "}
             <AiFillLinkedin />
           </Link>
-          <Link href="/">
+          <Link href="https://www.instagram.com/swiftnetinternet/">
             {" "}
             <AiOutlineInstagram />
           </Link>
