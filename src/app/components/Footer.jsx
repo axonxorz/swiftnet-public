@@ -55,7 +55,7 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-center md:justify-between text-sm tracking-[-0.02em] text-white pt-4 border-t-[1px] border-solid border-white">
             <span>
-              <a href="https://turnkeyisp.co/" className="hover:underline">
+              <a href="https://turnkeyisp.com/" className="hover:underline">
                 Telco call center and ISP website by TurnkeyISP
               </a>
             </span>
