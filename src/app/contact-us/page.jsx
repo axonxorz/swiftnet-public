@@ -111,10 +111,7 @@ const page = () => {
             {" "}
             <BsFacebook />
           </Link>
-          {/* <Link href="https://www.linkedin.com/company/swift-net-ca/">
-            {" "}
-            <AiOutlineTwitter />
-          </Link> */}
+
           <Link href="https://www.linkedin.com/company/swift-net-ca/">
             {" "}
             <AiFillLinkedin />

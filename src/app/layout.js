@@ -9,9 +9,12 @@ import Script from "next/script";
 import { useStore } from "@/store";
 import { useEffect } from "react";
 import { generateSessionID } from "@/tools";
+import Head from "next/head";
+
 const inter = Inter({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 export default function RootLayout({ children }) {
@@ -73,6 +76,13 @@ export default function RootLayout({ children }) {
           }
           `}
         </Script>
+
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+          />
+        </Head>
 
         <body className={inter.className}>
           {pathname === "/sign-up" ||

@@ -13,6 +13,9 @@ module.exports = {
       colors: {
         primary: "#05649C",
       },
+      fontFamily: {
+        primary: "var(--font-inter)",
+      },
     },
   },
   plugins: [],

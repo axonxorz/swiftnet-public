@@ -9,7 +9,7 @@ export const metadata = {
   title:
     "Live sports with AB/SK Local Wi-Fi Internet Provider [SIGN UP] by Swift-Net.ca",
   description:
-    "Swift-Net.ca delivers a top-tier live sports streaming experience. With fast, reliable connections, enjoy uninterrupted viewing of your favorite sports events from Alberta, Saskatchewan, and globally. Choose Swift-Net.ca for lag-free, high-quality sports broadcasts.",
+    "Experience seamless live sports streaming with Swift-Net.ca. Our high-speed, reliable internet ensures no buffering or lag, supporting multiple streams for uninterrupted viewing. Ideal for sports enthusiasts in rural Alberta, Saskatchewan, and beyond. Choose Swift-Net.ca for the ultimate sports streaming experience.",
 };
 
 const page = () => {

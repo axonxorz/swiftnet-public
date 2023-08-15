@@ -9,7 +9,7 @@ export const metadata = {
   title:
     "Ideal for seniors: AB/SK Local Wi-Fi Internet Provider [SIGN UP] by Swift-Net.ca",
   description:
-    "Get connected with Swift-Net.ca, the leading home Wi-Fi internet service provider in Alberta & Saskatchewan, providing high-speed wireless internet service in Lloydminster, Cold Lake, North Battleford, and more rural communities. Sign up today!",
+    "Swift-Net.ca offers a user-friendly internet solution tailored for the non-tech-savvy. Benefit from local technicians, professional phone support, low-maintenance service, easy-to-use Wi-Fi, and personalized device setup. Choose Swift-Net.ca for a hassle-free and supportive internet experience.",
 };
 
 const page = () => {
