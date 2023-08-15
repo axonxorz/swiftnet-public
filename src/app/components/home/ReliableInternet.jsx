@@ -5,7 +5,10 @@ import styles from "@/app/styles/styles";
 const ReliableInternet = () => {
   return (
     <>
-      <div className={`${style.reliableInternetBg} h-[80vh]`}></div>
+      <div
+        className={`${style.reliableInternetBg} h-[80vh]  border-2 md:flex hidden`}
+      ></div>
+      <div className={` h-[150px] md:hidden flex`}></div>
 
       <div className="mx-4 md:mx-0">
         <div className="md:w-[75%] m-auto py-5 md:py-16 px-5 md:px-20 bg-white rounded-lg relative top-[-150px] mb-[-100px] md:mb-0">

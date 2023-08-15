@@ -23,6 +23,10 @@ const ServiceProvider = () => {
             src={map}
             alt="Map showing pins on cities including Lloydminster, AB/SK, Cold Lake, AB. North Battleford, SK. Bonnyville, AB. Meadow Lake, SK. Kindersley, SK. Battleford, SK. Athabasca, AB. Lac La Biche, AB. Unity, SK, Provost, AB. Big Island Lake Cree Nation, SK. Macklin, SK. Blackfoot, AB. Wilkie, SK. Lashburn, SK. Maidstone, SK. Flying Dust First Nations, SK. Kerrobert, SK. Kitscoty, AB. and Boyle, A"
             unoptimized={true}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
           />
         </div>
         <div className="flex md:hidden rounded-xl overflow-hidden">
@@ -30,6 +34,10 @@ const ServiceProvider = () => {
             src={mapsquare}
             alt="Map showing pins on cities including Lloydminster, AB/SK, Cold Lake, AB. North Battleford, SK. Bonnyville, AB. Meadow Lake, SK. Kindersley, SK. Battleford, SK. Athabasca, AB. Lac La Biche, AB. Unity, SK, Provost, AB. Big Island Lake Cree Nation, SK. Macklin, SK. Blackfoot, AB. Wilkie, SK. Lashburn, SK. Maidstone, SK. Flying Dust First Nations, SK. Kerrobert, SK. Kitscoty, AB. and Boyle, A"
             unoptimized={true}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
           />
         </div>
 
