@@ -1026,6 +1026,14 @@ video {
   min-height: 100vh;
 }
 
+.min-h-\[347px\] {
+  min-height: 347px;
+}
+
+.min-h-\[150px\] {
+  min-height: 150px;
+}
+
 .w-3\/4 {
   width: 75%;
 }
@@ -1104,6 +1112,18 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-\[250px\] {
+  width: 250px;
+}
+
+.min-w-\[250px\] {
+  min-width: 250px;
 }
 
 .max-w-sm {
@@ -1264,6 +1284,10 @@ video {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .gap-y-2 {
@@ -1800,6 +1824,10 @@ video {
   line-height: 1rem;
 }
 
+.text-\[26px\] {
+  font-size: 26px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1890,6 +1918,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2032,12 +2065,29 @@ ul{
   background-color: rgb(241 245 249 / 0.75);
 }
 
+.hover\:bg-primary\/75:hover {
+  background-color: rgb(5 100 156 / 0.75);
+}
+
+.hover\:bg-white\/80:hover {
+  background-color: rgb(255 255 255 / 0.8);
+}
+
+.hover\:bg-white\/25:hover {
+  background-color: rgb(255 255 255 / 0.25);
+}
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
 
 .hover\:text-primary\/90:hover {
   color: rgb(5 100 156 / 0.9);
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -2308,6 +2358,26 @@ ul{
     width: auto;
   }
 
+  .md\:w-\[30px\] {
+    width: 30px;
+  }
+
+  .md\:w-1 {
+    width: 0.25rem;
+  }
+
+  .md\:w-\[30\%\] {
+    width: 30%;
+  }
+
+  .md\:w-\[80\%\] {
+    width: 80%;
+  }
+
+  .md\:w-\[35\%\] {
+    width: 35%;
+  }
+
   .md\:flex-auto {
     flex: 1 1 auto;
   }
@@ -2528,6 +2598,18 @@ ul{
     line-height: 1.75rem;
   }
 
+  .md\:text-\[20px\] {
+    font-size: 20px;
+  }
+
+  .md\:text-\[30px\] {
+    font-size: 30px;
+  }
+
+  .md\:text-\[36px\] {
+    font-size: 36px;
+  }
+
   .md\:leading-\[44px\] {
     line-height: 44px;
   }
@@ -2538,8 +2620,16 @@ ul{
 }
 
 @media (min-width: 1024px) {
+  .lg\:min-h-\[347px\] {
+    min-height: 347px;
+  }
+
   .lg\:w-1\/2 {
     width: 50%;
+  }
+
+  .lg\:w-\[80\%\] {
+    width: 80%;
   }
 
   .lg\:flex-row {
@@ -2548,6 +2638,14 @@ ul{
 
   .lg\:text-center {
     text-align: center;
+  }
+
+  .lg\:text-\[30px\] {
+    font-size: 30px;
+  }
+
+  .lg\:text-\[36px\] {
+    font-size: 36px;
   }
 }
 
