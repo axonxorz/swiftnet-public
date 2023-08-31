@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import map from "../../../assets/map.webp";
 import mapsquare from "../../../assets/mapsquare.webp";
+import Link from "next/link";
 const ServiceProvider = () => {
   return (
     <div className="bg-[#F1FAFF] pt-12 pb-12  md:pt-20 md:pb-28">
@@ -43,7 +44,9 @@ const ServiceProvider = () => {
 
         <div className="flex items-center  md:flex-row gap-4 justify-between mt-4 px-4 flex-shrink flex-wrap">
           <ul className="list-disc">
-            <li>Lloydminster, AB/SK </li>
+            <li className="cursor-pointer hover:underline underline">
+              <Link href={"/lloydminster"}>Lloydminster, AB/SK </Link>
+            </li>
             <li>Cold Lake, AB</li>
             <li>North Battleford, SK</li>
             <li>Bonnyville, AB</li>
