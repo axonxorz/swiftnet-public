@@ -73,9 +73,12 @@ const Section4 = () => {
 
           <div className="w-full py-3 ">
             <div className="flex  justify-between items-start  flex-wrap mt-3 ">
-              {data.map((item) => {
+              {data.map((item, index) => {
                 return (
-                  <div className="w-full md:w-[49%] min-h-[400px] flex items-start justify-start flex-col my-3">
+                  <div
+                    key={index}
+                    className="w-full md:w-[49%] min-h-[400px] flex items-start justify-start flex-col my-3"
+                  >
                     <div
                       className={`${style[item.class]} h-[256px] w-full `}
                     ></div>

@@ -14,6 +14,7 @@ import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
 import { useStore } from "@/store";
 import { postData } from "@/tools";
+import Cookies from "js-cookie";
 
 const Form = () => {
     const searchParams = useSearchParams();
@@ -21,6 +22,8 @@ const Form = () => {
     const [Loading, setLoading] = useState(false);
     const ipAddress = useStore(state => state.ipAddress)
     const priority = useStore((state) => state.priority);
+    const note = Cookies.get('note');
+
 
 
     const validationSchema = yup.object({
@@ -34,6 +37,14 @@ const Form = () => {
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
         resolver: yupResolver(validationSchema),
     });
+
+    
+
+    useEffect(() => {
+        if(note && note != ""){
+            setValue('notes' , note)
+        }
+    },[note])
 
    
 
@@ -128,7 +139,9 @@ const Form = () => {
             
         }
 
+        Cookies.remove('note');
         setLoading(false);
+
     };
 
 

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const PopUp = ({ setShow }) => {
   return (
-    <div className="fixed w-full md:h-screen bg-white/50 top-0 left-0 flex items-center justify-center overflow-hidden p-3 ">
+    <div className="fixed w-full md:h-screen bg-white/50 top-0 left-0 flex items-center justify-center overflow-hidden p-3  ">
       <div className="w-full md:w-[70%] p-4 bg-[#98C11D] md:h-screen flex flex-col items-start justify-start relative rounded-xl">
         <div className="w-full">
           <div

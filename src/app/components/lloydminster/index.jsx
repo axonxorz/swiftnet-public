@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Hero from "./Hero";
-import Link from "next/link";
 import Image from "next/image";
 import img1 from "@/assets/landings/lloydminster2.webp";
 import Section2 from "./Section2";
