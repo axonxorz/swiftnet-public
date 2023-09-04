@@ -1,3 +1,54 @@
+
+.affordableBg {
+  max-width: 100%;
+  background: url("../../assets/landings/bestinternetSec/Affordable.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.experienceBg {
+  max-width: 100%;
+  background: url("../../assets/landings/bestinternetSec/experience.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.futureBg {
+  max-width: 100%;
+  background: url("../../assets/landings/bestinternetSec/future.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.lloydminsterBg {
+  max-width: 100%;
+  background: url("../../assets/landings/bestinternetSec/lloydminster.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.stayConnectedBg {
+  max-width: 100%;
+  background: url("../../assets/landings/bestinternetSec/stayConnected.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.vaietyinternetBg {
+  max-width: 100%;
+  background: url("../../assets/landings/bestinternetSec/vaietyinternet.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .heroBg {
   max-width: 100%;
   background: url("../../assets/hero-bg.webp");
@@ -11,7 +62,7 @@
   background: url("../../assets/landings/lloydminster.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-position: center; */
+  background-position: center;
 }
 
 .wifiHeroBg {
