@@ -44,9 +44,7 @@ const ServiceProvider = () => {
 
         <div className="flex items-center  md:flex-row gap-4 justify-between mt-4 px-4 flex-shrink flex-wrap">
           <ul className="list-disc">
-            <li className="cursor-pointer hover:underline underline">
-              <Link href={"/lloydminster"}>Lloydminster, AB/SK </Link>
-            </li>
+            <li>Kindersley, SK</li>
             <li>Cold Lake, AB</li>
             <li>North Battleford, SK</li>
             <li>Bonnyville, AB</li>
@@ -54,7 +52,9 @@ const ServiceProvider = () => {
           </ul>
 
           <ul className="list-disc">
-            <li>Kindersley, SK</li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+              <Link href={"/lloydminster"}>Lloydminster, AB/SK </Link>
+            </li>
             <li>Battleford, SK</li>
             <li>Athabasca, AB</li>
             <li>Lac La Biche, AB</li>

@@ -18,8 +18,6 @@ const page = () => {
     <>
       <Hero />
 
-      {show ? <PopUp setShow={setShow} /> : <></>}
-
       <Section2 />
 
       <div className="h-[30px] md:h-[50px]"></div>
@@ -71,6 +69,8 @@ const page = () => {
       </div>
 
       <div className="h-[30px] md:h-[50px]"></div>
+
+      {show ? <PopUp setShow={setShow} /> : <></>}
     </>
   );
 };
