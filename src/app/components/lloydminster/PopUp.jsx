@@ -5,8 +5,8 @@ import Image from "next/image";
 
 const PopUp = ({ setShow }) => {
   return (
-    <div className="fixed w-full md:h-screen bg-white/50 top-0 left-0 flex items-center justify-center overflow-hidden p-3  ">
-      <div className="w-full md:w-[70%] p-4 bg-[#98C11D] md:h-screen flex flex-col items-start justify-start relative rounded-xl">
+    <div className="fixed w-full  md:h-screen bg-white/60 top-0 left-0 flex items-center justify-center  p-3 ">
+      <div className="w-full md:w-[70%] p-4 bg-[#98C11D]   relative rounded-xl ">
         <div className="w-full">
           <div
             className="w-full flex items-center justify-end "
@@ -48,9 +48,9 @@ const PopUp = ({ setShow }) => {
             </div>
           </div>
 
-          <div className="w-[50px] md:w-[100px]"></div>
+          <div className="w-[50px]  md:w-[100px]"></div>
 
-          <div className="flex-1  w-full">
+          <div className="w-full overflow-y-auto h-[700px] ">
             <Plans />
           </div>
         </div>
