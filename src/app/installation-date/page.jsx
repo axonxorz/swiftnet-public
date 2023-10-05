@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/styles";
 import { useRouter, useSearchParams } from "next/navigation";
-import Plans, { planesList } from "../components/installation-date/plans";
+import Plans, { plansList } from "../components/installation-date/plans";
 import DatePickerCmp from "../components/installation-date/date-pick";
 import AddOnes, { addOne } from "../components/installation-date/add-ones";
 import { postData } from "@/tools";
@@ -14,7 +14,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const page = () => {
-  const [selectedPlan, setSelectedPlan] = useState(planesList[2]);
+  const [selectedPlan, setSelectedPlan] = useState(plansList[2]);
   const [selectedAddOne, setSelectedAddOne] = useState(addOne[0]);
   const [selectedDate, setSelectedDate] = useState("");
   const [Loading, setLoading] = useState(false);
@@ -26,6 +26,8 @@ const page = () => {
   const [isExpiredToken, setIsExpiredToken] = useState(false);
 
   useEffect(() => {
+    setDisplay(true);
+    return;
     if (searchParams.get("token")) {
       const token = searchParams.get("token");
 

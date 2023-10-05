@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Card from "./card";
 import BasicPlan from "./basic-plan-card";
 
-export const planesList = [
+export const plansList = [
   {
     id: 0,
     title: "Basic",
@@ -76,7 +76,7 @@ const Plans = ({ selectedPlan, setSelectedPlan }) => {
 
       <div className="flex justify-start items-start gap-4 ">
         <div className="grid grid-cols-2 md:grid-cols-3  gap-4 w-full">
-          {planesList
+          {plansList
             .filter((byId) => byId.id !== 0)
             .map((plan) => {
               return (

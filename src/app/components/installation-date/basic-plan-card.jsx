@@ -1,19 +1,19 @@
 import React from "react";
-import { planesList } from "./plans";
+import { plansList } from "./plans";
 
 const BasicPlan = ({ setSelectedPlan, selectedPlan }) => {
   return (
     <div
-      onClick={() => setSelectedPlan(planesList[0])}
+      onClick={() => setSelectedPlan(plansList[0])}
       className={`${
-        selectedPlan.id === planesList[0].id
+        selectedPlan.id === plansList[0].id
           ? "border-primary border-[1px] bg-[#F1FAFF] "
           : "border-gray-400/70 border-[1px] "
       }col-span-1 cursor-pointer hover:border-primary mb-2  rounded-lg  py-2 px-4 flex flex-col gap-4 md:flex-row  items-center justify-between`}
-      key={planesList[0].id}
+      key={plansList[0].id}
     >
       <div className="flex items-center gap-3">
-        {selectedPlan.id !== planesList[0].id ? (
+        {selectedPlan.id !== plansList[0].id ? (
           <div className=" h-[20px] w-[20px] border-[1px] border-black rounded-full top-5 right-5"></div>
         ) : (
           <div className=" h-[20px] w-[20px]  rounded-full top-5 right-5">
@@ -34,7 +34,7 @@ const BasicPlan = ({ setSelectedPlan, selectedPlan }) => {
           </div>
         )}
 
-        <p className="font-bold text-[18px]">{planesList[0].title}</p>
+        <p className="font-bold text-[18px]">{plansList[0].title}</p>
 
         <p className="border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
           Unlimited
@@ -42,7 +42,7 @@ const BasicPlan = ({ setSelectedPlan, selectedPlan }) => {
       </div>
 
       <div className="flex items-center gap-3 justify-center ">
-        {planesList[0].include.map((itm) => (
+        {plansList[0].include.map((itm) => (
           <div key={itm} className="flex items-center justify-center gap-3">
             <svg
               width="16"
@@ -66,7 +66,7 @@ const BasicPlan = ({ setSelectedPlan, selectedPlan }) => {
 
       <div className="text-center">
         <p className="text-primary text-[24px] font-bold text-center  ">
-          ${planesList[0].price}
+          ${plansList[0].price}
           <span className="text-[12px] text-[#4B5563] ml-1"> /month</span>
         </p>
       </div>

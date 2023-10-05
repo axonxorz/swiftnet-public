@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
 
-export const planesList = [
+export const plansList = [
   {
     id: 0,
     title: "SN - 550",
@@ -52,7 +52,7 @@ const index = () => {
   return (
     <div className="flex justify-center items-center gap-4 ">
       <div className="grid grid-cols-1 lg:grid-cols-3  gap-4 w-full ">
-        {planesList.map((plan) => {
+        {plansList.map((plan) => {
           return <Card plan={plan} key={plan.id} />;
         })}
       </div>
