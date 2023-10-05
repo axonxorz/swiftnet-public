@@ -114,7 +114,7 @@ const MapComponent = () => {
     if (
       searchParams.get("lat") &&
       searchParams.get("lng") &&
-      searchParams.get("fullAdress")
+      searchParams.get("fulAddress")
     ) {
       if (
         searchParams.get("lat") !== "undefined" &&
@@ -124,31 +124,31 @@ const MapComponent = () => {
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
-          fullAdress: searchParams.get("fullAdress"),
+          fulAddress: searchParams.get("fulAddress"),
         });
         setInitialMapState({
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
-          fullAdress: searchParams.get("fullAdress"),
+          fulAddress: searchParams.get("fulAddress"),
         });
       }
       setDefaultZoom(21);
     } else {
-      if (searchParams.get("fullAdress")) {
-        getLatLng(searchParams.get("fullAdress")).then((latLng) => {
+      if (searchParams.get("fulAddress")) {
+        getLatLng(searchParams.get("fulAddress")).then((latLng) => {
           setUserLocation({
             ...userLocation,
             lat: parseFloat(latLng.lat),
             lng: parseFloat(latLng.lng),
-            fullAdress: searchParams.get("fullAdress"),
+            fulAddress: searchParams.get("fulAddress"),
           });
 
           setInitialMapState({
             ...userLocation,
             lat: parseFloat(latLng.lat),
             lng: parseFloat(latLng.lng),
-            fullAdress: searchParams.get("fullAdress"),
+            fulAddress: searchParams.get("fulAddress"),
           });
 
           setDefaultZoom(21);
@@ -247,7 +247,7 @@ const MapComponent = () => {
           <span
             onClick={() => {
               router.push(
-                "/sign-up?step=2&fullAdress=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
+                "/sign-up?step=2&fulAddress=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
               );
             }}
             className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"

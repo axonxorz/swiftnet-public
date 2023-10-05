@@ -14,7 +14,7 @@ const CheckOut = ({ userLocation, setcheckOutHovered }) => {
 
   const handleClickSub = () => {
     route.push(
-      `/sign-up?step=2&fullAdress=${userLocation.fullAdress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
+      `/sign-up?step=2&fullAddress=${userLocation.fullAddress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
     );
   };
 

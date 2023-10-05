@@ -98,7 +98,7 @@ const Form = () => {
                 postalCode = addressInfo.postalCode?.long_name || "NA";
                 country = addressInfo.country?.long_name || "NA";
             }
-            const fullAddress = searchParams.get("fullAdress") !== "undefined" ? searchParams.get("fullAdress") : googleAPIFullAddress
+            const fullAddress = searchParams.get("fullAddress") !== "undefined" ? searchParams.get("fullAddress") : googleAPIFullAddress
 
 
             const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${fullAddress}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);

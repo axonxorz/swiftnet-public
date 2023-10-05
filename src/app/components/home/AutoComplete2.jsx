@@ -33,7 +33,7 @@ const AutoCompleteInput2 = ({ setUserLocation }) => {
       setUserLocation({
         lat: placeObj.geometry?.location?.lat(),
         lng: placeObj.geometry?.location?.lng(),
-        fullAdress: inputRef.current.value,
+        fullAddress: inputRef.current.value,
         city:
           placeObj.address_components?.filter((adr) =>
             adr.types?.includes("locality")

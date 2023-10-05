@@ -46,10 +46,10 @@ const AutoCompleteInput = ({ setUserLocation, place }) => {
       typeof placeObj.geometry?.location?.lat() === "undefined" ||
       typeof placeObj.geometry?.location?.lng() === "undefined"
     ) {
-      router.push(`/map?fullAdress=${inputRef.current.value}`);
+      router.push(`/map?fullAddress=${inputRef.current.value}`);
     } else {
       router.push(
-        `/map?lat=${placeObj.geometry?.location?.lat()}&lng=${placeObj.geometry?.location?.lng()}&fullAdress=${
+        `/map?lat=${placeObj.geometry?.location?.lat()}&lng=${placeObj.geometry?.location?.lng()}&fullAddress=${
           inputRef.current.value
         }`
       );
