@@ -32,7 +32,7 @@ export const planesList = [
     id: 3,
     title: "SN - 100",
     unlimited: true,
-    price: 84.95,
+    price: 77.95,
     dspeed: 100,
     uspeed: 10,
     bg: "bg-white",
