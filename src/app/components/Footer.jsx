@@ -10,9 +10,8 @@ const FacebookPlugin = dynamic(() => import("./FacebookPlugin"), {
   ssr: false,
 });
 
-const Footer = () => {
-  if (typeof window !== "undefined") {
-    return (
+export function StaticFooter() {
+  return (
       <div className="bg-primary py-3">
         <div className={`${styles.width}`}>
           <div className="w-full flex flex-col md:flex-row justify-center md:justify-between items-center pt-8 pb-10">
@@ -67,9 +66,13 @@ const Footer = () => {
         </div>
       </div>
     );
-  } else {
-    return <div></div>;
-  }
 };
 
-export default Footer;
+// Required to avoid a strange SSR issue, removes the old (typeof window !== 'undefined') check
+const DynamicFooter = dynamic(() => import('@components/Footer').then((mod) => mod.StaticFooter), {
+  ssr: false
+});
+
+export default function Footer() {
+  return <DynamicFooter />
+}
