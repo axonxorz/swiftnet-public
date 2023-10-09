@@ -53,7 +53,7 @@ const MapComponent = () => {
     const marker = new maps.Marker({
       position,
       map,
-      title: "Building  Location",
+      title: "Building Location",
       draggable,
     });
 
@@ -94,7 +94,7 @@ const MapComponent = () => {
     const url = `/api/geocode?address=${address}`;
 
     return fetch(url, {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      method: "GET"
     })
       .then((response) => response.json())
       .then((data) => {
@@ -243,7 +243,7 @@ const MapComponent = () => {
         <p
           className={`bg-white px-5 py-1 rounded-md shadow-md  border-1 ${styles.paragraph}`}
         >
-          Put the pin on the building where you want internet service.{" "}
+          Place the pin on the building you are looking for service on.
           <span
             onClick={() => {
               router.push(
@@ -252,7 +252,7 @@ const MapComponent = () => {
             }}
             className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"
           >
-            skip this step
+            Skip this step
           </span>{" "}
         </p>
       </div>

@@ -177,7 +177,6 @@ const Form = () => {
                                         error={errors?.firstName}
                                         label={"First Name"}
                                         name={"first-name"}
-                                        placeholder={"e.g john"}
                                         register={...register("firstName")}
                                         type={"text"}
                                         required
@@ -188,16 +187,11 @@ const Form = () => {
                                         error={errors?.lastName}
                                         label={"Last Name"}
                                         name={"last-name"}
-                                        placeholder={"e.g doe"}
                                         register={...register("lastName")}
                                         type={"text"}
                                         required
                                     />
                                 </div>
-
-
-
-
                             </div>
                             <div className="sm:col-span-3 w-full mt-3">
 
@@ -206,7 +200,6 @@ const Form = () => {
                                         error={errors?.email}
                                         label={"Email"}
                                         name={"email"}
-                                        placeholder={"e.g email@example.com"}
                                         register={...register("email")}
                                         type={"email"}
                                         required

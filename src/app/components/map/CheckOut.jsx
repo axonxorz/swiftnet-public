@@ -27,8 +27,8 @@ const CheckOut = ({ userLocation, setcheckOutHovered }) => {
         className="w-[200px] border-2   rounded-lg shadow-md py-2 absolute top-1 flex items-end justify-center  bg-white "
       >
         <div>
-          <button className="py-2 bg-primary rounded-md text-white px-4 ">
-            Confirm building
+          <button className="py-2 bg-primary rounded-md text-white px-4">
+            Confirm location
           </button>
         </div>
       </div>
