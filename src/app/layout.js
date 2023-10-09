@@ -9,6 +9,7 @@ import Script from "next/script";
 import { useStore } from "@/store";
 import { useEffect } from "react";
 import { generateSessionID } from "@/tools";
+import { Toaster, toast } from "react-hot-toast";
 import Head from "next/head";
 
 const inter = Inter({
@@ -85,6 +86,7 @@ export default function RootLayout({ children }) {
         </Head>
 
         <body className={inter.className}>
+          <Toaster />
           {pathname === "/sign-up" ||
           pathname === "/pricing" ||
           pathname === "/map" ||

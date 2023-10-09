@@ -59,7 +59,6 @@ const page = () => {
       if (status === 1) {
         route.push(`/contact-us/thanks`);
       } else {
-        // toast.error(message);
         console.log("Something went wrong. Please try again.");
       }
     } catch (error) {

@@ -103,7 +103,7 @@ const MapComponent = () => {
           const latLng = result.geometry.location;
           return latLng;
         } else {
-          toast.error("place not found");
+          toast.error("Place not found");
           throw new Error(data.status);
         }
       })

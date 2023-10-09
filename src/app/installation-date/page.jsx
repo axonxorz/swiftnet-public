@@ -85,7 +85,6 @@ const page = () => {
     if (status === 1) {
       route.push(`/thank-you`);
     } else {
-      // toast.error(message);
     }
     setLoading(false);
   };

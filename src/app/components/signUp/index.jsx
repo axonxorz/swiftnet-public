@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Subtract from "@/assets/Subtract.webp";
 import Image from "next/image";
 import Step1 from "./Step1";
-import { Toaster } from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
 import Form from "./Form";
 import { useStore } from "@/store";
@@ -27,7 +26,6 @@ const Index = () => {
   if (step !== 2) {
     return (
       <>
-        <Toaster />
         <div className="flex items-start justify-between h-screen  ">
           {step === 1 ? <Step1 setStep={setStep} plan={550} /> : <Form />}
 

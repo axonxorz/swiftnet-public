@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 import Step1 from "../signUp/Step1";
 import Image from "next/image";
 import Subtract from "@/assets/Subtract.webp";
-import { Toaster } from "react-hot-toast";
 
 const LeftSide = () => {
   const [step, setStep] = useState(1);
@@ -19,7 +18,6 @@ const LeftSide = () => {
   if (step !== 2) {
     return (
       <>
-        <Toaster />
         <div className="flex items-start justify-between h-screen  ">
           {step === 1 ? <Step1 setStep={setStep} plan={550} /> : <Form />}
 
