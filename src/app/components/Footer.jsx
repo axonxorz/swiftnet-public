@@ -28,6 +28,12 @@ export function StaticFooter() {
 
             <div>
               <ul className="flex flex-col md:flex-row text-center md:text-right gap-3 md:gap-6 text-sm tracking-[-0.02em] text-white mt-8 md:mt-0">
+              <li>
+                  <Link href="/tos.pdf" target="_blank">Terms of Service</Link>
+                </li>
+                <li>
+                  <Link href="/privacy_policy.pdf" target="_blank">Privacy Policy</Link>
+                </li>
                 <li>
                   <Link href="/business-class">Business Internet</Link>
                 </li>
@@ -68,7 +74,7 @@ export function StaticFooter() {
     );
 };
 
-// Required to avoid a strange SSR issue, removes the old (typeof window !== 'undefined') check
+// Required to avoid a strange SSR ~issue, removes the old (typeof window !== 'undefined') check
 const DynamicFooter = dynamic(() => import('@components/Footer').then((mod) => mod.StaticFooter), {
   ssr: false
 });
