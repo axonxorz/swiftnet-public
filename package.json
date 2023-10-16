@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev & yarn tailwind",
-    "build": "next build",
+    "dev": "next dev & yarn tailwind_watch",
+    "build": "yarn tailwind && next build",
     "start": "next start",
     "lint": "next lint",
-    "tailwind": "npx tailwindcss -i ./src/app/styles/global.css -o ./src/app/styles/output.css --watch"
+    "tailwind": "npx tailwindcss -i ./src/app/styles/global.css -o ./src/app/styles/output.css",
+    "tailwind_watch": "npx tailwindcss -i ./src/app/styles/global.css -o ./src/app/styles/output.css --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
