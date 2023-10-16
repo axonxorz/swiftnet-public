@@ -20,7 +20,7 @@ const Navbar = () => {
   const whitetextAndLogo = [
     "/",
     "/lloydminster",
-    "/wifi-app-by-callix",
+    "/wifi-app-by-calix",
   ].includes(pathname);
 
   return (
@@ -51,7 +51,7 @@ const Navbar = () => {
                 <Link href="/business-class">Business Internet</Link>
               </li>
               <li>
-                <Link href="/wifi-app-by-callix">Wi-Fi App </Link>
+                <Link href="/wifi-app-by-calix">Wi-Fi App </Link>
               </li>
 
               <li>
@@ -121,7 +121,7 @@ const Navbar = () => {
                   Business Internet
                 </li>
               </Link>
-              <Link href="/wifi-app-by-callix">
+              <Link href="/wifi-app-by-calix">
                 <li
                   onClick={() => setNav(false)}
                   className="py-4 text-sm text-white list-none"

@@ -38,7 +38,7 @@ export function StaticFooter() {
                   <Link href="/business-class">Business Internet</Link>
                 </li>
                 <li>
-                  <Link href="/wifi-app-by-callix">Wi-Fi App</Link>
+                  <Link href="/wifi-app-by-calix">Wi-Fi App</Link>
                 </li>
                 <li className="uppercase">
                   <Link href="/faq">Faq</Link>
