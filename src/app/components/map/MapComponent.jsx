@@ -8,6 +8,8 @@ import { toast } from "react-hot-toast";
 import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
 
+import { loaderReactCompat } from '@/lib/gmaps';
+
 const defaultCenter = {
   lat: 53.31225509999999,
   lng: -110.072853,
@@ -224,7 +226,7 @@ const MapComponent = () => {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API }}
+        googleMapLoader={loaderReactCompat}
         center={center}
         zoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
