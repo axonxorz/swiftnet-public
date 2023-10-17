@@ -20,17 +20,16 @@ const inter = Inter({
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-
-  const session = useSessionStore((state) => state.setIpAddress);
+  const session = useSessionStore();
 
   useEffect(() => {
-    useSessionStore.setState({ sessionId: generateSessionId() });
+    session.setSessionId(generateSessionId());
     // Fetch IP address only once when the component mounts
     fetch("https://api.ipify.org/?format=json")
       .then((response) => response.json())
       .then((data) => {
         const ipAddress = data.ip;
-        session(ipAddress); // Assuming you have the setIpAddress function defined in your store
+        session.setIpAddress(ipAddress); // Assuming you have the setIpAddress function defined in your store
       })
       .catch((error) => {
         toast.error("Error:", error);
