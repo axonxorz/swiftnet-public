@@ -8,3 +8,11 @@ export const useSessionStore = create((set) => ({
     setPriority: (priority) => set(() => ({priority})),
     setIpAddress: (ipAddress) => set(() => ({ipAddress: ipAddress})),
 }));
+
+export const useUserLocationStore = create((set) => ({
+    address: '',
+    lat: null,
+    lng: null,
+    setAddress: (address) => set({address: address}),
+    setCoordinates: (lat, lng) => set({lat: lat, lng: lng})
+}));
