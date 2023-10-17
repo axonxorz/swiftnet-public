@@ -9,7 +9,7 @@ import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
 
 import { loaderReactCompat } from '@/lib/gmaps';
-import { defaultMapCenter } from "@/lib/gis";
+import { defaultMapCenter, geocodeAddress } from "@/lib/gis";
 import { useUserLocationStore } from "@/store";
 import { isNil } from "lodash-es";
 
@@ -63,23 +63,6 @@ const MapComponent = () => {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
     }
-  };
-
-  const geocodeAddress = async (address) => {
-    const url = `/api/geocode?address=${address}`;
-
-    return fetch(url, {
-      method: "GET"
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "OK") {
-          const result = data.results[0];
-          return result.geometry.location;
-        } else {
-          return Promise.reject(data.status);
-        }
-      })
   };
 
   const currentLatLng = () => {

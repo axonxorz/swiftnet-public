@@ -15,6 +15,22 @@ export const swiftAutocompleteOptions = {
 }
 
 export const defaultMapCenter = {
-  lat: 53.31225509999999,
-  lng: -110.072853,
+    lat: 53.31225509999999,
+    lng: -110.072853,
 }
+
+export const geocodeAddress = async (address) => {
+    const url = `/api/geocode?address=${address}`;
+    return fetch(url, {
+        method: "GET"
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "OK") {
+            const result = data.results[0];
+            return result.geometry.location;
+        } else {
+            return Promise.reject(data.status);
+        }
+    })
+};
