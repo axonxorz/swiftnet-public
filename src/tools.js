@@ -17,18 +17,6 @@ export async function postData(url = "", data = {}) {
 }
 
 // Function to generate a unique session ID
-export const generateSessionID = () => {
-  // Get the current timestamp in milliseconds
-  const timestamp = new Date().getTime();
-
-  // Generate a random string using Math.random() and convert it to a base36 string
-  // You can adjust the length of the random string as needed
-  const randomString =
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15);
-
-  // Combine the timestamp and random string to create the unique ID
-  const sessionID = `${timestamp}-${randomString}`;
-
-  return sessionID;
+export const generateSessionId = () => {
+  return crypto.randomUUID();
 };

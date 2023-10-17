@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 import Script from "next/script";
 import { ipAddressStore } from "@/store";
 import { useEffect } from "react";
-import { generateSessionID } from "@/tools";
+import { generateSessionId } from "@/tools";
 import { Toaster, toast } from "react-hot-toast";
 import Head from "next/head";
 
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
   dotenv.config();
 
   useEffect(() => {
-    ipAddressStore.setState({ id: generateSessionID() });
+    ipAddressStore.setState({ sessionId: generateSessionId() });
     // Fetch IP address only once when the component mounts
     fetch("https://api.ipify.org/?format=json")
       .then((response) => response.json())
