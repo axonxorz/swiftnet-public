@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/app/styles/styles";
 import React from "react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import loader from '@/lib/gmaps'
@@ -38,22 +38,29 @@ const AutoCompleteInput = ({place}) => {
         })
     }, []);
 
-    const checkAvailability = () => {
-        const address = locationStore.address;
+    useEffect(() => {
+        if(locationStore.address || (!isNil(locationStore.lat) && !isNil(locationStore.lng))) {
+            checkAvailability();
+        }
+    })
+
+    const checkAvailability = (raw=false) => {
+        let address;
+        if(raw) {
+            address = inputRef.current.value;
+        } else {
+            address = locationStore.address;
+        }
         const {lat, lng} = locationStore;
         let route = '/map';
         let search = new URLSearchParams();
-        search.set('address', locationStore.address);
+        search.set('address', address);
         if(lat !== null && lng !== null) {
             search.set('lat', lat);
             search.set('lng', lng);
         }
         router.push(`${route}?${search}`);
     };
-
-    if(locationStore.address || (!isNil(locationStore.lat) && !isNil(locationStore.lng))) {
-        checkAvailability();
-    }
 
     if (place === "home") {
         return (
@@ -67,7 +74,7 @@ const AutoCompleteInput = ({place}) => {
 
                     <button
                         type="submit"
-                        onClick={() => checkAvailability()}
+                        onClick={() => checkAvailability(true)}
                         className={`bg-primary border-none rounded-md ${styles.paragraph}   text-white px-4 py-2 absolute md:flex  items-center justify-center top-0  md:bottom-[50%] right-0   h-full `}
                     >
                         Check Availability
@@ -93,7 +100,7 @@ const AutoCompleteInput = ({place}) => {
                 <div className="w-full  mt-4">
                     <button
                         type="submit"
-                        onClick={() => checkAvailability()}
+                        onClick={() => checkAvailability(true)}
                         className={`bg-primary border-none hover:bg-primary/80 rounded-md ${styles.paragraph} text-white px-4 py-2 w-full `}
                     >
                         Check availability
