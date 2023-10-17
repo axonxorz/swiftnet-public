@@ -10,41 +10,24 @@ import LocationImgUrl from "@/assets/location.png";
 
 import { loaderReactCompat } from '@/lib/gmaps';
 import { defaultMapCenter } from "@/lib/gis";
-
+import { useUserLocationStore } from "@/store";
+import { isNil } from "lodash-es";
 
 const _defaultCenter = () => Object.assign({}, defaultMapCenter);
 
-
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState(_defaultCenter);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const locationStore = useUserLocationStore();
+
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
-  const searchParams = useSearchParams();
-  const [defaultZoom, setDefaultZoom] = useState(7);
-  const [initialZoom, setiInitialDefaultZoom] = useState(7);
-  const router = useRouter();
-  const [checkOutHovered, setcheckOutHovered] = useState(false);
+  const [checkOutHovered, setCheckOutHovered] = useState(false);
   const [displayCheckout, setDisplayCheckout] = useState(true);
-  const [initialMapState, setInitialMapState] = useState(_defaultCenter);
   const [center, setMapCenter] = useState(_defaultCenter);
-
-  const resetState = (event) => {
-    if (event.detail == 2) {
-      router.push("/");
-    } else if (event.detail == 1) {
-      if (
-        userLocation.lat === initialMapState.lat &&
-        userLocation.lng === initialMapState.lng
-      ) {
-        router.back();
-      } else {
-        setUserLocation(initialMapState);
-        markers.length > 0 ? setDefaultZoom(22) : setDefaultZoom(initialZoom);
-      }
-    }
-  };
+  const [zoom, setZoom] = useState(7);
 
   const createMarker = (maps, map, position, draggable = true) => {
     clearMarkers();
@@ -59,21 +42,14 @@ const MapComponent = () => {
     marker.setMap(map);
     marker.addListener("drag", () => {
       setIsDragging(true);
-      defaultZoom === 7 && setDefaultZoom(11);
     });
     marker.addListener("dragend", (event) => {
       clearMarkers();
-
       //this because when dragend finish onClick event on the map get executed to that why we see two markers
       //so when the dragend i wait 50 ms then set Dragging to false and check it in the onclick
       setTimeout(() => {
         setIsDragging(false);
-
-        setUserLocation({
-          ...userLocation,
-          lat: event.latLng.lat(),
-          lng: event.latLng.lng(),
-        });
+        locationStore.setCoordinates(event.latLng.lat(), event.latLng.lng());
       }, 10);
     });
     marker.addListener("mouseover", () => {
@@ -89,7 +65,7 @@ const MapComponent = () => {
     }
   };
 
-  const getLatLng = async (address) => {
+  const geocodeAddress = async (address) => {
     const url = `/api/geocode?address=${address}`;
 
     return fetch(url, {
@@ -106,119 +82,83 @@ const MapComponent = () => {
       })
   };
 
-  const setLocationFromSearchParams = () => {
-    if (
-      searchParams.get("lat") &&
-      searchParams.get("lng") &&
-      searchParams.get("address")
-    ) {
-      if (
-        searchParams.get("lat") !== "undefined" &&
-        searchParams.get("lat") !== "undefined"
-      ) {
-        setUserLocation({
-          ...userLocation,
-          lat: parseFloat(searchParams.get("lat")),
-          lng: parseFloat(searchParams.get("lng")),
-          address: searchParams.get("address"),
-        });
-        setInitialMapState({
-          ...userLocation,
-          lat: parseFloat(searchParams.get("lat")),
-          lng: parseFloat(searchParams.get("lng")),
-          address: searchParams.get("address"),
-        });
-      }
-      setDefaultZoom(21);
+  const currentLatLng = () => {
+    // Return the current lat/lng, or the default values
+    if(locationStore.getCoordinates()) {
+      return locationStore.getCoordinates();
     } else {
-      if (searchParams.get("address")) {
-        getLatLng(searchParams.get("address")).then((latLng) => {
-          setUserLocation({
-            ...userLocation,
-            lat: parseFloat(latLng.lat),
-            lng: parseFloat(latLng.lng),
-            address: searchParams.get("address"),
-          });
+      return _defaultCenter()
+    }
+  }
 
-          setInitialMapState({
-            ...userLocation,
-            lat: parseFloat(latLng.lat),
-            lng: parseFloat(latLng.lng),
-            address: searchParams.get("address"),
-          });
-
-          setDefaultZoom(21);
-        }, (error) => {
-          if(error == 'OK') {
+  const setLocationFromSearchParams = () => {
+    if(!isNil(searchParams.get('lat')) && !isNil(searchParams.get('lng'))) {
+      try {
+        locationStore.setCoordinates(parseFloat(searchParams.get('lat')), parseFloat(searchParams.get('lng')));
+      } catch(e) {
+        // Don't care
+      }
+    } else if(!!searchParams.get('address')) {
+      geocodeAddress(searchParams.get('address')).then((latLng) => {
+        locationStore.setCoordinates(latLng.lat, latLng.lng);
+      }, (error) => {
+        if(error === 'ZERO_RESULTS') {
             toast.error("Place not found");
           } else {
             toast.error('Error searching for address coordinates')
           }
-        });
-      }
+      });
     }
-  };
+  }
 
   const addMarkerToMap = (location) => {
     if (map) {
       const marker = createMarker(maps, map, location);
       setMarkers((prevMarkers) => [...prevMarkers, marker]);
-      setMapCenter({
-        lat: userLocation.lat,
-        lng: userLocation.lng,
-      });
+      setMapCenter(currentLatLng());
     }
   };
 
   const handleApiLoaded = (map, maps) => {
     setMaps(maps);
-
-    map.addListener("zoom_changed", () => {
-      var zoom = map.getZoom();
-      setDefaultZoom(zoom);
-    });
-
-    //
     setMap(map);
   };
 
-  const handleCurrentLocationButtonClick = (setAsDefault) => {
+  const handleCurrentLocationButtonClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        setUserLocation({ ...userLocation, ...pos });
-        setAsDefault && setInitialMapState({ ...pos });
-        setDefaultZoom(21);
-        setiInitialDefaultZoom(21);
+        locationStore.setCoordinates(pos.lat, pos.lng)
+      }, () => {
+        toast.error('Location access blocked');
+      }, {
+        enableHighAccuracy: true
       });
     } else {
-      toast.error("Geo Location not supported");
+      toast.error("Geolocation not supported on this device");
     }
   };
 
   const handleMapClick = async ({ lat, lng }) => {
     clearMarkers();
-
-    setDefaultZoom((state) => state + 1);
-
     if (!isDragging && !checkOutHovered) {
-      setUserLocation({ ...userLocation, lat, lng });
+      locationStore.setCoordinates(lat, lng);
     }
   };
 
   useEffect(() => {
     setLocationFromSearchParams();
-  }, [searchParams]);
+  }, [map, searchParams]);
 
   useEffect(() => {
-    addMarkerToMap(userLocation);
-  }, [userLocation]);
+    addMarkerToMap(currentLatLng());
+  }, [locationStore]);
 
   useEffect(() => {
-    addMarkerToMap(userLocation);
+    addMarkerToMap(currentLatLng());
   }, [map]);
 
   return (
@@ -226,16 +166,15 @@ const MapComponent = () => {
       <GoogleMapReact
         googleMapLoader={loaderReactCompat}
         center={center}
-        zoom={defaultZoom}
+        zoom={zoom}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         onClick={handleMapClick}
         options={(map) => ({ mapTypeId: map.MapTypeId.HYBRID })}
       >
-        {!isDragging && displayCheckout && userLocation?.lat && (
+        {!isDragging && displayCheckout && currentLatLng() && (
           <CheckOut
-            userLocation={userLocation}
-            setcheckOutHovered={setcheckOutHovered}
+            setCheckOutHovered={setCheckOutHovered}
           />
         )}
       </GoogleMapReact>
@@ -247,7 +186,7 @@ const MapComponent = () => {
           <span
             onClick={() => {
               router.push(
-                "/sign-up?step=2&address=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
+                "/sign-up?step=2"
               );
             }}
             className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"
@@ -259,7 +198,7 @@ const MapComponent = () => {
 
       <button
         className="absolute top-20  md:top-4 left-3 z-50 shadow-2xl shadow-white transition-all  duration-150   flex items-center justify-center  rounded-sm bg-white  cursor-pointer    focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
-        onClick={(e) => resetState(e)}
+        onClick={(e) => router.back()}
       >
         <div className="w-[38px] h-[38px] text-center flex items-center justify-center">
           <p className="text-xl text-black  ">
@@ -281,7 +220,7 @@ const MapComponent = () => {
         </div>
       </button>
       <button
-        onClick={() => handleCurrentLocationButtonClick(false)}
+        onClick={() => handleCurrentLocationButtonClick()}
         className="absolute   shadow-2xl shadow-white transition-all w-[60px] h-[60px] duration-150 bottom-28 right-0 flex items-center justify-center  rounded-full bg-white p-1  cursor-pointer text-white   focus:ring-4 focus:bg-slate-100 font-medium text-sm   focus:outline-none "
       >
         <Image

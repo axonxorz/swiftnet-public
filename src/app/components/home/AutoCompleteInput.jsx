@@ -54,7 +54,9 @@ const AutoCompleteInput = ({place}) => {
         const {lat, lng} = locationStore;
         let route = '/map';
         let search = new URLSearchParams();
-        search.set('address', address);
+        if(!!address) {
+            search.set('address', address);
+        }
         if(lat !== null && lng !== null) {
             search.set('lat', lat);
             search.set('lng', lng);

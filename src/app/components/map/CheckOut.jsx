@@ -1,20 +1,23 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const CheckOut = ({ userLocation, setcheckOutHovered }) => {
+const CheckOut = ({ setCheckOutHovered }) => {
+
+  // &fullAddress=${userLocation.fullAddress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
+
   const route = useRouter();
 
   const handleMouseEnter = () => {
-    setcheckOutHovered(true);
+    setCheckOutHovered(true);
   };
 
   const handleMouseLeave = () => {
-    setcheckOutHovered(false);
+    setCheckOutHovered(false);
   };
 
   const handleClickSub = () => {
     route.push(
-      `/sign-up?step=2&fullAddress=${userLocation.fullAddress}&lng=${userLocation.lng}&lat=${userLocation.lat}&city=${userLocation.city}&state=${userLocation.state}&country=${userLocation.city}&codepostal=${userLocation.postal_code}`
+      `/sign-up?step=2`
     );
   };
 
