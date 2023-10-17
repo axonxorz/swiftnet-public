@@ -1,3 +1,5 @@
+import { isNil } from "lodash-es";
+
 // Generously cover AB, SK
 // WKT: POLYGON((-120.33 60.21, -100.79 60.21, -100.79 48.65, -120.33 48.65, -120.33 60.21))
 export const canadaBounds = {
@@ -25,6 +27,27 @@ export const geocodeAddress = async (address) => {
         method: "GET"
     })
     .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "OK") {
+            const result = data.results[0];
+            return result.geometry.location;
+        } else {
+            return Promise.reject(data.status);
+        }
+    })
+};
+
+export const reverseGeocode = async (lat, lng) => {
+    if(isNil(lat) || isNil(lng)) {
+        return Promise.reject('Invalid arguments');
+    }
+    const url = `/api/geocode_reverse?lat=${lat}&lng=${lng}`;
+    return fetch(url, {
+        method: "POST"
+    })
+    .then((response) => {
+        return response.ok ? response.json() : Promise.reject('Server error');
+    })
     .then((data) => {
         if (data.status === "OK") {
             const result = data.results[0];
