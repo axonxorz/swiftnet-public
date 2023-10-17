@@ -14,6 +14,7 @@ export const useUserLocationStore = create((set, get) => ({
     address: '',
     lat: null,
     lng: null,
+    mapValidated: false,
     setAddress: (address) => set({address: address}),
     getCoordinates: () => {
         // Return coordinates as a LatLngLiteral or null
@@ -23,5 +24,6 @@ export const useUserLocationStore = create((set, get) => ({
         }
         return {lat: get().lat, lng: get().lng}
     },
-    setCoordinates: (lat, lng) => set({lat: lat, lng: lng})
+    setCoordinates: (lat, lng) => set({lat: lat, lng: lng}),
+    setMapValidated: (mapValidated) => set({mapValidated: mapValidated})
 }));

@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
@@ -149,6 +149,12 @@ const MapComponent = () => {
     }
   };
 
+  const confirmLocation = () => {
+    if(locationStore.lat === null || locationStore.lng === null) { return; }
+    locationStore.setMapValidated(true);
+    router.push('/sign-up?step=2')
+  }
+
   useEffect(() => {
     setLocationFromSearchParams();
   }, [map, searchParams]);
@@ -175,6 +181,7 @@ const MapComponent = () => {
         {!isDragging && displayCheckout && currentLatLng() && (
           <CheckOut
             setCheckOutHovered={setCheckOutHovered}
+            confirmLocation={confirmLocation}
           />
         )}
       </GoogleMapReact>

@@ -45,6 +45,8 @@ const AutoCompleteInput = ({place}) => {
     })
 
     const checkAvailability = (raw=false) => {
+        // TODO: This component should not touch the router at all
+        if(locationStore.mapValidated) { return; } // Prevent this component from redirecting to the map
         let address;
         if(raw) {
             address = inputRef.current.value;
