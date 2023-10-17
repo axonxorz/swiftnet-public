@@ -7,8 +7,9 @@ import { useRouter } from "next/navigation";
 import AutoCompleteInput from "../home/AutoCompleteInput";
 import style from "../../styles/styles.module.css";
 
-const Step1 = ({ setStep, plan }) => {
-  const route = useRouter();
+export default ({ setStep, plan }) => {
+  const route = useRouter()
+
   return (
     <div className="w-full md:w-[900px] min-h-screen md:overflow-hidden flex items-center justify-center  ">
       <div className="w-full md:w-[70%] min-h-screen  py-2 flex flex-col  ">
@@ -38,9 +39,6 @@ const Step1 = ({ setStep, plan }) => {
             </p>
           </div>
           <div className="w-full py-2">
-            <p className={`${styles.paragraph} uppercase text-primary`}>
-              STEP 1
-            </p>
           </div>
           <div className=" mt-1">
             <p className={`${styles.heading}`}>Let’s get started</p>
@@ -64,5 +62,3 @@ const Step1 = ({ setStep, plan }) => {
     </div>
   );
 };
-
-export default Step1;

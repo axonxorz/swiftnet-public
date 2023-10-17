@@ -7,24 +7,32 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InputField from "./InputField";
+import StaticInputField from "./StaticInputField";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
-import { useSessionStore } from "@/store";
+import { useSessionStore, useUserLocationStore } from "@/store";
 import { postData } from "@/tools";
 import Cookies from "js-cookie";
 
 const Form = () => {
-    const searchParams = useSearchParams();
+    const locationStore = useUserLocationStore()
+    const sessionStore = useSessionStore();
     const route = useRouter();
     const [Loading, setLoading] = useState(false);
     const ipAddress = useSessionStore(state => state.ipAddress)
     const priority = useSessionStore((state) => state.priority);
     const note = Cookies.get('note');
 
-
+    useEffect(() => {
+        if(!locationStore.mapValidated) {
+            // TODO: would be nice to redirect to step 1, but need to unwind pages and components as no
+            // TODO: re-render happens when only the querystring changes (due to checking in a useEffect)
+            route.replace('/')
+        }
+    }, [locationStore]);
 
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
@@ -38,17 +46,11 @@ const Form = () => {
         resolver: yupResolver(validationSchema),
     });
 
-    
-
     useEffect(() => {
         if(note && note != ""){
             setValue('notes' , note)
         }
     },[note])
-
-   
-
-    // Example POST method implementation:
 
     const AddressInfo = (address) => {
         // Filter the address components
@@ -69,8 +71,6 @@ const Form = () => {
         // Render the results
         return { city, country, postalCode, fullAddress };
     }
-
-
 
     const onSubmit = async (data) => {
         setLoading(true);
@@ -193,8 +193,8 @@ const Form = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="sm:col-span-3 w-full mt-3">
 
+                            <div className="sm:col-span-3 w-full mt-2">
                                 <div className="sm:col-span-4  ">
                                     <InputField
                                         error={errors?.email}
@@ -206,11 +206,7 @@ const Form = () => {
                                     />
                                 </div>
 
-                                <div className="mb-2">
-
-                                </div>
-
-                                <div className="sm:col-span-4 ">
+                                <div className="sm:col-span-4 mt-3">
                                     <label
                                         htmlFor={"phone"}
                                         className="block text-sm font-medium leading-6 text-[#6B7280]"
@@ -242,17 +238,43 @@ const Form = () => {
                                     )}
                                 </div>
 
+                                <div className="mt-3">
+                                    <label
+                                        htmlFor={"Notes"}
+                                        className="block text-sm font-medium leading-6 text-[#6B7280]"
+                                    >
+                                        Notes
+                                    </label>
 
-                                <label
-                                    htmlFor={"Notes"}
-                                    className="block text-sm font-medium leading-6 text-[#6B7280]"
-                                >
-                                    Notes
-                                </label>
+                                    <textarea  {...register('notes')} name="notes" className={`${errors?.notes?.message && "bg-red-400/20 text-white border-red-500 "
+                                        }block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`} cols="30" rows="5" {...register} ></textarea>
+                                    {errors?.notes?.message && <p className="text-red-500 text-xs  ">{errors?.notes?.message}</p>}
+                                </div>
 
-                                <textarea  {...register('notes')} name="notes" className={`${errors?.notes?.message && "bg-red-400/20 text-white border-red-500 "
-                                    }block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`} cols="30" rows="5" {...register} ></textarea>
-                                {errors?.notes?.message && <p className="text-red-500 text-xs  ">{errors?.notes?.message}</p>}
+                                {!!locationStore.address &&
+                                    <div className="mt-3">
+                                        <StaticInputField
+                                            label={"Address"}
+                                            value={locationStore.address}
+                                            disabled
+                                        />
+                                    </div>
+                                }
+
+                                <div className="mt-2 grid grid-cols-1 gap-2 gap-y-2  sm:grid-cols-6">
+                                    <div className="sm:col-span-3 ">
+                                        <StaticInputField
+                                            label={"GPS Coordinates"}
+                                            value={(locationStore.lat || 0.00).toFixed(5)}
+                                        />
+                                    </div>
+                                    <div className="sm:col-span-3 ">
+                                        <StaticInputField
+                                            value={(locationStore.lng || 0.00).toFixed(5)}
+                                        />
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
