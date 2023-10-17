@@ -6,7 +6,7 @@ import Plans, { plansList } from "../components/installation-date/plans";
 import DatePickerCmp from "../components/installation-date/date-pick";
 import AddOnes, { addOne } from "../components/installation-date/add-ones";
 import { postData } from "@/tools";
-import { ipAddressStore } from "@/store";
+import { useSessionStore } from "@/store";
 import jwt from "jsonwebtoken";
 import Link from "next/link";
 import "@/app/styles/custom.css";
@@ -18,7 +18,7 @@ const page = () => {
   const [selectedAddOne, setSelectedAddOne] = useState(addOne[0]);
   const [selectedDate, setSelectedDate] = useState("");
   const [Loading, setLoading] = useState(false);
-  const ipAddress = ipAddressStore((state) => state.ipAddress);
+  const ipAddress = useSessionStore((state) => state.ipAddress);
 
   const searchParams = useSearchParams();
   const route = useRouter();

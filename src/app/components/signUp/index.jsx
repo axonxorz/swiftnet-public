@@ -5,11 +5,11 @@ import Image from "next/image";
 import Step1 from "./Step1";
 import { useSearchParams } from "next/navigation";
 import Form from "./Form";
-import { ipAddressStore } from "@/store";
+import { useSessionStore } from "@/store";
 
 const Index = () => {
   const [step, setStep] = useState(1);
-  const setPriority = ipAddressStore((state) => state.setPriority);
+  const setPriority = useSessionStore((state) => state.setPriority);
 
   const searchParams = useSearchParams();
 

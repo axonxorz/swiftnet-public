@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const ipAddressStore = create((set) => ({
+export const useSessionStore = create((set) => ({
     sessionId: null,
     ipAddress: "",
     priority: false,

@@ -5,11 +5,12 @@ import "./styles/output.css";
 import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { ipAddressStore } from "@/store";
 import { useEffect } from "react";
-import { generateSessionId } from "@/tools";
 import { Toaster, toast } from "react-hot-toast";
 import Head from "next/head";
+
+import { useSessionStore } from "@/store";
+import { generateSessionId } from "@/tools";
 
 const inter = Inter({
   weight: ["400", "500", "600"],
@@ -20,16 +21,16 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  const setIpAddress = ipAddressStore((state) => state.setIpAddress);
+  const session = useSessionStore((state) => state.setIpAddress);
 
   useEffect(() => {
-    ipAddressStore.setState({ sessionId: generateSessionId() });
+    useSessionStore.setState({ sessionId: generateSessionId() });
     // Fetch IP address only once when the component mounts
     fetch("https://api.ipify.org/?format=json")
       .then((response) => response.json())
       .then((data) => {
         const ipAddress = data.ip;
-        setIpAddress(ipAddress); // Assuming you have the setIpAddress function defined in your store
+        session(ipAddress); // Assuming you have the setIpAddress function defined in your store
       })
       .catch((error) => {
         toast.error("Error:", error);
