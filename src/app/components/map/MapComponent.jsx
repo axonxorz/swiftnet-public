@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "@/app/styles/styles";
@@ -99,21 +99,18 @@ const MapComponent = () => {
       .then((data) => {
         if (data.status === "OK") {
           const result = data.results[0];
-          const latLng = result.geometry.location;
-          return latLng;
+          return result.geometry.location;
         } else {
-          toast.error("Place not found");
-          throw new Error(data.status);
+          return Promise.reject(data.status);
         }
       })
-      .catch((error) => console.error(error));
   };
 
   const setLocationFromSearchParams = () => {
     if (
       searchParams.get("lat") &&
       searchParams.get("lng") &&
-      searchParams.get("fulAddress")
+      searchParams.get("address")
     ) {
       if (
         searchParams.get("lat") !== "undefined" &&
@@ -123,37 +120,41 @@ const MapComponent = () => {
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
-          fulAddress: searchParams.get("fulAddress"),
+          address: searchParams.get("address"),
         });
         setInitialMapState({
           ...userLocation,
           lat: parseFloat(searchParams.get("lat")),
           lng: parseFloat(searchParams.get("lng")),
-          fulAddress: searchParams.get("fulAddress"),
+          address: searchParams.get("address"),
         });
       }
       setDefaultZoom(21);
     } else {
-      if (searchParams.get("fulAddress")) {
-        getLatLng(searchParams.get("fulAddress")).then((latLng) => {
+      if (searchParams.get("address")) {
+        getLatLng(searchParams.get("address")).then((latLng) => {
           setUserLocation({
             ...userLocation,
             lat: parseFloat(latLng.lat),
             lng: parseFloat(latLng.lng),
-            fulAddress: searchParams.get("fulAddress"),
+            address: searchParams.get("address"),
           });
 
           setInitialMapState({
             ...userLocation,
             lat: parseFloat(latLng.lat),
             lng: parseFloat(latLng.lng),
-            fulAddress: searchParams.get("fulAddress"),
+            address: searchParams.get("address"),
           });
 
           setDefaultZoom(21);
+        }, (error) => {
+          if(error == 'OK') {
+            toast.error("Place not found");
+          } else {
+            toast.error('Error searching for address coordinates')
+          }
         });
-      } else {
-        handleCurrentLocationButtonClick(true);
       }
     }
   };
@@ -246,7 +247,7 @@ const MapComponent = () => {
           <span
             onClick={() => {
               router.push(
-                "/sign-up?step=2&fulAddress=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
+                "/sign-up?step=2&address=undefined&lng=undefined&lat=undefined&city=undefined&state=undefined&country=undefined&codepostal=undefined"
               );
             }}
             className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"

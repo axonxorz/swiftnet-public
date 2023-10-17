@@ -1,13 +1,13 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
   
-export  async function GET(request) {
+export async function GET(request) {
     const headersList = headers()
     const referer = headersList.get('referer')
     const { searchParams } = new URL(request.url)
     const address = searchParams.get('address')
     const latlng = searchParams.get('latlng')
-    if (!referer || !['https://swift-net.vercel.app', 'https://swift-net.ca'].some(url => referer.startsWith(url))) {
+    if (!referer || !['https://swift-net.vercel.app', 'https://swift-net.ca', 'http://localhost'].some(url => referer.startsWith(url))) {
         return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
