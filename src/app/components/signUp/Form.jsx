@@ -12,7 +12,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
-import { useStore } from "@/store";
+import { ipAddressStore } from "@/store";
 import { postData } from "@/tools";
 import Cookies from "js-cookie";
 
@@ -20,8 +20,8 @@ const Form = () => {
     const searchParams = useSearchParams();
     const route = useRouter();
     const [Loading, setLoading] = useState(false);
-    const ipAddress = useStore(state => state.ipAddress)
-    const priority = useStore((state) => state.priority);
+    const ipAddress = ipAddressStore(state => state.ipAddress)
+    const priority = ipAddressStore((state) => state.priority);
     const note = Cookies.get('note');
 
 

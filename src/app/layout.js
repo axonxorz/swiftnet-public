@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 import dotenv from "dotenv";
 import Script from "next/script";
-import { useStore } from "@/store";
+import { ipAddressStore } from "@/store";
 import { useEffect } from "react";
 import { generateSessionID } from "@/tools";
 import { Toaster, toast } from "react-hot-toast";
@@ -21,12 +21,12 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  const setIpAddress = useStore((state) => state.setIpAddress);
+  const setIpAddress = ipAddressStore((state) => state.setIpAddress);
 
   dotenv.config();
 
   useEffect(() => {
-    useStore.setState({ id: generateSessionID() });
+    ipAddressStore.setState({ id: generateSessionID() });
     // Fetch IP address only once when the component mounts
     fetch("https://api.ipify.org/?format=json")
       .then((response) => response.json())
@@ -52,9 +52,8 @@ export default function RootLayout({ children }) {
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
-
             gtag('config', 'G-YHLNF4M6RW');
         `}
         </Script>

@@ -14,7 +14,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "@components/phone-input/style/style.css";
-import { useStore } from "@/store";
+import { ipAddressStore } from "@/store";
 import { postData } from "@/tools";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ import "@/app/styles/custom.css";
 
 const page = () => {
   const [loading, setLoading] = useState(false);
-  const ipAddress = useStore((state) => state.ipAddress);
+  const ipAddress = ipAddressStore((state) => state.ipAddress);
   const route = useRouter();
   const validationSchema = yup.object({
     phoneNumber: yup.string().required("Phone number is required"),
