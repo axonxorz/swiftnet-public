@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import "./styles/output.css";
 import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
-import dotenv from "dotenv";
 import Script from "next/script";
 import { ipAddressStore } from "@/store";
 import { useEffect } from "react";
@@ -23,8 +22,6 @@ export default function RootLayout({ children }) {
 
   const setIpAddress = ipAddressStore((state) => state.setIpAddress);
 
-  dotenv.config();
-
   useEffect(() => {
     ipAddressStore.setState({ sessionId: generateSessionId() });
     // Fetch IP address only once when the component mounts
@@ -42,12 +39,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <>
-        <Script
-          async
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API}&libraries=places`}
-        />
         <Script src="//code.jivosite.com/widget/wQElvCtsjf" async />
-
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-YHLNF4M6RW" />
         <Script id="google-analytics">
           {`
@@ -62,7 +54,6 @@ export default function RootLayout({ children }) {
           async
           defer
         />
-
         <Script>
           {`function onClick(e) {
                 e.preventDefault();
@@ -72,7 +63,7 @@ export default function RootLayout({ children }) {
               '6Ld8lREnAAAAAFzCEO8eAIYB9aLS2NKtRPejZGLk'
               , {action: 
               'LOGIN'});
-           });
+          });
           }
           `}
         </Script>

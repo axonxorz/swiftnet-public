@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-
-// Load environment variables from .env file
-dotenv.config();
 
 export function generateAccessToken(data) {
   return jwt.sign({ data }, process.env.SECRET_TOKEN, {
