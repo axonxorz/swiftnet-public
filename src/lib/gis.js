@@ -13,3 +13,8 @@ export const swiftAutocompleteOptions = {
         country: 'ca'
     }
 }
+
+export const defaultMapCenter = {
+  lat: 53.31225509999999,
+  lng: -110.072853,
+}

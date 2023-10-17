@@ -9,17 +9,14 @@ import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
 
 import { loaderReactCompat } from '@/lib/gmaps';
+import { defaultMapCenter } from "@/lib/gis";
 
-const defaultCenter = {
-  lat: 53.31225509999999,
-  lng: -110.072853,
-};
+
+const _defaultCenter = () => Object.assign({}, defaultMapCenter);
+
 
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState({
-    lat: 53.31225509999999,
-    lng: -110.072853,
-  });
+  const [userLocation, setUserLocation] = useState(_defaultCenter);
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
@@ -30,8 +27,8 @@ const MapComponent = () => {
   const router = useRouter();
   const [checkOutHovered, setcheckOutHovered] = useState(false);
   const [displayCheckout, setDisplayCheckout] = useState(true);
-  const [initialMapState, setInitialMapState] = useState(defaultCenter);
-  const [center, setMapCenter] = useState(defaultCenter);
+  const [initialMapState, setInitialMapState] = useState(_defaultCenter);
+  const [center, setMapCenter] = useState(_defaultCenter);
 
   const resetState = (event) => {
     if (event.detail == 2) {
@@ -254,7 +251,7 @@ const MapComponent = () => {
             }}
             className="text-primary font-bold hover:underline cursor-pointer hover:text-primary/90"
           >
-            Skip this step
+            &nbsp;Skip this step
           </span>{" "}
         </p>
       </div>
