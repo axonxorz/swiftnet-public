@@ -4,8 +4,9 @@ import { useRef, useEffect } from "react";
 
 import loader from '@/lib/gmaps'
 import styles from "@/app/styles/styles";
-import { AddressInfo, geocodeAddress, swiftAutocompleteOptions } from "@/lib/gis";
+import { geocodeAddress, swiftAutocompleteOptions } from "@/lib/gis";
 import { toast } from "react-hot-toast";
+import { AddressInfo } from "@/lib/address-info";
 
 const AutoCompleteInput = ({ place, resolved, resolvedSimple }) => {
     const autoCompleteRef = useRef();
