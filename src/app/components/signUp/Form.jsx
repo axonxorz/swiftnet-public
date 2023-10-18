@@ -26,29 +26,35 @@ const Form = () => {
     const priority = useSessionStore((state) => state.priority);
 
     const doReverseGeocode = async () => {
-        return await reverseGeocode(locationStore.lat, locationStore.lng)
+        return await reverseGeocode(locationStore.rawCoordinates?.lat, locationStore.rawCoordinates?.lng)
+    }
+
+    // TODO: support fully missing coordinates, require 'notes' field
+
+    const goHome = () => {
+        route.replace('/')
     }
 
     useEffect(() => {
-        if(!locationStore.mapValidated) {
+        if(!locationStore.rawCoordinates?.lat) {
             // TODO: would be nice to redirect to step 1, but need to unwind pages and components as no
             // TODO: re-render happens when only the querystring changes (due to checking in a useEffect)
-            route.replace('/')
+            goHome();
         }
     }, [locationStore]);
 
-    // TODO: THIS IS BROKEN IF THE PLACES API IS PROPERLY USED. THE ADDRESS IN locationStore SHOULD BE AddressInfo
-
     useEffect(() => {
-        if(!locationStore.address) {
+        if(!locationStore.address && !locationStore.reverseGeocodedAddress) {
             doReverseGeocode().then((geocoded_address) => {
-                locationStore.setGeocodedAddress(geocoded_address)
+                locationStore.setReverseGeocodedAddress(geocoded_address)
             }, (error) => {
-                // Do nothing
+                goHome();
             })
         }
     }, []);
 
+    // TODO: note required if address not specified
+    // TODO: captcha
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
@@ -66,8 +72,7 @@ const Form = () => {
         const browserType = navigator.userAgent;
 
         try {
-            const {fullAddress, postalCode, city, country} = locationStore.geocodedAddress;
-            console.log(fullAddress, postalCode, city, country)
+            const address = locationStore.getResolvedAddress();
 
             // TODO: implement Terek API lead funnel
 
@@ -188,17 +193,27 @@ const Form = () => {
                                     <div className="mt-3">
                                         <StaticInputField
                                             label={"Address"}
-                                            value={locationStore.address}
+                                            value={locationStore.address.fullAddress}
                                             disabled
                                         />
                                     </div>
                                 }
 
-                                {!!locationStore.geocodedAddress &&
+                                {(!locationStore.address && !locationStore.reverseGeocodedAddress) &&
                                     <div className="mt-3">
                                         <StaticInputField
                                             label={"Approximate Address"}
-                                            value={locationStore.geocodedAddress.fullAddress}
+                                            value={'Working...'}
+                                            disabled
+                                        />
+                                    </div>
+                                }
+
+                                {(!locationStore.address && !!locationStore.reverseGeocodedAddress) &&
+                                    <div className="mt-3">
+                                        <StaticInputField
+                                            label={"Approximate Address"}
+                                            value={locationStore.reverseGeocodedAddress.fullAddress}
                                             disabled
                                         />
                                     </div>
@@ -208,12 +223,12 @@ const Form = () => {
                                     <div className="sm:col-span-3 ">
                                         <StaticInputField
                                             label={"GPS Coordinates"}
-                                            value={(locationStore.lat || 0.00).toFixed(5)}
+                                            value={(locationStore.rawCoordinates?.lat || 0.00).toFixed(5)}
                                         />
                                     </div>
                                     <div className="sm:col-span-3 ">
                                         <StaticInputField
-                                            value={(locationStore.lng || 0.00).toFixed(5)}
+                                            value={(locationStore.rawCoordinates?.lng || 0.00).toFixed(5)}
                                         />
                                     </div>
                                 </div>
