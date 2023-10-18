@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createTransport } from "@/lib/email";
+import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipients } from "@/lib/email";
 
 const emailTransport = createTransport();
 
@@ -9,8 +9,8 @@ export async function POST(request) {
   const { email, ipAddress, browserType, phoneNumber, description } = req;
 
   const mailOptions = {
-    from: "support@swift-net.ca", // sender
-    to: `support@swift-net.ca,david@turnkeyisp.co`, // recipient
+    from: getSendFromAddress(),
+    to: transformRecipients(getSalesRecipient()),
     subject: `Contact : ${email}`,
     text: "",
     html: `

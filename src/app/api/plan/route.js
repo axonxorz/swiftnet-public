@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import { createTransport } from "@/lib/email";
+import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipients } from "@/lib/email";
 
 const emailTransport = createTransport();
 
@@ -47,9 +47,8 @@ export async function POST(request) {
     citypl = city;
   }
   const swiftMailOptions = {
-    from: "no-reply@swift-net.ca",
-    to: "support@swift-net.ca,david@turnkeyisp.co",
-
+    from: getSendFromAddress(),
+    to: transformRecipients(getSalesRecipient()),
     subject: `$${totalPrice.toFixed(2)}, ${email}, ${date}, ${
       citypl ? citypl : ""
     }`,

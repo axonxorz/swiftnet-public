@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-import { createTransport } from "@/lib/email";
+import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipients } from "@/lib/email";
 
 export function generateAccessToken(data) {
   return jwt.sign({ data }, process.env.SECRET_TOKEN, {
@@ -49,8 +49,8 @@ export async function POST(request) {
     const token = generateAccessToken(req);
 
     const mailOptions = {
-      from: "support@swift-net.ca", // sender
-      to: email, // recipient
+      from: getSendFromAddress(),
+      to: transformRecipients(email),
       subject: supported
         ? " Fantastic news! Service is available at your location. "
         : "Expanding our Network Together: Internet Service Availability",
@@ -145,8 +145,8 @@ export async function POST(request) {
     };
 
     const swiftMailOptions = {
-      from: "no-reply@swift-net.ca",
-      to: "support@swift-net.ca,david@turnkeyisp.co",
+      from: getSendFromAddress(),
+      to: transformRecipients(getSalesRecipient()),
       subject: `${supported ? "Yes," : "No,"} ${email} , ${fullAddress} `,
       text: "",
       html: `
