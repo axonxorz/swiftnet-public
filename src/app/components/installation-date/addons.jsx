@@ -4,13 +4,13 @@ import React from "react";
 export const addons = [
   {
     id: 1,
-    title: "Calix GigaSpire BLAST u4 Managed Router. Wi-Fi 6 with mobile app",
-    price: 9.95,
+    name: "Calix GigaSpire BLAST u4 Managed Router. Wi-Fi 6 with mobile app.",
+    monthly_cost: 9.95,
   },
   {
     id: 2,
-    title: "Calix GigaSpire BLAST u6 Managed Router. Wi-Fi 6 with mobile app",
-    price: 17.99,
+    name: "Calix GigaSpire BLAST u6 Managed Router. Wi-Fi 6 with mobile app.",
+    monthly_cost: 17.99,
   },
 ];
 
@@ -55,11 +55,11 @@ const Addons = ({ setSelectedAddon, selectedAddon }) => {
                     </svg>
                   </div>
                 )}{" "}
-                <p className="font-bold">{item.title}</p>
+                <p className="font-bold">{item.name}</p>
               </div>
 
               <p className="font-bold text-lg px-3">
-                + ${item.price}{" "}
+                + ${item.monthly_cost}{" "}
                 <span className="text-sm text-[#4B5563] font-normal">
                   / month
                 </span>

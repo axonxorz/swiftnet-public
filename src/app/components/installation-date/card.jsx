@@ -45,6 +45,17 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
         </p>
       </div>
 
+        <div className="text-center w-full flex gap-1 flex-col items-center justify-center ">
+            <div className="flex-col border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
+          {plan.download_rate &&
+              <>{plan.download_rate} Down</>}
+        </div>
+            <div className="flex-col border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
+          {plan.upload_rate &&
+              <>{plan.upload_rate} Up</>}
+        </div>
+      </div>
+
       <div className="text-center">
         <p className="text-primary text-[24px] font-bold text-center  ">
           ${plan.monthly_cost}
