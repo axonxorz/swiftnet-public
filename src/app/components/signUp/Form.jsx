@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
-import { useAvailablePlansStore, useSessionStore, useUserLocationStore } from "@/store";
+import { useAvailablePlansStore, useContactStore, useSessionStore, useUserLocationStore } from "@/store";
 import { postData } from "@/tools";
 import { reverseGeocode } from "@/lib/gis";
 
@@ -21,6 +21,7 @@ const Form = () => {
     const locationStore = useUserLocationStore()
     const sessionStore = useSessionStore();
     const availablePlansStore = useAvailablePlansStore();
+    const contactStore = useContactStore();
     const route = useRouter();
     const [Loading, setLoading] = useState(false);
 
@@ -45,10 +46,13 @@ const Form = () => {
 
     useEffect(() => {
         if(!!locationStore.rawCoordinates?.lat && (!locationStore.address && !locationStore.reverseGeocodedAddress)) {
+            setLoading(true);
             doReverseGeocode().then((geocoded_address) => {
                 locationStore.setReverseGeocodedAddress(geocoded_address)
             }, (error) => {
                 goHome();
+            }).finally(() => {
+                setLoading(false);
             })
         }
     }, []);
@@ -70,14 +74,19 @@ const Form = () => {
     const onSubmit = async (formData) => {
         setLoading(true);
         try {
-            // TODO: implement Terek API lead funnel
-            const data = {
+            const checkData = {
                 session: sessionStore,
                 location: locationStore.getResolvedAddress(),
                 contact: formData,
             }
+            contactStore.setFirstName(formData.firstName);
+            contactStore.setLastName(formData.lastName);
+            contactStore.setEmail(formData.email);
+            contactStore.setPhoneNumber(formData.phoneNumber);
+            contactStore.setComments(formData.comments);
+
             const signupUrl = '/api/prequalification/check'
-            const signupResponse = await postData(signupUrl, data);
+            const signupResponse = await postData(signupUrl, checkData);
             if(signupResponse.serviceable) {
                 availablePlansStore.setPlans(signupResponse.plans);
                 route.push(`/installation-date`);

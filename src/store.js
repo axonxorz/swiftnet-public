@@ -38,3 +38,16 @@ export const useAvailablePlansStore = create((set) => ({
     plans: [],
     setPlans: (plans) => set({plans: plans || []})
 }))
+
+export const useContactStore = create((set) => ({
+    firstName: null,
+    lastName: null,
+    email: null,
+    phoneNumber: null,
+    comments: null,
+    setFirstName: (firstName) => (set({firstName: firstName})),
+    setLastName: (lastName) => (set({lastName: lastName})),
+    setEmail: (email) => (set({email: email})),
+    setPhoneNumber: (phoneNumber) => (set({phoneNumber: phoneNumber})),
+    setComments: (comments) => (set({comments: comments})),
+}))
