@@ -120,6 +120,8 @@ const MapComponent = () => {
     setDisplayCheckout(true);
     clearMarkers();
     if (!isDragging && !checkOutHovered) {
+      locationStore.setAddress(null);
+      locationStore.setReverseGeocodedAddress(null);
       locationStore.setRawCoordinates(lat, lng);
     }
   };
