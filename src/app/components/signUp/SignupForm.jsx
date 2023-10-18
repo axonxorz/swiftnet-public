@@ -17,7 +17,7 @@ import { useAvailablePlansStore, useContactStore, useSessionStore, useUserLocati
 import { postData } from "@/tools";
 import { reverseGeocode } from "@/lib/gis";
 
-const Form = () => {
+const SignupForm = () => {
     const locationStore = useUserLocationStore()
     const sessionStore = useSessionStore();
     const availablePlansStore = useAvailablePlansStore();
@@ -281,4 +281,4 @@ const Form = () => {
     );
 };
 
-export default Form;
+export default SignupForm;

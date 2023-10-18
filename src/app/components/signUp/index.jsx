@@ -4,8 +4,7 @@ import Subtract from "@/assets/Subtract.webp";
 import Image from "next/image";
 import Step1 from "./Step1";
 import { useSearchParams } from "next/navigation";
-import Form from "./Form";
-import { useSessionStore } from "@/store";
+import SignupForm from "./SignupForm";
 
 const Index = () => {
   const searchParams = useSearchParams();
@@ -21,7 +20,7 @@ const Index = () => {
     return (
       <>
         <div className="flex items-start justify-between h-screen  ">
-          {step === 1 ? <Step1 setStep={setStep} plan={550} /> : <Form />}
+          {step === 1 ? <Step1 setStep={setStep} plan={550} /> : <SignupForm />}
 
           <div className="hidden md:flex justify-start items-start  md:w-1/2 h-screen ">
             <Image
