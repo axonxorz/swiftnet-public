@@ -1,0 +1,66 @@
+<html lang="en">
+<body>
+<h2>New web sign up</h2>
+<ul>
+    <li style="font-size: 120%; font-weight: bold">
+        <% if(serviceable) { %>
+            <span style="color: #386641">Serviceable: Yes</span>
+        <% } else { %>
+            <span style="color: #bc4749">Serviceable: No</span>
+        <% } %>
+    </li>
+    <li style="margin-top: 0.8em"><strong>First Name: </strong><%= contact.firstName %></li>
+    <li><strong>Last Name: </strong><%= contact.lastName %></li>
+    <li><strong>Email: </strong><%= contact.email %></li>
+    <li>
+        <strong>Phone Number: </strong>
+        <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/CA/<%= contact.phoneNumber %>"><%= contact.phoneNumber %></a>
+    </li>
+    <% if(!!contact.comments) { %>
+    <li>
+        <strong>Comments:</strong>
+        <%= contact.comments.replace('\n', '<br/>') %>
+    </li>
+    <% } %>
+
+    <% if(serviceable) { %>
+        <li style="margin-top: 0.8em">
+            <strong>Preferred Installation Date:</strong>
+            <%= installationDate %>
+        </li>
+        <li>
+            <strong>Plan: </strong><%= plan?.name %>
+        </li>
+        <% if(addon?.name) { %>
+        <li>
+            <strong>Addon: </strong><%= addon?.name %>
+        </li>
+        <% } else { %>
+        <li>
+            <strong>Addon: </strong><em>None</em>
+        </li>
+        <% } %>
+    <% } %>
+
+    <li style="margin-top: 0.8em"><strong>Address: </strong>
+        <a href="https://www.google.com/maps/place/<%= location.fullAddress %>"> <%= location.fullAddress %></a>
+    </li>
+    <li><strong>Postal Code: </strong><%= location.postalCode %></li>
+    <li>
+        <strong>GPS Coordinates:</strong>
+        <a href="https://www.google.com/maps/place/<%= location.lat %>,<%= location.lng %>"><%= location.lat %>,<%= location.lng %></a>
+    </li>
+    <li>
+        <strong>IP Address:</strong>
+        <% if(session.ipAddress) { %>
+            <a href="https://ipinfo.io/<%= session.ipAddress %>"><%= session.ipAddress %></a>
+        <% } else { %>
+            <em>Unavailable</em>
+        <% } %>
+    </li>
+    <% if(session.userAgent) { %>
+    <li><strong>Browser: </strong><%= session.userAgent %></li>
+    <% } %>
+</ul>
+</body>
+</html>

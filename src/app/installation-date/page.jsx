@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Plans from "../components/installation-date/plans";
 import InstallDatePicker from "../components/installation-date/date-picker";
 import Addons, { addons } from "@components/installation-date/addons";
-import { useAvailablePlansStore, useSessionStore, useUserLocationStore } from "@/store";
+import { useAvailablePlansStore, useContactStore, useSessionStore, useUserLocationStore } from "@/store";
 import "@/app/styles/custom.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
@@ -18,6 +18,8 @@ import { toast } from "react-hot-toast";
 const Page = () => {
   const router = useRouter();
   const sessionStore = useSessionStore();
+  const contactStore = useContactStore();
+  const locationStore = useUserLocationStore();
   const availablePlansStore = useAvailablePlansStore();
 
   const [loading, setLoading] = useState(false);
@@ -37,7 +39,10 @@ const Page = () => {
     try {
       const signupUrl = '/api/prequalification/submit'
       const data = {
+        serviceable: true,
         session: sessionStore,
+        contact: contactStore,
+        location: locationStore.getResolvedAddress(),
         installationDate: selectedDate.toISODate(),
         plan: selectedPlan,
         addon: selectedAddon

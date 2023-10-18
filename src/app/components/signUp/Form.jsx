@@ -91,6 +91,14 @@ const Form = () => {
                 availablePlansStore.setPlans(signupResponse.plans);
                 route.push(`/installation-date`);
             } else {
+                const submittalData = {
+                    serviceable: false,
+                    session: sessionStore,
+                    contact: contactStore,
+                    location: locationStore.getResolvedAddress()
+                  }
+                const signupUrl = '/api/prequalification/submit'
+                await postData(signupUrl, submittalData);
                 route.push('/not-serviceable');
             }
         } catch (error) {
