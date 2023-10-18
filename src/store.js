@@ -11,21 +11,25 @@ export const useSessionStore = create((set) => ({
 }));
 
 export const useUserLocationStore = create((set, get) => ({
-    address: '',
-    geocodedAddress: null,
-    lat: null,
-    lng: null,
-    mapValidated: false,
+    address: null,
+    reverseGeocodedAddress: null,
+    rawCoordinates: null,
     setAddress: (address) => set({address: address}),
-    setGeocodedAddress: (geocodedAddress) => set({geocodedAddress: geocodedAddress}),
-    getCoordinates: () => {
-        // Return coordinates as a LatLngLiteral or null
-        const {lat, lng} = get();
-        if(isNil(lat) || isNil(lng)) {
-            return null;
-        }
-        return {lat: get().lat, lng: get().lng}
+    setReverseGeocodedAddress: (reverseGeocodedAddress) => set({reverseGeocodedAddress: reverseGeocodedAddress}),
+    getResolvedAddress: () => {
+        const {address, reverseGeocodedAddress} = get();
+        return !!address ? address : reverseGeocodedAddress;
     },
-    setCoordinates: (lat, lng) => set({lat: lat, lng: lng}),
-    setMapValidated: (mapValidated) => set({mapValidated: mapValidated})
+    getResolvedCoordinates: () => {
+        // Return coordinates as a LatLngLiteral preferentially from address, then geocodedAddress, then null
+        const {address, reverseGeocodedAddress} = get();
+        if(!isNil(address?.lat) && !isNil(address?.lng)) {
+            return {lat: address.lat, lng: address.lng}
+        }
+        if(!isNil(reverseGeocodedAddress?.lat) && !isNil(reverseGeocodedAddress?.lng)) {
+            return {lat: reverseGeocodedAddress.lat, lng: reverseGeocodedAddress.lng}
+        }
+        return null;
+    },
+    setRawCoordinates: (lat, lng) => set({rawCoordinates: {lat: lat, lng: lng}})
 }));

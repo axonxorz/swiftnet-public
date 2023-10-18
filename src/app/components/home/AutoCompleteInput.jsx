@@ -1,19 +1,16 @@
 "use client";
-import styles from "@/app/styles/styles";
-import React from "react";
+import React, { useState } from "react";
 import { useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 import loader from '@/lib/gmaps'
-import { swiftAutocompleteOptions } from "@/lib/gis";
-import { useUserLocationStore } from "@/store";
-import { isNil } from "lodash-es";
+import styles from "@/app/styles/styles";
+import { AddressInfo, geocodeAddress, swiftAutocompleteOptions } from "@/lib/gis";
+import { toast } from "react-hot-toast";
 
-const AutoCompleteInput = ({place}) => {
-    const router = useRouter();
+const AutoCompleteInput = ({ place, resolved, resolvedSimple }) => {
     const autoCompleteRef = useRef();
     const inputRef = useRef();
-    const locationStore = useUserLocationStore();
+    const [loading, setLoading] = useState(false);
 
     const localOptions = {
         fields: ["address_components", "geometry", "icon", "name"],
@@ -26,45 +23,39 @@ const AutoCompleteInput = ({place}) => {
             );
             autoCompleteRef.current = autocompleter;
             autocompleter.addListener('place_changed', async () => {
-                const place = await autocompleter.getPlace();
-                locationStore.setAddress(inputRef.current.value);
-                if(place) {
-                    locationStore.setCoordinates(
-                        place.geometry?.location?.lat() || null,
-                        place.geometry?.location?.lng() || null
-                    )
+                setLoading(true);
+                try {
+                    const place = await autocompleter.getPlace();
+                    if(place) {
+                        const parsed = AddressInfo.fromPlacesResult(
+                            inputRef.current.value,
+                            place
+                        );
+                        if(resolved) { resolved(parsed) }
+                    }
+                } finally {
+                    setLoading(false);
                 }
             })
         })
     }, []);
 
-    useEffect(() => {
-        if(locationStore.address || (!isNil(locationStore.lat) && !isNil(locationStore.lng))) {
-            checkAvailability();
+    const resolveAddress = async () => {
+        if(!inputRef.current.value) {
+            toast.error('Please enter an address');
         }
-    })
-
-    const checkAvailability = (raw=false) => {
-        // TODO: This component should not touch the router at all
-        if(locationStore.mapValidated) { return; } // Prevent this component from redirecting to the map
-        let address;
-        if(raw) {
-            address = inputRef.current.value;
-        } else {
-            address = locationStore.address;
+        setLoading(true);
+        try {
+            const place = await geocodeAddress(inputRef.current.value);
+            if(place) {
+                resolved(place);
+            }
+        } catch(e) {
+            console.log('resolveAddress error', e);
+        } finally {
+            setLoading(false)
         }
-        const {lat, lng} = locationStore;
-        let route = '/map';
-        let search = new URLSearchParams();
-        if(!!address) {
-            search.set('address', address);
-        }
-        if(lat !== null && lng !== null) {
-            search.set('lat', lat);
-            search.set('lng', lng);
-        }
-        router.push(`${route}?${search}`);
-    };
+    }
 
     if (place === "home") {
         return (
@@ -78,10 +69,11 @@ const AutoCompleteInput = ({place}) => {
 
                     <button
                         type="submit"
-                        onClick={() => checkAvailability(true)}
+                        onClick={resolveAddress}
+                        disabled={loading}
                         className={`bg-primary border-none rounded-md ${styles.paragraph}   text-white px-4 py-2 absolute md:flex  items-center justify-center top-0  md:bottom-[50%] right-0   h-full `}
                     >
-                        Check Availability
+                        {!loading ? 'Check availability' : 'Checking...'}
                     </button>
                 </div>
             </>
@@ -104,10 +96,11 @@ const AutoCompleteInput = ({place}) => {
                 <div className="w-full  mt-4">
                     <button
                         type="submit"
-                        onClick={() => checkAvailability(true)}
+                        onClick={resolveAddress}
+                        disabled={loading}
                         className={`bg-primary border-none hover:bg-primary/80 rounded-md ${styles.paragraph} text-white px-4 py-2 w-full `}
                     >
-                        Check availability
+                        {!loading ? 'Check availability' : 'Checking...'}
                     </button>
                 </div>
             </>

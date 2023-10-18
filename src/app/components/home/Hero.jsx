@@ -4,13 +4,18 @@ import style from "../../styles/styles.module.css";
 import styles from "@/app/styles/styles";
 import AutoCompleteInput from "./AutoCompleteInput";
 import { useRouter } from "next/navigation";
+import { geocodeAddress } from "@/lib/gis";
+import { useUserLocationStore } from "@/store";
 
 const Hero = ({ description, hero }) => {
   const route = useRouter();
+  const locationStore = useUserLocationStore()
 
-  const skipStep = () => {
-    route.push("/map");
-  };
+  const addressResolved = (address) => {
+    locationStore.setAddress(address);
+    route.push("/map?resolved=address");
+  }
+
   return (
     <div
       className={`${hero ? style.heroBg : style.heroBgLLoyoydminster} h-auto`}
@@ -38,17 +43,12 @@ const Hero = ({ description, hero }) => {
           </p>
 
           <div className="md:w-1/2">
-            <AutoCompleteInput place={"home"} />
+            <AutoCompleteInput place={"home"} resolved={addressResolved}/>
           </div>
 
-          <p className={`${styles.paragraph} mt-3 text-white`}>
-            Check availability by map or browser location{" "}
-            <span
-              className="underline font-bold cursor-pointer"
-              onClick={() => skipStep()}
-            >
-              here
-            </span>
+          <p className={`${styles.paragraph} mt-3 text-white cursor-pointer`}
+             onClick={() => {route.push('/map')}}>
+            Check availability by map or browser location <span className={'underline'}>here</span>
           </p>
         </div>
       </div>

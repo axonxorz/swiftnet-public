@@ -6,9 +6,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AutoCompleteInput from "../home/AutoCompleteInput";
 import style from "../../styles/styles.module.css";
+import { useUserLocationStore } from "@/store";
 
 export default ({ setStep, plan }) => {
-  const route = useRouter()
+  const route = useRouter();
+  const locationStore = useUserLocationStore()
+
+  const addressResolved = (address) => {
+    locationStore.setAddress(address);
+    route.push("/map?resolved=address");
+  }
 
   return (
     <div className="w-full md:w-[900px] min-h-screen md:overflow-hidden flex items-center justify-center  ">
@@ -45,7 +52,7 @@ export default ({ setStep, plan }) => {
           </div>
 
           <div className="w-full mt-4">
-            <AutoCompleteInput place={"signup"} setStep={setStep} />
+            <AutoCompleteInput place={"signup"} resolved={addressResolved} />
           </div>
 
           <div className=" flex items-center justify-center mt-5 space-y-4 flex-col ">
