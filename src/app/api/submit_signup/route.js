@@ -4,59 +4,56 @@ import jwt from "jsonwebtoken";
 import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipients } from "@/lib/email";
 
 export function generateAccessToken(data) {
-  return jwt.sign({ data }, process.env.SECRET_TOKEN, {
-    expiresIn: "24h",
-  });
+    return jwt.sign({data}, process.env.SECRET_TOKEN, {
+        expiresIn: "24h",
+    });
 }
 
 const emailTransport = createTransport()
 
 // Function to validate form fields
 const validateFormFields = (email, message) => {
-  if (!email || !message) {
-    return false;
-  }
-  if (!email.includes("@")) {
-    return false;
-  }
-  return true;
+    if (!email || !message) {
+        return false;
+    }
+    if (!email.includes("@")) {
+        return false;
+    }
+    return true;
 };
 
 export async function POST(request) {
-  const req = await request.json();
+    const req = await request.json();
 
-  const {
-    firstName,
-    fullAddress,
-    lastName,
-    lat,
-    lng,
-    phoneNumber,
-    postal_code,
-    region,
-    email,
-    supported,
-    ipAddress,
-    browserType,
-    googleAPIFullAddress,
-    priority,
-  } = req;
+    const {
+        firstName,
+        fullAddress,
+        lastName,
+        lat,
+        lng,
+        phoneNumber,
+        postal_code,
+        region,
+        email,
+        supported,
+        ipAddress,
+        browserType,
+        googleAPIFullAddress,
+        priority,
+    } = req;
 
-  const isValid = validateFormFields(email, "sfsdf");
+    const isValid = validateFormFields(email, "sfsdf");
 
-  if (isValid) {
-    // If form fields are valid, send an email
-    const token = generateAccessToken(req);
+    if (isValid) {
+        // If form fields are valid, send an email
+        const token = generateAccessToken(req);
 
-    const mailOptions = {
-      from: getSendFromAddress(),
-      to: transformRecipients(email),
-      subject: supported
-        ? " Fantastic news! Service is available at your location. "
-        : "Expanding our Network Together: Internet Service Availability",
-      text: "",
-      html: supported
-        ? `
+        const mailOptions = {
+            from: getSendFromAddress(),
+            to: transformRecipients(email),
+            subject: supported ? " Fantastic news! Service is available at your location. " : "Expanding our Network Together: Internet Service Availability",
+            text: "",
+            html: supported ? `
         <html>
     <body>
       <div style="text-align: center;">
@@ -70,9 +67,7 @@ export async function POST(request) {
         </p>
 
         <div>
-          <a href="https://swift-net.ca/installation-date?token=${token}${
-            priority ? `&priority=${1}` : ""
-          }" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
+          <a href="https://swift-net.ca/installation-date?token=${token}${priority ? `&priority=${1}` : ""}" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
         </div>
         <p style="text-align: center; padding: 10px">
           Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.
@@ -89,8 +84,7 @@ export async function POST(request) {
       </div>
     </body>
   </html>
-      `
-        : `
+      ` : `
         <html>
           <body>
           
@@ -142,14 +136,14 @@ export async function POST(request) {
           </body>
         </html>
       `,
-    };
+        };
 
-    const swiftMailOptions = {
-      from: getSendFromAddress(),
-      to: transformRecipients(getSalesRecipient()),
-      subject: `${supported ? "Yes," : "No,"} ${email} , ${fullAddress} `,
-      text: "",
-      html: `
+        const swiftMailOptions = {
+            from: getSendFromAddress(),
+            to: transformRecipients(getSalesRecipient()),
+            subject: `${supported ? "Yes," : "No,"} ${email} , ${fullAddress} `,
+            text: "",
+            html: `
       <html>
         <body>
           <h2>New web sign up information: ${firstName + " " + lastName}  </h2>
@@ -176,20 +170,19 @@ export async function POST(request) {
         </body>
       </html>
     `,
-    };
+        };
 
-    try {
-      // Send the email
-      await emailTransport.sendMail(mailOptions);
-      await emailTransport.sendMail(swiftMailOptions);
-      return NextResponse.json({
-        message: "Email sent successfully",
-        status: 1,
-      });
-    } catch (error) {
-      return NextResponse.json({ message: "Error sending email", status: 0 });
+        try {
+            // Send the email
+            await emailTransport.sendMail(mailOptions);
+            await emailTransport.sendMail(swiftMailOptions);
+            return NextResponse.json({
+                message: "Email sent successfully", status: 1,
+            });
+        } catch (error) {
+            return NextResponse.json({message: "Error sending email", status: 0});
+        }
+    } else {
+        return NextResponse.json({message: "Invalid form data", status: 0});
     }
-  } else {
-    return NextResponse.json({ message: "Invalid form data", status: 0 });
-  }
 }
