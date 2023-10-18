@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import { createTransport } from "@/lib/email";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASSWORD,
-  },
-});
+const emailTransport = createTransport();
 
 export async function POST(request) {
   const req = await request.json();
@@ -122,8 +116,8 @@ export async function POST(request) {
 
   try {
     // Send the email
-    await transporter.sendMail(swiftMailOptions);
-    await transporter.sendMail(mailOptions);
+    await emailTransport.sendMail(swiftMailOptions);
+    await emailTransport.sendMail(mailOptions);
 
     return NextResponse.json({
       message: "Email sent successfully",

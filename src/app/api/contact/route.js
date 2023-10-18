@@ -1,13 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { createTransport } from "@/lib/email";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "webmaster@swift-net.ca",
-    pass: "inkfbyetcqbeafxn",
-  },
-});
+const emailTransport = createTransport();
 
 export async function POST(request) {
   const req = await request.json();
@@ -41,7 +35,7 @@ export async function POST(request) {
 
   try {
     // Send the email
-    await transporter.sendMail(mailOptions);
+    await emailTransport.sendMail(mailOptions);
 
     return NextResponse.json({
       message: "Contact Email sent successfully",

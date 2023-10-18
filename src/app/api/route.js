@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+
+import { createTransport } from "@/lib/email";
 
 export function generateAccessToken(data) {
   return jwt.sign({ data }, process.env.SECRET_TOKEN, {
@@ -8,13 +9,7 @@ export function generateAccessToken(data) {
   });
 }
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "webmaster@swift-net.ca",
-    pass: "inkfbyetcqbeafxn",
-  },
-});
+const emailTransport = createTransport()
 
 // Function to validate form fields
 const validateFormFields = (email, message) => {
@@ -185,8 +180,8 @@ export async function POST(request) {
 
     try {
       // Send the email
-      await transporter.sendMail(mailOptions);
-      await transporter.sendMail(swiftMailOptions);
+      await emailTransport.sendMail(mailOptions);
+      await emailTransport.sendMail(swiftMailOptions);
       return NextResponse.json({
         message: "Email sent successfully",
         status: 1,
