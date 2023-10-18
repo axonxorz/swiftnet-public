@@ -9,7 +9,7 @@ import Image from "next/image";
 import LocationImgUrl from "@/assets/location.png";
 
 import { loaderReactCompat } from '@/lib/gmaps';
-import { defaultMapCenter, geocodeAddress } from "@/lib/gis";
+import { defaultMapCenter } from "@/lib/gis";
 import { useUserLocationStore } from "@/store";
 import { isNil } from "lodash-es";
 
@@ -25,7 +25,7 @@ const MapComponent = () => {
   const [markers, setMarkers] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const [checkOutHovered, setCheckOutHovered] = useState(false);
-  const [displayCheckout, setDisplayCheckout] = useState(true);
+  const [displayCheckout, setDisplayCheckout] = useState(false);
   const [center, setMapCenter] = useState(_defaultCenter);
   const [zoom, setZoom] = useState(7);
 
@@ -49,7 +49,7 @@ const MapComponent = () => {
       //so when the dragend i wait 50 ms then set Dragging to false and check it in the onclick
       setTimeout(() => {
         setIsDragging(false);
-        locationStore.setCoordinates(event.latLng.lat(), event.latLng.lng());
+        locationStore.setRawCoordinates(event.latLng.lat(), event.latLng.lng());
       }, 10);
     });
     marker.addListener("mouseover", () => {
@@ -67,30 +67,21 @@ const MapComponent = () => {
 
   const currentLatLng = () => {
     // Return the current lat/lng, or the default values
-    if(locationStore.getCoordinates()) {
-      return locationStore.getCoordinates();
+    if(locationStore.rawCoordinates) {
+      return locationStore.rawCoordinates;
     } else {
       return _defaultCenter()
     }
   }
 
   const setLocationFromSearchParams = () => {
-    if(!isNil(searchParams.get('lat')) && !isNil(searchParams.get('lng'))) {
-      try {
-        locationStore.setCoordinates(parseFloat(searchParams.get('lat')), parseFloat(searchParams.get('lng')));
-      } catch(e) {
-        // Don't care
+    if(searchParams.get('resolved') === 'address') {
+      // Places autocomplete result
+      const resolvedCoordinates = locationStore.getResolvedCoordinates();
+      if(!isNil(resolvedCoordinates?.lat)) {
+        locationStore.setRawCoordinates(resolvedCoordinates.lat, resolvedCoordinates.lng);
+        setDisplayCheckout(true);
       }
-    } else if(!!searchParams.get('address')) {
-      geocodeAddress(searchParams.get('address')).then((latLng) => {
-        locationStore.setCoordinates(latLng.lat, latLng.lng);
-      }, (error) => {
-        if(error === 'ZERO_RESULTS') {
-            toast.error("Place not found");
-          } else {
-            toast.error('Error searching for address coordinates')
-          }
-      });
     }
   }
 
@@ -114,7 +105,7 @@ const MapComponent = () => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        locationStore.setCoordinates(pos.lat, pos.lng)
+        locationStore.setRawCoordinates(pos.lat, pos.lng)
       }, () => {
         toast.error('Location access blocked');
       }, {
@@ -126,15 +117,15 @@ const MapComponent = () => {
   };
 
   const handleMapClick = async ({ lat, lng }) => {
+    setDisplayCheckout(true);
     clearMarkers();
     if (!isDragging && !checkOutHovered) {
-      locationStore.setCoordinates(lat, lng);
+      locationStore.setRawCoordinates(lat, lng);
     }
   };
 
   const confirmLocation = () => {
     if(locationStore.lat === null || locationStore.lng === null) { return; }
-    locationStore.setMapValidated(true);
     router.push('/sign-up?step=2')
   }
 
