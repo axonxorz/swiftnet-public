@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken";
 import Link from "next/link";
 import "@/app/styles/custom.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 
 const page = () => {
   const [selectedPlan, setSelectedPlan] = useState(plansList[2]);
@@ -94,10 +94,10 @@ const page = () => {
   if (display) {
     if (!isExpiredToken) {
       return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
           <div className="w-full min-h-screen flex flex-col items-center ">
             <div className="h-[100px] "></div>
 
+      <LocalizationProvider dateAdapter={AdapterLuxon}>
             <div className="w-full px-4 md:w-[60%] py-4 space-y-4 relative">
               {/* title */}
               <div className="w-full text-start space-y-4">
