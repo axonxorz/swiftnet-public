@@ -4,18 +4,20 @@ import styles from "../styles/styles";
 import { useRouter, useSearchParams } from "next/navigation";
 import Plans, { plansList } from "../components/installation-date/plans";
 import DatePickerCmp from "../components/installation-date/date-pick";
-import AddOnes, { addOne } from "../components/installation-date/add-ones";
 import { postData } from "@/tools";
 import { useSessionStore } from "@/store";
 import jwt from "jsonwebtoken";
 import Link from "next/link";
+import Addons, { addons } from "@components/installation-date/addons";
 import "@/app/styles/custom.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
+import { postData } from "@/tools";
+import { DateTime } from "luxon";
+import { minInstallationDate, nextBusinessDay } from "@/lib/installation-date";
 
 const page = () => {
   const [selectedPlan, setSelectedPlan] = useState(plansList[2]);
-  const [selectedAddOne, setSelectedAddOne] = useState(addOne[0]);
   const [selectedDate, setSelectedDate] = useState("");
   const [Loading, setLoading] = useState(false);
   const ipAddress = useSessionStore((state) => state.ipAddress);
@@ -24,6 +26,7 @@ const page = () => {
   const route = useRouter();
   const [display, setDisplay] = useState(false);
   const [isExpiredToken, setIsExpiredToken] = useState(false);
+  const [selectedAddon, setSelectedAddon] = useState(addons[0]);
 
   useEffect(() => {
     setDisplay(true);
@@ -66,8 +69,6 @@ const page = () => {
       date: selectedDate.toString(),
 
       plan: selectedPlan,
-      selectedAddOne,
-      browserType,
       ipAddress,
       token: searchParams.get("token"),
     });
@@ -89,15 +90,10 @@ const page = () => {
     setLoading(false);
   };
 
-  !display && <div></div>;
-
-  if (display) {
-    if (!isExpiredToken) {
-      return (
-          <div className="w-full min-h-screen flex flex-col items-center ">
-            <div className="h-[100px] "></div>
-
+    return (
       <LocalizationProvider dateAdapter={AdapterLuxon}>
+        <div className="w-full min-h-screen flex flex-col items-center ">
+          <div className="h-[100px] "></div>
             <div className="w-full px-4 md:w-[60%] py-4 space-y-4 relative">
               {/* title */}
               <div className="w-full text-start space-y-4">
@@ -120,10 +116,9 @@ const page = () => {
                 selectedPlan={selectedPlan}
                 setSelectedPlan={setSelectedPlan}
               />
-
-              <AddOnes
-                selectedAddOne={selectedAddOne}
-                setSelectedAddOne={setSelectedAddOne}
+              <Addons
+                selectedAddon={selectedAddon}
+                setSelectedAddon={setSelectedAddon}
               />
 
               <div className="text-center py-4">
