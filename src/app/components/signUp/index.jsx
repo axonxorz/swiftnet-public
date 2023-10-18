@@ -8,18 +8,12 @@ import Form from "./Form";
 import { useSessionStore } from "@/store";
 
 const Index = () => {
-  const [step, setStep] = useState(1);
-  const setPriority = useSessionStore((state) => state.setPriority);
-
   const searchParams = useSearchParams();
+  const [step, setStep] = useState(1);
 
   useEffect(() => {
     if (searchParams.get("step")) {
       setStep(parseInt(searchParams.get("state")));
-    }
-
-    if (searchParams.get("priority")) {
-      setPriority(true);
     }
   }, []);
 
