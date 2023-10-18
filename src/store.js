@@ -12,10 +12,12 @@ export const useSessionStore = create((set) => ({
 
 export const useUserLocationStore = create((set, get) => ({
     address: '',
+    geocodedAddress: null,
     lat: null,
     lng: null,
     mapValidated: false,
     setAddress: (address) => set({address: address}),
+    setGeocodedAddress: (geocodedAddress) => set({geocodedAddress: geocodedAddress}),
     getCoordinates: () => {
         // Return coordinates as a LatLngLiteral or null
         const {lat, lng} = get();

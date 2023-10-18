@@ -9,13 +9,13 @@ import * as yup from "yup";
 import InputField from "./InputField";
 import StaticInputField from "./StaticInputField";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
 import { useSessionStore, useUserLocationStore } from "@/store";
 import { postData } from "@/tools";
-import Cookies from "js-cookie";
+import { reverseGeocode } from "@/lib/gis";
 
 const Form = () => {
     const locationStore = useUserLocationStore()
@@ -24,7 +24,10 @@ const Form = () => {
     const [Loading, setLoading] = useState(false);
     const ipAddress = useSessionStore(state => state.ipAddress)
     const priority = useSessionStore((state) => state.priority);
-    const note = Cookies.get('note');
+
+    const doReverseGeocode = async () => {
+        return await reverseGeocode(locationStore.lat, locationStore.lng)
+    }
 
     useEffect(() => {
         if(!locationStore.mapValidated) {
@@ -33,6 +36,18 @@ const Form = () => {
             route.replace('/')
         }
     }, [locationStore]);
+
+    // TODO: THIS IS BROKEN IF THE PLACES API IS PROPERLY USED. THE ADDRESS IN locationStore SHOULD BE AddressInfo
+
+    useEffect(() => {
+        if(!locationStore.address) {
+            doReverseGeocode().then((geocoded_address) => {
+                locationStore.setGeocodedAddress(geocoded_address)
+            }, (error) => {
+                // Do nothing
+            })
+        }
+    }, []);
 
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
@@ -46,105 +61,23 @@ const Form = () => {
         resolver: yupResolver(validationSchema),
     });
 
-    useEffect(() => {
-        if(note && note != ""){
-            setValue('notes' , note)
-        }
-    },[note])
-
-    const AddressInfo = (address) => {
-        // Filter the address components
-        const filteredComponents = address.address_components.filter(component => {
-            return (
-                component.types.includes('country') ||
-                component.types.includes('locality') ||
-                component.types.includes('postal_code')
-            );
-        });
-
-        // Extract the desired properties
-        const country = filteredComponents.find(component => component.types.includes('country'));
-        const city = filteredComponents.find(component => component.types.includes('locality'));
-        const postalCode = filteredComponents.find(component => component.types.includes('postal_code'));
-        const fullAddress = address.formatted_address;
-
-        // Render the results
-        return { city, country, postalCode, fullAddress };
-    }
-
     const onSubmit = async (data) => {
         setLoading(true);
         const browserType = navigator.userAgent;
 
         try {
-            const response = await fetch(`/api/geocode?latlng=${searchParams.get("lat")},${searchParams.get("lng")}&sensor=true`,
-                {
-                    method: "GET",
-                }
-            );
-            const geocodeData = await response.json();
+            const {fullAddress, postalCode, city, country} = locationStore.geocodedAddress;
+            console.log(fullAddress, postalCode, city, country)
 
-            let city = "";
-            let googleAPIFullAddress = "";
-            let postalCode = "";
-            let country = "";
+            // TODO: implement Terek API lead funnel
 
-            if (geocodeData?.results?.length > 0) {
-                const result = geocodeData.results[0];
-                const addressInfo = AddressInfo(result);
-
-                city = addressInfo.city?.long_name || "NA";
-                googleAPIFullAddress = addressInfo.fullAddress || "NA";
-                postalCode = addressInfo.postalCode?.long_name || "NA";
-                country = addressInfo.country?.long_name || "NA";
-            }
-            const fullAddress = searchParams.get("fullAddress") !== "undefined" ? searchParams.get("fullAddress") : googleAPIFullAddress
-
-
-            const towerCoverageResponse = await fetch(`https://api.towercoverage.com/towercoverage.asmx/EUSPrequalAPI?multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Address=${fullAddress}&city=${city}&Country=${country}&State=""&zipcode=${postalCode}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&RxMargin=&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`);
-            const towerCoverageResult = await towerCoverageResponse.text();
-
-
-
-            await fetch("https://api.towercoverage.com/towercoverage.asmx/EUSsubmisssion", {
-                "headers": {
-                    "accept": "*/*",
-                    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-                    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-                    "sec-ch-ua-mobile": "?0",
-                    "sec-ch-ua-platform": "\"Windows\"",
-                    "sec-fetch-dest": "empty",
-                    "sec-fetch-mode": "cors",
-                    "sec-fetch-site": "cross-site"
-                },
-                "referrerPolicy": "strict-origin-when-cross-origin",
-                "body": `multicoverageid=${process.env.NEXT_PUBLIC_MULTICOVERAGE_ID}&Account=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_USER}&Firstname=${data.firstName}&city=${city}&lastname=${data.lastName}&Address=${fullAddress}&Country=${country}&State=NA&zipcode=${postalCode}&phonenumber=${data.phoneNumber}&emailaddress=${data.email}&howdidyouhear=NA&preferredmethod=NA&besttimetocontact=NA&comments=${data.notes}&clientip=${ipAddress}&Latitude=${searchParams.get("lat")}&Longitude=${searchParams.get("lng")}&key=${process.env.NEXT_PUBLIC_TOWERCOVRAGE_API_KEY}`,
-                "method": "POST",
-                "mode": "cors",
-                "credentials": "omit"
-            });
-
-
-            const postDataResponse = await postData("/api", { ...data, supported: !towerCoverageResult.includes("No"), city, googleAPIFullAddress, codepostal: postalCode, country, lng: searchParams.get("lng"), lat: searchParams.get("lat"), fullAddress, ipAddress, browserType , priority });
-            const { message, status } = postDataResponse;
-
-            if (status === 1) {
-               
-                route.push(`/email-check?user=${data.email}`);
-            } else {
-                toast.error(message)
-            }
+            route.push(`/email-check?user=${data.email}`);
         } catch (error) {
             toast.error('Something went wrong. Please try again.');
-            
+            console.log(error);
         }
-
-        Cookies.remove('note');
         setLoading(false);
-
     };
-
-
 
     return (
         <div className="w-full md:w-[900px] min-h-screen flex items-center justify-center mb-10 p-4 ">
@@ -222,7 +155,7 @@ const Form = () => {
                                             value={getValues("phoneNumber")}
                                             onChange={(phone) => setValue("phoneNumber", phone)}
                                             dropdownStyle={{ zIndex: 100 }}
-                                            error={errors.phoneNumber}
+                                            error={errors.phoneNumber?.message}
                                         />
                                         <input
                                             type="phone"
@@ -233,7 +166,7 @@ const Form = () => {
                                     </div>
                                     {errors.phoneNumber && (
                                         <p className="text-sm text-red-600 ">
-                                            Please enter the phone number
+                                            Please enter a phone number
                                         </p>
                                     )}
                                 </div>
@@ -243,7 +176,7 @@ const Form = () => {
                                         htmlFor={"Notes"}
                                         className="block text-sm font-medium leading-6 text-[#6B7280]"
                                     >
-                                        Notes
+                                        Comments
                                     </label>
 
                                     <textarea  {...register('notes')} name="notes" className={`${errors?.notes?.message && "bg-red-400/20 text-white border-red-500 "
@@ -261,7 +194,17 @@ const Form = () => {
                                     </div>
                                 }
 
-                                <div className="mt-2 grid grid-cols-1 gap-2 gap-y-2  sm:grid-cols-6">
+                                {!!locationStore.geocodedAddress &&
+                                    <div className="mt-3">
+                                        <StaticInputField
+                                            label={"Approximate Address"}
+                                            value={locationStore.geocodedAddress.fullAddress}
+                                            disabled
+                                        />
+                                    </div>
+                                }
+
+                                <div className="mt-3 grid grid-cols-1 gap-2 gap-y-2  sm:grid-cols-6">
                                     <div className="sm:col-span-3 ">
                                         <StaticInputField
                                             label={"GPS Coordinates"}
