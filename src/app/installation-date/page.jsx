@@ -107,7 +107,7 @@ const page = () => {
                 </p>
               </div>
 
-              <DatePickerCmp
+              <InstallDatePicker
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
               />
