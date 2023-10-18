@@ -4,9 +4,9 @@ import { isNil } from "lodash-es";
 export const useSessionStore = create((set) => ({
     sessionId: null,
     ipAddress: "",
-    priority: false,
+    userAgent: '',
     setSessionId: (sessionId) => set({sessionId: sessionId}),
-    setPriority: (priority) => set(() => ({priority})),
+    setUserAgent: (userAgent) => set({userAgent: userAgent}),
     setIpAddress: (ipAddress) => set(() => ({ipAddress: ipAddress})),
 }));
 

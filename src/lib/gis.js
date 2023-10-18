@@ -31,6 +31,8 @@ export class AddressInfo {
         this.province = province;
         this.postalCode = postalCode;
         this.country = country;
+
+        this.reverseGeocoded = false;
     }
 
     static filterPlusCodes(addressComponents) {
@@ -80,7 +82,9 @@ export class AddressInfo {
         });
         if(filteredResults.length) {
             let result = filteredResults[0];
-            return AddressInfo.fromGeocodeResult(result.formatted_address, result);
+            const parsed = AddressInfo.fromGeocodeResult(result.formatted_address, result);
+            parsed.reverseGeocoded = true;
+            return parsed;
         } else {
             throw new Error('No results returned');
         }

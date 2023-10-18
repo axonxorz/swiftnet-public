@@ -24,15 +24,14 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     session.setSessionId(generateSessionId());
-    // Fetch IP address only once when the component mounts
+    session.setUserAgent(navigator.userAgent);
     fetch("https://api.ipify.org/?format=json")
       .then((response) => response.json())
       .then((data) => {
-        const ipAddress = data.ip;
-        session.setIpAddress(ipAddress); // Assuming you have the setIpAddress function defined in your store
+        session.setIpAddress(data.ip);
       })
       .catch((error) => {
-        toast.error("Error:", error);
+        console.log('Error fetching IP:', error);
       });
   }, []);
 
