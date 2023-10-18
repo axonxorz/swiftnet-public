@@ -33,3 +33,8 @@ export const useUserLocationStore = create((set, get) => ({
     },
     setRawCoordinates: (lat, lng) => set({rawCoordinates: {lat: lat, lng: lng}})
 }));
+
+export const useAvailablePlansStore = create((set) => ({
+    plans: [],
+    setPlans: (plans) => set({plans: plans})
+}))

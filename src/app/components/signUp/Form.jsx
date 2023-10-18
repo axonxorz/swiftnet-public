@@ -13,17 +13,16 @@ import { useRouter } from "next/navigation";
 import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
-import { useSessionStore, useUserLocationStore } from "@/store";
+import { useAvailablePlansStore, useSessionStore, useUserLocationStore } from "@/store";
 import { postData } from "@/tools";
 import { reverseGeocode } from "@/lib/gis";
 
 const Form = () => {
     const locationStore = useUserLocationStore()
     const sessionStore = useSessionStore();
+    const availablePlansStore = useAvailablePlansStore();
     const route = useRouter();
     const [Loading, setLoading] = useState(false);
-    const ipAddress = useSessionStore(state => state.ipAddress)
-    const priority = useSessionStore((state) => state.priority);
 
     const doReverseGeocode = async () => {
         return await reverseGeocode(locationStore.rawCoordinates?.lat, locationStore.rawCoordinates?.lng)
@@ -45,7 +44,7 @@ const Form = () => {
     }, [locationStore]);
 
     useEffect(() => {
-        if(!locationStore.address && !locationStore.reverseGeocodedAddress) {
+        if(!!locationStore.rawCoordinates?.lat && (!locationStore.address && !locationStore.reverseGeocodedAddress)) {
             doReverseGeocode().then((geocoded_address) => {
                 locationStore.setReverseGeocodedAddress(geocoded_address)
             }, (error) => {
@@ -77,9 +76,14 @@ const Form = () => {
                 location: locationStore.getResolvedAddress(),
                 contact: formData,
             }
-            const signupUrl = '/api/submit_signup'
+            const signupUrl = '/api/prequalification/check'
             const signupResponse = await postData(signupUrl, data);
-            route.push(`/email-check?user=${formData.email}`);
+            if(signupResponse.serviceable) {
+                availablePlansStore.setPlans(signupResponse.plans);
+                route.push(`/installation-date`);
+            } else {
+                route.push('/not-serviceable');
+            }
         } catch (error) {
             toast.error('Something went wrong. Please try again later.');
             console.log(error);
