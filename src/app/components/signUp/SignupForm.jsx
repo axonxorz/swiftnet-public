@@ -94,7 +94,7 @@ const SignupForm = () => {
                 const submittalData = {
                     serviceable: false,
                     session: sessionStore,
-                    contact: contactStore,
+                    contact: formData, // Do not use contactStore, it's changes aren't reflected until the component re-renders
                     location: locationStore.getResolvedAddress()
                   }
                 const signupUrl = '/api/prequalification/submit'
