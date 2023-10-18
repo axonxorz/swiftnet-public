@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-const DatePickerCmp = ({selectedDate, setSelectedDate}) => {
+const DatePickerControl = ({selectedDate, setSelectedDate}) => {
     const searchParams = useSearchParams();
     const [error, setError] = useState(null);
     const [minDate] = useState(selectedDate);
@@ -72,7 +72,7 @@ const DatePickerCmp = ({selectedDate, setSelectedDate}) => {
     };
 
     // Call the setDefaultDate function to set the default value when the component mounts
-    useState(setDefaultDate);
+    //useState(setDefaultDate);
 
     // Function to handle changes in the date input
     const handleDateChange = (value) => {
@@ -125,4 +125,4 @@ const DatePickerCmp = ({selectedDate, setSelectedDate}) => {
     );
 };
 
-export default DatePickerCmp;
+export default DatePickerControl;
