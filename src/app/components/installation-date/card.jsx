@@ -5,7 +5,7 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
     <div
       onClick={() => setSelectedPlan(plan)}
       className={`${
-        selectedPlan.id === plan.id
+        selectedPlan?.id === plan.id
           ? "border-primary border-[1px] bg-[#F1FAFF] "
           : `border-gray-400/70 border-[1px] ${plan.bg}   `
       }col-span-1 cursor-pointer hover:border-primary relative min-h-[260px] rounded-lg  flex flex-col  space-y-3 py-4`}
@@ -16,7 +16,7 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
           <p>Recommended</p>
         </div>
       )}
-      {selectedPlan.id !== plan.id ? (
+      {selectedPlan?.id !== plan.id ? (
         <div className="absolute h-[20px] w-[20px] border-[1px] border-black rounded-full top-5 right-5"></div>
       ) : (
         <div className="absolute h-[20px] w-[20px]  rounded-full top-5 right-5">
@@ -38,24 +38,24 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
       )}
 
       <div className="text-center w-full min-h-[60px] flex gap-1 flex-col items-center justify-center ">
-        <p className="font-bold text-[18px]">{plan.title}</p>
+        <p className="font-bold text-[18px]">{plan.name}</p>
 
         <p className="border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
-          Unlimited
+          Unlimited Data
         </p>
       </div>
 
       <div className="text-center">
         <p className="text-primary text-[24px] font-bold text-center  ">
-          ${plan.price}
+          ${plan.monthly_cost}
         </p>
         <p className="text-[12px] text-[#4B5563] -mt-2">/month</p>
       </div>
 
       <div className="w-full flex flex-col items-start gap-3 px-6">
-        {plan.include.map((itm) => {
+        {(plan?.include || []).map((item) => {
           return (
-            <div key={itm} className="flex items-center justify-center gap-3">
+            <div key={item} className="flex items-center justify-center gap-3">
               <svg
                 width="16"
                 height="16"
@@ -71,7 +71,7 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
                 />
               </svg>
 
-              <p className="text-small text-black">{itm}</p>
+              <p className="text-small text-black">{item}</p>
             </div>
           );
         })}

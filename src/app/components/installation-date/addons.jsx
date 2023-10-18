@@ -4,12 +4,12 @@ import React from "react";
 export const addons = [
   {
     id: 1,
-    title: "Managed Wi-Fi 6 app with Calix Gigspire Blast u4 router",
+    title: "Calix GigaSpire BLAST u4 Managed Router. Wi-Fi 6 with mobile app",
     price: 9.95,
   },
   {
     id: 2,
-    title: "Managed Wi-Fi 6 app with Calix Gigspire Blast u6 router",
+    title: "Calix GigaSpire BLAST u6 Managed Router. Wi-Fi 6 with mobile app",
     price: 17.99,
   },
 ];

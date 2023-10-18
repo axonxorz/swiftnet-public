@@ -36,5 +36,5 @@ export const useUserLocationStore = create((set, get) => ({
 
 export const useAvailablePlansStore = create((set) => ({
     plans: [],
-    setPlans: (plans) => set({plans: plans})
+    setPlans: (plans) => set({plans: plans || []})
 }))
