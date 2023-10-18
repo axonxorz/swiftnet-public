@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { guardGisEndpoint } from "@/lib/gis";
   
 export async function GET(request) {
     const headersList = headers()
@@ -7,12 +8,14 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const address = searchParams.get('address')
     const latlng = searchParams.get('latlng')
-    if (!referer || !['https://swift-net.vercel.app', 'https://swift-net.ca', 'http://localhost'].some(url => referer.startsWith(url))) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+
+    try {
+        guardGisEndpoint(referer)
+    } catch(e) {
+        console.warn(`Referer ACL failure: ${referer}`);
+        return NextResponse.json({error: 'Forbidden'}, {status: 403});
     }
 
-    // If we made it here, the request is from an allowed origin
-    // Now, we forward the request to the Google Maps Geocoding API
     try {
         let apiURL;
         if (address) {
@@ -22,17 +25,13 @@ export async function GET(request) {
         } else {
             return NextResponse.json({ error: 'Bad request: Please provide either an address or latitude and longitude' }, { status: 400 });
         }
-
         const response = await fetch(apiURL);
 
         if (!response.ok) {
             throw new Error('Google API responded with an error');
         }
 
-        // Parse the response as JSON
         const data = await response.json();
-
-        // Forward the response from Google Maps back to the client
         return NextResponse.json(data);
     } catch (error) {
         // Handle any errors

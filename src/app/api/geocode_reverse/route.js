@@ -1,13 +1,25 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { isNil } from "lodash-es";
+import { guardGisEndpoint } from "@/lib/gis";
+
+
+const VALID_REFERERS = [
+    new RegExp('https://*\.vercel.app'),
+    new RegExp('https://*.swift-net\.ca'),
+    new RegExp('http[s]?://localhost.*'),
+]
 
 export async function POST(request) {
     const headersList = headers()
     const referer = headersList.get('referer')
     const {searchParams} = new URL(request.url);
     const [lat, lng] = [searchParams.get('lat'), searchParams.get('lng')]
-    if (!referer || !['https://swift-net.vercel.app', 'https://swift-net.ca', 'http://localhost'].some(url => referer.startsWith(url))) {
+
+    try {
+        guardGisEndpoint(referer)
+    } catch(e) {
+        console.warn(`Referer ACL failure: ${referer}`);
         return NextResponse.json({error: 'Forbidden'}, {status: 403});
     }
 

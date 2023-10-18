@@ -1,5 +1,6 @@
 import { isNil } from "lodash-es";
 import { AddressInfo } from "@/lib/address-info";
+import { NextResponse } from "next/server";
 
 // Generously cover AB, SK
 // WKT: POLYGON((-120.33 60.21, -100.79 60.21, -100.79 48.65, -120.33 48.65, -120.33 60.21))
@@ -21,6 +22,24 @@ export const defaultMapCenter = {
     lat: 53.31225509999999,
     lng: -110.072853,
 }
+
+const VALID_REFERERS = [
+    new RegExp('https://.*\.vercel.app/.*'),
+    new RegExp('https://.*swift-net\.ca/.*'),
+    new RegExp('http[s]?://localhost.*'),
+]
+
+
+export class RefererAclFailure { }
+
+
+export const guardGisEndpoint = (referer) => {
+    // Ensure GIS requests are coming from a validated HTTP Referer
+    if (!referer || !VALID_REFERERS.some((valid) => valid.test(referer))) {
+        throw new RefererAclFailure();
+    }
+}
+
 
 export const geocodeAddress = async (address) => {
     const url = `/api/geocode?address=${address}`;
