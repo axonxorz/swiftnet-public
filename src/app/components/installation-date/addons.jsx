@@ -1,7 +1,7 @@
 import styles from "@/app/styles/styles";
 import React from "react";
 
-export const addOne = [
+export const addons = [
   {
     id: 1,
     title: "Managed Wi-Fi 6 app with Calix Gigspire Blast u4 router",
@@ -13,28 +13,29 @@ export const addOne = [
     price: 17.99,
   },
 ];
-const AddOnes = ({ setSelectedAddOne, selectedAddOne }) => {
+
+const Addons = ({ setSelectedAddon, selectedAddon }) => {
   return (
     <div className="mt-8">
       <p className={`${styles.paragraph} text-[#4B5563] mb-1`}>Add Ons</p>
       <div className="w-full  space-y-4 ">
-        {addOne.map((item) => {
+        {addons.map((item) => {
           return (
             <div
               key={item.id}
               onClick={() =>
-                item.id === selectedAddOne.id
-                  ? setSelectedAddOne({})
-                  : setSelectedAddOne(item)
+                item.id === selectedAddon.id
+                  ? setSelectedAddon({})
+                  : setSelectedAddon(item)
               }
               className={`${
-                selectedAddOne.id === item.id
+                selectedAddon.id === item.id
                   ? "border-primary border-[1px] bg-[#F1FAFF] "
                   : "border-gray-400/70 border-[1px] "
               }w-full cursor-pointer hover:border-primary rounded-lg flex items-center justify-between border-[1px]`}
             >
               <div className="flex py-4 gap-3 items-start px-4 justify-start w-3/4">
-                {selectedAddOne.id !== item.id ? (
+                {selectedAddon.id !== item.id ? (
                   <div className=" h-[20px] w-[20px] border-[1px] border-black rounded-full top-5 right-5"></div>
                 ) : (
                   <div className=" h-[20px] w-[20px]  rounded-full top-5 right-5">
@@ -71,4 +72,4 @@ const AddOnes = ({ setSelectedAddOne, selectedAddOne }) => {
   );
 };
 
-export default AddOnes;
+export default Addons;
