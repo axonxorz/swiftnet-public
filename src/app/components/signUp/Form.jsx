@@ -29,7 +29,8 @@ const Form = () => {
         return await reverseGeocode(locationStore.rawCoordinates?.lat, locationStore.rawCoordinates?.lng)
     }
 
-    // TODO: support fully missing coordinates, require 'notes' field
+    // TODO: support fully missing coordinates, require 'comments' field
+
 
     const goHome = () => {
         route.replace('/')
@@ -53,35 +54,38 @@ const Form = () => {
         }
     }, []);
 
-    // TODO: note required if address not specified
+    // TODO: comments required if address not specified
     // TODO: captcha
     const validationSchema = yup.object({
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
         email: yup.string().email("Invalid email").required("Email is required"),
         phoneNumber: yup.string().required("Phone number is required"),
-        notes: yup.string().max(500),
+        comments: yup.string().max(500),
     });
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (formData) => {
         setLoading(true);
-        const browserType = navigator.userAgent;
-
         try {
-            const address = locationStore.getResolvedAddress();
-
             // TODO: implement Terek API lead funnel
-
-            route.push(`/email-check?user=${data.email}`);
+            const data = {
+                session: sessionStore,
+                location: locationStore.getResolvedAddress(),
+                contact: formData,
+            }
+            const signupUrl = '/api/submit_signup'
+            const signupResponse = await postData(signupUrl, data);
+            route.push(`/email-check?user=${formData.email}`);
         } catch (error) {
-            toast.error('Something went wrong. Please try again.');
+            toast.error('Something went wrong. Please try again later.');
             console.log(error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     return (
@@ -178,15 +182,15 @@ const Form = () => {
 
                                 <div className="mt-3">
                                     <label
-                                        htmlFor={"Notes"}
+                                        htmlFor={"Comments"}
                                         className="block text-sm font-medium leading-6 text-[#6B7280]"
                                     >
                                         Comments
                                     </label>
 
-                                    <textarea  {...register('notes')} name="notes" className={`${errors?.notes?.message && "bg-red-400/20 text-white border-red-500 "
+                                    <textarea  {...register('comments')} name="comments" className={`${errors?.comments?.message && "bg-red-400/20 text-white border-red-500 "
                                         }block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`} cols="30" rows="5" {...register} ></textarea>
-                                    {errors?.notes?.message && <p className="text-red-500 text-xs  ">{errors?.notes?.message}</p>}
+                                    {errors?.comments?.message && <p className="text-red-500 text-xs  ">{errors?.comments?.message}</p>}
                                 </div>
 
                                 {!!locationStore.address &&
@@ -243,7 +247,7 @@ const Form = () => {
                             disabled={Loading}
                             className={`text-sm font-semibold leading-6  w-[400px] ${Loading ? "bg-primary/70 " : "bg-primary "} rounded-lg text-white py-2 `}
                         >
-                            {!Loading ? "Check Availability" : "please wait ..."}
+                            {!Loading ? "Check Availability" : "Please Wait ..."}
                         </button>
 
                         <p className={`${styles.paragraph} text-center`}>

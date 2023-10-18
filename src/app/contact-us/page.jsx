@@ -59,10 +59,10 @@ const page = () => {
       if (status === 1) {
         route.push(`/contact-us/thanks`);
       } else {
-        console.log("Something went wrong. Please try again.");
+        console.log("Something went wrong. Please try again later.");
       }
     } catch (error) {
-      console.log("Something went wrong. Please try again.");
+      console.log("Something went wrong. Please try again later.");
     }
 
     setLoading(false);

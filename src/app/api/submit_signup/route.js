@@ -9,86 +9,66 @@ export function generateAccessToken(data) {
     });
 }
 
-const emailTransport = createTransport()
+const emailTransport = createTransport();
 
-// Function to validate form fields
-const validateFormFields = (email, message) => {
-    if (!email || !message) {
-        return false;
+const validateFormFields = (contact) => {
+    // _Very_ basic input validation
+    const errors = [];
+    if(!contact.email) {
+        errors.push('Invalid email address');
     }
-    if (!email.includes("@")) {
-        return false;
+    if(errors.length) {
+        throw new Error(errors.join(', '))
     }
-    return true;
 };
 
 export async function POST(request) {
-    const req = await request.json();
+    const data = await request.json();
+    const {session, location, contact} = data;
 
-    const {
-        firstName,
-        fullAddress,
-        lastName,
-        lat,
-        lng,
-        phoneNumber,
-        postal_code,
-        region,
-        email,
-        supported,
-        ipAddress,
-        browserType,
-        googleAPIFullAddress,
-        priority,
-    } = req;
-
-    const isValid = validateFormFields(email, "sfsdf");
-
-    if (isValid) {
-        // If form fields are valid, send an email
-        const token = generateAccessToken(req);
-
+    const supported = true; // TODO: needs to be dynamic
+    try {
+        validateFormFields(contact)
+        const token = generateAccessToken(data);
         const mailOptions = {
             from: getSendFromAddress(),
-            to: transformRecipients(email),
+            to: transformRecipients(contact.email),
             subject: supported ? " Fantastic news! Service is available at your location. " : "Expanding our Network Together: Internet Service Availability",
-            text: "",
             html: supported ? `
-        <html>
-    <body>
-      <div style="text-align: center;">
-        <div style="margin-top: 20px; margin-bottom: 40px">
-          <img src="https://swift-net.vercel.app/_next/static/media/logo2.2933c849.png" alt="logo" />
-        </div>
-        <h3>Dear ${firstName},</h3>
-
-        <p style="text-align: center; padding: 10px">
-          You're almost done! Pick your price and install date below:
-        </p>
-
-        <div>
-          <a href="https://swift-net.ca/installation-date?token=${token}${priority ? `&priority=${1}` : ""}" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
-        </div>
-        <p style="text-align: center; padding: 10px">
-          Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.
-        </p>
-        <br />
-        <p>Thank you!<br /></p>
-        <div style="background-color: #05649c; padding: 20px; width: 100%">
-          <p style="color: white; text-align: center">
-            Swift-Net.ca | Customer Care<br />
-            <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a><br />
-            <a style="color: white" href="tel:1-866-667-2375">1-866-667-2375</a>
-          </p>
-        </div>
-      </div>
-    </body>
-  </html>
+        <html lang="en">
+            <body>
+              <div style="text-align: center;">
+                <div style="margin-top: 20px; margin-bottom: 40px">
+                  <img src="https://swift-net.vercel.app/_next/static/media/logo2.2933c849.png" alt="logo" />
+                </div>
+                <h3>Dear ${contact.firstName},</h3>
+        
+                <p style="text-align: center; padding: 10px">
+                  You're almost done! Pick your price and install date below:
+                </p>
+        
+                <div>
+                  <a href="https://swift-net.ca/installation-date?token=${token}" style="font-weight: bold; background-color: #05649c; color: white; padding: 0.9rem 20px; margin: 30px; border-radius: 0.5rem; text-decoration-line: none;">Click here</a>
+                </div>
+                <p style="text-align: center; padding: 10px">
+                  Feel free to call us at <a href="tel:1-866-667-2375">tel:1-866-667-2375</a> or reply to this email with any questions.
+                </p>
+                <br />
+                <p>Thank you!<br /></p>
+                <div style="background-color: #05649c; padding: 20px; width: 100%">
+                  <p style="color: white; text-align: center">
+                    Swift-Net.ca | Customer Care<br />
+                    <a style="color: white" href="mailto:support@swift-net.ca">support@swift-net.ca</a><br />
+                    <a style="color: white" href="tel:1-866-667-2375">1-866-667-2375</a>
+                  </p>
+                </div>
+              </div>
+            </body>
+          </html>
       ` : `
-        <html>
+        <html lang="en">
           <body>
-          
-            <h3>Dear ${firstName},</h3>
+            <h3>Dear ${contact.firstName},</h3>
             <p>
               Thank you for your interest in our high-speed Internet services. We have checked the serviceability of the address you provided and regret to inform you that our services are not currently available in your area.
             </p>
@@ -141,48 +121,36 @@ export async function POST(request) {
         const swiftMailOptions = {
             from: getSendFromAddress(),
             to: transformRecipients(getSalesRecipient()),
-            subject: `${supported ? "Yes," : "No,"} ${email} , ${fullAddress} `,
+            subject: `Web Sign-Up: Supported: ${supported ? "Yes" : "No"}, ${contact.email} , ${location.fullAddress}`,
             text: "",
             html: `
       <html>
         <body>
-          <h2>New web sign up information: ${firstName + " " + lastName}  </h2>
-
-          <ul>
-          <li>First Name: ${firstName}</li>
-          <li>Last Name: ${lastName}</li>
-          <li>Email: ${email}</li>
-          <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/CA/${phoneNumber}">${phoneNumber}</a></li>
-
-          <li>Full Address:<a href="https://www.google.com/maps/place/${fullAddress}"> ${fullAddress}</a></li>
-          <li>Google lookup: <a href="https://www.google.com/maps/place/${ipAddress}">${googleAPIFullAddress}</a></li>
-          <li>Postal Code: ${postal_code}</li>
-          <li>Region: ${region}</li>
-          <li>Supported: ${supported}</li>
-          <li>Priority : ${priority} </li>
-          <a href="https://swift-net.ca/installation-date?token=${token}" style="font-weight: bold; text-decoration-line: none;">Install date </a>
-          <li>lng: <a href="https://www.google.com/maps/place/${lat},${lng}">${lng}</a></li>
-          <li>lat:<a href="https://www.google.com/maps/place/${lat},${lng}"> ${lat}</a></li>
-          <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
-          <li>Browser Type: ${browserType}</li>
-        </ul>
-
+          <h2>New web sign up information: ${contact.firstName + " " + contact.lastName}  </h2>
+            <ul>
+              <li>First Name: ${contact.firstName}</li>
+              <li>Last Name: ${contact.lastName}</li>
+              <li>Email: ${contact.email}</li>
+              <li>Phone Number: <a href="https://www.ipqualityscore.com/free-carrier-lookup/lookup/CA/${contact.phoneNumber}">${contact.phoneNumber}</a></li>
+              <li>Address:<a href="https://www.google.com/maps/place/${location.fullAddress}"> ${location.fullAddress}</a></li>
+              <li>Postal Code: ${location.postalCode}</li>
+              <li>Supported: ${supported}</li>
+              <li>GPS Coordinates: <a href="https://www.google.com/maps/place/${location.lat},${location.lng}">${location.lat},${location.lng}</a></li>
+              <li>IP Address: <a href="https://ipinfo.io/${session.ipAddress}">${session.ipAddress}</a></li>
+              <li>Browser: ${session.userAgent}</li>
+            </ul>
         </body>
       </html>
     `,
         };
 
-        try {
-            // Send the email
-            await emailTransport.sendMail(mailOptions);
-            await emailTransport.sendMail(swiftMailOptions);
-            return NextResponse.json({
-                message: "Email sent successfully", status: 1,
-            });
-        } catch (error) {
-            return NextResponse.json({message: "Error sending email", status: 0});
-        }
-    } else {
-        return NextResponse.json({message: "Invalid form data", status: 0});
+        await emailTransport.sendMail(mailOptions);
+        await emailTransport.sendMail(swiftMailOptions);
+        return NextResponse.json({
+            message: "Email sent successfully", status: 1,
+        });
+    } catch (error) {
+        console.error('Error sending email', error);
+        return NextResponse.json({message: "Error sending email"}, {status: 500});
     }
 }
