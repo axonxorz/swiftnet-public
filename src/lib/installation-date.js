@@ -26,8 +26,8 @@ export const maxInstallationDate = (date) => {
 }
 
 export const nextBusinessDay = (date) => {
-    date = date.startOf('day');
-    for(let i = 0; i<INSTALL_LEAD_TIME; i++) {
+    date = minInstallationDate(date);
+    for(let i = 0; i<INSTALL_MAX_LEAD_TIME; i++) {
         const adjusted = date.plus({days: i});
         if(!isDisabledDate(adjusted)) {
             return adjusted;
