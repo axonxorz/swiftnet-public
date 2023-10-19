@@ -70,9 +70,16 @@ const getBounds = () => {
 
 
 export const filterTaranaPlans = (lat, lng, plans) => {
+    console.log(`filterTaranaPlans(lat=${lat},lng=${lng})`);
     const lloydminsterBounds = getBounds();
     if(lloydminsterBounds.contains(lat, lng)) {
+        console.log('Within Lloydminster bounds')
+        for(const plan of plans) {
+            console.log(`plan=${JSON.stringify(plan, null, 2)}`)
+        }
         plans = plans.filter((plan) => plan.name.toLowerCase().includes('tarana'));
+    } else {
+        console.log('Outside Lloydminster bounds, no change')
     }
     return plans;
 }

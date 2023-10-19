@@ -13,9 +13,14 @@ export async function POST(request) {
 
         // Special-case handling for Tarana plans in Lloydminster. To be removed when Terek #682 is complete.
         const plans = response.data.plans;
+        console.log(`${plans.length} plans:${JSON.stringify(plans, null, 2)}`);
         if(plans.map((p) => p.name)
             .some((name) => name.toLowerCase().includes('tarana'))) {
+            console.log('Returned plans contain a Tarana plan, attempting filtering');
             response.data.plans = filterTaranaPlans(data.location.lat, data.location.lng, plans);
+            console.log(`${response.data.plans.length} plans after filtering`)
+        } else {
+            console.log('Returned plans do not contain Tarana plans');
         }
 
         return NextResponse.json(response.data);
