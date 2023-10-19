@@ -18,6 +18,7 @@ const AutoCompleteInput = ({ place, resolved, resolvedSimple }) => {
     };
     useEffect(() => {
         loader.load().then(async (google) => {
+            if(!inputRef.current) { return; }  // Component tree can lead to this being unavailable.
             const autocompleter = new google.maps.places.Autocomplete(
                 inputRef.current,
                 Object.assign({}, swiftAutocompleteOptions, localOptions)
