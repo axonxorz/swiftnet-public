@@ -53,19 +53,6 @@ export default function RootLayout({ children }) {
           async
           defer
         />
-        <Script>
-          {`function onClick(e) {
-                e.preventDefault();
-                grecaptcha.enterprise.ready(async () => {
-                  const token = await
-              grecaptcha.enterprise.execute(
-              '6Ld8lREnAAAAAFzCEO8eAIYB9aLS2NKtRPejZGLk'
-              , {action: 
-              'LOGIN'});
-          });
-          }
-          `}
-        </Script>
 
         <Head>
           <link
