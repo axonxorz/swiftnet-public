@@ -54,6 +54,8 @@ const Page = () => {
       } else {
         toast.error('Something went wrong on our end, please try again later.')
       }
+    } catch(e) {
+      console.log('Error during submission', e);
     } finally {
       setLoading(false)
     }

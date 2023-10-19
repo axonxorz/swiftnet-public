@@ -16,6 +16,7 @@ import { toast } from "react-hot-toast";
 import { useAvailablePlansStore, useContactStore, useSessionStore, useUserLocationStore } from "@/store";
 import { postData } from "@/tools";
 import { reverseGeocode } from "@/lib/gis";
+import { isNil } from "lodash-es";
 
 const SignupForm = () => {
     const locationStore = useUserLocationStore()
@@ -23,26 +24,16 @@ const SignupForm = () => {
     const availablePlansStore = useAvailablePlansStore();
     const contactStore = useContactStore();
     const route = useRouter();
-    const [Loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
+    const hasRawCoordinates = !isNil(locationStore.rawCoordinates); // If "Skip this step" is used in <Component>, this will be false
     const doReverseGeocode = async () => {
         return await reverseGeocode(locationStore.rawCoordinates?.lat, locationStore.rawCoordinates?.lng)
     }
 
-    // TODO: support fully missing coordinates, require 'comments' field
-
-
     const goHome = () => {
         route.replace('/')
     }
-
-    useEffect(() => {
-        if(!locationStore.rawCoordinates?.lat) {
-            // TODO: would be nice to redirect to step 1, but need to unwind pages and components as no
-            // TODO: re-render happens when only the querystring changes (due to checking in a useEffect)
-            goHome();
-        }
-    }, [locationStore]);
 
     useEffect(() => {
         if(!!locationStore.rawCoordinates?.lat && (!locationStore.address && !locationStore.reverseGeocodedAddress)) {
@@ -57,49 +48,92 @@ const SignupForm = () => {
         }
     }, []);
 
-    // TODO: comments required if address not specified
     // TODO: captcha
-    const validationSchema = yup.object({
+    let commentValidator = yup.string().max(500);
+    if(!hasRawCoordinates) {
+        commentValidator = commentValidator.required('Please let us know what type of service you\'re looking for.');
+    }
+    const validationSpec = {
         firstName: yup.string().required("First name is required"),
         lastName: yup.string().required("Last name is required"),
         email: yup.string().email("Invalid email").required("Email is required"),
         phoneNumber: yup.string().required("Phone number is required"),
-        comments: yup.string().max(500),
-    });
+        comments: commentValidator
+    }
+    let validationSchema;
+    if(process.env.NODE_ENV === 'development') {
+        validationSchema = yup.object();
+    } else {
+        validationSchema = yup.object(validationSpec);
+    }
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
+    const signupWithAddress = async(signupCheckData) => {
+        let signupResponse;
+        try {
+            const qualificationCheckUrl = '/api/prequalification/check'
+            signupResponse = await postData(qualificationCheckUrl, signupCheckData);
+        } catch(e) {
+            console.log('Error in service check', e);
+            toast.error('We ran into an issue looking for services for you. Please try again later.');
+            return;
+        }
+
+        if(signupResponse.serviceable) {
+            availablePlansStore.setPlans(signupResponse.plans);
+            route.push(`/installation-date`);
+        } else {
+            const submittalData = {
+                serviceable: false,
+                session: sessionStore,
+                contact: signupCheckData.contact,
+                location: locationStore.getResolvedAddress()
+            }
+            try {
+                const qualificationSubmitUrl = '/api/prequalification/submit'
+                postData(qualificationSubmitUrl, submittalData); // Don't care to wait for this to complete
+            } catch(e) {
+                console.log('Error during submission', e);
+            }
+            route.push('/not-serviceable');
+        }
+    }
+
+    const signupWithoutAddress = async(signupCheckData) => {
+        const submittalData = {
+            serviceable: null,
+            session: sessionStore,
+            contact: signupCheckData.contact
+        }
+        const qualificationSubmitUrl = '/api/prequalification/submit'
+        postData(qualificationSubmitUrl, submittalData); // Don't care to wait for this to complete
+        route.push('/signup-contact');
+    }
+
     const onSubmit = async (formData) => {
         setLoading(true);
         try {
-            const checkData = {
-                session: sessionStore,
-                location: locationStore.getResolvedAddress(),
-                contact: formData,
-            }
+            // Persist for installation-date page
             contactStore.setFirstName(formData.firstName);
             contactStore.setLastName(formData.lastName);
             contactStore.setEmail(formData.email);
             contactStore.setPhoneNumber(formData.phoneNumber);
             contactStore.setComments(formData.comments);
 
-            const signupUrl = '/api/prequalification/check'
-            const signupResponse = await postData(signupUrl, checkData);
-            if(signupResponse.serviceable) {
-                availablePlansStore.setPlans(signupResponse.plans);
-                route.push(`/installation-date`);
+            const signupCheckData = {
+                session: sessionStore,
+                location: locationStore.getResolvedAddress(),
+                // Do not use contactStore, it's changes aren't reflected until the component re-renders
+                contact: formData,
+            }
+
+            if(hasRawCoordinates) {
+                await signupWithAddress(signupCheckData);
             } else {
-                const submittalData = {
-                    serviceable: false,
-                    session: sessionStore,
-                    contact: formData, // Do not use contactStore, it's changes aren't reflected until the component re-renders
-                    location: locationStore.getResolvedAddress()
-                  }
-                const signupUrl = '/api/prequalification/submit'
-                await postData(signupUrl, submittalData);
-                route.push('/not-serviceable');
+                await signupWithoutAddress(signupCheckData)
             }
         } catch (error) {
             toast.error('Something went wrong. Please try again later.');
@@ -224,7 +258,7 @@ const SignupForm = () => {
                                     </div>
                                 }
 
-                                {(!locationStore.address && !locationStore.reverseGeocodedAddress) &&
+                                {(!locationStore.address && !locationStore.reverseGeocodedAddress && hasRawCoordinates) &&
                                     <div className="mt-3">
                                         <StaticInputField
                                             label={"Approximate Address"}
@@ -234,7 +268,7 @@ const SignupForm = () => {
                                     </div>
                                 }
 
-                                {(!locationStore.address && !!locationStore.reverseGeocodedAddress) &&
+                                {(!locationStore.address && !!locationStore.reverseGeocodedAddress && hasRawCoordinates) &&
                                     <div className="mt-3">
                                         <StaticInputField
                                             label={"Approximate Address"}
@@ -244,19 +278,21 @@ const SignupForm = () => {
                                     </div>
                                 }
 
-                                <div className="mt-3 grid grid-cols-1 gap-2 gap-y-2  sm:grid-cols-6">
-                                    <div className="sm:col-span-3 ">
-                                        <StaticInputField
-                                            label={"GPS Coordinates"}
-                                            value={(locationStore.rawCoordinates?.lat || 0.00).toFixed(5)}
-                                        />
+                                {hasRawCoordinates &&
+                                    <div className="mt-3 grid grid-cols-1 gap-2 gap-y-2  sm:grid-cols-6">
+                                        <div className="sm:col-span-3 ">
+                                            <StaticInputField
+                                                label={"GPS Coordinates"}
+                                                value={(locationStore.rawCoordinates?.lat || 0.00).toFixed(5)}
+                                            />
+                                        </div>
+                                        <div className="sm:col-span-3 ">
+                                            <StaticInputField
+                                                value={(locationStore.rawCoordinates?.lng || 0.00).toFixed(5)}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="sm:col-span-3 ">
-                                        <StaticInputField
-                                            value={(locationStore.rawCoordinates?.lng || 0.00).toFixed(5)}
-                                        />
-                                    </div>
-                                </div>
+                                }
 
                             </div>
                         </div>
@@ -265,10 +301,10 @@ const SignupForm = () => {
                     <div className=" flex items-center justify-center mt-5 space-y-4 flex-col  px-4 ">
                         <button
                             type="submit"
-                            disabled={Loading}
-                            className={`text-sm font-semibold leading-6  w-[400px] ${Loading ? "bg-primary/70 " : "bg-primary "} rounded-lg text-white py-2 `}
+                            disabled={loading}
+                            className={`text-sm font-semibold leading-6  w-[400px] ${loading ? "bg-primary/70 " : "bg-primary "} rounded-lg text-white py-2 `}
                         >
-                            {!Loading ? "Check Availability" : "Please Wait ..."}
+                            {!loading ? "Check Availability" : "Please Wait ..."}
                         </button>
 
                         <p className={`${styles.paragraph} text-center`}>

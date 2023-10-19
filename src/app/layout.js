@@ -79,7 +79,7 @@ export default function RootLayout({ children }) {
           {pathname === "/sign-up" ||
           pathname === "/pricing" ||
           pathname === "/map" ||
-          pathname === "/email-check" ? (
+          pathname === "/signup-contact" ? (
             <>{children}</>
           ) : (
             <>

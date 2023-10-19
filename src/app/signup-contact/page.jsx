@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
 import styles from "../styles/styles";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import "@/app/styles/custom.css";
 
 const page = () => {
-  const router = useSearchParams();
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center space-y-6">
       <div className="">
@@ -32,15 +30,10 @@ const page = () => {
         </svg>
       </div>
       <div className="px-10 text-center space-y-4">
-        <p className="text-[30px] font-bold">Thank you for registering!</p>
+        <p className="text-[30px] font-bold">Thank you for your interest!</p>
         <p className={styles.paragraph}>
-          <span className="text-primary font-bold  ">Thank you </span>
-          for choosing swift-net.ca! We emailed you the result. Please check
-          your
-          <span className="text-black font-bold ">
-            {" " + router.get("user")}
-          </span>
-           mailbox <br />{" "}
+          <span className="text-primary font-bold">Thank you </span>
+          for choosing Swift-Net.ca! A team member will contact you shortly to explore your personalized options.
         </p>
       </div>
 
