@@ -4,7 +4,6 @@ import styles from "../styles/styles";
 import { BsTelephone, BsFacebook } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import {
-  AiOutlineTwitter,
   AiFillLinkedin,
   AiOutlineInstagram,
 } from "react-icons/ai";
@@ -16,18 +15,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "@components/phone-input/style/style.css";
 import { useSessionStore } from "@/store";
 import { postData } from "@/tools";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import "@/app/styles/custom.css";
+import { toast } from "react-hot-toast";
 
 const page = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const session = useSessionStore((state) => state.ipAddress);
-  const route = useRouter();
+  const session = useSessionStore();
+
   const validationSchema = yup.object({
-    phoneNumber: yup.string().required("Phone number is required"),
+    name: yup.string().required('Please enter a contact name'),
+    phoneNumber: yup.string().required("Please leave us a phone number we can use to contact you"),
     email: yup.string().email("Invalid email").required("Email is required"),
-    description: yup.string().required("Email is required"),
+    comments: yup.string().min(20).required("What's on your mind?")
   });
 
   const {
@@ -42,29 +43,23 @@ const page = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const browserType = navigator.userAgent;
-
-    Cookies.set("email", data.email, { expires: 7 });
-
-    Cookies.set("phone", data.phoneNumber, { expires: 7 });
-
     try {
       const postDataResponse = await postData("/api/contact", {
         ...data,
-        ipAddress: session,
-        browserType,
+        session: session
       });
-      const { status } = postDataResponse;
+      const { result, message } = postDataResponse;
 
-      if (status === 1) {
-        route.push(`/contact-us/thanks`);
+      if(result) {
+        router.push(`/contact-us/thanks`);
       } else {
-        console.log("Something went wrong. Please try again later.");
+        console.error('Error sending message', message);
+        toast.error("Something went wrong. Please try again later.");
       }
     } catch (error) {
-      console.log("Something went wrong. Please try again later.");
+      console.log('Error sending message', error);
+      toast.error("Something went wrong. Please try again later.");
     }
-
     setLoading(false);
   };
 
@@ -84,7 +79,7 @@ const page = () => {
                   Our friendly team is here to help
                 </span>
 
-                <p className="font-medium">support@swift-net.ca</p>
+                <p className="font-medium"><a href="mailto:support@swift-net.ca">support@swift-net.ca</a></p>
               </div>
             </div>
           </div>
@@ -98,8 +93,8 @@ const page = () => {
                 <h3 className="font-medium">Weekdays from 8 AM to 8 PM</h3>
                 <h3 className="font-medium">Weekends from 9 AM to 7 PM</h3>
 
-                <h6 className="font-bold mt-2">+1 (306) 825-7111</h6>
-                <h6 className="font-bold mt-2">+1 (866) 667-2375</h6>
+                <h6 className="font-bold mt-2"><a href="tel:+13068257111">+1 (306) 825-7111</a></h6>
+                <h6 className="font-bold mt-2"><a href="tel:+18666672375">+1 (866) 667-2375</a></h6>
               </div>
             </div>
           </div>
@@ -137,14 +132,29 @@ const page = () => {
                   htmlFor=""
                   className="font-medium text-[#6B7280] text-sm"
                 >
+                  Name
+                </label>
+                <input
+                  {...register("name")}
+                  required
+                  placeholder="e.g John Doe"
+                  className="text-sm md:text-base bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 pl-4 rounded-lg"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor=""
+                  className="font-medium text-[#6B7280] text-sm"
+                >
                   Email
                 </label>
                 <input
                   type="email"
                   {...register("email")}
                   required
-                  placeholder="e.g kevinreggea@gmail.com"
-                  className="text-[#9CA3AF] text-sm md:text-base bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 pl-4 rounded-lg"
+                  placeholder="e.g john.doe@gmail.com"
+                  className="text-sm md:text-base bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 pl-4 rounded-lg"
                 />
               </div>
 
@@ -163,7 +173,7 @@ const page = () => {
                   value={getValues("phoneNumber")}
                   onChange={(phone) => setValue("phoneNumber", phone)}
                   dropdownStyle={{ zIndex: 100 }}
-                  error={errors.phoneNumber}
+                  error={errors?.phoneNumber?.message}
                 />
                 <input
                   type="phone"
@@ -171,6 +181,11 @@ const page = () => {
                   className={"hidden"}
                   {...register("phoneNumber")}
                 />
+                {errors?.phoneNumber && (
+                  <p className="text-sm text-red-600 ">
+                    {errors.phoneNumber.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-1">
@@ -178,17 +193,22 @@ const page = () => {
                   htmlFor=""
                   className="font-medium text-[#6B7280] text-sm"
                 >
-                  Description
+                  Comments
                 </label>
                 <textarea
                   name=""
                   id=""
-                  {...register("description")}
+                  {...register("comments")}
                   cols=""
                   rows="5"
-                  placeholder="e.g I want the best internet service in Alberta or Saskatchwan!"
-                  className="text-[#9CA3AF] text-sm md:text-base pl-4 bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
+                  placeholder="e.g I want the best internet service in Alberta or Saskatchewan!"
+                  className="text-sm md:text-base pl-4 bg-transparent border-[1px] border-solid border-[#D1D5DB] p-2 rounded-lg"
                 ></textarea>
+                {errors?.comments && (
+                  <p className="text-sm text-red-600 ">
+                    {errors.comments.message}
+                  </p>
+                )}
               </div>
             </div>
             <button
@@ -198,7 +218,7 @@ const page = () => {
                 loading ? "bg-primary/70 " : "bg-primary "
               } hover:bg-primary/80 font-medium text-base md:text-lg py-2 w-full text-white rounded-lg g-recaptcha`}
             >
-              {!loading ? "Check Availability" : "please wait ..."}
+              {!loading ? "Let Us Know !" : "Working ..."}
             </button>
           </form>
         </div>

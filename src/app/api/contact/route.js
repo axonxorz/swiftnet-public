@@ -1,47 +1,32 @@
+import ejs from "ejs";
 import { NextResponse } from "next/server";
-import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipients } from "@/lib/email";
 
-const emailTransport = createTransport();
+import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipients } from "@/lib/email";
+import template_contact from "@/assets/email_contact.ejs.html"
+
 
 export async function POST(request) {
-  const req = await request.json();
+    const templateData = await request.json();
+    try {
+        const rendered = ejs.render(template_contact, templateData);
 
-  const { email, ipAddress, browserType, phoneNumber, description } = req;
-
-  const mailOptions = {
-    from: getSendFromAddress(),
-    to: transformRecipients(getSalesRecipient()),
-    subject: `Contact : ${email}`,
-    text: "",
-    html: `
-      <html>
-        <body>
-
-          <h3>From ${email}, Phone ${phoneNumber}</h3>
-
-          <p>
-            ${description}
-          </p> 
-
-          <ul>
-          <li>IP Address: <a href="https://ipinfo.io/${ipAddress}">${ipAddress}</a></li>
-          <li>Browser Type: ${browserType}</li>
-        </ul>
-
-        </body>
-      </html>
-    `,
-  };
-
-  try {
-    // Send the email
-    await emailTransport.sendMail(mailOptions);
-
-    return NextResponse.json({
-      message: "Contact Email sent successfully",
-      status: 1,
-    });
-  } catch (error) {
-    return NextResponse.json({ message: "Error sending email", status: 0 });
-  }
+        const emailTransport = createTransport();
+        const message = {
+            from: getSendFromAddress(),
+            to: transformRecipients(getSalesRecipient()),
+            subject: `Web Contact: ${templateData.name} (${templateData.email})`,
+            html: rendered
+        }
+        await emailTransport.sendMail(message);
+        return NextResponse.json({
+            result: true,
+            message: "Contact email sent successfully",
+        });
+    } catch (error) {
+        console.log('Error sending contact email', error);
+        return NextResponse.json({
+            result: false,
+            message: "Server error sending email"
+        });
+    }
 }
