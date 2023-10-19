@@ -1,12 +1,12 @@
 import React from "react";
-import Plans from "./Plans";
+import Plans from "./Plans/taranaPlans";
 import logo1 from "@/assets/logo2.png";
 import Image from "next/image";
 
 const PopUp = ({ setShow }) => {
   return (
     <div className="fixed w-full  md:h-screen bg-white/60 top-0 left-0 flex items-center justify-center  p-3 ">
-      <div className="w-full md:w-[70%] p-4 bg-[#98C11D]   relative rounded-xl ">
+      <div className="w-full md:w-[70%] p-4 bg-[#242038]   relative rounded-xl ">
         <div className="w-full">
           <div
             className="w-full flex items-center justify-end "
@@ -17,7 +17,7 @@ const PopUp = ({ setShow }) => {
             </p>
           </div>
           <div className="w-full flex items-center justify-center">
-            <p className="font-bold text-[38px] md:text-[48px]  cursor-pointer text-primary ">
+            <p className="font-bold text-[38px] md:text-[48px]  cursor-pointer text-white">
               Now Available In Lloydminster
             </p>
           </div>

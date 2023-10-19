@@ -1,25 +1,22 @@
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 const Card = ({ plan }) => {
   const router = useRouter();
-  const handlClick = () => {
-    const url = `${plan.title},$${plan.price},download=${plan.dspeed},upload=${plan.uspeed}`;
-    Cookies.set("note", url, { expires: 7 });
+  const handleClick = () => {
     router.push("/sign-up");
   };
   return (
     <div
       className={`${
-        plan.id === 1
+        plan.recommended
           ? "border-primary border-[1px] bg-[#F1FAFF] "
           : `border-gray-400/70 border-[1px] ${plan.bg}   `
-      }col-span-1 cursor-pointer hover:border-primary relative min-h-[160px] rounded-lg  flex flex-col  space-y-3 py-4`}
+      } col-span-1 cursor-pointer hover:border-primary relative min-h-[160px] rounded-lg  flex flex-col  space-y-3 py-4`}
       key={plan.id}
-      onClick={() => handlClick()}
+      onClick={handleClick}
     >
-      {plan.id === 1 && (
+      {plan.recommended && (
         <div className="absolute bg-primary top-0 left-0 px-4 py-[2px] text-white  rounded-tl-lg rounded-br-lg  ">
           <p>Recommended</p>
         </div>
@@ -42,7 +39,7 @@ const Card = ({ plan }) => {
             Download Speed
           </p>
           <p className="text-[14px] text-[#4B5563] mt-1 font-bold">
-            {plan.dspeed} Mbps
+            {plan.download_speed} Mbps
           </p>
         </div>
 
@@ -51,7 +48,7 @@ const Card = ({ plan }) => {
             Upload Speed
           </p>
           <p className="text-[14px] text-[#4B5563] mt-1 font-bold">
-            {plan.uspeed} Mbps
+            {plan.upload_speed} Mbps
           </p>
         </div>
       </div>
@@ -59,7 +56,7 @@ const Card = ({ plan }) => {
       <div className="text-center px-4">
         <div className="rounded-md bg-primary py-2">
           <p className="text-white text-[16px] font-bold text-center   ">
-            UNLIMITED
+            UNLIMITED DATA
           </p>
         </div>
       </div>
