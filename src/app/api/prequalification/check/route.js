@@ -4,7 +4,8 @@ import { apiClient } from "@/lib/terek";
 
 export async function POST(request) {
     const data = await request.json();
-    data['sales_channel_id'] = process.env.TEREK_SALES_CHANNEL_ID
+    data['company_id'] = process.env.TEREK_COMPANY_ID;
+    data['sales_channel_id'] = process.env.TEREK_SALES_CHANNEL_ID;
     try {
         const url = 'api/prequalification/check';
         const response = await apiClient.post(url, data);

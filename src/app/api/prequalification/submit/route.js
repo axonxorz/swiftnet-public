@@ -8,6 +8,8 @@ import { createTransport, getSalesRecipient, getSendFromAddress, transformRecipi
 
 export async function POST(request) {
     const data = await request.json();
+    data['company_id'] = process.env.TEREK_COMPANY_ID;
+    data['sales_channel_id'] = process.env.TEREK_SALES_CHANNEL_ID;
     try {
         const url = 'api/prequalification/submit';
         const response = await apiClient.post(url, data);
