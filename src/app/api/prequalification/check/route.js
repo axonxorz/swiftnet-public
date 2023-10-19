@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { apiClient } from "@/lib/terek";
+import { filterTaranaPlans } from "@/lib/lloydminster";
 
 
 export async function POST(request) {
@@ -9,6 +10,14 @@ export async function POST(request) {
     try {
         const url = 'api/prequalification/check';
         const response = await apiClient.post(url, data);
+
+        // Special-case handling for Tarana plans in Lloydminster. To be removed when Terek #682 is complete.
+        const plans = response.data.plans;
+        if(plans.map((p) => p.name)
+            .some((name) => name.toLowerCase().includes('tarana'))) {
+            response.data.plans = filterTaranaPlans(data.location.lat, data.location.lng, plans);
+        }
+
         return NextResponse.json(response.data);
     } catch(error) {
         console.error('Error in Prequalification check', error);
