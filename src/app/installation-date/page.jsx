@@ -13,6 +13,7 @@ import { postData } from "@/tools";
 import { DateTime } from "luxon";
 import { minInstallationDate, nextBusinessDay } from "@/lib/installation-date";
 import { toast } from "react-hot-toast";
+import { Alert } from "@mui/material";
 
 
 const Page = () => {
@@ -28,9 +29,9 @@ const Page = () => {
   const [selectedAddon, setSelectedAddon] = useState(addons[0]);
 
   useEffect(() => {
-      if(availablePlansStore.plans.length === 0) {
-        toast.error('Could not find any plans for you, please try again later.');
-        router.replace('/')
+      if(!contactStore.firstName) {
+        // Assume someone landed here directly, need to go through contact process
+        router.replace('/sign-up?step=2')
       }
   }, []);
 
@@ -78,6 +79,13 @@ const Page = () => {
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
               />
+
+              {!availablePlansStore.plans.length &&
+                  <Alert severity="warning" className="text-[120%]">
+                    We ran into a problem getting your personalized plans. One of our team
+                    members will contact you to assist in selecting one that fits your needs!
+                  </Alert>
+              }
 
               <Plans
                 selectedPlan={selectedPlan}
