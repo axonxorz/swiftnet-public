@@ -44,6 +44,7 @@ const AutoCompleteInput = ({ place, resolved, resolvedSimple }) => {
     const resolveAddress = async () => {
         if(!inputRef.current.value) {
             toast.error('Please enter an address');
+            return;
         }
         setLoading(true);
         try {
