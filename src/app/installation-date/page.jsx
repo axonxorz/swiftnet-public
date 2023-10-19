@@ -26,6 +26,7 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(nextBusinessDay(minInstallationDate(DateTime.local())));
   const [selectedPlan, setSelectedPlan] = useState(((availablePlansStore?.plans || [])[(availablePlansStore?.plans || []).length-1]));
+  const [recommendedPlan] = useState(selectedPlan);
   const [selectedAddon, setSelectedAddon] = useState(addons[0]);
 
   useEffect(() => {
@@ -92,6 +93,7 @@ const Page = () => {
               <Plans
                 selectedPlan={selectedPlan}
                 setSelectedPlan={setSelectedPlan}
+                recommendedPlan={recommendedPlan}
               />
               <Addons
                 selectedAddon={selectedAddon}

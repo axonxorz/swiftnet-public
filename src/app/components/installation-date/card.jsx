@@ -1,6 +1,10 @@
 import React from "react";
 
-const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
+const Card = ({ plan, recommendedPlan, selectedPlan, setSelectedPlan }) => {
+  const isUnlimited = () => {
+    return plan.usage_cap < 0;
+  }
+
   return (
     <div
       onClick={() => setSelectedPlan(plan)}
@@ -11,7 +15,7 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
       }col-span-1 cursor-pointer hover:border-primary relative min-h-[260px] rounded-lg  flex flex-col  space-y-3 py-4`}
       key={plan.id}
     >
-      {plan.id === 2 && (
+      {recommendedPlan === plan && (
         <div className="absolute bg-primary top-0 left-0 px-4 py-[2px] text-white  rounded-tl-lg rounded-br-lg  ">
           <p>Recommended</p>
         </div>
@@ -40,20 +44,24 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
       <div className="text-center w-full min-h-[60px] flex gap-1 flex-col items-center justify-center ">
         <p className="font-bold text-[18px]">{plan.name}</p>
 
-        <p className="border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
-          Unlimited Data
+        <p className={`border-[1px] rounded-md ${isUnlimited() ? 'bg-primary text-white border-blue-300' : 'bg-white text-primary border-primary'} border-[2px] text-[12px] px-3 py-[1px]`}>
+          { isUnlimited() ? 'Unlimited Data!' : plan.usage_cap_text }
         </p>
       </div>
 
-        <div className="text-center w-full flex gap-1 flex-col items-center justify-center ">
-            <div className="flex-col border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
-          {plan.download_rate &&
-              <>{plan.download_rate} Down</>}
-        </div>
-            <div className="flex-col border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
-          {plan.upload_rate &&
-              <>{plan.upload_rate} Up</>}
-        </div>
+      <div className="flex flex-row gap-1 justify-center">
+        {plan.download_rate &&
+          <div
+              className="border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
+                {plan.download_rate} Down
+          </div>
+        }
+        {plan.upload_rate &&
+          <div
+              className="border-[1px] rounded-md bg-white text-primary border-primary text-[12px] px-3 py-[1px]">
+                {plan.upload_rate} Up
+          </div>
+        }
       </div>
 
       <div className="text-center">
@@ -64,7 +72,7 @@ const Card = ({ setSelectedPlan, plan, selectedPlan }) => {
       </div>
 
       <div className="w-full flex flex-col items-start gap-3 px-6">
-        {(plan?.include || []).map((item) => {
+        {(plan?.plan_includes || []).map((item) => {
           return (
             <div key={item} className="flex items-center justify-center gap-3">
               <svg

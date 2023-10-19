@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Card from "./card";
 import { useAvailablePlansStore } from "@/store";
 
-const Plans = ({ selectedPlan, setSelectedPlan }) => {
+const Plans = ({ recommendedPlan, selectedPlan, setSelectedPlan }) => {
   const availablePlansStore = useAvailablePlansStore();
 
   return (
@@ -22,6 +22,7 @@ const Plans = ({ selectedPlan, setSelectedPlan }) => {
                 <Card
                   key={plan.id}
                   plan={plan}
+                  recommendedPlan={recommendedPlan}
                   selectedPlan={selectedPlan}
                   setSelectedPlan={setSelectedPlan}
                 />
