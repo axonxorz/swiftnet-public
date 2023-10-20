@@ -9,6 +9,10 @@ module.exports = {
       test: /\.ejs\.html/,
       loader: 'html-loader'
     })
+    config.module.rules.push({
+      test: /\.geojson/,
+      loader: 'json-loader'
+    })
     return config
   },
 }
