@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { apiClient } from "@/lib/terek";
-import { filterTaranaPlans } from "@/lib/lloydminster";
+import { filterTaranaPlans } from "@/lib/tarana-coverage";
 
 
 export async function POST(request) {
@@ -11,7 +11,7 @@ export async function POST(request) {
         const url = 'api/prequalification/check';
         const response = await apiClient.post(url, data);
 
-        // Special-case handling for Tarana plans in Lloydminster. To be removed when Terek #682 is complete.
+        // Special-case handling for Tarana plans. To be removed when Terek #682 is complete.
         const plans = response.data.plans;
         console.log(`${plans.length} plans:${JSON.stringify(plans, null, 2)}`);
         if(plans.map((p) => p.name)
