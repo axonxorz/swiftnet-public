@@ -53,9 +53,11 @@ const Navbar = () => {
               <li>
                 <Link href="/wifi-app-by-calix">Wi-Fi App </Link>
               </li>
-
               <li>
                 <Link href="/sign-up">Sign Up</Link>
+              </li>
+              <li>
+                <Link href="/contact-us">Contact Us</Link>
               </li>
               <li className="bg-primary text-white py-2 px-4 rounded-lg">
                 <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
