@@ -53,19 +53,22 @@ const SignupForm = () => {
     if(!hasRawCoordinates) {
         commentValidator = commentValidator.required('Please let us know what type of service you\'re looking for.');
     }
-    const validationSpec = {
-        firstName: yup.string().required("First name is required"),
-        lastName: yup.string().required("Last name is required"),
-        email: yup.string().email("Invalid email").required("Email is required"),
-        phoneNumber: yup.string().required("Phone number is required"),
-        comments: commentValidator
-    }
-    let validationSchema;
+
+    let validationSpec;
     if(process.env.NODE_ENV === 'development') {
-        validationSchema = yup.object();
+        validationSpec = {
+            firstName: yup.string().required("First name is required")
+        }
     } else {
-        validationSchema = yup.object(validationSpec);
+        validationSpec = {
+            firstName: yup.string().required("First name is required"),
+            lastName: yup.string().required("Last name is required"),
+            email: yup.string().email("Invalid email").required("Email is required"),
+            phoneNumber: yup.string().required("Phone number is required"),
+            comments: commentValidator
+        }
     }
+    const validationSchema = yup.object(validationSpec);
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
         resolver: yupResolver(validationSchema),
