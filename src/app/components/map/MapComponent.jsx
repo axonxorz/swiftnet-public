@@ -116,14 +116,13 @@ const MapComponent = () => {
     }
   };
 
-  const handleMapClick = async ({ lat, lng }) => {
+  const handleMapClick = async ({ event, lat, lng }) => {
+    if(isDragging || checkOutHovered) { return; }
     setDisplayCheckout(true);
     clearMarkers();
-    if (!isDragging && !checkOutHovered) {
-      locationStore.setAddress(null);
-      locationStore.setReverseGeocodedAddress(null);
-      locationStore.setRawCoordinates(lat, lng);
-    }
+    locationStore.setAddress(null);
+    locationStore.setReverseGeocodedAddress(null);
+    locationStore.setRawCoordinates(lat, lng);
   };
 
   const confirmLocation = () => {
