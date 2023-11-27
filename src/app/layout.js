@@ -38,7 +38,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <>
-        <Script src="//code.jivosite.com/widget/wQElvCtsjf" async />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-YHLNF4M6RW" />
         <Script id="google-analytics">
           {`
