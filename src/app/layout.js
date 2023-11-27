@@ -52,6 +52,20 @@ export default function RootLayout({ children }) {
           async
           defer
         />
+        <Script>
+          {`
+          window.embeddedChatbotConfig = {
+          chatbotId: "vWc2qLzTg1LkbHrulvIYK",
+          domain: "www.chatbase.co"
+          }
+          `}
+        </Script>
+        <Script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="vWc2qLzTg1LkbHrulvIYK"
+        domain="www.chatbase.co"
+        defer>
+        </Script>
 
         <Head>
           <link
