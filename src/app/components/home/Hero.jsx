@@ -4,8 +4,9 @@ import style from "../../styles/styles.module.css";
 import styles from "@/app/styles/styles";
 import AutoCompleteInput from "./AutoCompleteInput";
 import { useRouter } from "next/navigation";
-import { geocodeAddress } from "@/lib/gis";
 import { useUserLocationStore } from "@/store";
+import { DateTime } from "luxon";
+import HeroPromo from "@/app/components/home/HeroPromo"
 
 const Hero = ({ description, hero }) => {
   const route = useRouter();
@@ -21,13 +22,14 @@ const Hero = ({ description, hero }) => {
       className={`${hero ? style.heroBg : style.heroBgLLoyoydminster} h-auto`}
     >
       <div
-        className={`${styles.width}  pt-[24%] md:pt-[12%] pb-[15%] md:pb-[10%]`}
+        className={`${styles.width}  pt-[5rem] md:pt-[5rem] pb-[15%] md:pb-[10%]`}
       >
         <div
           className={`${
             hero ? "" : "bg-primary/70 rounded-lg shadow-md"
           } w-full  p-5 md:p-10`}
         >
+          <HeroPromo></HeroPromo>
           <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white xl:w-3/5 leading-[44px] md:leading-[72px]">
             Alberta & Saskatchewan{" "}
             <span className="whitespace-nowrap">Wi-Fi</span> Broadband Internet
