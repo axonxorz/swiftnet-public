@@ -59,8 +59,8 @@ const Navbar = () => {
               <li>
                 <Link href="/contact-us">Contact Us</Link>
               </li>
-              <li className="bg-primary text-white py-2 px-4 rounded-lg">
-                <a href="https://square.link/u/jdmxg2IR">Pay Now</a>
+              <li>
+                <Link href="https://portal.swift-net.ca">My Swift-Net</Link>
               </li>
             </ul>
 
@@ -145,6 +145,14 @@ const Navbar = () => {
                   className="py-4 text-sm text-white list-none"
                 >
                   Sign Up
+                </li>
+              </Link>
+              <Link href="https://portal.swift-net.ca">
+                <li
+                  onClick={() => setNav(false)}
+                  className="py-4 text-sm text-white list-none"
+                >
+                  My Swift-Net
                 </li>
               </Link>
               <a href="https://square.link/u/jdmxg2IR">
