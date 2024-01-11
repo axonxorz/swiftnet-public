@@ -1,6 +1,6 @@
 import { isNil } from "lodash-es";
 import { AddressInfo } from "@/lib/address-info";
-import { NextResponse } from "next/server";
+import { backendClient } from "@/lib/backend";
 
 // Generously cover AB, SK
 // WKT: POLYGON((-120.33 60.21, -100.79 60.21, -100.79 48.65, -120.33 48.65, -120.33 60.21))
@@ -42,38 +42,29 @@ export const guardGisEndpoint = (referer) => {
 
 
 export const geocodeAddress = async (address) => {
-    const url = `/api/geocode?address=${address}`;
-    return fetch(url, {
-        method: "GET"
+    const url = '/api/geocode';
+    return backendClient.get(url, {
+        params: {address}
     })
-    .then((response) => response.json())
-    .then((data) => {
-        if (data.status === "OK") {
-            return AddressInfo.fromGeocodeResult(data.results[0].formatted_address || address, data.results[0]);
-        } else {
-            console.log(data);
-            // TODO: nice error message
-            return Promise.reject(data.status);
-        }
+    .then((response) => {
+        return AddressInfo.fromGeocodeResult(response.data.results[0].formatted_address || address, response.data.results[0]);
     })
+    .catch((error) => {
+        console.log(error);
+        // TODO: nice error message
+        return Promise.reject(error);
+    });
 };
 
 export const reverseGeocode = (lat, lng) => {
     if(isNil(lat) || isNil(lng)) {
         return Promise.reject('Coordinates not provided');
     }
-    const url = `/api/geocode_reverse?lat=${lat}&lng=${lng}`;
-    return fetch(url, {
-        method: "POST"
+    const url = '/api/geocode_reverse';
+    return backendClient.post(url, {}, {params: {lat, lng}
     })
     .then((response) => {
-        return response.ok ? response.json() : Promise.reject('Server error');
+        return AddressInfo.fromReverseGeocodeResults(response.data.results);
     })
-    .then((data) => {
-        if(data.status === "OK") {
-            return AddressInfo.fromReverseGeocodeResults(data.results);
-        } else {
-            return Promise.reject(data.status);
-        }
-    })
+    .catch((error) => Promise.reject('Server error'));
 };

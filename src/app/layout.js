@@ -8,6 +8,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Head from "next/head";
+import axios from "axios"
 
 import { useSessionStore } from "@/store";
 import { generateSessionId } from "@/tools";
@@ -25,10 +26,9 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     session.setSessionId(generateSessionId());
     session.setUserAgent(navigator.userAgent);
-    fetch("https://api.ipify.org/?format=json")
-      .then((response) => response.json())
-      .then((data) => {
-        session.setIpAddress(data.ip);
+    axios.get('https://api.ipify.org/', {params: {format: 'json'}})
+      .then((response) => {
+        session.setIpAddress(response.data.ip);
       })
       .catch((error) => {
         console.log('Error fetching IP:', error);

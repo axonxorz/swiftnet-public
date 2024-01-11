@@ -14,10 +14,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "@components/phone-input/style/style.css";
 import { useSessionStore } from "@/store";
-import { postData } from "@/tools";
 import { useRouter } from "next/navigation";
 import "@/app/styles/custom.css";
 import { toast } from "react-hot-toast";
+import { backendClient } from "@/lib/backend";
 
 const page = () => {
   const router = useRouter();
@@ -44,11 +44,11 @@ const page = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const postDataResponse = await postData("/api/contact", {
+      const postDataResponse = await backendClient.post("/api/contact", {
         ...data,
         session: session
       });
-      const { result, message } = postDataResponse;
+      const { result, message } = postDataResponse.data;
 
       if(result) {
         router.push(`/contact-us/thanks`);

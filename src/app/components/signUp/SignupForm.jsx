@@ -14,9 +14,9 @@ import "@components/phone-input/style/style.css";
 import PhoneInput from "@/app/components/phone-input";
 import { toast } from "react-hot-toast";
 import { useAvailablePlansStore, useContactStore, useSessionStore, useUserLocationStore } from "@/store";
-import { postData } from "@/tools";
 import { reverseGeocode } from "@/lib/gis";
 import { isNil } from "lodash-es";
+import { backendClient } from "@/lib/backend";
 
 const SignupForm = () => {
     const locationStore = useUserLocationStore()
@@ -78,7 +78,7 @@ const SignupForm = () => {
         let signupResponse;
         try {
             const qualificationCheckUrl = '/api/prequalification/check'
-            signupResponse = await postData(qualificationCheckUrl, signupCheckData);
+            signupResponse = (await backendClient.post(qualificationCheckUrl, signupCheckData)).data;
         } catch(e) {
             console.log('Error in service check', e);
             toast.error('We ran into an issue looking for services for you. Please try again later.');
@@ -97,7 +97,8 @@ const SignupForm = () => {
             }
             try {
                 const qualificationSubmitUrl = '/api/prequalification/submit'
-                postData(qualificationSubmitUrl, submittalData); // Don't care to wait for this to complete
+                // noinspection ES6MissingAwait (Don't care to wait for this to complete)
+                backendClient.post(qualificationSubmitUrl, submittalData);
             } catch(e) {
                 console.log('Error during submission', e);
             }
@@ -112,7 +113,8 @@ const SignupForm = () => {
             contact: signupCheckData.contact
         }
         const qualificationSubmitUrl = '/api/prequalification/submit'
-        postData(qualificationSubmitUrl, submittalData); // Don't care to wait for this to complete
+        // noinspection ES6MissingAwait (Don't care to wait for this to complete)
+        backendClient.post(qualificationSubmitUrl, submittalData);
         route.push('/signup-contact');
     }
 

@@ -1,6 +1,7 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { guardGisEndpoint } from "@/lib/gis";
+import axios from "axios";
   
 export async function GET(request) {
     const headersList = headers()
@@ -17,22 +18,22 @@ export async function GET(request) {
     }
 
     try {
-        let apiURL;
+        const apiURL = 'https://maps.googleapis.com/maps/api/geocode/json';
+        const params = {key: process.env.GEOCODE_API}
         if (address) {
-            apiURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.GEOCODE_API}`;
+            params.address = address
         } else if (latlng) {
-            apiURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${encodeURIComponent(latlng)}&sensor=true&key=${process.env.GEOCODE_API}`;
+            params.latlng = latlng
         } else {
             return NextResponse.json({ error: 'Bad request: Please provide either an address or latitude and longitude' }, { status: 400 });
         }
-        const response = await fetch(apiURL);
-
-        if (!response.ok) {
+        try {
+            const response  = await axios.get(apiURL, {params: params})
+            return NextResponse.json(response.data);
+        } catch (e) {
             throw new Error('Google API responded with an error');
         }
 
-        const data = await response.json();
-        return NextResponse.json(data);
     } catch (error) {
         // Handle any errors
         return NextResponse.json({ error: 'Error processing request', details: error.message }, { status: 500 });

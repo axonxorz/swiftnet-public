@@ -9,11 +9,11 @@ import { useAvailablePlansStore, useContactStore, useSessionStore, useUserLocati
 import "@/app/styles/custom.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
-import { postData } from "@/tools";
 import { DateTime } from "luxon";
 import { minInstallationDate, nextBusinessDay } from "@/lib/installation-date";
 import { toast } from "react-hot-toast";
 import { Alert } from "@mui/material";
+import { backendClient } from "@/lib/backend";
 
 
 const Page = () => {
@@ -49,8 +49,8 @@ const Page = () => {
         plan: selectedPlan,
         addon: selectedAddon
       }
-      const signupResponse = await postData(signupUrl, data);
-      if(signupResponse.result) {
+      const signupResponse = await backendClient.post(signupUrl, data);
+      if(signupResponse.data.result) {
         router.replace(`/thank-you`);
       } else {
         toast.error('Something went wrong on our end, please try again later.')

@@ -2,6 +2,7 @@ import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { isNil } from "lodash-es";
 import { guardGisEndpoint } from "@/lib/gis";
+import axios from "axios";
 
 
 const VALID_REFERERS = [
@@ -29,12 +30,13 @@ export async function POST(request) {
 
     try {
         const apiURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GEOCODE_API}`;
-        const response = await fetch(apiURL);
-        if (!response.ok) {
+        try {
+            const response = await axios.get(apiURL, {params: {latlng: `${lat},${lng}`, key: process.env.GEOCODE_API}});
+            return NextResponse.json(response.data);
+
+        } catch {
             throw new Error('Google API responded with an error');
         }
-        const data = await response.json();
-        return NextResponse.json(data);
     } catch (error) {
         return NextResponse.json({error: 'Error processing request', details: error.message}, {status: 500});
     }
