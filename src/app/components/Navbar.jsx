@@ -8,6 +8,7 @@ import Link from "next/link";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { usePathname } from "next/navigation";
+import { YouTubeIcon } from "@components/YouTubeIcon";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -60,6 +61,11 @@ const Navbar = () => {
                 <Link href="/contact-us">Contact Us</Link>
               </li>
               <li>
+                <a href="https://www.youtube.com/@swiftnetinternet">
+                  <YouTubeIcon width={'1.8em'} color={whitetextAndLogo ? "#ffffff" : "text-[#1F2937]"}></YouTubeIcon>
+                </a>
+              </li>
+              <li>
                 <Link href="https://portal.swift-net.ca">My Swift-Net</Link>
               </li>
             </ul>
@@ -67,10 +73,10 @@ const Navbar = () => {
             {/* Hamburger Icon */}
             <div onClick={handleNav} className="md:hidden">
               <HiOutlineMenuAlt3
-                className={`cursor-pointer mr-6 ${
-                  whitetextAndLogo ? "text-white" : "text-[#1F2937]"
-                }`}
-                size={32}
+                  className={`cursor-pointer mr-6 ${
+                      whitetextAndLogo ? "text-white" : "text-[#1F2937]"
+                  }`}
+                  size={32}
               />
             </div>
           </div>
@@ -114,53 +120,64 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <div className="py-14 flex flex-col justify-center gap-5">
+            <div className="py-14 flex flex-col justify-center">
               <Link href="/business-class">
                 <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
                 >
                   Business Internet
                 </li>
               </Link>
               <Link href="/wifi-app-by-calix">
                 <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
                 >
                   Wi-Fi App
                 </li>
               </Link>
               <Link href="/pricing">
                 <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
                 >
                   Pricing
                 </li>
               </Link>
               <Link href="/sign-up">
                 <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
                 >
                   Sign Up
                 </li>
               </Link>
               <Link href="https://portal.swift-net.ca">
                 <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
                 >
                   My Swift-Net
                 </li>
               </Link>
               <a href="https://square.link/u/jdmxg2IR">
                 <li
-                  onClick={() => setNav(false)}
-                  className="py-4 text-sm text-white list-none"
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
                 >
                   Pay Now
+                </li>
+              </a>
+              <a href="https://www.youtube.com/@swiftnetinternet">
+                <li
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
+                >
+                  <div class="flex flex-row">
+                    <YouTubeIcon width={'1.8em'} color={'#ffffff'} className="mr-2"></YouTubeIcon>
+                    <div>YouTube</div>
+                  </div>
                 </li>
               </a>
             </div>
