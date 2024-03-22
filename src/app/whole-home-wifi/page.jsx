@@ -1,9 +1,9 @@
 import React from "react";
-import Hero from "../components/wifi-app-by-calix/Hero";
-import GigaSpire from "../components/wifi-app-by-calix/GigaSpire";
-import Grids from "../components/wifi-app-by-calix/Grids";
-import JoinUs from "../components/wifi-app-by-calix/JoinUs";
-import Sec2 from "../components/wifi-app-by-calix/Sec2";
+import Hero from "../components/whole-home-wifi/Hero";
+import GigaSpire from "../components/whole-home-wifi/GigaSpire";
+import Grids from "../components/whole-home-wifi/Grids";
+import JoinUs from "../components/whole-home-wifi/JoinUs";
+import Sec2 from "../components/whole-home-wifi/Sec2";
 import "@/app/styles/custom.css";
 
 export const metadata = {

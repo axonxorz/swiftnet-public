@@ -14,7 +14,7 @@ const Hero = () => {
         >
           <p className="mb-2 text-white">Swift-Net.ca Presents</p>
           <p className="font-semibold text-2xl md:text-6xl tracking-[-0.02em] text-white md:w-4/5 leading-[44px] md:leading-[72px]">
-            Home Wi-Fi App by Calix
+            Whole Home Wi-Fi Solutions by Swift-net.ca
           </p>
           <p className={`${styles.paragraph} text-white md:w-[90%] mt-6 mb-12`}>
             Welcome to a new era of internet experience, brought to you by
