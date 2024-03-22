@@ -35,9 +35,9 @@ const Card = ({ question, collapse }) => {
               <p className="text-[#4B5563]" key={index}>
                 {paragraph}{" "}
                 {index === paragraphs.length - 1 && (
-                  <span className="text-primary font-semibold hover:underline ">
+                  <div className="text-primary font-semibold hover:underline ">
                     <Link href={"/sign-up?priority=true"}>Sign-up Now</Link>
-                  </span>
+                  </div>
                 )}
               </p>
             ))}
