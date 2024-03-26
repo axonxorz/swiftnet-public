@@ -7,8 +7,8 @@ import img3 from "@/assets/wifi/image 19.png";
 import Image from "next/image";
 const Grids = () => {
   return (
-    <div className={`${styles.width}`}>
-      <div className="w-full  grid container grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="w-full md:w-[50%] m-auto px-4 md:px-0">
+      <div className="w-full grid container grid-cols-1 md:grid-cols-3 gap-4">
         <div className="col-span-1 space-y-3 ">
           <div className="w-full flex items-center justify-center  bg-[#BFE0F3] h-[322px] overflow-hidden">
             <Image
