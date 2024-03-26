@@ -174,7 +174,7 @@ const Navbar = () => {
                     onClick={() => setNav(false)}
                     className="py-4 text-sm text-white list-none"
                 >
-                  <div class="flex flex-row">
+                  <div className="flex flex-row">
                     <YouTubeIcon width={'1.8em'} color={'#ffffff'} className="mr-2"></YouTubeIcon>
                     <div>YouTube</div>
                   </div>
