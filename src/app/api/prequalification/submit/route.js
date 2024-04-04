@@ -11,6 +11,9 @@ export async function POST(request) {
     data['company_id'] = process.env.TEREK_COMPANY_ID;
     data['sales_channel_id'] = process.env.TEREK_SALES_CHANNEL_ID;
     try {
+        // Normalize unselected addon value
+        data.addon = Object.keys(data.addon).length ? data.addon : null;
+
         const url = 'api/prequalification/submit';
         const response = await apiClient.post(url, data);
 
