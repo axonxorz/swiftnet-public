@@ -18,7 +18,7 @@ const Card = ({ plan }) => {
     >
       {plan.recommended && (
         <div className="absolute bg-primary top-0 left-0 px-4 py-[2px] text-white  rounded-tl-lg rounded-br-lg  ">
-          <p>Recommended</p>
+          <p>Most Popular</p>
         </div>
       )}
 
@@ -56,7 +56,7 @@ const Card = ({ plan }) => {
       <div className="text-center px-4">
         <div className="rounded-md bg-primary py-2">
           <p className="text-white text-[16px] font-bold text-center   ">
-            UNLIMITED DATA
+            {plan.data_limit} 
           </p>
         </div>
       </div>

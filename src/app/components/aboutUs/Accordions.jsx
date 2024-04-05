@@ -79,7 +79,7 @@ const Accordions = () => {
                   onClick={() => handleOpen(3)}
                   className={styles.accordionHeader}
                 >
-                  Truly Unlimited Internet
+                  Reliable Internet
                 </AccordionHeader>
                 {open === 3 && (
                   <AccordionBody className={styles.paragraph}>

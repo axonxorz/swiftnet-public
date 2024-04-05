@@ -24,9 +24,9 @@ const Sec2 = () => {
               optimize your home network.
             </p>{" "}
             <p>
-              Join us at Swift-Net.ca and experience the difference of a truly
-              unlimited, reliable, and high-speed internet service. Sign up
-              today and enjoy the benefits of the Wi-Fi App by Calix.
+              Join us at Swift-Net.ca and experience the difference reliable, 
+              and high-speed internet service. Sign up today and enjoy the 
+              benefits of the Wi-Fi App by Calix.
             </p>
             <div className="w-full md:w-[200px]  my-2 ">
               <Link

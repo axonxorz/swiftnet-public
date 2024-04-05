@@ -10,7 +10,7 @@ const JoinUs = () => {
           <div className="w-[90%] md:w-[70%]">
             <p className="font-bold text-[24px]">Join us at Swift-Net.ca</p>
             <p className="text-[#4B5563] text-sm">
-              Experience the difference of a truly unlimited, reliable, and
+              Experience the difference of a reliable, 
               high-speed internet service. Sign up today and enjoy the benefits
               of the Wi-Fi App by Calix and the powerful performance of the
               Calix GigaSpire BLAST systems.

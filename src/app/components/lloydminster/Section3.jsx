@@ -5,7 +5,7 @@ import styles from "@/app/styles/styles";
 export const metadata = {
   title: "Lloydminster Local Wi-Fi Internet Provider [SIGN UP]",
   description:
-    "Finally truly unlimited, high-speed internet with Swift-Net.ca, your local Lloydminster Internet Provider. Don't settle for less, explore our affordable packages and experience the difference today!",
+    "High-speed internet with Swift-Net.ca, your local Lloydminster Internet Provider. Don't settle for less, explore our affordable packages and experience the difference today!",
 };
 
 const Section3 = () => {

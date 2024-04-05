@@ -13,7 +13,7 @@ const ExpLimitless = () => {
     {
       id: 2,
       descp:
-        "Our truly unlimited internet service means you can surf, stream, and game to your heart's content without worrying about data caps, overage charges, or speed throttling. With Swift-Net.ca, you can enjoy a seamless online experience, whether you're working from home, attending virtual classes, streaming your favourite shows, or staying connected with loved ones.",
+        "Truly unlimited internet service is available, meaning you can surf, stream, and game to your heart's content without worrying about data caps, overage charges, or speed throttling. With Swift-Net.ca, you can enjoy a seamless online experience, whether you're working from home, attending virtual classes, streaming your favourite shows, or staying connected with loved ones.",
     },
   ];
   return (

@@ -29,7 +29,7 @@ const Sec5 = () => {
                 Join us at Swift-Net.ca
               </p>
               <p className="text-sm text-white mt-3">
-                Experience the difference of a truly unlimited, reliable, and
+                Experience the difference of a reliable
                 high-speed internet service. Sign up today and enjoy the
                 benefits of the Wi-Fi App by Calix and the powerful performance
                 of the Calix GigaSpire BLAST systems.

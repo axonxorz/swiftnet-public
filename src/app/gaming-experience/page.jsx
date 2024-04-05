@@ -18,31 +18,31 @@ const page = () => {
       id: 1,
       heading: "Low Ping Times",
       description:
-        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable, and unlimited data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
+        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
     },
     {
       id: 2,
       heading: "Fast Speeds",
       description:
-        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable, and unlimited data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
+        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
     },
     {
       id: 3,
       heading: "Upgraded Calix Wi-Fi",
       description:
-        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable, and unlimited data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
+        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
     },
     {
       id: 4,
       heading: "Wired Ethernet Support",
       description:
-        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable, and unlimited data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
+        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
     },
     {
       id: 5,
       heading: "Managed Wi-Fi App with Premium Calix Router",
       description:
-        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable, and unlimited data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
+        "Swift-Net.ca's internet service is the ideal choice for streaming enthusiasts who want a fast, reliable data solution. Our service ensures that you can enjoy 4K video, multiple simultaneous streams, and uninterrupted service even in adverse weather conditions. Plus, our budget-friendly plans make it easy to pair with popular Canadian streaming services like Netflix, Amazon Prime Video, Crave, Disney+, and Apple TV+. Choose Swift-Net.ca for the ultimate streaming experience.",
     },
   ];
   return (

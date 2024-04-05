@@ -9,7 +9,7 @@ const Section4 = () => {
       class: "affordableBg",
       title: "Affordable Internet in Lloydminster: Our Commitment to Value",
       p1: "At Swift-Net.ca, we don't just believe that high-speed internet should be accessible to everyone - we make it happen. We're committed to providing affordable internet services in Lloydminster. Our range of packages ensures that you can find a plan that fits your budget without compromising on speed or reliability. ",
-      p2: "Experience the freedom of unlimited internet service! With no data caps or limits, you can surf, stream, and game to your heart's content without worrying about running out of data, incurring overage charges, or speed throttling. Our affordable plans come with a fixed monthly price, so you know exactly what to expect on your bill – no hidden fees or unexpected charges. ",
+      p2: "Experience the freedom of unlimited internet service! Packages are available with no data caps or limits, you can surf, stream, and game to your heart's content without worrying about running out of data, incurring overage charges, or speed throttling. Our affordable plans come with a fixed monthly price, so you know exactly what to expect on your bill – no hidden fees or unexpected charges. ",
     },
     {
       class: "experienceBg",
@@ -21,7 +21,7 @@ const Section4 = () => {
     {
       class: "lloydminsterBg",
 
-      title: "Llyoydminster Broadband: Reliable and Fast",
+      title: "Lloydminster Broadband: Reliable and Fast",
       p1: "Our broadband services are designed with one thing in mind: unshakeable reliability. We know how frustrating it can be when your internet connection drops out, which is why we've built our network to provide consistent, reliable speeds. With Swift-Net.ca broadband, you can enjoy a smooth, uninterrupted online experience.",
       p2: "Swift-Net.ca is not just committed, but driven to provide stable and reliable internet service to the communities of Lloydminster, Cold Lake, North Battleford, Bonnyville, Meadow Lake, and Kindersley, and the surrounding communities of northern Alberta and Saskatchewan. Our permanent fixed wireless connections are specifically designed to withstand the unique weather conditions of northern Alberta and Saskatchewan, ensuring that our customers enjoy uninterrupted internet access even during power disruptions, extreme weather, or construction in the summer.",
     },
@@ -64,11 +64,7 @@ const Section4 = () => {
             for it - check out our customer testimonials to see why we're the
             best internet provider in Lloydminster. <br /> <br /> Choosing
             Swift-Net.ca means choosing an internet service provider that values
-            transparency and customer satisfaction above all else. Our truly
-            unlimited home Wi-Fi internet service lets you enjoy high-speed home
-            Wi-Fi without any limitations or restrictions. Connect with us today
-            and experience the freedom of truly unlimited internet in rural
-            Alberta and Saskatchewan.{" "}
+            transparency and customer satisfaction above all else.{" "}
           </p>
 
           <div className="w-full py-3 ">

@@ -7,24 +7,18 @@ const Sec3 = () => {
   const data = [
     {
       id: 1,
-      heading: "No Data Caps",
-      descp:
-        "We don't believe in limiting your connectivity. With Swift-Net.ca, you can enjoy unlimited data usage, allowing you to stream, browse, and download to your heart's content. Say goodbye to the stress of monitoring your data usage and enjoy the freedom of unlimited internet.",
-    },
-    {
-      id: 2,
       heading: "No Throttling",
       descp:
         "Experience consistent speeds with Swift-Net.ca. We ensure that your internet performance remains stable, even during peak hours or after reaching a certain data threshold. With us, you can enjoy a smooth and uninterrupted online experience, no matter how much data you use.",
     },
     {
-      id: 3,
+      id: 2,
       heading: "No Overages",
       descp:
         "With Swift-Net.ca, you can rest easy knowing that there are no surprise charges on your bill. Our fixed monthly pricing means you pay the same amount each month, regardless of your data usage. Enjoy the peace of mind that comes with predictable billing and no hidden fees.",
     },
     {
-      id: 4,
+      id: 3,
       heading: "Reliable and Resilient Internet for Lloydminster",
       descp:
         "Swift-Net.ca is committed to providing stable and reliable internet service to the community of Lloydminster. Our permanent fixed wireless connections are specifically designed to withstand the unique weather conditions of northern Alberta and Saskatchewan, ensuring that our customers enjoy uninterrupted internet access even during power disruptions, extreme weather, or construction in the summer.",

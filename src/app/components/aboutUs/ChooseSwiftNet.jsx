@@ -65,7 +65,7 @@ const ChooseSwiftNet = () => {
       icon: icon8,
       heading: "More Affordable, No Hidden Fees",
       descp:
-        "Swift-Net.ca's fixed wireless access service is more affordable than mobile network operators, with no hidden fees, overages, data caps, or throttling. Our transparent pricing and fixed monthly plans allow you to budget with confidence, knowing that your bill will remain the same each month.",
+        "Swift-Net.ca's fixed wireless access service is more affordable than mobile network operators, with no hidden fees, overages, data caps on select plans, or throttling. Our transparent pricing and fixed monthly plans allow you to budget with confidence, knowing that your bill will remain the same each month.",
     },
   ];
   return (

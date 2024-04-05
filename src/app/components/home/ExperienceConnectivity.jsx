@@ -7,39 +7,27 @@ const ExperienceConnectivity = () => {
   const data = [
     {
       id: 1,
-      heading: "Truly Unlimited Service",
-      descp:
-        "Experience the freedom of unlimited internet service! With no data caps or limits, you can surf, stream, and game to your heart's content without worrying about running out of data, incurring overage charges, or speed throttling. Sign up today and enjoy unrestricted internet access with no restrictions on your online activities.",
-    },
-    {
-      id: 2,
-      heading: "No Data Caps",
-      descp:
-        "We don't believe in limiting your connectivity. With Swift-Net.ca, you can enjoy unlimited data usage, allowing you to stream, browse, and download to your heart's content.",
-    },
-    {
-      id: 3,
       heading: "No Throttling",
       descp:
         "Our internet service ensures consistent speeds, so you won't experience a sudden decrease in performance during peak hours or after reaching a certain data threshold.",
     },
     {
-      id: 4,
+      id: 2,
       heading: "No Overages",
       descp:
         "You can rest easy knowing that there are no surprise charges on your bill. Swift-Net.ca's fixed monthly pricing means you pay the same amount each month, regardless of your data usage",
     },
     {
-      id: 5,
+      id: 3,
       heading: "Fixed Monthly Price",
       descp:
-        "Our affordable plans come with a fixed monthly price, so you know exactly what to expect on your bill – no hidden fees or unexpected charges.Discover Swift-Ne.cat's Truly Unlimited Internet Service",
+        "Our affordable plans come with a fixed monthly price, so you know exactly what to expect on your bill – no hidden fees or unexpected charges. Discover Swift-Ne.cat's Truly Unlimited Internet Service",
     },
     {
-      id: 6,
+      id: 4,
       heading: "Local Provider",
       descp:
-        "By choosing Swift-Net.ca, you're choosing an internet service provider that values transparency and customer satisfaction. Our truly unlimited home Wi-Fi internet service means you can enjoy high-speed home Wi-Fi without any limitations or restrictions. Connect with us today and experience truly unlimited internet in rural Alberta and Saskatchewan.",
+        "By choosing Swift-Net.ca, you're choosing an internet service provider that values transparency and customer satisfaction. We offer unlimited home Wi-Fi internet service means you can enjoy high-speed home Wi-Fi without any limitations or restrictions. Connect with us today and experience truly unlimited internet in rural Alberta and Saskatchewan.",
     },
   ];
   return (

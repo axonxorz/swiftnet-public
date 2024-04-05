@@ -49,7 +49,7 @@ const Advantages = () => {
       img: img5,
       heading: "Stream Videos and TV Uninterrupted",
       description:
-        "For those who love streaming their favorite TV, movies, and video content, Swift-Net.ca's internet service is the perfect solution. Our high-speed, unlimited data service is designed to provide an unparalleled streaming experience. In this section, we'll explain why Swift-Net.ca is the ideal choice for streaming enthusiasts, ensuring you can enjoy your favorite movies and TV shows without any hassle.",
+        "For those who love streaming their favorite TV, movies, and video content, Swift-Net.ca's internet service is the perfect solution. Our high-speed data service is designed to provide an unparalleled streaming experience. In this section, we'll explain why Swift-Net.ca is the ideal choice for streaming enthusiasts, ensuring you can enjoy your favorite movies and TV shows without any hassle.",
       link: "/stream-uninterrupted",
     },
     {
