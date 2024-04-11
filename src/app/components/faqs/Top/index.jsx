@@ -10,13 +10,8 @@ const index = () => {
         Frequently Asked Questions
       </p>
 
-      <p className="w-[90%] md:w-[60%] text-center " text-sm>
-        Frustrated by MCSnet outages in Lloydminster, Cold Lake, Bonnyville, Lac
-        La Biche, Macklin, and Athabasca? Is Access Communications offline in
-        North Battleford, Kindersley and Meadow Lake? Tired of frequent Sasktel
-        outages in Lloydminster North Battleford, and Meadow Lake?
-        <br />
-        <br />
+      <p className="w-[90%] md:w-[60%] text-center ">
+        Questions and answers about home internet connectivity issues with troubleshooting tips from Swift-Net.ca
       </p>
     </div>
   );
