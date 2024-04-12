@@ -6,7 +6,7 @@ import Image from "next/image";
 import logo from "../../assets/logo.png";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { YouTubeIcon } from "@components/YouTubeIcon";
+//import { YouTubeIcon } from "@components/YouTubeIcon";
 const FacebookPlugin = dynamic(() => import("./FacebookPlugin"), {
   ssr: false,
 });
@@ -42,7 +42,7 @@ export function StaticFooter() {
                   <Link href="/whole-home-wifi">Wi-Fi App</Link>
                 </li>
                 <li className="uppercase">
-                  <Link href="/faq">Faq</Link>
+                  <Link href="/faq">FAQ</Link>
                 </li>
                 <li>
                   <Link href="/sign-up">Sign Up</Link>
@@ -51,10 +51,7 @@ export function StaticFooter() {
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/@swiftnetinternet" className="flex">
-                    <YouTubeIcon width={'1.8em'} color={'#ffffff'}></YouTubeIcon>
-                    <div className="ml-2">YouTube</div>
-                  </a>
+                  <Link href="https://www.youtube.com/@swiftnetinternet">YouTube</Link>
                 </li>
                 <li className="bg-primary text-white px-4 rounded-lg">
                   <Link href="https://square.link/u/jdmxg2IR">Pay Now</Link>

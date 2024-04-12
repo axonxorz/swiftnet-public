@@ -55,15 +55,16 @@ const Navbar = () => {
                 <Link href="/whole-home-wifi">Wi-Fi App </Link>
               </li>
               <li>
+                <Link href="/faq">FAQ </Link>
+              </li>
+              <li>
                 <Link href="/sign-up">Sign Up</Link>
               </li>
               <li>
                 <Link href="/contact-us">Contact Us</Link>
               </li>
               <li>
-                <a href="https://www.youtube.com/@swiftnetinternet">
-                  <YouTubeIcon width={'1.8em'} color={whitetextAndLogo ? "#ffffff" : "text-[#1F2937]"}></YouTubeIcon>
-                </a>
+                <Link href="https://www.youtube.com/@swiftnetinternet">YouTube</Link>
               </li>
               <li>
                 <Link href="https://portal.swift-net.ca">My Swift-Net</Link>
@@ -137,6 +138,14 @@ const Navbar = () => {
                   Wi-Fi App
                 </li>
               </Link>
+              <Link href="/faq">
+                <li
+                    onClick={() => setNav(false)}
+                    className="py-4 text-sm text-white list-none"
+                >
+                  FAQ
+                </li>
+              </Link>
               <Link href="/pricing">
                 <li
                     onClick={() => setNav(false)}
@@ -174,10 +183,7 @@ const Navbar = () => {
                     onClick={() => setNav(false)}
                     className="py-4 text-sm text-white list-none"
                 >
-                  <div className="flex flex-row">
-                    <YouTubeIcon width={'1.8em'} color={'#ffffff'} className="mr-2"></YouTubeIcon>
-                    <div>YouTube</div>
-                  </div>
+                  YouTube
                 </li>
               </a>
             </div>
