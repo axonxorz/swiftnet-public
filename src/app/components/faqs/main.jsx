@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Card from "./answers";
 import styles from "@/app/styles/styles";
-import Top from "@/app/components/faqs/Top";
+import FAQHeader from "./header";
+import FAQAnswers from "./answers";
+import FAQQuickLinks from "./quick_links";
 
 const faqs = [
   {
@@ -37,11 +38,11 @@ const faqs = [
   },
 ];
 
-const Index = () => {
+const Main = () => {
   const [collapse, setCollapse] = useState(false);
   const [faqsList, setFaqList] = useState(faqs);
   const [showIndex, setShowIndex] = useState(null);
-  const collapsAll = () => {
+  const collapseAll = () => {
     setFaqList(faqs);
     setShowIndex(null);
     setCollapse((state) => !state);
@@ -55,50 +56,35 @@ const Index = () => {
     <>
       <div className="h-[90px] "></div>
 
-      <Top />
+      <FAQHeader />
 
       <div className=" my-10 flex flex-col justify-center items-center">
-        <div className="hidden md:flex items-center justify-between w-[85%] px-3 ">
-          <p className={styles.heading + "font-bold"}>Quick Links</p>
-          <p
-            className={
-              "text-[14px] hover:underline font-bold text-primary cursor-pointer"
-            }
-            onClick={collapsAll}
-          >
-            Collapse All
-          </p>
-        </div>
+        {/*<div className="hidden md:flex items-center justify-between w-[85%] px-3 ">*/}
+        {/*  <p className={styles.heading + "font-bold"}>Quick Links</p>*/}
+        {/*  <p*/}
+        {/*    className={*/}
+        {/*      "text-[14px] hover:underline font-bold text-primary cursor-pointer"*/}
+        {/*    }*/}
+        {/*    onClick={collapseAll}*/}
+        {/*  >*/}
+        {/*    Collapse All*/}
+        {/*  </p>*/}
+        {/*</div>*/}
 
         <div
           className={`space-y-4 flex items-start justify-center gap-10 p-4 md:px-2`}
         >
-          <div className="w-full hidden md:flex md:flex-col md:w-[25%] text-center  md:mr-6 mt-5">
-            {faqs.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => handleSelectQuestion(index)}
-                  className={`w-full border-b-[1px] py-3 text-start cursor-pointer hover:bg-slate-100/75 px-2 hover:font-bold ${
-                    index === showIndex && "font-bold"
-                  }`}
-                >
-                  <p>{item.title}</p>
-                </div>
-              );
-            })}
-          </div>
+          {/*<FAQQuickLinks faqs={faqs} handleSelectQuestion={handleSelectQuestion} showIndex={showIndex}></FAQQuickLinks>*/}
+
           <div className="w-full md:w-[55%] ">
             {faqsList.map((item, index) => {
-              return <Card collapse={collapse} question={item} key={index} />;
+              return <FAQAnswers collapse={collapse} question={item} key={index} />;
             })}
           </div>
         </div>
       </div>
-
-      <div className="h-[50px] "></div>
     </>
   );
 };
 
-export default Index;
+export default Main;

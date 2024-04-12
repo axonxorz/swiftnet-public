@@ -1,5 +1,5 @@
 import React from "react";
-const index = () => {
+const FAQHeader = () => {
   return (
     <div
       className={`bg-primary relative flex flex-col space-y-4 py-7 text-white items-center justify-center min-h-[340px]  mb-5`}
@@ -17,4 +17,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default FAQHeader;

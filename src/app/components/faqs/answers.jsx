@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const Card = ({ question, collapse }) => {
+const FAQAnswers = ({ question, collapse }) => {
   const [showAnswer, setshowAnswer] = useState(true);
   const paragraphs = question.answer.split("\n\n");
 
@@ -50,4 +50,4 @@ const Card = ({ question, collapse }) => {
   );
 };
 
-export default Card;
+export default FAQAnswers;

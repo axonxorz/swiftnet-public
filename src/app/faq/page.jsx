@@ -1,5 +1,5 @@
 import React from "react";
-import FAQ from "@/app/components/faqs/index";
+import FAQ from "@components/faqs/main";
 import "@/app/styles/custom.css";
 
 export const metadata = {
