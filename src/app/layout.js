@@ -12,6 +12,7 @@ import axios from "axios"
 
 import { useSessionStore } from "@/store";
 import { generateSessionId } from "@/tools";
+import { ChatWidget } from "@components/ChatWidget";
 
 const inter = Inter({
   weight: ["400", "500", "600"],
@@ -61,10 +62,8 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         <Script
-        src="https://www.chatbase.co/embed.min.js"
-        chatbotId="vWc2qLzTg1LkbHrulvIYK"
-        domain="www.chatbase.co"
-        defer>
+        src="https://widgets.leadconnectorhq.com/loader.js"
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" >
         </Script>
 
         <Head>
@@ -75,19 +74,20 @@ export default function RootLayout({ children }) {
         </Head>
 
         <body className={inter.className}>
-          <Toaster />
+          <Toaster/>
           {pathname === "/sign-up" ||
           pathname === "/pricing" ||
           pathname === "/map" ||
           pathname === "/signup-contact" ? (
-            <>{children}</>
+              <>{children}</>
           ) : (
-            <>
-              <Navbar />
-              {children}
-              <Footer />
-            </>
+              <>
+                <Navbar/>
+                {children}
+                <Footer/>
+              </>
           )}
+          <ChatWidget></ChatWidget>
         </body>
       </>
     </html>
