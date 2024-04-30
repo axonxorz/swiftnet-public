@@ -41,7 +41,7 @@ export default ({ setStep, plan }) => {
             <div className="absolute top-0 left-0 bg-gradient-to-r from-primary/90 from-10% via-primary/80 via-30% to-primary/70 to-90% w-full h-full"></div>
             <p className={`text-xs text-white z-30`}>Swift-Net.ca</p>
             <p className={`text-[20px] text-white z-30`}>
-              Plans starting at $79.95 and speeds up to{" "}
+              Plans starting at $39.95 and speeds up to{" "}
               <span className="bg-white text-primary">{plan} Mbps!</span>
             </p>
           </div>
