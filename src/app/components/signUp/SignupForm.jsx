@@ -70,8 +70,10 @@ const SignupForm = () => {
     }
     const validationSchema = yup.object(validationSpec);
 
+    let formDefaultValues = {};
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm({
         resolver: yupResolver(validationSchema),
+        defaultValues: formDefaultValues
     });
 
     const signupWithAddress = async(signupCheckData) => {
