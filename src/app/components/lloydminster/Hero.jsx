@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <div className={`${style.heroBgLLoyoydminster} h-auto`}>
+    <div className={`${style.heroBgLloydminster} h-auto`}>
       <div
         className={`${styles.width}  pt-[24%] md:pt-[12%] pb-[15%] md:pb-[10%]`}
       >

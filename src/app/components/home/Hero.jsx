@@ -19,7 +19,7 @@ const Hero = ({ description, hero }) => {
 
   return (
     <div
-      className={`${hero ? style.heroBg : style.heroBgLLoyoydminster} h-auto`}
+      className={`${hero ? style.heroBg : style.heroBgLloydminster} h-auto`}
     >
       <div
         className={`${styles.width}  pt-[5rem] md:pt-[5rem] pb-[15%] md:pb-[10%]`}
@@ -30,7 +30,11 @@ const Hero = ({ description, hero }) => {
           } w-full  p-5 md:p-10`}
         >
           <HeroPromo></HeroPromo>
-          <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white xl:w-3/5 leading-[44px] md:leading-[72px]">
+        </div>
+        <div
+          className={`w-full md:w-3/5 min-h-[444px] md:ml-[10%] rounded-md bg-primary/90  py-8 px-6 `}
+        >
+          <h1 className="font-semibold text-3xl md:text-6xl tracking-[-0.02em] text-white  leading-[44px] md:leading-[72px]">
             Alberta & Saskatchewan{" "}
             <span className="whitespace-nowrap">Wi-Fi</span> Broadband Internet
             Service by
@@ -44,7 +48,7 @@ const Hero = ({ description, hero }) => {
             {description}
           </p>
 
-          <div className="md:w-1/2">
+          <div className="xl:w-3/5">
             <AutoCompleteInput place={"home"} resolved={addressResolved}/>
           </div>
 

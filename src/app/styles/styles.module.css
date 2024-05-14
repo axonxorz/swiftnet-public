@@ -51,13 +51,13 @@
 
 .heroBg {
   max-width: 100%;
-  background: url("../../assets/hero-bg.webp");
+  background: url("../../assets/hero-bg_2.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-position: center; */
+  background-position: center;
 }
 
-.heroBgLLoyoydminster {
+.heroBgLloydminster {
   max-width: 100%;
   background: url("../../assets/landings/lloydminster.webp");
   background-repeat: no-repeat;
