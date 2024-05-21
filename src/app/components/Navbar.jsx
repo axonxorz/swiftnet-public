@@ -41,8 +41,8 @@ const Navbar = () => {
 
           <div>
             <ul
-              className={`hidden md:flex gap-12 justify-center items-center text-sm font-bold tracking-[-0.02em] p-3 rounded bg-primary/90 ${
-                whitetextAndLogo ? "text-white" : "text-[#1F2937]"
+              className={`hidden md:flex gap-12 justify-center items-center text-sm font-bold tracking-[-0.02em] ${
+                whitetextAndLogo ? "text-white p-3 rounded bg-primary/90" : "text-[#1F2937]"
               }`}
             >
               <li>

@@ -90,7 +90,8 @@ const page = () => {
               <h6 className="font-bold">Customer Service</h6>
 
               <div className="p-3">
-                <h3 className="font-medium">Weekdays from 8 AM to 5 PM</h3>
+                <h3 className="font-medium">Weekdays from 8 AM to 8 PM</h3>
+                <h3 className="font-medium">Weekends from 9 AM to 6 PM</h3>
                 <h6 className="font-bold mt-2"><a href="tel:+13068257111">+1 (306) 825-7111</a></h6>
                 <h6 className="font-bold mt-2"><a href="tel:+18666672375">+1 (866) 667-2375</a></h6>
               </div>
