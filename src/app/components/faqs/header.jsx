@@ -11,7 +11,7 @@ const FAQHeader = () => {
       </p>
 
       <p className="w-[90%] md:w-[60%] text-center ">
-        Questions and answers about home internet connectivity issues with troubleshooting tips from Swift-Net.ca
+        Questions and answers about account information, home internet connectivity issues, and troubleshooting tips from Swift-Net.ca
       </p>
     </div>
   );

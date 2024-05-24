@@ -7,7 +7,7 @@ const FAQAnswers = ({ question, collapse }) => {
   const paragraphs = question.answer.split("\n\n");
 
   useEffect(() => {
-    setshowAnswer(true);
+    setshowAnswer(false);
   }, [collapse]);
 
   return (
@@ -31,14 +31,10 @@ const FAQAnswers = ({ question, collapse }) => {
         )}
         {showAnswer && (
           <div className="py-2 space-y-4">
-            <div className="w-[95%] m-auto">
-              <p className="text-sm md:text-sm tracking-[-0.02em] text-primary bg-[#F1FAFF] px-3 py-1 border-[1px] border-solid border-primary rounded-xl">
-                  Swift-net does not provide technical support for customer owned equipment. If your router is not provided by us and our Whole Home Wi-Fi systems, we may recommend you contact the manufacturer of your router.
-              </p>
-            </div>
+
             <ul className="list-disc list-inside">
               {paragraphs.map((paragraph, index) => (
-              <li className="text-[#4B5563]" key={index}>
+              <li className="text-[#4B5563]" key={index}> 
                 {paragraph}{" "}
               </li>
             ))}
@@ -51,3 +47,9 @@ const FAQAnswers = ({ question, collapse }) => {
 };
 
 export default FAQAnswers;
+
+//<div className="w-[95%] m-auto">
+//<p className="text-sm md:text-sm tracking-[-0.02em] text-primary bg-[#F1FAFF] px-3 py-1 border-[1px] border-solid border-primary rounded-xl">
+//    Swift-net does not provide technical support for customer owned equipment. If your router is not provided by us and our Whole Home Wi-Fi systems, we may recommend you contact the manufacturer of your router.
+//</p>
+//</div>

@@ -7,6 +7,42 @@ import FAQQuickLinks from "./quick_links";
 
 const faqs = [
   {
+    title:
+      "How do I log into “My Swift-Net”?",
+    answer:
+      "Go to swift-net.ca and Select “My Swift-Net” on the top right portion of the website. \n\n  After selecting the “My Swift-Net” option on our website, enter your “Account ID” and your “Plan ID”. These numbers can be found on your monthly invoices which are emailed to you.",
+  },
+  {
+    title:
+      "Where can I see my bill?",
+    answer:
+      "You can login to “My Swift-Net” from our website. To login, you will need your account ID and your plan ID. You will be able to view your balances, invoices and more.",
+  },
+  {
+    title:
+      "How do I pay my bill?",
+    answer:
+      "Swift-Net offers automatic payment options. We accept either Visa, MasterCard or Pre-Authorized debit. If you don’t have a payment option set up on your account, you can make a payment online by logging into your “My Swift-Net” account using your account ID and plan ID.",
+  },
+  {
+    title:
+      "How can I make changes to my plan?",
+    answer:
+      "You can reach out to one of our helpful customer service representatives! We’re available by phone, email, text or Facebook. There are many ways to reach out and let us know about the changes you’re requesting.",
+  },
+  {
+    title:
+      "How can I change or update my billing information?",
+    answer:
+      "You can log into your “My Swift-Net” account through our website, or call to update your billing information. If you’re updating your expiry date, billing information is encrypted so we will need to receive your card number as well as the new expiry date.",
+  },
+  {
+    title:
+      "What are my payment options?",
+    answer:
+      "Currently we have automatic payment options available in the form of Visa, MasterCard or Pre-Authorized debit. \n\n  You can make e-transfers to payments@swift-net.ca and note your account ID \n\n Make a manual payment via our website by logging into your “My Swift-Net” account.",
+  },
+  {
      title:
       "No Wi-Fi Connection: Customers are unable to detect a Wi-Fi network using their devices.",
     answer:
@@ -36,6 +72,7 @@ const faqs = [
     answer: 
       "'Authentication Error': This error suggests that the credentials for your network are incorrect. Verify the WPA/WPA2 key (Wi-Fi password) is correct. These are case sensitive. \n\n If you’re continually having issues connecting to your Wi-Fi network, you can try factory resetting your router back to its default settings. \n\n If you have one of our routers, simply let us know and we can verify the password and your connection to the router! As a part of the Whole Home Wi-Fi, we can provide effective support with every aspect of your connection."
   },
+
 ];
 
 const Main = () => {

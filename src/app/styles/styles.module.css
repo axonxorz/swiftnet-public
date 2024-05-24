@@ -193,6 +193,12 @@
   background-position: left;
 }
 
+.promoimg {
+  background-image: url("../../assets/HeroPromo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .scrollcontainer {
   background-color: #333;
