@@ -43,35 +43,49 @@ const ServiceProvider = () => {
         </div>
 
         <div className="flex items-center  md:flex-row gap-4 justify-between mt-4 px-4 flex-shrink flex-wrap">
-          <ul className="list-disc">
+          <ul className="list-disc ">
             <li>Kindersley, SK</li>
-            <li>Cold Lake, AB</li>
-            <li>North Battleford, SK</li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse"
+              ><Link href={"https://getfasterwifi.com/supercharge-your-wifi"}>Cold Lake, AB </Link>
+            </li>
+            <li>The Battlefords, SK</li>
             <li>Bonnyville, AB</li>
             <li>Meadow Lake, SK</li>
           </ul>
 
           <ul className="list-disc">
             <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
-              <Link href={"/lloydminster"}>Lloydminster, AB/SK </Link>
+              <Link href={"https://getfasterwifi.com/supercharge-your-wifi"}>Lloydminster, AB/SK </Link>
             </li>
-            <li>Battleford, SK</li>
+            <li>Unity, SK</li>
             <li>Athabasca, AB</li>
             <li>Lac La Biche, AB</li>
-            <li>Unity SK Provost , AB</li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+              <Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Provost, AB </Link>
+            </li>
           </ul>
           <ul className="list-disc">
-            <li>Big Island Lake Cree Nation, SK </li>
-            <li>Macklin, SK</li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Marshall, SK </Link>
+            </li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+              <Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Macklin, SK </Link>
+            </li>
             <li>Blackfoot, AB</li>
             <li>Wilkie, SK</li>
-            <li>Lashburn, SK</li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+              <Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Lashburn, SK </Link>
+            </li>
           </ul>
 
           <ul className="list-disc">
             <li>Maidstone, SK </li>
-            <li>Flying Dust First Nations, SK</li>
-            <li>Kerrobert, SK</li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+              <Link href="https://getfasterwifi.ca/jackfish-wifi-campaign-1">Jackfish/Murray Lake, SK</Link>
+            </li>
+            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+              <Link href="https://getfasterwifi.ca/swift-net-internet-inquiry-9785-5776-3473">Kerrobert, SK </Link>
+            </li>
             <li>Kitscoty, AB</li>
             <li>Boyle, AB</li>
           </ul>
@@ -80,7 +94,7 @@ const ServiceProvider = () => {
         <p className={`${styles.paragraph} md:w-[65%] mt-5`}>
           Experience the difference with Swift-Net.ca's reliable internet
           service, designed specifically for rural communities in Alberta and
-          Saskatchewan. Sign up today and enjoy fast and dependable home Wi-Fi
+          Saskatchewan. Sign up today and enjoy our fast and dependable Whole Home Wi-Fi
           for you and your family!
         </p>
       </div>
