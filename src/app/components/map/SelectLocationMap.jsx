@@ -15,7 +15,7 @@ import { isNil } from "lodash-es";
 
 const _defaultCenter = () => Object.assign({}, defaultMapCenter);
 
-const MapComponent = () => {
+const SelectLocationMap = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const locationStore = useUserLocationStore();
@@ -218,4 +218,4 @@ const MapComponent = () => {
   );
 };
 
-export default MapComponent;
+export default SelectLocationMap;

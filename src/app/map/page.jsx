@@ -1,5 +1,5 @@
 import React from "react";
-import MapComponent from "../components/map/MapComponent";
+import SelectLocationMap from "@components/map/SelectLocationMap";
 import "@/app/styles/custom.css";
 
 export const metadata = {
@@ -12,7 +12,7 @@ const page = () => {
   return (
     <>
       <div style={{ height: "100vh", width: "100%" }}>
-        <MapComponent />
+        <SelectLocationMap />
       </div>
     </>
   );
