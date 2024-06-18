@@ -117,7 +117,9 @@ const SignupForm = () => {
         try {
             const qualificationSubmitUrl = '/api/prequalification/submit'
             // noinspection ES6MissingAwait (Don't care to wait for this to complete)
-            backendClient.post(qualificationSubmitUrl, submittalData);
+            backendClient.post(qualificationSubmitUrl, submittalData).then(() => null, () => {
+                // Catch and suppress errors
+            })
         } catch(e) {
             console.log('Error during submission', e);
         }
