@@ -44,3 +44,7 @@ yarn-error.log*
 /public/img/hardware_images
 
 /public/img/vendor_logos
+
+# IDE
+.idea
+.vscode
