@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { apiClient } from "@/lib/terek";
+import { cleanOutage } from "@/app/api/outages/util";
   
 export async function GET(request) {
     try {
@@ -12,7 +13,7 @@ export async function GET(request) {
         if(!data.result) {
             throw new Error(data);
         }
-        const outages = data.objects;
+        const outages = data.objects.map((obj) => cleanOutage(obj));
         return NextResponse.json(outages);
     } catch(error) {
         console.error('Error fetching outages', error);

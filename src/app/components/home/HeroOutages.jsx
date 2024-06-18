@@ -20,6 +20,12 @@ export default () => {
         <div key={outage.uuid}
              className={`md:w-[50%] mx-auto rounded p-3`} style={{background: '#ffcc00'}}>
             {outage.message}
+            <div>
+                <Link href={`outage/${outage.uuid}`}
+                      className={`bg-primary border-none rounded-md text-white px-2 py-1`}>
+                    View outage area
+                </Link>
+            </div>
         </div>
     ) : <></>
 }
