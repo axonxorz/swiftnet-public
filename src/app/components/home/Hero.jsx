@@ -5,8 +5,8 @@ import styles from "@/app/styles/styles";
 import AutoCompleteInput from "./AutoCompleteInput";
 import { useRouter } from "next/navigation";
 import { useUserLocationStore } from "@/store";
-import { DateTime } from "luxon";
 import HeroPromo from "@/app/components/home/HeroPromo"
+import HeroOutages from "@components/home/HeroOutages";
 
 const Hero = ({ description, hero }) => {
   const route = useRouter();
@@ -24,6 +24,9 @@ const Hero = ({ description, hero }) => {
       <div
         className={`${styles.width}  pt-[5rem] md:pt-[5rem] pb-[15%] md:pb-[10%]`}
       >
+        <div>
+          <HeroOutages></HeroOutages>
+        </div>
         <div
           className={`${
             hero ? "" : "bg-primary/70 rounded-lg shadow-md"
