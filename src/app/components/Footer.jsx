@@ -5,13 +5,8 @@ import styles from "../styles/styles";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-//import { YouTubeIcon } from "@components/YouTubeIcon";
-const FacebookPlugin = dynamic(() => import("./FacebookPlugin"), {
-  ssr: false,
-});
 
-export function StaticFooter() {
+export default function Footer() {
   return (
       <div className="bg-primary py-3">
         <div className={`${styles.width}`}>
@@ -24,8 +19,6 @@ export function StaticFooter() {
                 unoptimized={true}
               />
             </div>
-
-            <FacebookPlugin />
 
             <div>
               <ul className="flex flex-col md:flex-row text-center md:text-right gap-3 md:gap-6 text-sm tracking-[-0.02em] text-white mt-8 md:mt-0">
@@ -70,12 +63,3 @@ export function StaticFooter() {
       </div>
   );
 };
-
-// Required to avoid a strange SSR ~issue, removes the old (typeof window !== 'undefined') check
-const DynamicFooter = dynamic(() => import('@components/Footer').then((mod) => mod.StaticFooter), {
-  ssr: false
-});
-
-export default function Footer() {
-  return <DynamicFooter />
-}
