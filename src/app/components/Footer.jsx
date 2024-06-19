@@ -29,6 +29,9 @@ export default function Footer() {
                   <Link href="/privacy_policy.pdf" target="_blank">Privacy Policy</Link>
                 </li>
                 <li>
+                  <Link href="/accessibility_plan.pdf" target="_blank">Accessibility Plan</Link>
+                </li>
+                <li>
                   <Link href="/business-class">Business Internet</Link>
                 </li>
                 <li>
