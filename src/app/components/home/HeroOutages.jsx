@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { backendClient } from "@/lib/backend";
-import styles from "@/app/styles/styles";
-import Link from "next/link";
 
 export default () => {
     const [outages, setOutages] = useState(null);
 
     const getOutages = async () => {
-        const qualificationSubmitUrl = '/api/outages'
-        const response = await backendClient.get(qualificationSubmitUrl);
+        const outageUrl = '/api/outages'
+        const response = await backendClient.post(outageUrl);
         setOutages(response.data);
     }
 
