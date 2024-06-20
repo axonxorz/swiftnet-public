@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { apiClient } from "@/lib/terek";
   
-export async function GET(request) {
+export async function POST(request) {
     try {
         const url = 'api/outages/list';
         const params = {
