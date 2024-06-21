@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server'
 import { apiClient } from "@/lib/terek";
+
+
+const cleanOutage = (outage) => {
+    // Remove unnecessary props from Outage records
+    return {
+        uuid: outage.uuid,
+        created_on: outage.created_on,
+        message: outage.message
+    }
+}
+
   
 export async function POST() {
     try {
@@ -16,7 +27,7 @@ export async function POST() {
             console.log('Error result');
             throw new Error(data);
         }
-        const outages = data.objects;
+        const outages = data.objects.map((outage) => cleanOutage(outage));
         console.log(`Active outages: ${outages.length}`)
         return NextResponse.json(outages);
     } catch(error) {
