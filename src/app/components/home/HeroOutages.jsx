@@ -16,7 +16,8 @@ export default () => {
 
     return (outages && outages?.length) ? outages.map((outage) =>
         <div key={outage.uuid}
-             className={`md:w-[50%] mx-auto rounded p-3`} style={{background: '#ffcc00'}}>
+             className={`md:w-[50%] mx-auto rounded p-3 font-bold`}
+             style={{background: '#ffcc00', whiteSpace: 'pre-wrap'}}>
             {outage.message}
         </div>
     ) : <></>
