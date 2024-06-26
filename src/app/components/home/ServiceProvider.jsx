@@ -45,7 +45,7 @@ const ServiceProvider = () => {
         <div className="flex items-center  md:flex-row gap-4 justify-between mt-4 px-4 flex-shrink flex-wrap">
           <ul className="list-disc ">
             <li>Kindersley, SK</li>
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse"
+            <li className="cursor-pointer hover:underline underline font-bold"
               ><Link href={"https://getfasterwifi.com/supercharge-your-wifi"}>Cold Lake, AB </Link>
             </li>
             <li>The Battlefords, SK</li>
@@ -54,36 +54,36 @@ const ServiceProvider = () => {
           </ul>
 
           <ul className="list-disc">
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
               <Link href={"https://getfasterwifi.com/supercharge-your-wifi"}>Lloydminster, AB/SK </Link>
             </li>
             <li>Unity, SK</li>
             <li>Athabasca, AB</li>
             <li>Lac La Biche, AB</li>
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
               <Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Provost, AB </Link>
             </li>
           </ul>
           <ul className="list-disc">
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
             <Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Marshall, SK </Link>
             </li>
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
               <Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Macklin, SK </Link>
             </li>
             <li>Blackfoot, AB</li>
             <li>Wilkie, SK</li>
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
               <Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Lashburn, SK </Link>
             </li>
           </ul>
 
           <ul className="list-disc">
             <li>Maidstone, SK </li>
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
               <Link href="https://getfasterwifi.ca/jackfish-wifi-campaign-1">Jackfish/Murray Lake, SK</Link>
             </li>
-            <li className="cursor-pointer hover:underline underline font-bold text-[18px] animate-pulse">
+            <li className="cursor-pointer hover:underline underline font-bold">
               <Link href="https://getfasterwifi.ca/swift-net-internet-inquiry-9785-5776-3473">Kerrobert, SK </Link>
             </li>
             <li>Kitscoty, AB</li>

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { usePathname } from "next/navigation";
+import { Menu, MenuHandler, MenuList, MenuItem, Button,} from "@material-tailwind/react";
 import { YouTubeIcon } from "@components/YouTubeIcon";
 
 const Navbar = () => {
@@ -46,7 +47,22 @@ const Navbar = () => {
               }`}
             >
               <li>
-                <Link href="/pricing">Pricing & Plans</Link>
+                <Menu allowHover>
+                  <MenuHandler>
+                    <Button type="text" class={ `text-left ${ whitetextAndLogo ? "text-white" : "text-[#1F2937]" }`} id="menu-button" aria-expanded="true" aria-haspopup="true">Pricing & Plans</Button>
+                  </MenuHandler>
+                  <MenuList>
+                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi">Lloydminster, AB/SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi">Cold Lake, AB</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Macklin, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Provost, AB</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Marshall, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Lashburn, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/jackfish-wifi-campaign-1">Jackfish/Murray Lake, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/swift-net-internet-inquiry-9785-5776-3473">Kerrobert, SK</Link></MenuItem>
+                    <MenuItem><Link href="/sign-up">All other areas</Link></MenuItem>
+                  </MenuList>
+                </Menu>
               </li>
               <li>
                 <Link href="/business-class">Business Internet</Link>
