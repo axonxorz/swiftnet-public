@@ -52,14 +52,14 @@ const Navbar = () => {
                     <Button type="text" class={ `text-left ${ whitetextAndLogo ? "text-white" : "text-[#1F2937]" }`} id="menu-button" aria-expanded="true" aria-haspopup="true">Pricing & Plans</Button>
                   </MenuHandler>
                   <MenuList>
-                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi">Lloydminster, AB/SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi">Cold Lake, AB</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Macklin, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1">Provost, AB</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Marshall, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441">Lashburn, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/jackfish-wifi-campaign-1">Jackfish/Murray Lake, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/swift-net-internet-inquiry-9785-5776-3473">Kerrobert, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi" target="_blank">Lloydminster, AB/SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi" target="_blank">Cold Lake, AB</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1" target="_blank">Macklin, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1" target="_blank">Provost, AB</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441" target="_blank">Marshall, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441" target="_blank">Lashburn, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/jackfish-wifi-campaign-1" target="_blank">Jackfish/Murray Lake, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.ca/swift-net-internet-inquiry-9785-5776-3473" target="_blank">Kerrobert, SK</Link></MenuItem>
                     <MenuItem><Link href="/sign-up">All other areas</Link></MenuItem>
                   </MenuList>
                 </Menu>
@@ -83,7 +83,7 @@ const Navbar = () => {
                 <Link href="https://www.youtube.com/@swiftnetinternet">YouTube</Link>
               </li>
               <li>
-                <Link href="https://portal.swift-net.ca">My Swift-Net</Link>
+                <Link href="https://portal.swift-net.ca" target="_blank">My Swift-Net</Link>
               </li>
             </ul>
 
