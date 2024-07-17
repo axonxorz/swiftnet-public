@@ -12,7 +12,6 @@ import axios from "axios"
 
 import { useSessionStore } from "@/store";
 import { generateSessionId } from "@/tools";
-import { ChatWidget } from "@components/ChatWidget";
 
 const inter = Inter({
   weight: ["400", "500", "600"],
@@ -62,19 +61,20 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         <Script
-        src="https://widgets.leadconnectorhq.com/loader.js"
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" >
+            src="https://widgets.leadconnectorhq.com/loader.js"
+            data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+            data-widget-id="668575741123b180449aa5ff">
         </Script>
 
         <Head>
           <link
-            href="https://fonts.googleapis.com/css?family=Roboto"
-            rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Roboto"
+              rel="stylesheet"
           />
         </Head>
 
         <body className={inter.className}>
-          <Toaster/>
+        <Toaster/>
           {pathname === "/sign-up" ||
           pathname === "/pricing" ||
           pathname === "/map" ||
@@ -87,7 +87,6 @@ export default function RootLayout({ children }) {
                 <Footer/>
               </>
           )}
-          <ChatWidget></ChatWidget>
         </body>
       </>
     </html>
