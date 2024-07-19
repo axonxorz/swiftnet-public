@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUserLocationStore } from "@/store";
 import HeroPromo from "@/app/components/home/HeroPromo"
 import HeroOutages from "@components/home/HeroOutages";
+import Link from "next/link";
 
 const Hero = ({ description, hero }) => {
   const route = useRouter();
@@ -26,6 +27,11 @@ const Hero = ({ description, hero }) => {
       >
         <div>
           <HeroOutages></HeroOutages>
+          {/* <Link
+                href={"/outage/fc8b68b1-df3d-4211-b9ba-22afe9461d56"}
+                className="w-full cursor-pointer mt-3 md:w-auto text-primary font-medium text-base border-[1px] border-solid border-primary px-4 py-2 rounded-md"
+            >Outage Map
+            </Link> */}
         </div>
         <div
           className={`${
