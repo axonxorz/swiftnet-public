@@ -91,7 +91,7 @@ const ServiceProvider = () => {
               <Link href="https://getfasterwifi.com/kerrobert-signup" target="_blank">Kerrobert, SK </Link>
             </li>
             <li className="cursor-pointer hover:underline underline font-bold">
-              <link href="https://getfasterwifi.com/attonslake-signup" target="_blank">Atton's Lake, SK</link>
+              <Link href="https://getfasterwifi.com/attonslake-signup" target="_blank">Atton's Lake, SK</Link>
             </li>
             <li>Boyle, AB</li>
           </ul>
