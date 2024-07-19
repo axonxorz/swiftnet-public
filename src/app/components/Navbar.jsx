@@ -52,14 +52,17 @@ const Navbar = () => {
                     <Button type="text" class={ `text-left ${ whitetextAndLogo ? "text-white" : "text-[#1F2937]" }`} id="menu-button" aria-expanded="true" aria-haspopup="true">Pricing & Plans</Button>
                   </MenuHandler>
                   <MenuList>
-                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi" target="_blank">Lloydminster, AB/SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.com/supercharge-your-wifi" target="_blank">Cold Lake, AB</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1" target="_blank">Macklin, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/provost-wifi-campaign-1" target="_blank">Provost, AB</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441" target="_blank">Marshall, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/marshall-lashburn-campaign-1866441" target="_blank">Lashburn, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/jackfish-wifi-campaign-1" target="_blank">Jackfish/Murray Lake, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.ca/swift-net-internet-inquiry-9785-5776-3473" target="_blank">Kerrobert, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/athabasca-signup" target="_blank">Athabasca, AB</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/attonslake-signup" target="_blank">Atton's Lake, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/coldlake-signup" target="_blank">Cold Lake, AB</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/jackfish-murraylake-signup" target="_blank">Jackfish/Murray Lake, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/kerrobert-signup" target="_blank">Kerrobert, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/kindersley-signup" target="_blank">Kindersley, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/lashburn-signup" target="_blank">Lashburn, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/lloydminster-signup" target="_blank">Lloydminster, AB/SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/Macklin-signup" target="_blank">Macklin, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/marshall-signup" target="_blank">Marhsall, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/provost-signup" target="_blank">Provost, AB</Link></MenuItem>
                     <MenuItem><Link href="/sign-up">All other areas</Link></MenuItem>
                   </MenuList>
                 </Menu>
