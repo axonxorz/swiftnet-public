@@ -49,7 +49,7 @@ const Navbar = () => {
               <li>
                 <Menu allowHover>
                   <MenuHandler>
-                    <Button type="text" class={ `text-left ${ whitetextAndLogo ? "text-white" : "text-[#1F2937]" }`} id="menu-button" aria-expanded="true" aria-haspopup="true">Pricing & Plans</Button>
+                    <a href className={'cursor-pointer'}>Pricing &amp; Plans</a>
                   </MenuHandler>
                   <MenuList>
                     <MenuItem><Link href="https://getfasterwifi.com/athabasca-signup" target="_blank">Athabasca, AB</Link></MenuItem>
