@@ -8,7 +8,9 @@ export default () => {
     const getOutages = async () => {
         const outageUrl = '/api/outages'
         const response = await backendClient.post(outageUrl);
-        setOutages(response.data);
+        if(!response.data.error) {
+            setOutages(response.data);
+        }
     }
 
     useEffect(() => {
