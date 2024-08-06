@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { backendClient } from "@/lib/backend";
 import MarkdownView from "react-showdown";
+import Image from "next/image";
+import triangle_exclamation from "@/assets/triangle-exclamation.svg"
 
 export default () => {
     const [outages, setOutages] = useState([]);
@@ -36,8 +38,11 @@ export default () => {
         `}</style>
         {outages.map((outage) =>
         <div key={outage.uuid}
-             className={`outage md:w-[50%] mx-auto rounded p-3`}
+             className={`outage md:w-[50%] mx-auto rounded p-3 mb-3 flex gap-3`}
              style={{background: '#ffbe0b', whiteSpace: 'pre-wrap'}}>
+            <div className={`w-[2em]`}>
+                <Image src={triangle_exclamation}></Image>
+            </div>
             <MarkdownView markdown={outage.message}/>
         </div>)}
         </>
