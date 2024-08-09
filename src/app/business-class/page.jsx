@@ -43,7 +43,7 @@ const page = () => {
   return (
     <>
       <CommonLayers
-        heading="Business Class Service: Ideal Solution for Working from Home"
+        heading="Business Class Service: Ideal Solutions for Working from Home or in Office"
         description="In today's rapidly evolving work landscape, many professionals are embracing the work-from-home model. A reliable, high-speed internet connection is crucial for remote work, and Swift-Net.ca's business class service is the ideal choice to keep you connected and productive. Discover how Swift-Net.ca's internet service can enhance your work-from-home experience and seamlessly integrate with popular productivity software, VPN connections, video conferencing, corporate VOIP, and Wi-Fi calling."
         img={img}
         data={data}

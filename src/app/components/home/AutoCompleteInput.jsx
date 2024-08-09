@@ -76,7 +76,7 @@ const AutoCompleteInput = ({ place, resolved, resolvedSimple }) => {
                         disabled={loading}
                         className={`bg-primary border-none rounded-md ${styles.paragraph}   text-white px-4 py-2 absolute md:flex  items-center justify-center top-0  md:bottom-[50%] right-0   h-full `}
                     >
-                        {!loading ? 'Check availability' : 'Checking...'}
+                        {!loading ? 'Check availability (residential)' : 'Checking...'}
                     </button>
                 </div>
             </>

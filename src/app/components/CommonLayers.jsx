@@ -29,7 +29,7 @@ const CommonLayers = (props) => {
           <p>{" " + props.description}</p>
 
           <div className="w-full flex mt-4 ">
-            <Link href={"/sign-up"}>
+            <Link href={"https://getfasterwifi.ca/swift-net-business-inquiry"} target="_blank">
               <button className="bg-primary  hover:bg-primary/40 text-white  w-[130px] cursor-pointer  font-medium text-base border-[1px] border-solid border-white  py-2 rounded-md">
                 Get Started
               </button>
@@ -124,7 +124,7 @@ const CommonLayers = (props) => {
             </p>
 
             <div className="  w-full flex ">
-              <Link href={"/sign-up"}>
+              <Link href={"https://getfasterwifi.ca/swift-net-business-inquiry"} target="_blank">
                 <button className="bg-primary hover:bg-primary/40 text-white  w-[130px] cursor-pointer  font-medium text-base border-[1px] border-solid border-white px-4 py-2 rounded-md">
                   Get Started
                 </button>

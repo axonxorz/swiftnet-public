@@ -59,6 +59,9 @@ const Hero = ({ description, hero }) => {
              onClick={() => {route.push('/map')}}>
             Check availability by map or browser location <span className={'underline'}>here</span>
           </p>
+          <p className={`${styles.paragraph} mt-3 text-white`}>
+            Looking for <a href="business-class" className={'underline'}>business internet?</a>
+          </p>
         </div>
       </div>
     </div>

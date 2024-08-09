@@ -49,7 +49,7 @@ const Navbar = () => {
               <li>
                 <Menu allowHover>
                   <MenuHandler>
-                    <a href className={'cursor-pointer'}>Pricing &amp; Plans</a>
+                    <a href className={'cursor-pointer'}>Residential Internet</a>
                   </MenuHandler>
                   <MenuList>
                     <MenuItem><Link href="https://getfasterwifi.com/athabasca-signup" target="_blank">Athabasca, AB</Link></MenuItem>
