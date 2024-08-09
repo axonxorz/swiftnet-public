@@ -61,7 +61,7 @@ const Navbar = () => {
                     <MenuItem><Link href="https://getfasterwifi.com/lashburn-signup" target="_blank">Lashburn, SK</Link></MenuItem>
                     <MenuItem><Link href="https://getfasterwifi.com/lloydminster-signup" target="_blank">Lloydminster, AB/SK</Link></MenuItem>
                     <MenuItem><Link href="https://getfasterwifi.com/Macklin-signup" target="_blank">Macklin, SK</Link></MenuItem>
-                    <MenuItem><Link href="https://getfasterwifi.com/marshall-signup" target="_blank">Marhsall, SK</Link></MenuItem>
+                    <MenuItem><Link href="https://getfasterwifi.com/marshall-signup" target="_blank">Marshall, SK</Link></MenuItem>
                     <MenuItem><Link href="https://getfasterwifi.com/provost-signup" target="_blank">Provost, AB</Link></MenuItem>
                     <MenuItem><Link href="/sign-up">All other areas</Link></MenuItem>
                   </MenuList>
