@@ -26,8 +26,8 @@ export default ({ setStep, plan }) => {
               src={logo1}
               alt=""
               style={{
-                width: "256.43px",
-                height: "48px",
+                width: "300px",
+                height: "56px",
               }}
               unoptimized={true}
             />
