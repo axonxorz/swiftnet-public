@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default () => {
     const promoStarts = DateTime.local(2024, 5, 24, 0, 0)
-    const promoEnds = DateTime.local(2024, 9, 1, 0, 0);
+    const promoEnds = DateTime.local(2024, 10, 1, 0, 0);
     const promoActive = DateTime.now() >= promoStarts && DateTime.now() <= promoEnds;
     // const promoActive = false;
 
